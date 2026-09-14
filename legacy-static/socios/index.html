@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Acceso Socios — Ferrari Club España</title>
+<meta name="description" content="Área privada de socios del Ferrari Club España. Accede con tu usuario y contraseña."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/shared.css"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23cc0000'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E"/>
+<style>
+.login-wrap{min-height:100svh;display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:768px){.login-wrap{grid-template-columns:1fr}}
+.login-panel{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:6rem 4rem;background:var(--black);position:relative}
+.login-visual{position:relative;overflow:hidden;background:var(--b90)}
+@media(max-width:768px){.login-visual{display:none}}
+.login-brand{font-family:var(--fd);font-size:.75rem;letter-spacing:.3em;color:var(--white);margin-bottom:3.5rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center}
+.login-brand em{font-family:var(--fd);font-size:.65rem;color:var(--red);font-style:normal;letter-spacing:.2em}
+.login-card{width:100%;max-width:380px}
+.login-title{font-family:var(--fh);font-size:2rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:.5rem}
+.login-sub{font-family:var(--fm);font-size:.78rem;color:var(--w60);letter-spacing:.08em;margin-bottom:2.5rem}
+.login-form{display:flex;flex-direction:column;gap:1.25rem}
+.login-footer{margin-top:2rem;font-family:var(--fm);font-size:.75rem;color:var(--w60);text-align:center;line-height:2.2}
+.login-footer a{color:var(--red);text-decoration:none}
+.login-footer a:hover{text-decoration:underline}
+.login-divider{display:flex;align-items:center;gap:1rem;margin:.25rem 0}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--w08)}
+.login-divider span{font-family:var(--fm);font-size:.7rem;color:var(--w50);letter-spacing:.08em}
+.remember-row{display:flex;justify-content:space-between;align-items:center}
+.member-area-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.area-card{padding:1.75rem;border:1px solid var(--w08);background:var(--b90);text-align:center;cursor:default}
+.area-ico{font-family:var(--fd);font-size:1.2rem;color:rgba(204,0,0,.3);margin-bottom:.75rem}
+.area-title{font-family:var(--fh);font-size:.95rem;font-weight:700;text-transform:uppercase;color:var(--w70);margin-bottom:.35rem}
+.area-desc{font-family:var(--fm);font-size:.78rem;color:var(--w50)}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+</head>
+<body>
+<div id="sp"></div><div id="pt"></div>
+<header><nav id="nav">
+  <a href="/" class="nav-logo" aria-label="Ferrari Club España — Inicio"><span class="nav-logo-badge" aria-hidden="true"><svg width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 1 L31 7 L31 22 Q31 32 16 37 Q1 32 1 22 L1 7 Z" fill="#CC0000" stroke="#990000" stroke-width=".8"/><path d="M16 3.5 L29 8.8 L29 22 Q29 30.5 16 34.8 Q3 30.5 3 22 L3 8.8 Z" fill="#AA0000"/><text x="16" y="24" font-family="Italiana,serif" font-size="13" fill="#F5EDE0" text-anchor="middle" font-weight="400">F</text><path d="M8 14 L24 14" stroke="rgba(245,237,224,.25)" stroke-width=".8"/></svg></span><span class="nav-logo-text">FERRARI<em>·</em>CLUB<small>ESPAÑA — OFICIAL DESDE 1988</small></span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Inicio</a>
+    <a href="/noticias/" class="nav-link">Noticias</a>
+    <div class="nav-drop nav-link" tabindex="0">Club<div class="nav-drop-menu"><a href="/club/" class="nav-drop-item">Nuestro Club</a><a href="/club/hazte-socio/" class="nav-drop-item">Hazte Socio</a></div></div>
+    <a href="/eventos/" class="nav-link">Eventos</a>
+    <a href="/concesionarios/" class="nav-link">Concesionarios</a>
+    <a href="/contacta/" class="nav-link">Contacta</a>
+    <a href="/socios/" class="nav-link-cta active">Área Socios</a>
+  </div>
+  <button class="nav-mbtn" id="mbtn" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav></header>
+<div id="menu"><nav class="menu-nav">
+  <a class="mi" href="/"><span class="mi-n">01</span>INICIO</a>
+  <a class="mi" href="/noticias/"><span class="mi-n">02</span>NOTICIAS</a>
+  <div class="mi" style="flex-direction:column;align-items:flex-start;gap:.3rem"><span style="display:inline-flex;align-items:center;gap:1.5rem"><span class="mi-n">03</span>CLUB</span><div class="mi-sub"><a href="/club/">Nuestro Club</a><a href="/club/hazte-socio/">Hazte Socio</a></div></div>
+  <a class="mi" href="/eventos/"><span class="mi-n">04</span>EVENTOS</a>
+  <a class="mi" href="/concesionarios/"><span class="mi-n">05</span>CONCESIONARIOS</a>
+  <a class="mi" href="/socios/"><span class="mi-n">06</span>SOCIOS</a>
+  <a class="mi" href="/contacta/"><span class="mi-n">07</span>CONTACTA</a>
+</nav><div class="menu-preview" aria-hidden="true">
+  <div class="mp" id="mp0" style="background:linear-gradient(135deg,#1a0000,#0a0a0a)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">INICIO</span></div>
+  <div class="mp" id="mp1" style="background:linear-gradient(135deg,#0a0a0a,#111)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">NOTICIAS</span></div>
+  <div class="mp" id="mp2" style="background:linear-gradient(135deg,#1a0000,#111)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">CLUB</span></div>
+  <div class="mp" id="mp3" style="background:radial-gradient(ellipse at 50% 60%,#1a0505,#0d0907)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(204,0,0,.1)">EVENTOS</span></div>
+  <div class="mp" id="mp4" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a)"><span style="font-family:var(--fd);font-size:5vw;color:rgba(255,255,255,.04)">CONC.</span></div>
+  <div class="mp on" id="mp5" style="background:linear-gradient(135deg,#1a0000,#0a0a0a)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">SOCIOS</span></div>
+  <div class="mp" id="mp6" style="background:linear-gradient(135deg,#111,#0a0a0a)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">CONTACTA</span></div>
+</div><div class="menu-footer"><div class="menu-social"><a href="https://www.facebook.com/ferrariclubespana" target="_blank" rel="noopener">FACEBOOK</a><a href="https://www.instagram.com/ferrariclubespana" target="_blank" rel="noopener">INSTAGRAM</a></div><span style="font-family:var(--fm);font-size:.55rem;color:rgba(255,255,255,.08)">MADRID · EST. 1988</span></div></div>
+
+<main style="padding-top:70px">
+<div class="login-wrap">
+  <!-- Login Panel -->
+  <div class="login-panel">
+    <a href="/" class="login-brand" style="text-decoration:none">
+      FERRARI CLUB ESPAÑA
+      <em>ÁREA PRIVADA DE SOCIOS</em>
+    </a>
+    <div class="login-card">
+      <h1 class="login-title">Acceso<br><span style="color:var(--red)">Socios</span></h1>
+      <p class="login-sub">INTRODUCE TUS CREDENCIALES DE SOCIO</p>
+      <form class="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="email">NÚMERO DE SOCIO / EMAIL</label>
+          <input class="form-input" type="text" id="email" name="email" placeholder="CFE0001 o email@ejemplo.com" autocomplete="username" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pass">CONTRASEÑA</label>
+          <input class="form-input" type="password" id="pass" name="pass" placeholder="••••••••" autocomplete="current-password" required/>
+        </div>
+        <div class="remember-row">
+          <label style="display:flex;align-items:center;gap:.6rem;font-family:var(--fm);font-size:.82rem;color:var(--w60);cursor:pointer"><input type="checkbox" style="accent-color:var(--red);width:18px;height:18px"/> Recordarme</label>
+          <a href="mailto:ferrari@ferrariclubespana.com?subject=Recuperaci%C3%B3n%20de%20acceso%20socios" style="font-family:var(--fm);font-size:.82rem;color:var(--red);text-decoration:none">¿Olvidaste la contraseña?</a>
+        </div>
+        <button type="submit" class="btn btn-p" style="width:100%;justify-content:center" data-mag>ACCEDER AL ÁREA DE SOCIOS <span class="btn-ico">→</span></button>
+        <div id="login-msg" style="display:none;font-family:var(--fm);font-size:.82rem;text-align:center;padding:1rem;border:1px solid rgba(204,0,0,.3);color:var(--w70);background:rgba(204,0,0,.05)"></div>
+      </form>
+      <div class="login-divider" style="margin:2rem 0"><span>¿AÚN NO ERES SOCIO?</span></div>
+      <a href="/club/hazte-socio/" class="btn btn-o" style="width:100%;justify-content:center;text-align:center">HAZTE SOCIO DEL CLUB <span class="btn-ico">→</span></a>
+      <div class="login-footer">
+        <a href="/contacta/">¿Problemas de acceso?</a> · <a href="mailto:ferrari@ferrariclubespana.com">Contactar secretaría</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visual Side -->
+  <div class="login-visual" aria-hidden="true">
+    <svg width="100%" height="100%" viewBox="0 0 760 900" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <defs>
+        <radialGradient id="lg" cx="50%" cy="45%" r="65%"><stop offset="0%" stop-color="#1a0000"/><stop offset="100%" stop-color="#040404"/></radialGradient>
+        <radialGradient id="lg2" cx="50%" cy="50%" r="35%"><stop offset="0%" stop-color="#330000" stop-opacity=".4"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#lg)"/>
+      <rect width="100%" height="100%" fill="url(#lg2)"/>
+      <g stroke="rgba(204,0,0,.04)" fill="none" stroke-width=".8">
+        <line x1="0" y1="150" x2="760" y2="150"/><line x1="0" y1="300" x2="760" y2="300"/>
+        <line x1="0" y1="450" x2="760" y2="450"/><line x1="0" y1="600" x2="760" y2="600"/>
+        <line x1="0" y1="750" x2="760" y2="750"/>
+        <line x1="190" y1="0" x2="190" y2="900"/><line x1="380" y1="0" x2="380" y2="900"/><line x1="570" y1="0" x2="570" y2="900"/>
+      </g>
+      <!-- Cavallino text -->
+      <text x="380" y="480" font-family="Orbitron,sans-serif" font-size="160" fill="rgba(204,0,0,.06)" text-anchor="middle" letter-spacing="5" transform="rotate(-15 380 450)">F</text>
+      <text x="380" y="380" font-family="Orbitron,sans-serif" font-size="18" fill="rgba(255,255,255,.08)" text-anchor="middle" letter-spacing="8">ÁREA PRIVADA DE SOCIOS</text>
+      <!-- Member area cards (decorative) -->
+      <g opacity=".25" fill="none">
+        <rect x="60" y="580" width="180" height="100" stroke="rgba(204,0,0,.3)" rx="2"/>
+        <rect x="260" y="580" width="180" height="100" stroke="rgba(255,255,255,.1)" rx="2"/>
+        <rect x="460" y="580" width="220" height="100" stroke="rgba(204,0,0,.15)" rx="2"/>
+        <rect x="60" y="700" width="180" height="100" stroke="rgba(255,255,255,.08)" rx="2"/>
+        <rect x="260" y="700" width="180" height="100" stroke="rgba(204,0,0,.2)" rx="2"/>
+      </g>
+      <text x="380" y="850" font-family="Orbitron,sans-serif" font-size="10" fill="rgba(255,255,255,.08)" text-anchor="middle" letter-spacing="4">FERRARI CLUB ESPAÑA · EST. 1988</text>
+    </svg>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;pointer-events:none">
+      <div style="font-family:var(--fd);font-size:.65rem;letter-spacing:.3em;color:rgba(204,0,0,.5);text-align:center">ÁREA EXCLUSIVA</div>
+      <div style="font-family:var(--fd);font-size:clamp(2rem,5vw,3.5rem);letter-spacing:.15em;color:rgba(255,255,255,.08);text-align:center;text-transform:uppercase">SÓLO SOCIOS</div>
+      <div style="width:60px;height:1px;background:rgba(204,0,0,.3)"></div>
+      <div style="max-width:320px;text-align:center">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div style="padding:1.25rem 1rem;border:1px solid rgba(204,0,0,.12);background:rgba(0,0,0,.4)"><div style="font-family:var(--fd);font-size:.55rem;color:rgba(204,0,0,.4);letter-spacing:.15em;margin-bottom:.4rem">EVENTOS</div><div style="font-family:var(--fh);font-size:.75rem;color:rgba(255,255,255,.3)">Inscripción</div></div>
+          <div style="padding:1.25rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.4)"><div style="font-family:var(--fd);font-size:.55rem;color:rgba(255,255,255,.2);letter-spacing:.15em;margin-bottom:.4rem">REVISTA</div><div style="font-family:var(--fh);font-size:.75rem;color:rgba(255,255,255,.3)">Digital</div></div>
+          <div style="padding:1.25rem 1rem;border:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.4)"><div style="font-family:var(--fd);font-size:.55rem;color:rgba(255,255,255,.2);letter-spacing:.15em;margin-bottom:.4rem">DIRECTORIO</div><div style="font-family:var(--fh);font-size:.75rem;color:rgba(255,255,255,.3)">Socios</div></div>
+          <div style="padding:1.25rem 1rem;border:1px solid rgba(204,0,0,.12);background:rgba(0,0,0,.4)"><div style="font-family:var(--fd);font-size:.55rem;color:rgba(204,0,0,.4);letter-spacing:.15em;margin-bottom:.4rem">PERFIL</div><div style="font-family:var(--fh);font-size:.75rem;color:rgba(255,255,255,.3)">Mi cuenta</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer class="footer" style="padding:3rem 0">
+  <div class="cnt">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2.5rem;margin-bottom:2.5rem">
+      <div><span class="footer-col-title">NAVEGACIÓN</span><a href="/" class="footer-link">Inicio</a><a href="/noticias/" class="footer-link">Noticias</a><a href="/club/" class="footer-link">Nuestro Club</a><a href="/club/hazte-socio/" class="footer-link">Hazte Socio</a><a href="/contacta/" class="footer-link">Contacta</a></div>
+      <div><span class="footer-col-title">CONTACTO</span><p style="font-family:var(--fm);font-size:.78rem;color:var(--w60);line-height:2.2">C/ Constancia 41 · 28002 Madrid<br>+34 91 575 41 60<br>ferrari@ferrariclubespana.com</p></div>
+      <div><span class="footer-col-title">LEGAL</span><a href="/privacidad/" class="footer-link">Política de Privacidad</a></div>
+    </div>
+    <div class="rl" style="margin-bottom:1.5rem"></div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <span style="font-family:var(--fm);font-size:.7rem;color:var(--w40)">&copy; 2026 FERRARI CLUB ESPAÑA · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
+    </div>
+    <div class="footer-brand" aria-hidden="true">FERRARI</div>
+  </div>
+</footer>
+<script src="/shared.js" defer></script>
+<script>
+function handleLogin(e){
+  e.preventDefault();
+  const msg=document.getElementById('login-msg');
+  msg.style.display='block';
+  msg.textContent='El acceso al área de socios está disponible únicamente para miembros registrados. Contacta con la secretaría en ferrari@ferrariclubespana.com para obtener tus credenciales.';
+}
+</script>
+</body>
+</html>

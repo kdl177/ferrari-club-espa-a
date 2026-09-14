@@ -1,0 +1,782 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ferrari Club España — Club Oficial desde 1988</title>
+<meta name="description" content="Club Oficial de Propietarios y Apasionados de Ferrari en España. Más de 200 socios, track days, rutas, F1 y eventos exclusivos desde 1988."/>
+<meta property="og:title" content="Ferrari Club España — Club Oficial"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://club-ferrari-espana.vercel.app/og.svg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="theme-color" content="#cc0000"/>
+<link rel="canonical" href="https://club-ferrari-espana.vercel.app/"/>
+<meta property="og:url" content="https://club-ferrari-espana.vercel.app/"/>
+<meta property="og:description" content="Club Oficial de Propietarios y Apasionados de Ferrari en España. Más de 200 socios, track days, rutas, F1 y eventos exclusivos desde 1988."/>
+<meta property="og:site_name" content="Ferrari Club España"/>
+<meta property="og:locale" content="es_ES"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Ferrari Club España — Club Oficial"/>
+<meta name="twitter:description" content="Club Oficial de Propietarios y Apasionados de Ferrari en España desde 1988."/>
+<meta name="twitter:image" content="https://club-ferrari-espana.vercel.app/og.svg"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ferrari Club España",
+  "url": "https://club-ferrari-espana.vercel.app",
+  "logo": "https://club-ferrari-espana.vercel.app/og.svg",
+  "description": "Club Oficial de Propietarios y Apasionados de Ferrari en España desde 1988. El único club oficial avalado por Ferrari S.p.A.",
+  "foundingDate": "1988",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Constancia 41, Entreplanta",
+    "addressLocality": "Madrid",
+    "postalCode": "28002",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34915754160",
+  "email": "ferrari@ferrariclubespana.com",
+  "sameAs": [
+    "https://www.facebook.com/ferrariclubespana",
+    "https://www.instagram.com/ferrariclubespana"
+  ]
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23cc0000'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/shared.css"/>
+<style>
+/* HOME-SPECIFIC v2 — Cuoio e Fuoco */
+.hero{position:relative;width:100%;height:100svh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:-10%;will-change:transform}
+#hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,9,7,.92) 0%,rgba(13,9,7,.42) 55%,rgba(13,9,7,.85) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(204,0,0,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,0,.018) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+.hero-content{position:relative;z-index:3;text-align:center;max-width:960px;padding:0 2rem}
+.h-eye{font-family:var(--fm);font-size:.75rem;letter-spacing:.35em;color:var(--white);text-transform:uppercase;margin-bottom:1.75rem;opacity:0;text-shadow:0 0 20px rgba(204,0,0,.6)}
+.h-t{font-family:var(--fd);font-size:clamp(2.8rem,10vw,9.5rem);letter-spacing:.06em;text-transform:uppercase;line-height:.88;color:var(--white);margin-bottom:1.5rem;opacity:0}
+.h-t em{color:var(--red);font-style:normal;display:block}
+.h-t small{color:var(--w60);font-size:.4em;letter-spacing:.35em;display:block;margin-top:.6rem}
+.h-s{font-family:var(--fe);font-style:italic;font-size:clamp(1rem,2.3vw,1.35rem);letter-spacing:.08em;color:var(--w60);margin-bottom:3rem;opacity:0}
+.h-cta{opacity:0;display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap}
+.hero-coord{position:absolute;bottom:2rem;right:3rem;font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;color:rgba(240,228,210,.08);z-index:3}
+.hero-num{position:absolute;top:50%;left:3rem;transform:translateY(-50%);font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;color:var(--w10);z-index:3;writing-mode:vertical-rl;text-orientation:mixed}
+
+/* Editorial — ROJO Ferrari, texto blanco sólido, máxima presencia */
+.editorial{padding:7rem 0 5rem;background:var(--red);overflow:hidden;position:relative}
+.editorial::before{content:'FERRARI';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--fd);font-size:clamp(8rem,25vw,24rem);letter-spacing:.15em;color:rgba(0,0,0,.12);white-space:nowrap;pointer-events:none;user-select:none;line-height:1}
+.ew{font-family:var(--fd);font-size:clamp(3.5rem,11vw,11rem);letter-spacing:.03em;text-transform:uppercase;line-height:.92;color:var(--white);display:block;transition:opacity .4s;cursor:default;position:relative;z-index:1}
+.ew:hover{opacity:.85}
+.ew.accent{color:rgba(0,0,0,.65)}
+
+/* Machine horizontal */
+.machine-wrap{padding:7rem 0 0;background:var(--black);position:relative}
+.machine-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-snap-type:x mandatory}
+.machine-scroll::-webkit-scrollbar{display:none}
+.machine-track{display:flex;gap:3rem;padding:0 3rem;width:max-content}
+.mcard{min-width:400px;padding:2.5rem;border:1px solid var(--w08);background:var(--b85);position:relative;flex-shrink:0;transition:border-color .4s,box-shadow .4s;scroll-snap-align:start}
+.mtrack-dots{display:flex;gap:.5rem;padding:1.75rem 3rem 5.5rem}
+.mtd{border:none;background:none;cursor:pointer;padding:8px 0}
+.mtd::after{content:'';display:block;width:28px;height:1px;background:rgba(255,255,255,.15);transition:width .4s var(--eo),background .4s}
+.mtd.on::after{width:44px;background:var(--red)}
+.mcard:hover{border-color:var(--red-30);box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 30px var(--red-10)}
+.mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--eo)}
+.mcard:hover::before{transform:scaleX(1)}
+.mcard-img{height:200px;margin-bottom:2rem;display:flex;align-items:center;justify-content:center;background:var(--b90);overflow:hidden}
+.mcard-model{font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;color:var(--red-g);margin-bottom:.4rem}
+.mcard-name{font-family:var(--fh);font-size:2rem;font-weight:700;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:1.5rem}
+.mcard-specs{display:flex;flex-direction:column;gap:.65rem}
+.mspec{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--w05)}
+.mspec-l{font-family:var(--fm);font-size:.7rem;letter-spacing:.12em;color:var(--grey-l)}
+.mspec-v{font-family:var(--fd);font-size:.85rem;color:var(--white)}
+
+/* Events */
+.events-sec{padding:7rem 0;background:var(--b90)}
+.events-list{display:flex;flex-direction:column;gap:1px;margin-top:3rem}
+
+/* News */
+.news-sec{padding:7rem 0;background:var(--black)}
+.news-layout{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem}
+.news-side{display:flex;flex-direction:column;gap:1.25rem}
+@media(max-width:900px){.news-layout{grid-template-columns:1fr}}
+
+/* Gallery */
+.gal-strip{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;grid-template-rows:240px 240px;gap:2px}
+.gal-strip .g0{grid-row:1/3}
+@media(max-width:768px){.gal-strip{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,180px)}.gal-strip .g0{grid-row:auto}}
+
+/* Club */
+.club-sec{padding:8rem 0;background:var(--b90)}
+.club-frame{padding:3rem;border:1px solid var(--w08);background:var(--b85);position:relative}
+.club-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--red-b))}
+.cf-corner{position:absolute;width:50px;height:50px}
+.cf-tr{top:-1px;right:-1px;border-top:1px solid var(--red-20);border-right:1px solid var(--red-20)}
+.cf-bl{bottom:-1px;left:-1px;border-bottom:1px solid var(--red-20);border-left:1px solid var(--red-20)}
+.stats4{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem}
+
+/* Membership */
+.mem-sec{padding:8rem 0;background:var(--black)}
+.mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+@media(max-width:900px){.mem-grid{grid-template-columns:1fr}}
+
+/* CTA finale — Ferrari Red background, editorial impact */
+.finale{padding:10rem 0;background:var(--red);position:relative;overflow:hidden;text-align:center}
+.finale::before{content:'FERRARI';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--fd);font-size:clamp(4rem,18vw,18rem);letter-spacing:.2em;color:rgba(240,228,210,.055);white-space:nowrap;pointer-events:none;user-select:none}
+.finale-title{font-family:var(--fd);font-size:clamp(2.5rem,8vw,7rem);letter-spacing:.1em;text-transform:uppercase;color:var(--white);line-height:.88;margin-bottom:1.5rem}
+.finale-title span{color:rgba(240,228,210,.6)}
+.btn-w{background:var(--white);border:1px solid var(--white);color:#0D0907}
+.btn-w::before{background:rgba(240,228,210,.12)}
+.btn-w:hover{box-shadow:0 0 30px rgba(204,0,0,.3)}
+.btn-wo{background:transparent;border:1px solid rgba(240,228,210,.4);color:var(--white)}
+.btn-wo::before{background:rgba(240,228,210,.06)}
+.btn-wo:hover{border-color:rgba(240,228,210,.85)}
+.fin-stat-n{font-family:var(--fd);font-size:3.5rem;display:block;color:var(--white)}
+.fin-stat-l{font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;color:rgba(240,228,210,.7);text-transform:uppercase}
+</style>
+<style>/* CSS fallback: preloader auto-hides after 5s if JS fails */
+#pre{animation:preAutoHide 5s linear forwards}
+@keyframes preAutoHide{0%,78%{opacity:1;pointer-events:all}90%{opacity:0}100%{opacity:0;pointer-events:none}}
+.no-pre #pre{display:none!important;pointer-events:none}
+@media(scripting:none){
+  #pre{display:none}
+  .h-eye,.h-t,.h-s,.h-cta{opacity:1!important;transform:none!important}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script>
+(function(){
+  var ok = (!navigator.deviceMemory || navigator.deviceMemory >= 3) &&
+            (!navigator.hardwareConcurrency || navigator.hardwareConcurrency >= 4);
+  if(!ok) return;
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  s.onload = function(){ if(typeof initThree === 'function') initThree(); };
+  document.head.appendChild(s);
+})();
+</script>
+</head>
+<body>
+<script>if(sessionStorage.getItem('pre-done'))document.documentElement.className+=' no-pre';</script>
+
+<!-- PRELOADER -->
+<div id="pre" role="status" aria-live="polite">
+  <video id="pre-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="/ferrari-intro.mp4" type="video/mp4">
+  </video>
+  <div id="pre-ov" aria-hidden="true"></div>
+  <div class="pre-brand">FERRARI CLUB ESPAÑA</div>
+  <div class="pre-sub">CLUB OFICIAL — DESDE 1988</div>
+  <div class="pre-term" aria-hidden="true">
+    <div class="pre-tl"><span class="pre-tk">MOTOR</span><span class="pre-ts" id="t0">··········· STANDBY</span></div>
+    <div class="pre-tl"><span class="pre-tk">PISTA</span><span class="pre-ts" id="t1">············ STANDBY</span></div>
+    <div class="pre-tl"><span class="pre-tk">CLUB</span><span class="pre-ts" id="t2">·············· STANDBY</span></div>
+    <div class="pre-tl"><span class="pre-tk">SOCIOS</span><span class="pre-ts" id="t3">·········· STANDBY</span></div>
+    <div class="pre-tl"><span class="pre-tk">EXPERIENCIA</span><span class="pre-ts" id="t4">····· STANDBY</span></div>
+  </div>
+  <div class="pre-bw" aria-hidden="true"><div class="pre-bar" id="pb"></div></div>
+  <div class="pre-pct" id="pp" aria-hidden="true">0</div>
+  <div class="pre-coord" aria-hidden="true">40.4168° N · 3.7038° O — MADRID</div>
+</div>
+
+<div id="sp" aria-hidden="true"></div>
+<div id="pt" aria-hidden="true"></div>
+<canvas id="race-canvas" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<header>
+<nav id="nav" role="navigation">
+  <a href="/" class="nav-logo" aria-label="Ferrari Club España — Inicio">
+    <span class="nav-logo-badge" aria-hidden="true"><svg width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 1 L31 7 L31 22 Q31 32 16 37 Q1 32 1 22 L1 7 Z" fill="#CC0000" stroke="#990000" stroke-width=".8"/><path d="M16 3.5 L29 8.8 L29 22 Q29 30.5 16 34.8 Q3 30.5 3 22 L3 8.8 Z" fill="#AA0000"/><text x="16" y="24" font-family="Italiana,serif" font-size="13" fill="#F5EDE0" text-anchor="middle" font-weight="400">F</text><path d="M8 14 L24 14" stroke="rgba(245,237,224,.25)" stroke-width=".8"/></svg></span>
+    <span class="nav-logo-text">FERRARI<em>·</em>CLUB<small>ESPAÑA — OFICIAL DESDE 1988</small></span>
+  </a>
+  <div class="nav-links">
+    <a href="/" class="nav-link active">Inicio</a>
+    <a href="/noticias/" class="nav-link">Noticias</a>
+    <div class="nav-drop nav-link" tabindex="0">Club
+      <div class="nav-drop-menu">
+        <a href="/club/" class="nav-drop-item">Nuestro Club</a>
+        <a href="/club/hazte-socio/" class="nav-drop-item">Hazte Socio</a>
+      </div>
+    </div>
+    <a href="/eventos/" class="nav-link">Eventos</a>
+    <a href="/concesionarios/" class="nav-link">Concesionarios</a>
+    <a href="/contacta/" class="nav-link">Contacta</a>
+    <a href="/socios/" class="nav-link-cta">Área Socios</a>
+  </div>
+  <button class="nav-mbtn" id="mbtn" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+</header>
+
+<!-- FULLSCREEN MENU -->
+<div id="menu" role="dialog" aria-modal="true">
+  <nav class="menu-nav">
+    <a class="mi" href="/"><span class="mi-n">01</span>INICIO</a>
+    <a class="mi" href="/noticias/"><span class="mi-n">02</span>NOTICIAS</a>
+    <div class="mi" style="flex-direction:column;align-items:flex-start;gap:.3rem">
+      <span style="display:inline-flex;align-items:center;gap:1.5rem"><span class="mi-n">03</span>CLUB</span>
+      <div class="mi-sub"><a href="/club/">Nuestro Club</a><a href="/club/hazte-socio/">Hazte Socio</a></div>
+    </div>
+    <a class="mi" href="/eventos/"><span class="mi-n">04</span>EVENTOS</a>
+  <a class="mi" href="/concesionarios/"><span class="mi-n">05</span>CONCESIONARIOS</a>
+    <a class="mi" href="/socios/"><span class="mi-n">06</span>SOCIOS</a>
+    <a class="mi" href="/contacta/"><span class="mi-n">07</span>CONTACTA</a>
+  </nav>
+  <div class="menu-preview" aria-hidden="true">
+    <div class="mp on" id="mp0" style="background:radial-gradient(ellipse at 40% 50%,#1c0000,#000)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">INICIO</span></div>
+    <div class="mp" id="mp1" style="background:radial-gradient(ellipse at 55% 50%,#0c0c0c,#000)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">NOTICIAS</span></div>
+    <div class="mp" id="mp2" style="background:radial-gradient(ellipse at 40% 50%,#1c0000,#000)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">CLUB</span></div>
+  <div class="mp" id="mp3" style="background:radial-gradient(ellipse at 50% 60%,#1a0505,#0d0907)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(204,0,0,.1)">EVENTOS</span></div>
+    <div class="mp" id="mp4" style="background:radial-gradient(ellipse at 50% 50%,#0c0c0c,#000)"><span style="font-family:var(--fd);font-size:4vw;color:rgba(255,255,255,.04)">CONC.</span></div>
+    <div class="mp" id="mp5" style="background:radial-gradient(ellipse at 40% 50%,#1c0000,#000)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">SOCIOS</span></div>
+    <div class="mp" id="mp6" style="background:radial-gradient(ellipse at 60% 50%,#111,#000)"><span style="font-family:var(--fd);font-size:5vw;color:rgba(255,255,255,.04)">CONTACTA</span></div>
+  </div>
+  <div class="menu-footer">
+    <div class="menu-social">
+      <a href="https://www.facebook.com/ferrariclubespana" target="_blank" rel="noopener">FACEBOOK</a>
+      <a href="https://www.instagram.com/ferrariclubespana" target="_blank" rel="noopener">INSTAGRAM</a>
+    </div>
+    <span style="font-family:var(--fm);font-size:.55rem;color:rgba(255,255,255,.08)">MADRID · EST. 1988</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+  <div class="hero-bg" id="hbg" aria-hidden="true">
+    <img id="hero-photo" src="/ferrari-hero.jpg" alt="" fetchpriority="high" onerror="this.style.display='none'">
+    <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="hrg" cx="58%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#1A0A07"/><stop offset="60%" stop-color="#0D0907"/><stop offset="100%" stop-color="#0A0704"/>
+        </radialGradient>
+        <radialGradient id="hrg2" cx="55%" cy="52%" r="28%">
+          <stop offset="0%" stop-color="#3A1510" stop-opacity=".5"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hrg3" cx="78%" cy="38%" r="32%">
+          <stop offset="0%" stop-color="#2A1500" stop-opacity=".4"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#hrg)"/>
+      <rect width="100%" height="100%" fill="url(#hrg2)"/>
+      <rect width="100%" height="100%" fill="url(#hrg3)"/>
+      <g stroke="rgba(204,0,0,.015)" stroke-width=".6" fill="none">
+        <line x1="0" y1="270" x2="1920" y2="270"/><line x1="0" y1="540" x2="1920" y2="540"/><line x1="0" y1="810" x2="1920" y2="810"/>
+        <line x1="480" y1="0" x2="480" y2="1080"/><line x1="960" y1="0" x2="960" y2="1080"/><line x1="1440" y1="0" x2="1440" y2="1080"/>
+      </g>
+      <!-- Silhouette -->
+      <g fill="none" stroke="rgba(204,0,0,.04)" stroke-width="1.2" transform="translate(960,590)">
+        <path d="M-520 48 L-480 48 Q-380 88 -200 108 Q0 122 200 108 Q380 88 480 48 L520 48"/>
+        <path d="M-360 48 Q-310 -32 -140 -58 Q0 -75 140 -58 Q310 -32 360 48"/>
+        <circle cx="-290" cy="66" r="68"/><circle cx="290" cy="66" r="68"/>
+        <circle cx="-290" cy="66" r="46"/><circle cx="290" cy="66" r="46"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-ov"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-rl" id="hero-rl" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <p class="h-eye" id="h-eye">CLUB OFICIAL · DESDE 1988 · MÁS DE 200 SOCIOS</p>
+    <h1 class="h-t" id="h-t">FERRARI<em>CLUB</em><small>ESPAÑA</small></h1>
+    <p class="h-s" id="h-s"><em>Club de Propietarios y Apasionados de Ferrari</em></p>
+    <div class="h-cta" id="h-cta">
+      <a href="/club/hazte-socio/" class="btn btn-p btn-lg" data-mag>HAZTE SOCIO <span class="btn-ico">→</span></a>
+      <a href="/noticias/" class="btn btn-o btn-lg">ÚLTIMAS NOTICIAS</a>
+    </div>
+  </div>
+  <div class="hero-num" aria-hidden="true">CFE · 1988</div>
+  <div class="hero-coord" aria-hidden="true">40.4168°N · 3.7038°W</div>
+</section>
+
+<!-- ═══ EDITORIAL ═══ -->
+<section class="editorial" aria-label="Espíritu Ferrari">
+  <div class="cnt">
+    <div style="display:flex;align-items:center;gap:3rem;margin-bottom:2rem" data-r="right">
+      <div class="sec-eye" style="margin-bottom:0;color:rgba(0,0,0,.55)">ESPÍRITU FERRARI</div>
+      <div style="flex:1;height:1px;background:rgba(0,0,0,.2)"></div>
+    </div>
+    <span class="ew" data-r="up" style="transition-delay:.05s">PASSIONE.</span>
+    <span class="ew" data-r="up" style="transition-delay:.15s">VELOCITÀ.</span>
+    <span class="ew accent" data-r="up" style="transition-delay:.25s">EMOZIONE.</span>
+  </div>
+</section>
+
+<!-- Wave separator -->
+<div aria-hidden="true" style="background:var(--red);line-height:0;overflow:hidden">
+  <svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:64px;display:block">
+    <path fill="#0D0907">
+      <animate attributeName="d" dur="6s" repeatCount="indefinite" values="
+        M0,32 C240,60 480,4 720,32 C960,60 1200,4 1440,32 L1440,64 L0,64 Z;
+        M0,32 C240,4 480,60 720,32 C960,4 1200,60 1440,32 L1440,64 L0,64 Z;
+        M0,32 C240,60 480,4 720,32 C960,60 1200,4 1440,32 L1440,64 L0,64 Z
+      "/>
+    </path>
+  </svg>
+</div>
+
+<!-- ═══ THE MACHINE (horizontal scroll) ═══ -->
+<section class="machine-wrap" aria-label="Modelos Ferrari">
+  <div class="cnt" style="padding-bottom:2.5rem">
+      <div data-r="up">
+        <div class="sec-eye">LOS COCHES</div><h2 class="sec-title" style="margin-top:.6rem">THE <span style="color:var(--red)">MACHINE</span></h2>
+      </div>
+  </div>
+  <div class="machine-scroll" id="machine-scroll">
+    <div class="machine-track" id="mtrack">
+      <div class="mcard">
+        <div class="mcard-img"><svg width="100%" height="100%" viewBox="0 0 400 200" aria-hidden="true"><rect width="100%" height="100%" fill="#0a0000"/><text x="200" y="115" font-family="Orbitron" font-size="44" fill="rgba(204,0,0,.08)" text-anchor="middle" letter-spacing="3">SF-90</text><g fill="none" stroke="rgba(204,0,0,.15)" stroke-width="1.2" transform="translate(200,125)"><path d="M-155 13 Q-110 25 -55 31 Q0 36 55 31 Q110 25 155 13"/><path d="M-105 13 Q-85 -14 -38 -24 Q0 -30 38 -24 Q85 -14 105 13"/><circle cx="-83" cy="20" r="24"/><circle cx="83" cy="20" r="24"/></g></svg></div>
+        <div class="mcard-model">IBRIDO · 2024</div>
+        <div class="mcard-name">SF-90 XX<br>Stradale</div>
+        <div class="mcard-specs">
+          <div class="mspec"><span class="mspec-l">POTENCIA</span><span class="mspec-v">1030 CV</span></div>
+          <div class="mspec"><span class="mspec-l">0–100 km/h</span><span class="mspec-v">2.3 s</span></div>
+          <div class="mspec"><span class="mspec-l">V. MÁX</span><span class="mspec-v">320 km/h</span></div>
+          <div class="mspec"><span class="mspec-l">MOTOR</span><span class="mspec-v">V8 + 3 eléctricos</span></div>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-img"><svg width="100%" height="100%" viewBox="0 0 400 200" aria-hidden="true"><rect width="100%" height="100%" fill="#0d0000"/><text x="200" y="115" font-family="Orbitron" font-size="36" fill="rgba(204,0,0,.07)" text-anchor="middle" letter-spacing="2">ROMA</text><g fill="none" stroke="rgba(204,0,0,.12)" stroke-width="1.2" transform="translate(200,125)"><path d="M-148 18 Q-102 28 -50 34 Q0 38 50 34 Q102 28 148 18"/><path d="M-98 18 Q-80 -9 -30 -20 Q0 -26 30 -20 Q80 -9 98 18"/><circle cx="-78" cy="26" r="22"/><circle cx="78" cy="26" r="22"/></g></svg></div>
+        <div class="mcard-model">GT SPIDER · 2023</div>
+        <div class="mcard-name">Roma<br>Spider</div>
+        <div class="mcard-specs">
+          <div class="mspec"><span class="mspec-l">POTENCIA</span><span class="mspec-v">620 CV</span></div>
+          <div class="mspec"><span class="mspec-l">0–100 km/h</span><span class="mspec-v">3.4 s</span></div>
+          <div class="mspec"><span class="mspec-l">V. MÁX</span><span class="mspec-v">320 km/h</span></div>
+          <div class="mspec"><span class="mspec-l">MOTOR</span><span class="mspec-v">V8 biturbo 3.9 L</span></div>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-img"><svg width="100%" height="100%" viewBox="0 0 400 200" aria-hidden="true"><rect width="100%" height="100%" fill="#080808"/><text x="200" y="115" font-family="Orbitron" font-size="44" fill="rgba(204,0,0,.07)" text-anchor="middle" letter-spacing="2">296</text><g fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1.2" transform="translate(200,125)"><path d="M-152 16 Q-108 26 -53 32 Q0 36 53 32 Q108 26 152 16"/><path d="M-102 16 Q-84 -13 -37 -23 Q0 -29 37 -23 Q84 -13 102 16"/><circle cx="-82" cy="23" r="23"/><circle cx="82" cy="23" r="23"/></g></svg></div>
+        <div class="mcard-model">IBRIDO · 2022</div>
+        <div class="mcard-name">296<br>GTB</div>
+        <div class="mcard-specs">
+          <div class="mspec"><span class="mspec-l">POTENCIA</span><span class="mspec-v">830 CV</span></div>
+          <div class="mspec"><span class="mspec-l">0–100 km/h</span><span class="mspec-v">2.9 s</span></div>
+          <div class="mspec"><span class="mspec-l">V. MÁX</span><span class="mspec-v">330 km/h</span></div>
+          <div class="mspec"><span class="mspec-l">MOTOR</span><span class="mspec-v">V6 + eléctrico</span></div>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-img"><svg width="100%" height="100%" viewBox="0 0 400 200" aria-hidden="true"><rect width="100%" height="100%" fill="#0a0000"/><text x="200" y="115" font-family="Orbitron" font-size="36" fill="rgba(204,0,0,.07)" text-anchor="middle" letter-spacing="2">812</text><g fill="none" stroke="rgba(204,0,0,.1)" stroke-width="1.2" transform="translate(200,125)"><path d="M-168 10 Q-118 22 -58 28 Q0 33 58 28 Q118 22 168 10"/><path d="M-112 10 Q-94 -20 -41 -30 Q0 -38 41 -30 Q94 -20 112 10"/><circle cx="-93" cy="18" r="28"/><circle cx="93" cy="18" r="28"/></g></svg></div>
+        <div class="mcard-model">GT · 2021</div>
+        <div class="mcard-name">812<br>Competizione</div>
+        <div class="mcard-specs">
+          <div class="mspec"><span class="mspec-l">POTENCIA</span><span class="mspec-v">830 CV</span></div>
+          <div class="mspec"><span class="mspec-l">0–100 km/h</span><span class="mspec-v">2.85 s</span></div>
+          <div class="mspec"><span class="mspec-l">V. MÁX</span><span class="mspec-v">340 km/h</span></div>
+          <div class="mspec"><span class="mspec-l">MOTOR</span><span class="mspec-v">V12 N/A 6.5 L</span></div>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="mcard-img"><svg width="100%" height="100%" viewBox="0 0 400 200" aria-hidden="true"><rect width="100%" height="100%" fill="#0d0000"/><text x="200" y="110" font-family="Orbitron" font-size="22" fill="rgba(204,0,0,.07)" text-anchor="middle" letter-spacing="3">PUROSANGUE</text><g fill="none" stroke="rgba(204,0,0,.09)" stroke-width="1.2" transform="translate(200,130)"><path d="M-168 6 Q-118 18 -58 24 Q0 29 58 24 Q118 18 168 6"/><path d="M-118 6 Q-98 -26 -44 -40 Q0 -48 44 -40 Q98 -26 118 6"/><circle cx="-93" cy="14" r="30"/><circle cx="93" cy="14" r="30"/></g></svg></div>
+        <div class="mcard-model">SUV · 2023</div>
+        <div class="mcard-name">Purosangue</div>
+        <div class="mcard-specs">
+          <div class="mspec"><span class="mspec-l">POTENCIA</span><span class="mspec-v">725 CV</span></div>
+          <div class="mspec"><span class="mspec-l">0–100 km/h</span><span class="mspec-v">3.3 s</span></div>
+          <div class="mspec"><span class="mspec-l">V. MÁX</span><span class="mspec-v">310 km/h</span></div>
+          <div class="mspec"><span class="mspec-l">MOTOR</span><span class="mspec-v">V12 N/A 6.5 L</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mtrack-dots" id="mtrack-dots" aria-hidden="true"></div>
+</section>
+
+<!-- ═══ PRÓXIMOS EVENTOS ═══ -->
+<section class="events-sec" aria-label="Próximos eventos">
+  <div class="cnt">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem" data-r="up">
+      <div><div class="sec-eye">CALENDARIO 2026</div><h2 class="sec-title" style="margin-top:.75rem">PRÓXIMOS<br><span style="color:var(--red)">EVENTOS</span></h2></div>
+      <a href="/contacta/" class="btn btn-o btn-sm">VER TODOS →</a>
+    </div>
+    <div class="events-list">
+      <a class="ev-card" href="/contacta/?asunto=eventos&evento=GP+Espa%C3%B1a+F1+%E2%80%94+Circuito+de+Madrid" data-r="up">
+        <div class="ev-date"><div class="ev-day">11</div><div class="ev-month">SEP</div></div>
+        <div class="ev-body"><div class="ev-type">FÓRMULA 1 · GRAN PREMIO</div><div class="ev-title">GP España F1 — Circuito de Madrid</div><div class="ev-loc">Circuito de Madrid · Madrid, España</div></div>
+        <div class="ev-cta"><span>RESERVAR →</span></div>
+      </a>
+      <a class="ev-card" href="/contacta/?asunto=eventos&evento=Track+Day+Ucl%C3%A9s+%E2%80%94+Seg%C3%B3briga" data-r="up" style="transition-delay:.07s">
+        <div class="ev-date"><div class="ev-day">18</div><div class="ev-month">SEP</div></div>
+        <div class="ev-body"><div class="ev-type">TRACK DAY · CIRCUITO</div><div class="ev-title">Uclés — Segóbriga</div><div class="ev-loc">Circuito de Uclés · Cuenca, España</div></div>
+        <div class="ev-cta"><span>RESERVAR →</span></div>
+      </a>
+      <a class="ev-card" href="/contacta/?asunto=eventos&evento=Concurso+de+Elegancia+Costa+del+Sol" data-r="up" style="transition-delay:.14s">
+        <div class="ev-date"><div class="ev-day">01</div><div class="ev-month">OCT</div></div>
+        <div class="ev-body"><div class="ev-type">CONCURSO · ELEGANCIA</div><div class="ev-title">Concurso de Elegancia Costa del Sol</div><div class="ev-loc">Marbella · Málaga, España</div></div>
+        <div class="ev-cta"><span>RESERVAR →</span></div>
+      </a>
+      <a class="ev-card" href="/contacta/?asunto=eventos&evento=Tandas+Solidarias+%E2%80%94+Circuito+Calafat" data-r="up" style="transition-delay:.21s">
+        <div class="ev-date"><div class="ev-day">07</div><div class="ev-month">NOV</div></div>
+        <div class="ev-body"><div class="ev-type">SOLIDARIO · TRACK DAY</div><div class="ev-title">Tandas Solidarias — Circuito Calafat</div><div class="ev-loc">Circuito de Calafat · Tarragona, España</div></div>
+        <div class="ev-cta"><span>RESERVAR →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NOTICIAS ═══ -->
+<section class="news-sec" aria-label="Últimas noticias">
+  <div class="cnt">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem" data-r="up">
+      <div><div class="sec-eye">ACTUALIDAD</div><h2 class="sec-title" style="margin-top:.75rem">FERRARI<br><span style="color:var(--red)">MAGAZINE</span></h2></div>
+      <a href="/noticias/" class="btn btn-o btn-sm">VER TODAS →</a>
+    </div>
+    <div class="news-layout">
+      <a class="news-card" href="/noticias/gp-paises-bajos/" data-r="right">
+        <div class="news-card-img" style="aspect-ratio:16/8">
+          <svg width="100%" height="100%" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="ng0" cx="50%" cy="50%" r="65%"><stop offset="0%" stop-color="#1a0000"/><stop offset="100%" stop-color="#040000"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#ng0)"/><text x="400" y="225" font-family="Orbitron" font-size="80" fill="rgba(204,0,0,.08)" text-anchor="middle" letter-spacing="5">F1</text><g stroke="rgba(204,0,0,.03)" fill="none"><line x1="0" y1="133" x2="800" y2="133"/><line x1="0" y1="267" x2="800" y2="267"/></g></svg>
+        </div>
+        <div>
+          <span class="news-card-cat">FÓRMULA 1</span>
+          <h2 class="news-card-title" style="font-size:1.45rem">GP Países Bajos — Ferrari saldrá a Zandvoort a seguir mejorando</h2>
+          <p class="news-card-desc">Ferrari afronta el Gran Premio de Países Bajos con renovadas esperanzas. El equipo lleva importantes mejoras aerodinámicas para el trazado costero.</p>
+          <div class="news-card-date">18 AGO 2026 · 4 MIN LECTURA</div>
+        </div>
+      </a>
+      <div class="news-side">
+        <a class="news-card" href="/noticias/499p-monza/" data-r="left" style="display:flex;gap:1rem">
+          <div class="news-card-img" style="width:110px;flex-shrink:0;height:75px;aspect-ratio:unset"><svg width="100%" height="100%" viewBox="0 0 110 75" aria-hidden="true"><rect width="100%" height="100%" fill="#060606"/><text x="55" y="42" font-family="Orbitron" font-size="14" fill="rgba(204,0,0,.14)" text-anchor="middle">WEC</text></svg></div>
+          <div><span class="news-card-cat">ENDURANCE</span><h3 class="news-card-title" style="font-size:.88rem">Ferrari 499P domina en Monza</h3><div class="news-card-date">12 AGO 2026</div></div>
+        </a>
+        <a class="news-card" href="/noticias/sf90-xx-stradale/" data-r="left" style="display:flex;gap:1rem;transition-delay:.08s">
+          <div class="news-card-img" style="width:110px;flex-shrink:0;height:75px;aspect-ratio:unset"><svg width="100%" height="100%" viewBox="0 0 110 75" aria-hidden="true"><rect width="100%" height="100%" fill="#0a0000"/><text x="55" y="42" font-family="Orbitron" font-size="9" fill="rgba(204,0,0,.12)" text-anchor="middle">SF90 XX</text></svg></div>
+          <div><span class="news-card-cat">MODELOS</span><h3 class="news-card-title" style="font-size:.88rem">SF90 XX Stradale: el más potente</h3><div class="news-card-date">08 AGO 2026</div></div>
+        </a>
+        <a class="news-card" href="/noticias/articulo/" data-r="left" style="display:flex;gap:1rem;transition-delay:.16s">
+          <div class="news-card-img" style="width:110px;flex-shrink:0;height:75px;aspect-ratio:unset"><svg width="100%" height="100%" viewBox="0 0 110 75" aria-hidden="true"><rect width="100%" height="100%" fill="#080808"/><text x="55" y="42" font-family="Orbitron" font-size="7" fill="rgba(255,255,255,.05)" text-anchor="middle">CAVALCADE</text></svg></div>
+          <div><span class="news-card-cat">CLUB</span><h3 class="news-card-title" style="font-size:.88rem">Cavalcade Classiche 2026 — Italia</h3><div class="news-card-date">05 AGO 2026</div></div>
+        </a>
+        <a class="news-card" href="/noticias/articulo/" data-r="left" style="display:flex;gap:1rem;transition-delay:.24s">
+          <div class="news-card-img" style="width:110px;flex-shrink:0;height:75px;aspect-ratio:unset"><svg width="100%" height="100%" viewBox="0 0 110 75" aria-hidden="true"><rect width="100%" height="100%" fill="#0a0000"/><text x="55" y="42" font-family="Orbitron" font-size="14" fill="rgba(204,0,0,.12)" text-anchor="middle">F1</text></svg></div>
+          <div><span class="news-card-cat">FÓRMULA 1</span><h3 class="news-card-title" style="font-size:.88rem">Sainz remonta en Hungría</h3><div class="news-card-date">28 JUL 2026</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY STRIP ═══ -->
+<section aria-label="Galería">
+  <div class="gal-strip">
+    <div class="gallery-item g0" data-r="fade"><svg width="100%" height="100%" viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#0a0000"/><text x="300" y="270" font-family="Orbitron" font-size="65" fill="rgba(204,0,0,.06)" text-anchor="middle">TRACK</text></svg></div>
+    <div class="gallery-item" data-r="scale" style="transition-delay:.08s"><svg width="100%" height="100%" viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#060606"/><text x="150" y="130" font-family="Orbitron" font-size="28" fill="rgba(255,255,255,.04)" text-anchor="middle">RUTA</text></svg></div>
+    <div class="gallery-item" data-r="scale" style="transition-delay:.14s"><svg width="100%" height="100%" viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#080000"/><text x="150" y="130" font-family="Orbitron" font-size="28" fill="rgba(204,0,0,.08)" text-anchor="middle">F1</text></svg></div>
+    <div class="gallery-item" data-r="scale" style="transition-delay:.2s"><svg width="100%" height="100%" viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#0a0000"/><text x="150" y="130" font-family="Orbitron" font-size="22" fill="rgba(204,0,0,.07)" text-anchor="middle">ELEGANCIA</text></svg></div>
+    <div class="gallery-item" data-r="scale" style="transition-delay:.04s"><svg width="100%" height="100%" viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#050505"/><text x="150" y="130" font-family="Orbitron" font-size="22" fill="rgba(255,255,255,.04)" text-anchor="middle">CLUB</text></svg></div>
+    <div class="gallery-item" data-r="scale" style="transition-delay:.12s"><svg width="100%" height="100%" viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#0a0000"/><circle cx="150" cy="120" r="55" stroke="rgba(204,0,0,.07)" fill="none" stroke-width="1.5"/></svg></div>
+    <div class="gallery-item" data-r="scale" style="transition-delay:.18s"><svg width="100%" height="100%" viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100%" height="100%" fill="#070707"/><text x="150" y="130" font-family="Orbitron" font-size="18" fill="rgba(255,255,255,.03)" text-anchor="middle">MARANELLO</text></svg></div>
+  </div>
+</section>
+
+<!-- ═══ NUESTRO CLUB ═══ -->
+<section class="club-sec" aria-label="Sobre el club">
+  <div class="cnt">
+    <div class="split">
+      <div data-r="right">
+        <div class="sec-eye">NUESTRO CLUB</div>
+        <h2 class="sec-title" style="margin-top:1.25rem">CLUB OFICIAL<br><span style="color:var(--red)">DESDE 1988</span></h2>
+        <p class="sec-sub" style="margin-top:1.5rem">El único club oficial de <em>Il Cavallino Rampante</em> en España con respaldo directo de Ferrari S.p.A. desde 2006. Propietarios de Ferrari unidos por la misma pasión.</p>
+        <div class="stats4">
+          <div class="stat"><span class="stat-n" data-count="200" data-suffix="+">200+</span><span class="stat-l">SOCIOS</span></div>
+          <div class="stat"><span class="stat-n" data-count="1988">1988</span><span class="stat-l">FUNDACIÓN</span></div>
+          <div class="stat"><span class="stat-n" data-count="38">38</span><span class="stat-l">AÑOS</span></div>
+          <div class="stat"><span class="stat-n" data-count="2006">2006</span><span class="stat-l">OFICIAL FERRARI</span></div>
+        </div>
+        <div style="display:flex;gap:1.25rem;margin-top:3rem;flex-wrap:wrap">
+          <a href="/club/" class="btn btn-p" data-mag>CONOCE EL CLUB <span class="btn-ico">→</span></a>
+          <a href="/club/hazte-socio/" class="btn btn-o">HAZTE SOCIO</a>
+        </div>
+      </div>
+      <div data-r="left">
+        <div class="club-frame">
+          <div class="cf-corner cf-tr"></div>
+          <div class="cf-corner cf-bl"></div>
+          <p style="font-family:var(--fe);font-style:italic;font-size:1.4rem;color:var(--white);line-height:1.9;margin-bottom:2rem">"Si eres propietario de un Ferrari y deseas compartir con nosotros tu pasión por <em>Il Cavallino</em>, hazte Socio del Ferrari Club España."</p>
+          <div class="rl"></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem">
+            <div><span class="tech-l">TIPO</span><p style="font-family:var(--fh);font-size:1rem;color:var(--white);margin-top:.35rem">Club Oficial</p></div>
+            <div><span class="tech-l">SEDE</span><p style="font-family:var(--fh);font-size:1rem;color:var(--white);margin-top:.35rem">Madrid</p></div>
+            <div><span class="tech-l">AVALADO</span><p style="font-family:var(--fh);font-size:1rem;color:var(--red);margin-top:.35rem">Ferrari S.p.A.</p></div>
+          </div>
+          <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid var(--w08)">
+            <div class="sec-eye" style="font-size:.7rem;margin-bottom:.85rem">ACTIVIDADES</div>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+              <span style="font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;padding:.4rem .9rem;border:1px solid var(--w20);color:var(--w60)">TRACK DAYS</span>
+              <span style="font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;padding:.4rem .9rem;border:1px solid var(--w20);color:var(--w60)">RUTAS</span>
+              <span style="font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;padding:.4rem .9rem;border:1px solid var(--w20);color:var(--w60)">FÓRMULA 1</span>
+              <span style="font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;padding:.4rem .9rem;border:1px solid var(--w20);color:var(--w60)">MARANELLO</span>
+              <span style="font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;padding:.4rem .9rem;border:1px solid var(--red-20);color:var(--red)">CAVALCADE</span>
+              <span style="font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;padding:.4rem .9rem;border:1px solid var(--w20);color:var(--w60)">ELEGANCIA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MEMBRESÍA ═══ -->
+<section class="mem-sec" aria-label="Membresía">
+  <div class="cnt">
+    <div style="text-align:center;margin-bottom:1rem" data-r="up">
+      <div class="sec-eye" style="justify-content:center;margin-bottom:1rem">ÚNETE AL CLUB</div>
+      <h2 class="sec-title">HAZTE<br><span style="color:var(--red)">SOCIO</span></h2>
+      <p class="sec-sub" style="max-width:500px;margin:1rem auto 0;text-align:center">Elige tu nivel de membresía y únete a la comunidad Ferrari más exclusiva de España.</p>
+    </div>
+    <div class="mem-grid">
+      <div class="mem-card" data-r="up">
+        <div class="sec-eye" style="font-size:.72rem;margin-bottom:1.25rem">SOCIO BASE</div>
+        <div class="mem-price">Cuota<span> anual</span></div>
+        <ul class="mem-features">
+          <li>Carnet oficial de socio</li>
+          <li>Acceso a eventos del club</li>
+          <li>Acceso a publicaciones del club</li>
+          <li>Directorio de socios</li>
+          <li>Descuentos en concesionarios</li>
+        </ul>
+        <a href="/contacta/" class="btn btn-o" style="width:100%;justify-content:center;margin-top:2rem">SOLICITAR INFO <span class="btn-ico">→</span></a>
+      </div>
+      <div class="mem-card featured" data-r="up" style="transition-delay:.1s">
+        <div class="sec-eye" style="font-size:.72rem;margin-bottom:1.25rem">SOCIO ACTIVO</div>
+        <div class="mem-price">PLENA<span> participación</span></div>
+        <ul class="mem-features">
+          <li>Todo lo del socio base</li>
+          <li>Track days y rutas</li>
+          <li>Visitas a Maranello</li>
+          <li>GP Fórmula 1 (descuento)</li>
+          <li>Cavalcade Classiche</li>
+          <li>Concursos de elegancia</li>
+          <li>Voto en asamblea</li>
+        </ul>
+        <a href="/club/hazte-socio/" class="btn btn-p" style="width:100%;justify-content:center;margin-top:2rem" data-mag>HAZTE SOCIO <span class="btn-ico">→</span></a>
+      </div>
+      <div class="mem-card" data-r="up" style="transition-delay:.2s">
+        <div class="sec-eye" style="font-size:.72rem;margin-bottom:1.25rem">SOCIO FAMILIAR</div>
+        <div class="mem-price">CUOTA<span> familiar</span></div>
+        <ul class="mem-features">
+          <li>2 miembros por cuota</li>
+          <li>Todos los beneficios activos</li>
+          <li>Invitaciones dobles</li>
+          <li>Área socios compartida</li>
+          <li>Prioridad en eventos</li>
+        </ul>
+        <a href="/contacta/" class="btn btn-o" style="width:100%;justify-content:center;margin-top:2rem">CONTACTAR <span class="btn-ico">→</span></a>
+      </div>
+    </div>
+    <p style="font-family:var(--fm);font-size:.82rem;color:var(--w60);text-align:center;margin-top:2rem" data-r="up">Secretaría: <a href="tel:+34915754160" style="color:var(--red)">+34 91 575 41 60</a> · <a href="mailto:ferrari@ferrariclubespana.com" style="color:var(--red)">ferrari@ferrariclubespana.com</a></p>
+  </div>
+</section>
+
+<!-- ═══ CTA FINALE — Ferrari Red ═══ -->
+<section class="finale" aria-label="Llamada a la acción">
+  <div class="cnt" style="position:relative;z-index:1">
+    <div data-r="up">
+      <div class="sec-eye" style="justify-content:center;margin-bottom:2rem;color:rgba(240,228,210,.5)">PASSIONE PER SEMPRE</div>
+      <h2 class="finale-title">PASSION<br><span>IN MOTION</span></h2>
+    </div>
+    <p style="font-family:var(--fe);font-style:italic;font-size:clamp(1rem,2vw,1.2rem);color:rgba(240,228,210,.7);max-width:460px;margin:1.5rem auto 3rem;text-align:center;line-height:1.75" data-r="up"><em>Únete a la comunidad oficial de propietarios y apasionados de Ferrari en España</em></p>
+    <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap" data-r="up">
+      <a href="/club/hazte-socio/" class="btn btn-w btn-lg">HAZTE SOCIO <span class="btn-ico">→</span></a>
+      <a href="/contacta/" class="btn btn-wo btn-lg">CONTACTAR</a>
+    </div>
+    <div style="display:flex;gap:5rem;justify-content:center;margin-top:5rem;flex-wrap:wrap" data-r="up">
+      <div style="text-align:center"><span class="fin-stat-n" data-count="200" data-suffix="+">200+</span><span class="fin-stat-l">SOCIOS</span></div>
+      <div style="text-align:center"><span class="fin-stat-n" data-count="38">38</span><span class="fin-stat-l">AÑOS</span></div>
+      <div style="text-align:center"><span class="fin-stat-n" data-count="1">1</span><span class="fin-stat-l">CLUB OFICIAL</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="cnt">
+    <p class="footer-finale" data-r="up">PASSIONE.<br><em>SEMPRE.</em></p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:3rem;margin-bottom:4rem">
+      <div>
+        <span class="footer-col-title">NAVEGACIÓN</span>
+        <a href="/" class="footer-link">Inicio</a>
+        <a href="/noticias/" class="footer-link">Noticias</a>
+        <a href="/club/" class="footer-link">Nuestro Club</a>
+        <a href="/club/hazte-socio/" class="footer-link">Hazte Socio</a>
+        <a href="/concesionarios/" class="footer-link">Concesionarios</a>
+        <a href="/socios/" class="footer-link">Área Socios</a>
+        <a href="/contacta/" class="footer-link">Contacta</a>
+      </div>
+      <div>
+        <span class="footer-col-title">FERRARI OFICIAL</span>
+        <a href="https://www.ferrari.com/es-ES" class="footer-link" target="_blank" rel="noopener">Ferrari.com ↗</a>
+        <a href="https://www.ferrari.com/es-ES/formula1" class="footer-link" target="_blank" rel="noopener">Scuderia Ferrari ↗</a>
+        <a href="https://store.ferrari.com" class="footer-link" target="_blank" rel="noopener">Ferrari Store ↗</a>
+        <a href="https://www.ferrariland.com/es/" class="footer-link" target="_blank" rel="noopener">Ferrari Land ↗</a>
+      </div>
+      <div>
+        <span class="footer-col-title">CONTACTO</span>
+        <p style="font-family:var(--fm);font-size:.78rem;color:var(--w60);line-height:2.2;letter-spacing:.04em">
+          Calle Constancia 41<br>Entreplanta · 28002 Madrid<br>
+          <a href="tel:+34915754160" style="color:var(--w60)">+34 91 575 41 60</a><br>
+          <a href="mailto:ferrari@ferrariclubespana.com" style="color:var(--w60)">ferrari@ferrariclubespana.com</a>
+        </p>
+      </div>
+      <div>
+        <span class="footer-col-title">HORARIO</span>
+        <p style="font-family:var(--fm);font-size:.78rem;color:var(--w60);line-height:2.2">Lun–Jue: 9:00–17:30<br>Vie: 9:00–15:00</p>
+        <div style="margin-top:1.5rem">
+          <span class="footer-col-title">REDES</span>
+          <a href="https://www.facebook.com/ferrariclubespana" class="footer-link" target="_blank" rel="noopener">FACEBOOK ↗</a>
+          <a href="https://www.instagram.com/ferrariclubespana" class="footer-link" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="rl-g" style="margin-bottom:2rem"></div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <span style="font-family:var(--fm);font-size:.7rem;color:var(--w40)">&copy; 2026 FERRARI CLUB ESPAÑA · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
+      <a href="/privacidad/" class="footer-priv">Política de Privacidad</a>
+    </div>
+    <div class="footer-brand" aria-hidden="true">FERRARI</div>
+  </div>
+</footer>
+
+<button id="race-btn" aria-label="Race mode">▶ RACE</button>
+<button id="sound-btn" aria-label="Sonido">♪ SOUND</button>
+
+<script src="/shared.js" defer></script>
+<script>
+(function(){
+/* ── Preloader ─────────────────────────────────────── */
+function afterPre(){playHero();initThree();initScrollScenes();}
+if(sessionStorage.getItem('pre-done')){
+  afterPre();
+}else{
+  const stages=[['t0',180],['t1',360],['t2',540],['t3',720],['t4',900]];
+  stages.forEach(([id,d])=>setTimeout(()=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.textContent='LOADING...';
+    setTimeout(()=>{el.textContent='READY ·';el.classList.add('ok');},200);
+  },d));
+  const bar=document.getElementById('pb'),pct=document.getElementById('pp'),t0p=performance.now();
+  (function tick(now){
+    const p=Math.min((now-t0p)/1400,1);
+    if(bar)bar.style.width=(p*100)+'%';
+    if(pct)pct.textContent=Math.round(p*100);
+    if(p<1){requestAnimationFrame(tick);return;}
+    if(bar)bar.style.boxShadow='0 0 50px var(--red),0 0 100px var(--red-10)';
+    setTimeout(()=>{
+      const pre=document.getElementById('pre');if(!pre)return;
+      sessionStorage.setItem('pre-done','1');
+      const gsap=window.gsap;
+      if(gsap)gsap.to(pre,{clipPath:'inset(0 0 100% 0)',duration:.75,ease:'power4.inOut',onComplete:()=>{pre.remove();afterPre();}});
+      else{pre.style.opacity='0';pre.style.transition='opacity .4s';setTimeout(()=>{pre.remove();afterPre();},450);}
+    },300);
+  })(performance.now());
+}
+
+/* ── Hero animation ────────────────────────────────── */
+function playHero(){
+  const gsap=window.gsap;if(!gsap)return;
+  gsap.set(['#h-eye','#h-t','#h-s','#h-cta'],{y:30});
+  gsap.timeline()
+    .to('#hero-rl',{width:'100%',duration:1.15,ease:'power4.inOut'})
+    .to('#h-eye',{opacity:1,y:0,duration:.7,ease:'power3.out'},'-=.3')
+    .to('#h-t',{opacity:1,y:0,duration:1,ease:'power3.out'},'-=.45')
+    .to('#h-s',{opacity:1,y:0,duration:.7,ease:'power3.out'},'-=.4')
+    .to('#h-cta',{opacity:1,y:0,duration:.55,ease:'power3.out'},'-=.35')
+    .to('#hero-rl',{opacity:0,duration:.4},'<');
+  // Mouse parallax + scroll parallax
+  const bg=document.getElementById('hbg');
+  const photo=document.getElementById('hero-photo');
+  let mx=0,my=0,cx=0,cy=0;
+  if(bg&&!window.matchMedia('(pointer:coarse)').matches){
+    document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;},{passive:true});
+    (function pl(){cx+=(mx-cx)*.045;cy+=(my-cy)*.045;bg.style.transform=`translate3d(${cx*22}px,${cy*14}px,0)`;requestAnimationFrame(pl);})();
+  }
+  // Scroll parallax on photo (moves at 35% scroll speed)
+  if(photo){
+    window.addEventListener('scroll',()=>{
+      const y=window.scrollY*.35;
+      photo.style.transform=`translateY(${y}px)`;
+    },{passive:true});
+  }
+}
+
+/* ── Three.js particles ────────────────────────────── */
+let threeInited=false;
+function initThree(){
+  const THREE=window.THREE;if(!THREE||threeInited)return;
+  threeInited=true;
+  if(navigator.deviceMemory&&navigator.deviceMemory<3)return;
+  if(navigator.hardwareConcurrency&&navigator.hardwareConcurrency<4)return;
+  const canvas=document.getElementById('three-canvas');if(!canvas)return;
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:false});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
+  renderer.setSize(innerWidth,innerHeight);
+  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,1000);
+  camera.position.z=1;
+  const N=3000,pos=new Float32Array(N*3),col=new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    pos[i*3]=(Math.random()-.5)*5;pos[i*3+1]=(Math.random()-.5)*5;pos[i*3+2]=(Math.random()-.5)*4;
+    const isRed=Math.random()<.05,isGold=Math.random()<.025,c=Math.random()*.07+.02;
+    if(isRed){col[i*3]=.8;col[i*3+1]=0;col[i*3+2]=0;}
+    else if(isGold){col[i*3]=.75;col[i*3+1]=.59;col[i*3+2]=.18;}
+    else{col[i*3]=c*1.6;col[i*3+1]=c*.5;col[i*3+2]=c*.25;}
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const mat=new THREE.PointsMaterial({size:.006,vertexColors:true,blending:THREE.AdditiveBlending,transparent:true,opacity:.8,depthWrite:false});
+  const pts=new THREE.Points(geo,mat);scene.add(pts);
+  let mx=0,my=0;
+  window.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.4;my=(e.clientY/innerHeight-.5)*.4;},{passive:true});
+  window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);},{passive:true});
+  canvas.classList.add('on');
+  (function anim(){requestAnimationFrame(anim);pts.rotation.y+=.0003;pts.rotation.x+=.0001;camera.position.x+=(mx-camera.position.x)*.04;camera.position.y+=(-my-camera.position.y)*.04;renderer.render(scene,camera);})();
+}
+
+/* ── Scroll scenes ─────────────────────────────────── */
+function initScrollScenes(){
+  const gsap=window.gsap,ST=window.ScrollTrigger;
+  if(!gsap||!ST)return;
+  gsap.registerPlugin(ST);
+  // Editorial text pop
+  document.querySelectorAll('.ew').forEach((w,i)=>{
+    ST.create({trigger:w,start:'top 88%',once:true,onEnter:()=>{
+      if(i===2)gsap.to(w,{opacity:.6,duration:.8});
+    }});
+  });
+}
+
+/* ── Machine tick nav ──────────────────────────────── */
+(function(){
+  const sc=document.getElementById('machine-scroll');
+  const container=document.getElementById('mtrack-dots');
+  if(!sc||!container)return;
+  const cards=Array.from(sc.querySelectorAll('.mcard'));
+  if(!cards.length)return;
+  cards.forEach((_,i)=>{
+    const btn=document.createElement('button');
+    btn.className='mtd'+(i===0?' on':'');
+    btn.setAttribute('aria-label','Modelo '+(i+1));
+    btn.addEventListener('click',()=>sc.scrollTo({left:i*(cards[0].offsetWidth+32),behavior:'smooth'}));
+    container.appendChild(btn);
+  });
+  const dots=container.querySelectorAll('.mtd');
+  sc.addEventListener('scroll',()=>{
+    const idx=Math.round(sc.scrollLeft/(cards[0].offsetWidth+32));
+    dots.forEach((d,j)=>d.classList.toggle('on',j===idx));
+  },{passive:true});
+})();
+})();
+</script>
+</body>
+</html>

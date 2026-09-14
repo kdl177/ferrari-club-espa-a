@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Eventos 2026 — Ferrari Club España</title>
+<meta name="description" content="Calendario de eventos del Ferrari Club España 2026: track days, rutas exclusivas, Grands Prix de F1, visitas a Maranello, Cavalcade y concursos de elegancia."/>
+<meta property="og:title" content="Eventos 2026 — Ferrari Club España"/>
+<meta property="og:url" content="https://club-ferrari-espana.vercel.app/eventos/"/>
+<meta property="og:description" content="Más de 35 eventos por año para socios del Ferrari Club España. Track days, rutas, F1, Maranello y elegancia."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://club-ferrari-espana.vercel.app/og.svg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:site_name" content="Ferrari Club España"/>
+<meta property="og:locale" content="es_ES"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://club-ferrari-espana.vercel.app/og.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/shared.css"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23cc0000'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E"/>
+<style>
+.ev-hero{padding:8.5rem 0 5rem;background:var(--black);position:relative;overflow:hidden}
+.filters{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:3rem}
+.filter-btn{font-family:var(--fm);font-size:.78rem;letter-spacing:.1em;padding:.7rem 1.35rem;min-height:44px;border:1px solid var(--w20);color:var(--w60);background:transparent;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.filter-btn:hover,.filter-btn.on{border-color:var(--red);color:var(--white);background:var(--red-05)}
+.evp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.5rem}
+.evp-card{border:1px solid var(--w08);background:var(--b90);overflow:hidden;transition:border-color .35s,transform .3s var(--eo),box-shadow .35s;position:relative;display:flex;flex-direction:column}
+.evp-card:hover{border-color:var(--red-30);transform:translateY(-4px);box-shadow:0 16px 60px var(--red-10)}
+.evp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--eo)}
+.evp-card:hover::before{transform:scaleX(1)}
+.evp-card.past{opacity:.55}
+.evp-card.past:hover{transform:none;box-shadow:none;border-color:var(--w08)}
+.evp-thumb{height:170px;background:var(--b80);position:relative;overflow:hidden;flex-shrink:0}
+.evp-cat-row{position:absolute;top:.85rem;left:.85rem;right:.85rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.evp-cat-tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;padding:.35rem .75rem;background:var(--red);color:var(--white);text-transform:uppercase}
+.evp-cat-tag.neutral{background:rgba(0,0,0,.75);border:1px solid var(--w20);color:var(--w60)}
+.evp-cat-tag.premium{background:var(--red-d);border:1px solid var(--red-30)}
+.evp-status-dot{width:8px;height:8px;border-radius:50%;background:var(--w20);flex-shrink:0}
+.evp-status-dot.open{background:#4ade80;box-shadow:0 0 6px rgba(74,222,128,.5)}
+.evp-status-dot.limited{background:var(--red-g);box-shadow:0 0 6px var(--red-30)}
+.evp-body{padding:1.5rem 1.75rem;flex:1;display:flex;flex-direction:column;gap:.75rem}
+.evp-date{font-family:var(--fo);font-size:.72rem;letter-spacing:.12em;color:var(--red-g)}
+.evp-title{font-family:var(--fh);font-size:1.15rem;font-weight:700;text-transform:uppercase;color:var(--white);line-height:1.25}
+.evp-loc{font-family:var(--fm);font-size:.75rem;color:var(--w50);letter-spacing:.06em}
+.evp-desc{font-family:var(--fb);font-size:.88rem;color:var(--w60);line-height:1.75;flex:1}
+.evp-foot{display:flex;justify-content:space-between;align-items:center;padding-top:.85rem;border-top:1px solid var(--w05);margin-top:auto}
+.evp-status{font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;color:var(--w50);text-transform:uppercase;display:flex;align-items:center;gap:.4rem}
+.evp-status.open{color:#4ade80}
+.evp-status.limited{color:var(--red-g)}
+.evp-link{font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;color:var(--red-g);transition:letter-spacing .25s;text-decoration:none}
+.evp-card:hover .evp-link{letter-spacing:.2em}
+.ev-join{background:linear-gradient(160deg,#1a0000,var(--black));padding:7rem 0;position:relative;overflow:hidden}
+@media(max-width:480px){.evp-grid{grid-template-columns:1fr}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+<div id="sp"></div><div id="pt"></div>
+<header><nav id="nav">
+  <a href="/" class="nav-logo" aria-label="Ferrari Club España — Inicio"><span class="nav-logo-badge" aria-hidden="true"><svg width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 1 L31 7 L31 22 Q31 32 16 37 Q1 32 1 22 L1 7 Z" fill="#CC0000" stroke="#990000" stroke-width=".8"/><path d="M16 3.5 L29 8.8 L29 22 Q29 30.5 16 34.8 Q3 30.5 3 22 L3 8.8 Z" fill="#AA0000"/><text x="16" y="24" font-family="Italiana,serif" font-size="13" fill="#F5EDE0" text-anchor="middle" font-weight="400">F</text><path d="M8 14 L24 14" stroke="rgba(245,237,224,.25)" stroke-width=".8"/></svg></span><span class="nav-logo-text">FERRARI<em>·</em>CLUB<small>ESPAÑA — OFICIAL DESDE 1988</small></span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Inicio</a>
+    <a href="/noticias/" class="nav-link">Noticias</a>
+    <div class="nav-drop nav-link" tabindex="0">Club<div class="nav-drop-menu"><a href="/club/" class="nav-drop-item">Nuestro Club</a><a href="/club/hazte-socio/" class="nav-drop-item">Hazte Socio</a></div></div>
+    <a href="/eventos/" class="nav-link active">Eventos</a>
+    <a href="/concesionarios/" class="nav-link">Concesionarios</a>
+    <a href="/contacta/" class="nav-link">Contacta</a>
+    <a href="/socios/" class="nav-link-cta">Área Socios</a>
+  </div>
+  <button class="nav-mbtn" id="mbtn" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav></header>
+
+<div id="menu"><nav class="menu-nav">
+  <a class="mi" href="/"><span class="mi-n">01</span>INICIO</a>
+  <a class="mi" href="/noticias/"><span class="mi-n">02</span>NOTICIAS</a>
+  <div class="mi" style="flex-direction:column;align-items:flex-start;gap:.3rem"><span style="display:inline-flex;align-items:center;gap:1.5rem"><span class="mi-n">03</span>CLUB</span><div class="mi-sub"><a href="/club/">Nuestro Club</a><a href="/club/hazte-socio/">Hazte Socio</a></div></div>
+  <a class="mi active" href="/eventos/"><span class="mi-n">04</span>EVENTOS</a>
+  <a class="mi" href="/concesionarios/"><span class="mi-n">05</span>CONCESIONARIOS</a>
+  <a class="mi" href="/socios/"><span class="mi-n">06</span>SOCIOS</a>
+  <a class="mi" href="/contacta/"><span class="mi-n">07</span>CONTACTA</a>
+</nav><div class="menu-preview" aria-hidden="true">
+  <div class="mp" id="mp0" style="background:linear-gradient(135deg,#1a0000,#0a0a0a)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">INICIO</span></div>
+  <div class="mp" id="mp1" style="background:linear-gradient(135deg,#0a0a0a,#111)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">NOTICIAS</span></div>
+  <div class="mp" id="mp2" style="background:linear-gradient(135deg,#1a0000,#111)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">CLUB</span></div>
+  <div class="mp on" id="mp3" style="background:radial-gradient(ellipse at 50% 60%,#1a0505,#0d0907)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(204,0,0,.1)">EVENTOS</span></div>
+  <div class="mp" id="mp4" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a)"><span style="font-family:var(--fd);font-size:5vw;color:rgba(255,255,255,.04)">CONC.</span></div>
+  <div class="mp" id="mp5" style="background:linear-gradient(135deg,#1a0000,#0a0a0a)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">SOCIOS</span></div>
+  <div class="mp" id="mp6" style="background:linear-gradient(135deg,#111,#0a0a0a)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">CONTACTA</span></div>
+</div><div class="menu-footer"><div class="menu-social"><a href="https://www.facebook.com/ferrariclubespana" target="_blank" rel="noopener">FACEBOOK</a><a href="https://www.instagram.com/ferrariclubespana" target="_blank" rel="noopener">INSTAGRAM</a></div><span style="font-family:var(--fm);font-size:.55rem;color:rgba(255,255,255,.08)">MADRID · EST. 1988</span></div></div>
+
+<main>
+
+<!-- ══ HERO ══ -->
+<section class="ev-hero">
+  <div class="cnt">
+    <div class="bc"><a href="/" class="bc-a">Inicio</a><span class="bc-s">/</span><span>Eventos</span></div>
+    <p class="sec-eye" style="margin-top:1.5rem" data-r="up">CALENDARIO 2026</p>
+    <h1 class="sec-title" style="font-size:clamp(2.5rem,6vw,5.5rem);margin-top:.75rem" data-r="up">PRÓXIMOS<br><span style="color:var(--red)">EVENTOS</span></h1>
+    <p class="sec-sub" style="max-width:600px;margin-top:1.5rem" data-r="up">Más de 35 actividades por año para socios del Ferrari Club España. Track days en circuito, rutas exclusivas, Grands Prix, visitas a Maranello y veladas de elegancia.</p>
+    <div style="display:flex;gap:3.5rem;margin-top:3rem;flex-wrap:wrap" data-r="up">
+      <div class="stat"><span class="stat-n" data-count="35" data-suffix="+">35+</span><span class="stat-l">EVENTOS / AÑO</span></div>
+      <div class="stat"><span class="stat-n">6</span><span class="stat-l">CATEGORÍAS</span></div>
+      <div class="stat"><span class="stat-n" data-count="200" data-suffix="+">200+</span><span class="stat-l">SOCIOS ACTIVOS</span></div>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:-3rem;right:0;font-family:var(--fd);font-size:20vw;color:rgba(255,255,255,.012);pointer-events:none;user-select:none;line-height:1" aria-hidden="true">26</div>
+</section>
+
+<!-- ══ EVENTOS GRID ══ -->
+<section style="background:var(--b90);padding:5rem 0">
+  <div class="cnt">
+
+    <div class="filters" data-r="up">
+      <button type="button" class="filter-btn on" data-cat="all">TODOS</button>
+      <button type="button" class="filter-btn" data-cat="track">TRACK DAYS</button>
+      <button type="button" class="filter-btn" data-cat="rutas">RUTAS</button>
+      <button type="button" class="filter-btn" data-cat="f1">FÓRMULA 1</button>
+      <button type="button" class="filter-btn" data-cat="maranello">MARANELLO</button>
+      <button type="button" class="filter-btn" data-cat="cavalcade">CAVALCADE</button>
+      <button type="button" class="filter-btn" data-cat="elegancia">ELEGANCIA</button>
+    </div>
+
+    <div class="evp-grid" id="evp-grid">
+
+      <!-- Track Day Jerez -->
+      <article class="evp-card" data-cat="track" data-r="up">
+        <div class="evp-thumb">
+          <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="eg0" cx="30%" cy="50%" r="70%"><stop offset="0%" stop-color="#2a0000"/><stop offset="100%" stop-color="#080000"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#eg0)"/><text x="50%" y="55%" font-family="Orbitron" font-size="70" fill="rgba(204,0,0,.07)" text-anchor="middle" letter-spacing="4" dominant-baseline="middle">TRACK</text><line x1="0" y1="50%" x2="100%" y2="50%" stroke="rgba(204,0,0,.04)" stroke-width="1"/></svg>
+          <div class="evp-cat-row">
+            <span class="evp-cat-tag">TRACK DAYS</span>
+            <span class="evp-status-dot open" aria-label="Plazas disponibles"></span>
+          </div>
+        </div>
+        <div class="evp-body">
+          <div class="evp-date">20 SEP · 2026</div>
+          <h2 class="evp-title">Track Day Circuito de Jerez</h2>
+          <p class="evp-loc">📍 Circuito Jerez-Ángel Nieto, Cádiz</p>
+          <p class="evp-desc">Jornada exclusiva en el icónico circuito gaditano. Sesiones cronometradas, instructores Ferrari certificados y asistencia técnica durante toda la jornada.</p>
+          <div class="evp-foot">
+            <span class="evp-status open">● Plazas disponibles</span>
+            <a href="/club/hazte-socio/" class="evp-link">Inscribirse →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- GP Singapur -->
+      <article class="evp-card" data-cat="f1" data-r="up" style="transition-delay:.07s">
+        <div class="evp-thumb">
+          <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="eg1" cx="70%" cy="40%" r="65%"><stop offset="0%" stop-color="#1a0000"/><stop offset="100%" stop-color="#050505"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#eg1)"/><text x="50%" y="55%" font-family="Orbitron" font-size="60" fill="rgba(204,0,0,.08)" text-anchor="middle" letter-spacing="8" dominant-baseline="middle">F1</text></svg>
+          <div class="evp-cat-row">
+            <span class="evp-cat-tag">FÓRMULA 1</span>
+            <span class="evp-status-dot open" aria-label="Plazas disponibles"></span>
+          </div>
+        </div>
+        <div class="evp-body">
+          <div class="evp-date">19–21 SEP · 2026</div>
+          <h2 class="evp-title">GP Singapur — Ferrari Hospitality</h2>
+          <p class="evp-loc">📍 Marina Bay Street Circuit, Singapur</p>
+          <p class="evp-desc">Fin de semana de carrera con hospitality Ferrari, tribuna oficial y acceso al paddock. Cena exclusiva el sábado con el equipo del club.</p>
+          <div class="evp-foot">
+            <span class="evp-status open">● Plazas disponibles</span>
+            <a href="/club/hazte-socio/" class="evp-link">Inscribirse →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ruta Andalucía -->
+      <article class="evp-card" data-cat="rutas" data-r="up" style="transition-delay:.14s">
+        <div class="evp-thumb">
+          <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="eg2" cx="50%" cy="50%" r="70%"><stop offset="0%" stop-color="#141414"/><stop offset="100%" stop-color="#060606"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#eg2)"/><text x="50%" y="55%" font-family="Orbitron" font-size="50" fill="rgba(255,255,255,.04)" text-anchor="middle" letter-spacing="4" dominant-baseline="middle">RUTA</text></svg>
+          <div class="evp-cat-row">
+            <span class="evp-cat-tag neutral">RUTAS</span>
+            <span class="evp-status-dot open" aria-label="Inscripción abierta"></span>
+          </div>
+        </div>
+        <div class="evp-body">
+          <div class="evp-date">04–06 OCT · 2026</div>
+          <h2 class="evp-title">Ruta de Otoño — Andalucía</h2>
+          <p class="evp-loc">📍 Sevilla → Ronda → Marbella</p>
+          <p class="evp-desc">Tres días de carretera entre olivares centenarios y sierras de Cádiz. Un trazado diseñado para disfrutar al máximo de nuestros Cavallini con paradas en Ronda y Marbella.</p>
+          <div class="evp-foot">
+            <span class="evp-status open">● Inscripción abierta</span>
+            <a href="/club/hazte-socio/" class="evp-link">Inscribirse →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Maranello -->
+      <article class="evp-card" data-cat="maranello" data-r="up">
+        <div class="evp-thumb">
+          <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="eg3" cx="50%" cy="50%" r="65%"><stop offset="0%" stop-color="#1a0000"/><stop offset="100%" stop-color="#080000"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#eg3)"/><text x="50%" y="55%" font-family="Orbitron" font-size="34" fill="rgba(204,0,0,.07)" text-anchor="middle" letter-spacing="4" dominant-baseline="middle">MARANELLO</text></svg>
+          <div class="evp-cat-row">
+            <span class="evp-cat-tag">MARANELLO</span>
+            <span class="evp-status-dot limited" aria-label="Plazas limitadas"></span>
+          </div>
+        </div>
+        <div class="evp-body">
+          <div class="evp-date">18–20 OCT · 2026</div>
+          <h2 class="evp-title">Visita a Maranello</h2>
+          <p class="evp-loc">📍 Maranello, Módena, Italia</p>
+          <p class="evp-desc">Acceso exclusivo a la fábrica Ferrari, Museo Enzo Ferrari y el Museo Ferrari de Maranello. Visita guiada en español con intérprete especializado.</p>
+          <div class="evp-foot">
+            <span class="evp-status limited">● Plazas limitadas</span>
+            <a href="/club/hazte-socio/" class="evp-link">Inscribirse →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Elegancia -->
+      <article class="evp-card" data-cat="elegancia" data-r="up" style="transition-delay:.07s">
+        <div class="evp-thumb">
+          <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="eg4" cx="50%" cy="50%" r="70%"><stop offset="0%" stop-color="#0f0f0f"/><stop offset="100%" stop-color="#050505"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#eg4)"/><text x="50%" y="55%" font-family="Italiana" font-size="44" fill="rgba(255,255,255,.05)" text-anchor="middle" dominant-baseline="middle">Elegancia</text></svg>
+          <div class="evp-cat-row">
+            <span class="evp-cat-tag neutral">ELEGANCIA</span>
+            <span class="evp-status-dot open" aria-label="Inscripción abierta"></span>
+          </div>
+        </div>
+        <div class="evp-body">
+          <div class="evp-date">08 NOV · 2026</div>
+          <h2 class="evp-title">XIII Concurso de Elegancia</h2>
+          <p class="evp-loc">📍 Parque del Retiro, Madrid</p>
+          <p class="evp-desc">Decimotercera edición del concurso de elegancia del club. Más de 40 Ferrari históricos y modernos presentados ante un jurado internacional. Tarde de puertas abiertas.</p>
+          <div class="evp-foot">
+            <span class="evp-status open">● Inscripción abierta</span>
+            <a href="/club/hazte-socio/" class="evp-link">Inscribirse →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Cena de Gala -->
+      <article class="evp-card" data-cat="club" data-r="up" style="transition-delay:.14s">
+        <div class="evp-thumb">
+          <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="eg5" cx="50%" cy="50%" r="65%"><stop offset="0%" stop-color="#1a0000"/><stop offset="100%" stop-color="#060606"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#eg5)"/><text x="50%" y="55%" font-family="Italiana" font-size="36" fill="rgba(204,0,0,.08)" text-anchor="middle" dominant-baseline="middle">GALA 2026</text></svg>
+          <div class="evp-cat-row">
+            <span class="evp-cat-tag">CLUB</span>
+            <span class="evp-status-dot open" aria-label="Plazas disponibles"></span>
+          </div>
+        </div>
+        <div class="evp-body">
+          <div class="evp-date">06 DIC · 2026</div>
+          <h2 class="evp-title">Cena de Gala Anual 2026</h2>
+          <p class="evp-loc">📍 Hotel Mandarin Oriental Ritz, Madrid</p>
+          <p class="evp-desc">Cena de clausura del año con reconocimientos a socios destacados, sorteo de experiencias exclusivas y actuación en directo. Etiqueta formal requerida.</p>
+          <div class="evp-foot">
+            <span class="evp-status open">● Plazas disponibles</span>
+            <a href="/club/hazte-socio/" class="evp-link">Inscribirse →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Cavalcade (completado) -->
+      <article class="evp-card past" data-cat="cavalcade" data-r="up">
+        <div class="evp-thumb">
+          <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="eg6" cx="50%" cy="50%" r="65%"><stop offset="0%" stop-color="#120000"/><stop offset="100%" stop-color="#050505"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#eg6)"/><text x="50%" y="55%" font-family="Orbitron" font-size="34" fill="rgba(204,0,0,.08)" text-anchor="middle" letter-spacing="2" dominant-baseline="middle">CAVALCADE</text></svg>
+          <div class="evp-cat-row">
+            <span class="evp-cat-tag premium">CAVALCADE</span>
+            <span class="evp-status-dot" aria-label="Evento completado"></span>
+          </div>
+        </div>
+        <div class="evp-body">
+          <div class="evp-date">13–16 JUL · 2026</div>
+          <h2 class="evp-title">Cavalcade Classiche — Toscana</h2>
+          <p class="evp-loc">📍 Toscana, Italia</p>
+          <p class="evp-desc">Cuatro días de ruta por la Toscana con Ferrari históricos. Edición especial con motivo del centenario de la escudería. 18 socios participantes.</p>
+          <div class="evp-foot">
+            <span class="evp-status" style="color:var(--w30)">— Completado</span>
+            <span style="font-family:var(--fm);font-size:.68rem;color:var(--w30);letter-spacing:.08em">JUL 2026</span>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /evp-grid -->
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="ev-join">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 80% 50%,rgba(204,0,0,.12),transparent);pointer-events:none" aria-hidden="true"></div>
+  <div class="cnt" style="position:relative;text-align:center">
+    <div class="rl-g" style="width:60px;margin:0 auto 2.5rem" aria-hidden="true"></div>
+    <p class="sec-eye" data-r="up">ACCESO A EVENTOS</p>
+    <h2 class="sec-title" style="margin-top:1rem" data-r="up">PARA INSCRIBIRTE,<br><span style="color:var(--red)">HAZTE SOCIO</span></h2>
+    <p class="sec-sub" style="max-width:540px;margin:1.5rem auto 0" data-r="up">La inscripción a todos nuestros eventos está reservada para socios del Ferrari Club España. Únete y accede al calendario completo de actividades.</p>
+    <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-top:3rem" data-r="up">
+      <a href="/club/hazte-socio/" class="btn btn-p btn-lg" data-mag>HAZTE SOCIO <span class="btn-ico">→</span></a>
+      <a href="/contacta/" class="btn btn-o btn-lg">CONSULTAR DISPONIBILIDAD</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="cnt">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2.5rem;margin-bottom:3rem">
+      <div><span class="footer-col-title">NAVEGACIÓN</span><a href="/" class="footer-link">Inicio</a><a href="/noticias/" class="footer-link">Noticias</a><a href="/club/" class="footer-link">Nuestro Club</a><a href="/club/hazte-socio/" class="footer-link">Hazte Socio</a><a href="/eventos/" class="footer-link">Eventos</a><a href="/concesionarios/" class="footer-link">Concesionarios</a><a href="/contacta/" class="footer-link">Contacta</a></div>
+      <div><span class="footer-col-title">CONTACTO</span><p style="font-family:var(--fm);font-size:.78rem;color:var(--w60);line-height:2.2">Calle Constancia 41<br>Entreplanta · 28002 Madrid<br>+34 91 575 41 60<br>ferrari@ferrariclubespana.com</p></div>
+      <div><span class="footer-col-title">HORARIO</span><p style="font-family:var(--fm);font-size:.78rem;color:var(--w60);line-height:2.2">Lun–Jue: 9:00–17:30<br>Vie: 9:00–15:00</p></div>
+      <div><span class="footer-col-title">REDES</span><a href="https://www.facebook.com/ferrariclubespana" class="footer-link" target="_blank" rel="noopener">FACEBOOK ↗</a><a href="https://www.instagram.com/ferrariclubespana" class="footer-link" target="_blank" rel="noopener">INSTAGRAM ↗</a></div>
+      <div><span class="footer-col-title">LEGAL</span><a href="/privacidad/" class="footer-link">Política de Privacidad</a></div>
+    </div>
+    <div class="rl" style="margin-bottom:1.5rem"></div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <span style="font-family:var(--fm);font-size:.7rem;color:var(--w40)">&copy; 2026 FERRARI CLUB ESPAÑA · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
+      <a href="/privacidad/" style="font-family:var(--fm);font-size:.7rem;color:var(--w40);text-decoration:none">Política de Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/shared.js" defer></script>
+<script>
+(function(){
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.evp-card');
+  btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btns.forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');
+      const cat = btn.dataset.cat;
+      cards.forEach(card=>{
+        card.style.display = (cat==='all'||card.dataset.cat===cat) ? 'flex' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

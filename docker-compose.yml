@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ferrari
+      POSTGRES_PASSWORD: ferrari_dev
+      POSTGRES_DB: ferrari_club_espana
+    ports:
+      - "5434:5432"
+    volumes:
+      - ferrari_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ferrari -d ferrari_club_espana"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  ferrari_pgdata:

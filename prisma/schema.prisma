@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum EstadoCuota {
+  pendiente
+  activo
+  moroso
+  baja
+}
+
+enum PlanSuscripcion {
+  base
+  activo
+  familiar
+}
+
+enum EstadoSuscripcion {
+  activa
+  impagada
+  cancelada
+}
+
+enum EstadoInscripcion {
+  confirmada
+  lista_espera
+  cancelada
+}
+
+model User {
+  id            String       @id @default(uuid())
+  email         String       @unique
+  emailVerified DateTime?    @map("email_verified")
+  nombre        String       @default("")
+  apellidos     String       @default("")
+  telefono      String?
+  ferrariModelo String?
+  estadoCuota   EstadoCuota  @default(pendiente)
+  esAdmin       Boolean      @default(false) @map("es_admin")
+
+  stripeCustomerId String? @unique
+
+  suscripcion   Suscripcion?
+  inscripciones Inscripcion[]
+  accounts      Account[]
+  sessions      Session[]
+
+  creadoEn      DateTime     @default(now())
+  actualizadoEn DateTime     @updatedAt
+
+  @@map("socios")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("socio_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("socio_id")
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Suscripcion {
+  id     String @id @default(uuid())
+  socio  User   @relation(fields: [socioId], references: [id], onDelete: Cascade)
+  socioId String @unique
+
+  stripeSubscriptionId String            @unique
+  plan                 PlanSuscripcion   @default(base)
+  estado               EstadoSuscripcion @default(activa)
+  renuevaEn            DateTime?
+
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  @@map("suscripciones")
+}
+
+model Evento {
+  id        String   @id @default(uuid())
+  titulo    String
+  slug      String   @unique
+  categoria String
+  fecha     DateTime
+  ubicacion String
+  descripcion String @db.Text
+
+  aforo           Int
+  plazasOcupadas  Int @default(0)
+
+  inscripciones Inscripcion[]
+
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  @@map("eventos")
+}
+
+model Inscripcion {
+  id      String @id @default(uuid())
+  evento  Evento @relation(fields: [eventoId], references: [id], onDelete: Cascade)
+  eventoId String
+  socio   User   @relation(fields: [socioId], references: [id], onDelete: Cascade)
+  socioId String
+
+  estado  EstadoInscripcion @default(confirmada)
+
+  creadoEn DateTime @default(now())
+
+  @@unique([eventoId, socioId])
+  @@map("inscripciones")
+}
+
+model Noticia {
+  id        String    @id @default(uuid())
+  titulo    String
+  slug      String    @unique
+  categoria String
+  cuerpo    String    @db.Text
+  portada   String?
+  publicadoEn DateTime?
+
+  creadoEn      DateTime @default(now())
+  actualizadoEn DateTime @updatedAt
+
+  @@map("noticias")
+}
+
+model ContactoRecibido {
+  id        String   @id @default(uuid())
+  nombre    String
+  apellidos String
+  email     String
+  telefono  String?
+  asunto    String
+  ferrariModelo String?
+  mensaje   String   @db.Text
+  atendido  Boolean  @default(false)
+
+  creadoEn DateTime @default(now())
+
+  @@map("contactos_recibidos")
+}

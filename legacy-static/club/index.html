@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nuestro Club — Ferrari Club España</title>
+<meta name="description" content="Conoce la historia, misión y estructura del Club Oficial de Propietarios y Apasionados de Ferrari en España desde 1988."/>
+<meta property="og:title" content="Nuestro Club — Ferrari Club España"/>
+<meta property="og:url" content="https://club-ferrari-espana.vercel.app/club/"/>
+<meta property="og:description" content="Club Oficial de Propietarios y Apasionados de Ferrari en España desde 1988."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://club-ferrari-espana.vercel.app/og.svg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:site_name" content="Ferrari Club España"/>
+<meta property="og:locale" content="es_ES"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://club-ferrari-espana.vercel.app/og.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/shared.css"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23cc0000'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E"/>
+<style>
+.club-hero{position:relative;padding:8.5rem 0 5rem;overflow:hidden;background:var(--black)}
+.club-hero::before{content:'';position:absolute;top:0;right:0;bottom:0;width:50%;background:linear-gradient(to left,rgba(204,0,0,.04),transparent)}
+.timeline{position:relative;padding:0 0 0 2.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--red),transparent)}
+.tl-item{position:relative;margin-bottom:3rem;padding-left:1.5rem}
+.tl-item::before{content:'';position:absolute;left:-2.5rem;top:.45rem;width:8px;height:8px;border:1px solid var(--red);background:var(--black);border-radius:50%}
+.tl-year{font-family:var(--fd);font-size:.75rem;letter-spacing:.2em;color:var(--red);margin-bottom:.4rem}
+.tl-title{font-family:var(--fh);font-size:1.05rem;font-weight:600;text-transform:uppercase;color:var(--white);margin-bottom:.4rem}
+.tl-desc{font-family:var(--fb);font-size:.9rem;color:var(--w60);line-height:1.85}
+.activity-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.act-card{padding:2rem;border:1px solid var(--w05);background:var(--b80);position:relative;overflow:hidden;transition:border-color .3s}
+.act-card:hover{border-color:rgba(204,0,0,.25)}
+.act-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--eo)}
+.act-card:hover::after{transform:scaleX(1)}
+.act-ico{font-family:var(--fd);font-size:1.5rem;color:rgba(204,0,0,.2);margin-bottom:1rem}
+.act-title{font-family:var(--fh);font-size:.95rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:.5rem}
+.act-desc{font-family:var(--fb);font-size:.82rem;color:var(--w60);line-height:1.85}
+.board-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem}
+.board-card{padding:2rem 1.5rem;border:1px solid var(--w05);background:var(--b80);text-align:center;position:relative}
+.board-avatar{width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,#1a0000,#333);border:1px solid var(--w10);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1rem;color:rgba(204,0,0,.6)}
+.board-name{font-family:var(--fh);font-size:.9rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:.3rem}
+.board-role{font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;color:var(--red)}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+<div id="sp"></div><div id="pt"></div>
+<header><nav id="nav">
+  <a href="/" class="nav-logo" aria-label="Ferrari Club España — Inicio"><span class="nav-logo-badge" aria-hidden="true"><svg width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 1 L31 7 L31 22 Q31 32 16 37 Q1 32 1 22 L1 7 Z" fill="#CC0000" stroke="#990000" stroke-width=".8"/><path d="M16 3.5 L29 8.8 L29 22 Q29 30.5 16 34.8 Q3 30.5 3 22 L3 8.8 Z" fill="#AA0000"/><text x="16" y="24" font-family="Italiana,serif" font-size="13" fill="#F5EDE0" text-anchor="middle" font-weight="400">F</text><path d="M8 14 L24 14" stroke="rgba(245,237,224,.25)" stroke-width=".8"/></svg></span><span class="nav-logo-text">FERRARI<em>·</em>CLUB<small>ESPAÑA — OFICIAL DESDE 1988</small></span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Inicio</a>
+    <a href="/noticias/" class="nav-link">Noticias</a>
+    <div class="nav-drop nav-link active" tabindex="0">Club<div class="nav-drop-menu"><a href="/club/" class="nav-drop-item active">Nuestro Club</a><a href="/club/hazte-socio/" class="nav-drop-item">Hazte Socio</a></div></div>
+    <a href="/eventos/" class="nav-link">Eventos</a>
+    <a href="/concesionarios/" class="nav-link">Concesionarios</a>
+    <a href="/contacta/" class="nav-link">Contacta</a>
+    <a href="/socios/" class="nav-link-cta">Área Socios</a>
+  </div>
+  <button class="nav-mbtn" id="mbtn" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav></header>
+<div id="menu"><nav class="menu-nav">
+  <a class="mi" href="/"><span class="mi-n">01</span>INICIO</a>
+  <a class="mi" href="/noticias/"><span class="mi-n">02</span>NOTICIAS</a>
+  <div class="mi" style="flex-direction:column;align-items:flex-start;gap:.3rem"><span style="display:inline-flex;align-items:center;gap:1.5rem"><span class="mi-n">03</span>CLUB</span><div class="mi-sub"><a href="/club/">Nuestro Club</a><a href="/club/hazte-socio/">Hazte Socio</a></div></div>
+  <a class="mi" href="/eventos/"><span class="mi-n">04</span>EVENTOS</a>
+  <a class="mi" href="/concesionarios/"><span class="mi-n">05</span>CONCESIONARIOS</a>
+  <a class="mi" href="/socios/"><span class="mi-n">06</span>SOCIOS</a>
+  <a class="mi" href="/contacta/"><span class="mi-n">07</span>CONTACTA</a>
+</nav><div class="menu-preview" aria-hidden="true">
+  <div class="mp" id="mp0" style="background:linear-gradient(135deg,#1a0000,#0a0a0a)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">INICIO</span></div>
+  <div class="mp" id="mp1" style="background:linear-gradient(135deg,#0a0a0a,#111)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">NOTICIAS</span></div>
+  <div class="mp on" id="mp2" style="background:linear-gradient(135deg,#1a0000,#111)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">CLUB</span></div>
+  <div class="mp" id="mp3" style="background:radial-gradient(ellipse at 50% 60%,#1a0505,#0d0907)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(204,0,0,.1)">EVENTOS</span></div>
+  <div class="mp" id="mp4" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a)"><span style="font-family:var(--fd);font-size:5vw;color:rgba(255,255,255,.04)">CONC.</span></div>
+  <div class="mp" id="mp5" style="background:linear-gradient(135deg,#1a0000,#0a0a0a)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">SOCIOS</span></div>
+  <div class="mp" id="mp6" style="background:linear-gradient(135deg,#111,#0a0a0a)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">CONTACTA</span></div>
+</div><div class="menu-footer"><div class="menu-social"><a href="https://www.facebook.com/ferrariclubespana" target="_blank" rel="noopener">FACEBOOK</a><a href="https://www.instagram.com/ferrariclubespana" target="_blank" rel="noopener">INSTAGRAM</a></div><span style="font-family:var(--fm);font-size:.55rem;color:rgba(255,255,255,.08)">MADRID · EST. 1988</span></div></div>
+
+<main>
+<!-- Hero -->
+<section class="club-hero">
+  <div class="cnt">
+    <div class="bc"><a href="/" class="bc-a">Inicio</a><span class="bc-s">/</span><span>Nuestro Club</span></div>
+    <p class="sec-eye" style="margin-top:1.5rem" data-r="up">CLUB OFICIAL FERRARI</p>
+    <h1 class="sec-title" style="font-size:clamp(2.5rem,6vw,5rem);margin-top:.75rem" data-r="up">NUESTRO<br><span style="color:var(--red)">CLUB</span></h1>
+    <p class="sec-sub" style="max-width:600px;margin-top:1.5rem" data-r="up">Club de Propietarios y Apasionados de Ferrari desde 1988. El único club oficial de <em>Il Cavallino Rampante</em> en España.</p>
+    <!-- Stats -->
+    <div style="display:flex;gap:4rem;margin-top:3.5rem;flex-wrap:wrap" data-r="up">
+      <div class="stat"><span class="stat-n" data-count="200" data-suffix="+">200+</span><span class="stat-l">SOCIOS</span></div>
+      <div class="stat"><span class="stat-n" data-count="1988">1988</span><span class="stat-l">FUNDACIÓN</span></div>
+      <div class="stat"><span class="stat-n" data-count="38">38</span><span class="stat-l">AÑOS</span></div>
+      <div class="stat"><span class="stat-n" data-count="2006">2006</span><span class="stat-l">CLUB OFICIAL</span></div>
+    </div>
+  </div>
+  <!-- Deco number -->
+  <div style="position:absolute;bottom:-2rem;right:0;font-family:var(--fd);font-size:18vw;color:rgba(255,255,255,.015);pointer-events:none;user-select:none;line-height:1" aria-hidden="true">1988</div>
+</section>
+
+<!-- Presentación -->
+<section style="background:var(--b90);padding:6rem 0">
+  <div class="cnt">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center">
+      <div data-r="right">
+        <div class="sec-eye">PRESENTACIÓN</div>
+        <h2 class="sec-title" style="margin-top:1rem;font-size:clamp(1.8rem,3.5vw,2.8rem)">PASSIONE<br><span style="color:var(--red)">ITALIANA</span></h2>
+        <p style="font-family:var(--fb);font-size:.92rem;color:var(--w60);line-height:1.9;margin-top:1.5rem">El Ferrari Club España es el Club Oficial de Propietarios y Apasionados de Ferrari en España. Fundado en 1988, nació de la pasión compartida por <em>Il Cavallino Rampante</em> entre propietarios de vehículos de la marca.</p>
+        <p style="font-family:var(--fb);font-size:.92rem;color:var(--w60);line-height:1.9;margin-top:1rem">En 2006 recibimos el respaldo directo y oficial de Ferrari S.p.A., lo que nos convirtió en el representante oficial de los Owners Clubs de Ferrari en territorio español.</p>
+        <p style="font-family:var(--fb);font-size:.92rem;color:var(--w60);line-height:1.9;margin-top:1rem">Nuestra misión es reunir a los propietarios y amantes de Ferrari, organizar eventos exclusivos, fomentar el automovilismo deportivo y mantener viva la llama de la más apasionante marca de automóviles del mundo.</p>
+      </div>
+      <div data-r="left">
+        <div style="position:relative;padding:3rem;border:1px solid var(--w08);background:var(--black)">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);box-shadow:0 0 12px var(--red)"></div>
+          <p style="font-family:var(--fe);font-style:italic;font-size:1.1rem;color:var(--w90);line-height:1.85;margin-bottom:2rem">"Si eres propietario de un Ferrari y deseas compartir con nosotros tu pasión por <em>Il Cavallino</em>, hazte Socio del Ferrari Club España."</p>
+          <div class="rl"></div>
+          <div style="margin-top:2rem;display:flex;gap:2.5rem;flex-wrap:wrap">
+            <div><span class="tech-l">SEDE</span><br><span style="font-family:var(--fh);font-size:.95rem;color:var(--white)">Madrid, España</span></div>
+            <div><span class="tech-l">CATEGORÍA</span><br><span style="font-family:var(--fh);font-size:.95rem;color:var(--white)">Club Oficial</span></div>
+            <div><span class="tech-l">RECONOCIMIENTO</span><br><span style="font-family:var(--fh);font-size:.95rem;color:var(--red)">Ferrari S.p.A.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Historia / Timeline -->
+<section style="background:var(--black);padding:6rem 0">
+  <div class="cnt">
+    <div data-r="up"><div class="sec-eye">NUESTRA HISTORIA</div><h2 class="sec-title" style="margin-top:1rem;margin-bottom:3.5rem">LÍNEA DEL<br><span style="color:var(--red)">TIEMPO</span></h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem">
+      <div class="timeline" data-r="right">
+        <div class="tl-item"><div class="tl-year">1988</div><div class="tl-title">Fundación del Club</div><div class="tl-desc">Un grupo de propietarios de Ferrari en España decide unirse para compartir su pasión. Nace el Ferrari Club España en Madrid.</div></div>
+        <div class="tl-item"><div class="tl-year">1992</div><div class="tl-title">Primeros Eventos Internacionales</div><div class="tl-desc">El club participa por primera vez en eventos de carácter internacional, estableciendo lazos con otros clubs europeos.</div></div>
+        <div class="tl-item"><div class="tl-year">1997</div><div class="tl-title">Primer Track Day Oficial</div><div class="tl-desc">Organización del primer track day oficial del club en el Circuito del Jarama, con más de 30 Ferraris en pista.</div></div>
+        <div class="tl-item"><div class="tl-year">2001</div><div class="tl-title">Primera Visita a Maranello</div><div class="tl-desc">Viaje oficial a la fábrica Ferrari en Maranello, Italia. Los socios visitan las instalaciones, el museo y los talleres.</div></div>
+      </div>
+      <div class="timeline" data-r="left">
+        <div class="tl-item"><div class="tl-year">2006</div><div class="tl-title">Reconocimiento Oficial Ferrari</div><div class="tl-desc">Ferrari S.p.A. otorga al club el estatus de "Ferrari Owners Club Oficial" para España, un reconocimiento que solo ostentan los clubs más destacados del mundo.</div></div>
+        <div class="tl-item"><div class="tl-year">2010</div><div class="tl-title">Expansión a 200 Socios</div><div class="tl-desc">El club supera los 200 socios activos, consolidándose como el mayor club oficial de Ferrari en España.</div></div>
+        <div class="tl-item"><div class="tl-year">2018</div><div class="tl-title">30 Aniversario</div><div class="tl-desc">Celebración del 30 aniversario con una gran concentración y exposición de Ferraris históricos en el Museo Ferrari de Maranello.</div></div>
+        <div class="tl-item"><div class="tl-year">2026</div><div class="tl-title">Presente</div><div class="tl-desc">Más de 200 socios, decenas de eventos al año y el reconocimiento de Ferrari S.p.A. como uno de los clubs más activos de Europa.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Actividades -->
+<section style="background:var(--b90);padding:6rem 0">
+  <div class="cnt">
+    <div data-r="up"><div class="sec-eye">ACTIVIDADES</div><h2 class="sec-title" style="margin-top:1rem;margin-bottom:2.5rem">QUÉ<br><span style="color:var(--red)">HACEMOS</span></h2></div>
+    <div class="activity-grid">
+      <div class="act-card" data-r="up"><div class="act-ico">◉</div><div class="act-title">Track Days</div><div class="act-desc">Jornadas en circuito exclusivas para socios del club. Circuitos como Jarama, Jerez, Montmeló, Calafat y Navarra.</div></div>
+      <div class="act-card" data-r="up"><div class="act-ico">◈</div><div class="act-title">Rutas</div><div class="act-desc">Rutas por carreteras españolas con los más bellos paisajes. Asturias, Pirineos, Sierra Nevada, Picos de Europa.</div></div>
+      <div class="act-card" data-r="up"><div class="act-ico">◎</div><div class="act-title">Fórmula 1</div><div class="act-desc">Asistencia a los Grandes Premios de F1 en España e internacionales. Acceso al paddock y áreas exclusivas.</div></div>
+      <div class="act-card" data-r="scale"><div class="act-ico">◇</div><div class="act-title">Visitas Maranello</div><div class="act-desc">Viajes oficiales a la fábrica Ferrari en Maranello. Visita a talleres, museo, pista de pruebas Fiorano.</div></div>
+      <div class="act-card" data-r="scale"><div class="act-ico">◆</div><div class="act-title">Eventos Internacionales</div><div class="act-desc">Participación en las principales concentraciones internacionales de Ferrari: Cavalcade, XX Programme, Classiche.</div></div>
+      <div class="act-card" data-r="scale"><div class="act-ico">●</div><div class="act-title">Concursos Elegancia</div><div class="act-desc">Organización y participación en concursos de elegancia con Ferraris históricos y de colección en España.</div></div>
+      <div class="act-card" data-r="up"><div class="act-ico">○</div><div class="act-title">Eventos Solidarios</div><div class="act-desc">Tandas en circuito y acciones benéficas. El club participa activamente en iniciativas solidarias.</div></div>
+      <div class="act-card" data-r="up"><div class="act-ico">◉</div><div class="act-title">Mundo Ferrari</div><div class="act-desc">Acceso preferente a noticias y novedades de Ferrari. Contacto directo con el departamento de Owners Clubs de Ferrari.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Junta Directiva -->
+<section style="background:var(--black);padding:6rem 0">
+  <div class="cnt">
+    <div data-r="up"><div class="sec-eye">EQUIPO</div><h2 class="sec-title" style="margin-top:1rem;margin-bottom:2.5rem">JUNTA<br><span style="color:var(--red)">DIRECTIVA</span></h2></div>
+    <div class="board-grid">
+      <div class="board-card" data-r="up"><div class="board-avatar">P</div><div class="board-name">Presidente</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+      <div class="board-card" data-r="up"><div class="board-avatar">VP</div><div class="board-name">Vicepresidente</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+      <div class="board-card" data-r="up"><div class="board-avatar">S</div><div class="board-name">Secretario</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+      <div class="board-card" data-r="scale"><div class="board-avatar">T</div><div class="board-name">Tesorero</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+      <div class="board-card" data-r="scale"><div class="board-avatar">VO</div><div class="board-name">Vocal</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+      <div class="board-card" data-r="scale"><div class="board-avatar">VO</div><div class="board-name">Vocal</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+      <div class="board-card" data-r="up"><div class="board-avatar">VO</div><div class="board-name">Vocal</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+      <div class="board-card" data-r="up"><div class="board-avatar">VO</div><div class="board-name">Vocal</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+      <div class="board-card" data-r="up"><div class="board-avatar">VO</div><div class="board-name">Vocal</div><div class="board-role">JUNTA DIRECTIVA</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL / MANIFESTO -->
+<section style="background:linear-gradient(160deg,#1a0000,var(--black));padding:6rem 0;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 80% at 20% 60%,rgba(204,0,0,.13),transparent);pointer-events:none" aria-hidden="true"></div>
+  <div style="position:absolute;bottom:-1rem;right:-2rem;font-family:var(--fd);font-size:22vw;color:rgba(204,0,0,.04);pointer-events:none;user-select:none;line-height:1;letter-spacing:-.05em" aria-hidden="true">F</div>
+  <div class="cnt" style="position:relative">
+    <p class="sec-eye" data-r="up">NUESTRA ESENCIA</p>
+    <div style="max-width:860px;margin-top:2rem" data-r="up">
+      <blockquote style="font-family:var(--fd);font-size:clamp(1.65rem,3.8vw,3rem);letter-spacing:.04em;line-height:1.22;color:var(--white);padding-left:1.75rem;border-left:3px solid var(--red);margin:0">
+        «El emblema del Cavallino Rampante no es solo un símbolo. Es la promesa de que cada curva, cada recta y cada giro de motor será para siempre el instante más puro de la conducción.»
+      </blockquote>
+      <p style="font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;color:var(--red);margin-top:1.25rem;padding-left:1.75rem">— FERRARI CLUB ESPAÑA · DESDE 1988</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;margin-top:4.5rem" data-r="up">
+      <div style="padding:2rem 2rem 2rem 0;border-top:1px solid var(--w08)">
+        <div style="font-family:var(--fd);font-size:clamp(2.8rem,5vw,4.5rem);color:var(--red);line-height:1;letter-spacing:-.02em" data-count="1988">1988</div>
+        <div style="font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;color:var(--w60);margin-top:.65rem;text-transform:uppercase">Fundación del club</div>
+      </div>
+      <div style="padding:2rem;border-top:1px solid var(--w08)">
+        <div style="font-family:var(--fd);font-size:clamp(2.8rem,5vw,4.5rem);color:var(--red);line-height:1;letter-spacing:-.02em" data-count="200" data-suffix="+">200+</div>
+        <div style="font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;color:var(--w60);margin-top:.65rem;text-transform:uppercase">Socios activos</div>
+      </div>
+      <div style="padding:2rem;border-top:1px solid var(--w08)">
+        <div style="font-family:var(--fd);font-size:clamp(2.8rem,5vw,4.5rem);color:var(--red);line-height:1;letter-spacing:-.02em" data-count="35" data-suffix="+">35+</div>
+        <div style="font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;color:var(--w60);margin-top:.65rem;text-transform:uppercase">Eventos por año</div>
+      </div>
+      <div style="padding:2rem;border-top:1px solid var(--w08)">
+        <div style="font-family:var(--fd);font-size:clamp(2.8rem,5vw,4.5rem);color:var(--red);line-height:1;letter-spacing:-.02em">ES</div>
+        <div style="font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;color:var(--w60);margin-top:.65rem;text-transform:uppercase">Club oficial España</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--red);padding:5rem 0;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.25),transparent)" aria-hidden="true"></div>
+  <div class="cnt" style="position:relative;text-align:center">
+    <h2 style="font-family:var(--fd);font-size:clamp(1.8rem,4.5vw,3.5rem);letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:1.5rem" data-r="up">¿ERES PROPIETARIO DE UN FERRARI?</h2>
+    <p style="font-family:var(--fh);font-size:1.1rem;color:rgba(255,255,255,.8);margin-bottom:2.5rem" data-r="up">Únete al único club oficial de Ferrari en España</p>
+    <div style="display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap" data-r="up">
+      <a href="/club/hazte-socio/" class="btn" style="background:var(--white);color:var(--red);border-color:var(--white);font-family:var(--fd);font-size:.72rem;letter-spacing:.15em;padding:.8rem 2.5rem" data-mag>HAZTE SOCIO <span class="btn-ico">→</span></a>
+      <a href="/contacta/" class="btn btn-o" style="border-color:rgba(255,255,255,.5);color:var(--white)">MÁS INFORMACIÓN</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="cnt">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2.5rem;margin-bottom:3rem">
+      <div><span class="footer-col-title">NAVEGACIÓN</span><a href="/" class="footer-link">Inicio</a><a href="/noticias/" class="footer-link">Noticias</a><a href="/club/" class="footer-link">Nuestro Club</a><a href="/club/hazte-socio/" class="footer-link">Hazte Socio</a><a href="/concesionarios/" class="footer-link">Concesionarios</a><a href="/contacta/" class="footer-link">Contacta</a></div>
+      <div><span class="footer-col-title">CONTACTO</span><p style="font-family:var(--fm);font-size:.78rem;color:var(--w60);line-height:2.2">Calle Constancia 41<br>Entreplanta · 28002 Madrid<br>+34 91 575 41 60<br>ferrari@ferrariclubespana.com</p></div>
+      <div><span class="footer-col-title">HORARIO</span><p style="font-family:var(--fm);font-size:.78rem;color:var(--w60);line-height:2.2">Lun–Jue: 9:00–17:30<br>Vie: 9:00–15:00</p></div>
+      <div><span class="footer-col-title">LEGAL</span><a href="/privacidad/" class="footer-link">Política de Privacidad</a></div>
+    </div>
+    <div class="rl" style="margin-bottom:1.5rem"></div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <span style="font-family:var(--fm);font-size:.7rem;color:var(--w40)">&copy; 2026 FERRARI CLUB ESPAÑA · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
+    </div>
+    <div class="footer-brand" aria-hidden="true">FERRARI</div>
+  </div>
+</footer>
+<script src="/shared.js" defer></script>
+</body>
+</html>

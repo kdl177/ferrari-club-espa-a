@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0D0907"/>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <defs>
+    <radialGradient id="bg" cx="60%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#3A1510" stop-opacity=".8"/>
+      <stop offset="100%" stop-color="#0D0907" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Red accent bar -->
+  <rect width="1200" height="6" fill="#CC0000"/>
+  <!-- Shield -->
+  <g transform="translate(90,220)">
+    <path d="M65 0 L130 28 L130 90 Q130 135 65 160 Q0 135 0 90 L0 28 Z" fill="#CC0000"/>
+    <path d="M65 10 L120 35 L120 90 Q120 130 65 152 Q10 130 10 90 L10 35 Z" fill="#AA0000"/>
+    <text x="65" y="100" font-family="serif" font-size="60" fill="#F5EDE0" text-anchor="middle">F</text>
+  </g>
+  <!-- Club name -->
+  <text x="260" y="300" font-family="serif" font-size="72" fill="#F5EDE0" letter-spacing="6">FERRARI CLUB</text>
+  <text x="260" y="385" font-family="serif" font-size="72" fill="#CC0000" letter-spacing="6">ESPAÑA</text>
+  <text x="262" y="440" font-family="monospace" font-size="22" fill="rgba(245,237,224,.55)" letter-spacing="8">CLUB OFICIAL DESDE 1988</text>
+  <!-- Bottom line -->
+  <rect y="624" width="1200" height="6" fill="url(#line)"/>
+  <defs>
+    <linearGradient id="line" x1="0%" x2="100%">
+      <stop offset="0%" stop-color="#CC0000" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#CC0000"/>
+      <stop offset="70%" stop-color="#C49A3C"/>
+      <stop offset="100%" stop-color="#CC0000" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

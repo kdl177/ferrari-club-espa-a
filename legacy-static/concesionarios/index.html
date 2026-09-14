@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Concesionarios Ferrari en España — Ferrari Club España</title>
+<meta name="description" content="Concesionarios oficiales Ferrari en España. Encuentra tu distribuidor Ferrari más cercano."/>
+<meta property="og:title" content="Concesionarios — Ferrari Club España"/>
+<meta property="og:url" content="https://club-ferrari-espana.vercel.app/concesionarios/"/>
+<meta property="og:description" content="Club Oficial de Propietarios y Apasionados de Ferrari en España desde 1988."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://club-ferrari-espana.vercel.app/og.svg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:site_name" content="Ferrari Club España"/>
+<meta property="og:locale" content="es_ES"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://club-ferrari-espana.vercel.app/og.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/shared.css"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23cc0000'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E"/>
+<style>
+.dealer-hero{padding:8.5rem 0 5rem;background:var(--black);position:relative;overflow:hidden}
+.dealer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:3rem}
+.dealer-card{border:1px solid var(--w08);background:var(--b80);overflow:hidden;transition:border-color .3s;position:relative}
+.dealer-card:hover{border-color:rgba(204,0,0,.3)}
+.dealer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--eo)}
+.dealer-card:hover::before{transform:scaleX(1)}
+.dealer-map{height:160px;background:var(--b90);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.dealer-body{padding:1.75rem}
+.dealer-city{font-family:var(--fd);font-size:.78rem;letter-spacing:.18em;color:var(--red);margin-bottom:.5rem}
+.dealer-name{font-family:var(--fh);font-size:1.15rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:1.25rem}
+.dealer-info{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.5rem}
+.dealer-row{display:flex;gap:.85rem;align-items:flex-start;font-family:var(--fm);font-size:.82rem;color:var(--w60);line-height:1.7}
+.dealer-ico{color:var(--red);flex-shrink:0;margin-top:.1rem;font-size:1rem}
+.dealer-tel{font-family:var(--fh);font-size:1.05rem;font-weight:600;color:var(--white);text-decoration:none}
+.dealer-tel:hover{color:var(--red);text-decoration:underline}
+.region-filter{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:3rem}
+.filter-btn{font-family:var(--fm);font-size:.78rem;letter-spacing:.1em;padding:.7rem 1.35rem;min-height:44px;border:1px solid var(--w20);color:var(--w60);background:transparent;cursor:pointer;text-transform:uppercase;transition:all .2s}
+.filter-btn:hover,.filter-btn.on{border-color:var(--red);color:var(--white);background:rgba(204,0,0,.08)}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+<div id="sp"></div><div id="pt"></div>
+<header><nav id="nav">
+  <a href="/" class="nav-logo" aria-label="Ferrari Club España — Inicio"><span class="nav-logo-badge" aria-hidden="true"><svg width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 1 L31 7 L31 22 Q31 32 16 37 Q1 32 1 22 L1 7 Z" fill="#CC0000" stroke="#990000" stroke-width=".8"/><path d="M16 3.5 L29 8.8 L29 22 Q29 30.5 16 34.8 Q3 30.5 3 22 L3 8.8 Z" fill="#AA0000"/><text x="16" y="24" font-family="Italiana,serif" font-size="13" fill="#F5EDE0" text-anchor="middle" font-weight="400">F</text><path d="M8 14 L24 14" stroke="rgba(245,237,224,.25)" stroke-width=".8"/></svg></span><span class="nav-logo-text">FERRARI<em>·</em>CLUB<small>ESPAÑA — OFICIAL DESDE 1988</small></span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Inicio</a>
+    <a href="/noticias/" class="nav-link">Noticias</a>
+    <div class="nav-drop nav-link" tabindex="0">Club<div class="nav-drop-menu"><a href="/club/" class="nav-drop-item">Nuestro Club</a><a href="/club/hazte-socio/" class="nav-drop-item">Hazte Socio</a></div></div>
+    <a href="/eventos/" class="nav-link">Eventos</a>
+    <a href="/concesionarios/" class="nav-link active">Concesionarios</a>
+    <a href="/contacta/" class="nav-link">Contacta</a>
+    <a href="/socios/" class="nav-link-cta">Área Socios</a>
+  </div>
+  <button class="nav-mbtn" id="mbtn" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav></header>
+<div id="menu"><nav class="menu-nav">
+  <a class="mi" href="/"><span class="mi-n">01</span>INICIO</a>
+  <a class="mi" href="/noticias/"><span class="mi-n">02</span>NOTICIAS</a>
+  <div class="mi" style="flex-direction:column;align-items:flex-start;gap:.3rem"><span style="display:inline-flex;align-items:center;gap:1.5rem"><span class="mi-n">03</span>CLUB</span><div class="mi-sub"><a href="/club/">Nuestro Club</a><a href="/club/hazte-socio/">Hazte Socio</a></div></div>
+  <a class="mi" href="/eventos/"><span class="mi-n">04</span>EVENTOS</a>
+  <a class="mi" href="/concesionarios/"><span class="mi-n">05</span>CONCESIONARIOS</a>
+  <a class="mi" href="/socios/"><span class="mi-n">06</span>SOCIOS</a>
+  <a class="mi" href="/contacta/"><span class="mi-n">07</span>CONTACTA</a>
+</nav><div class="menu-preview" aria-hidden="true">
+  <div class="mp" id="mp0" style="background:linear-gradient(135deg,#1a0000,#0a0a0a)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">INICIO</span></div>
+  <div class="mp" id="mp1" style="background:linear-gradient(135deg,#0a0a0a,#111)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">NOTICIAS</span></div>
+  <div class="mp" id="mp2" style="background:linear-gradient(135deg,#1a0000,#111)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">CLUB</span></div>
+  <div class="mp" id="mp3" style="background:radial-gradient(ellipse at 50% 60%,#1a0505,#0d0907)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(204,0,0,.1)">EVENTOS</span></div>
+  <div class="mp on" id="mp4" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a)"><span style="font-family:var(--fd);font-size:5vw;color:rgba(255,255,255,.04)">CONC.</span></div>
+  <div class="mp" id="mp5" style="background:linear-gradient(135deg,#1a0000,#0a0a0a)"><span style="font-family:var(--fd);font-size:7vw;color:rgba(204,0,0,.1)">SOCIOS</span></div>
+  <div class="mp" id="mp6" style="background:linear-gradient(135deg,#111,#0a0a0a)"><span style="font-family:var(--fd);font-size:6vw;color:rgba(255,255,255,.04)">CONTACTA</span></div>
+</div><div class="menu-footer"><div class="menu-social"><a href="https://www.facebook.com/ferrariclubespana" target="_blank" rel="noopener">FACEBOOK</a><a href="https://www.instagram.com/ferrariclubespana" target="_blank" rel="noopener">INSTAGRAM</a></div><span style="font-family:var(--fm);font-size:.55rem;color:rgba(255,255,255,.08)">MADRID · EST. 1988</span></div></div>
+
+<main>
+<section class="dealer-hero">
+  <div class="cnt">
+    <div class="bc"><a href="/" class="bc-a">Inicio</a><span class="bc-s">/</span><span>Concesionarios</span></div>
+    <p class="sec-eye" style="margin-top:1.5rem" data-r="up">DISTRIBUIDORES OFICIALES</p>
+    <h1 class="sec-title" style="font-size:clamp(2.5rem,6vw,5rem);margin-top:.75rem" data-r="up">CONCESIONARIOS<br><span style="color:var(--red)">FERRARI ESPAÑA</span></h1>
+    <p class="sec-sub" style="max-width:580px;margin-top:1.5rem" data-r="up">Distribuidores Oficiales Ferrari en España. Compra, post-venta y servicio de garantía con los más altos estándares de la marca.</p>
+  </div>
+  <div style="position:absolute;bottom:-3rem;right:0;font-family:var(--fd);font-size:18vw;color:rgba(255,255,255,.015);pointer-events:none;user-select:none;line-height:1" aria-hidden="true">ES</div>
+</section>
+
+<section style="background:var(--b90);padding:5rem 0">
+  <div class="cnt">
+    <!-- Region filter -->
+    <div class="region-filter" data-r="up">
+      <button type="button" class="filter-btn on" data-region="all">TODOS</button>
+      <button type="button" class="filter-btn" data-region="madrid">MADRID</button>
+      <button type="button" class="filter-btn" data-region="cataluna">CATALUÑA</button>
+      <button type="button" class="filter-btn" data-region="andalucia">ANDALUCÍA</button>
+      <button type="button" class="filter-btn" data-region="pais-vasco">PAÍS VASCO</button>
+      <button type="button" class="filter-btn" data-region="levante">LEVANTE</button>
+    </div>
+
+    <div class="dealer-grid">
+      <!-- Madrid -->
+      <div class="dealer-card" data-r="up" data-region="madrid">
+        <div class="dealer-map">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" aria-hidden="true"><rect width="100%" height="100%" fill="#0a0000"/><circle cx="160" cy="80" r="35" fill="rgba(204,0,0,.06)" stroke="rgba(204,0,0,.1)" stroke-width="1"/><circle cx="160" cy="80" r="5" fill="rgba(204,0,0,.4)"/><line x1="160" y1="0" x2="160" y2="160" stroke="rgba(204,0,0,.05)"/><line x1="0" y1="80" x2="320" y2="80" stroke="rgba(204,0,0,.05)"/><text x="160" y="135" font-family="Orbitron" font-size="8" fill="rgba(204,0,0,.25)" text-anchor="middle" letter-spacing="2">40.4168°N · 3.7038°O</text></svg>
+        </div>
+        <div class="dealer-body">
+          <div class="dealer-city">MADRID</div>
+          <div class="dealer-name">Motor Deluxe — Ferrari Madrid</div>
+          <div class="dealer-info">
+            <div class="dealer-row"><span class="dealer-ico">◎</span>Paseo de la Castellana 180, 28046 Madrid</div>
+            <div class="dealer-row"><span class="dealer-ico">☎</span><a href="tel:+34917004200" class="dealer-tel">+34 91 700 42 00</a></div>
+            <div class="dealer-row"><span class="dealer-ico">◷</span>Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00</div>
+          </div>
+          <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" class="btn btn-o btn-sm">VER EN FERRARI.COM ↗</a>
+        </div>
+      </div>
+
+      <!-- Barcelona -->
+      <div class="dealer-card" data-r="up" data-region="cataluna">
+        <div class="dealer-map">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" aria-hidden="true"><rect width="100%" height="100%" fill="#050500"/><circle cx="160" cy="80" r="35" fill="rgba(204,0,0,.06)" stroke="rgba(204,0,0,.1)" stroke-width="1"/><circle cx="160" cy="80" r="5" fill="rgba(204,0,0,.4)"/><line x1="160" y1="0" x2="160" y2="160" stroke="rgba(204,0,0,.05)"/><line x1="0" y1="80" x2="320" y2="80" stroke="rgba(204,0,0,.05)"/><text x="160" y="135" font-family="Orbitron" font-size="8" fill="rgba(204,0,0,.25)" text-anchor="middle" letter-spacing="2">41.3851°N · 2.1734°E</text></svg>
+        </div>
+        <div class="dealer-body">
+          <div class="dealer-city">BARCELONA</div>
+          <div class="dealer-name">Nani Móvil — Ferrari Barcelona</div>
+          <div class="dealer-info">
+            <div class="dealer-row"><span class="dealer-ico">◎</span>Av. Diagonal 520, 08006 Barcelona</div>
+            <div class="dealer-row"><span class="dealer-ico">☎</span><a href="tel:+34932720040" class="dealer-tel">+34 93 272 00 40</a></div>
+            <div class="dealer-row"><span class="dealer-ico">◷</span>Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00</div>
+          </div>
+          <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" class="btn btn-o btn-sm">VER EN FERRARI.COM ↗</a>
+        </div>
+      </div>
+
+      <!-- Sevilla -->
+      <div class="dealer-card" data-r="up" data-region="andalucia">
+        <div class="dealer-map">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" aria-hidden="true"><rect width="100%" height="100%" fill="#050000"/><circle cx="160" cy="80" r="35" fill="rgba(204,0,0,.06)" stroke="rgba(204,0,0,.1)" stroke-width="1"/><circle cx="160" cy="80" r="5" fill="rgba(204,0,0,.4)"/><line x1="160" y1="0" x2="160" y2="160" stroke="rgba(204,0,0,.05)"/><line x1="0" y1="80" x2="320" y2="80" stroke="rgba(204,0,0,.05)"/><text x="160" y="135" font-family="Orbitron" font-size="8" fill="rgba(204,0,0,.25)" text-anchor="middle" letter-spacing="2">37.3891°N · 5.9845°O</text></svg>
+        </div>
+        <div class="dealer-body">
+          <div class="dealer-city">SEVILLA</div>
+          <div class="dealer-name">Auto Sánchez — Ferrari Sevilla</div>
+          <div class="dealer-info">
+            <div class="dealer-row"><span class="dealer-ico">◎</span>Calle Resolana 17, 41009 Sevilla</div>
+            <div class="dealer-row"><span class="dealer-ico">☎</span><a href="tel:+34954541000" class="dealer-tel">+34 95 454 10 00</a></div>
+            <div class="dealer-row"><span class="dealer-ico">◷</span>Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00</div>
+          </div>
+          <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" class="btn btn-o btn-sm">VER EN FERRARI.COM ↗</a>
+        </div>
+      </div>
+
+      <!-- Bilbao -->
+      <div class="dealer-card" data-r="scale" data-region="pais-vasco">
+        <div class="dealer-map">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" aria-hidden="true"><rect width="100%" height="100%" fill="#040404"/><circle cx="160" cy="80" r="35" fill="rgba(204,0,0,.06)" stroke="rgba(204,0,0,.1)" stroke-width="1"/><circle cx="160" cy="80" r="5" fill="rgba(204,0,0,.4)"/><text x="160" y="135" font-family="Orbitron" font-size="8" fill="rgba(204,0,0,.25)" text-anchor="middle" letter-spacing="2">43.2630°N · 2.9350°O</text></svg>
+        </div>
+        <div class="dealer-body">
+          <div class="dealer-city">BILBAO</div>
+          <div class="dealer-name">Inchcape — Ferrari Bilbao</div>
+          <div class="dealer-info">
+            <div class="dealer-row"><span class="dealer-ico">◎</span>Gran Vía Diego López de Haro 80, 48011 Bilbao</div>
+            <div class="dealer-row"><span class="dealer-ico">☎</span><a href="tel:+34944200100" class="dealer-tel">+34 94 420 01 00</a></div>
+            <div class="dealer-row"><span class="dealer-ico">◷</span>Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00</div>
+          </div>
+          <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" class="btn btn-o btn-sm">VER EN FERRARI.COM ↗</a>
+        </div>
+      </div>
+
+      <!-- Valencia -->
+      <div class="dealer-card" data-r="scale" data-region="levante">
+        <div class="dealer-map">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" aria-hidden="true"><rect width="100%" height="100%" fill="#050500"/><circle cx="160" cy="80" r="35" fill="rgba(204,0,0,.06)" stroke="rgba(204,0,0,.1)" stroke-width="1"/><circle cx="160" cy="80" r="5" fill="rgba(204,0,0,.4)"/><text x="160" y="135" font-family="Orbitron" font-size="8" fill="rgba(204,0,0,.25)" text-anchor="middle" letter-spacing="2">39.4699°N · 0.3763°O</text></svg>
+        </div>
+        <div class="dealer-body">
+          <div class="dealer-city">VALENCIA</div>
+          <div class="dealer-name">Motor Rabasa — Ferrari Valencia</div>
+          <div class="dealer-info">
+            <div class="dealer-row"><span class="dealer-ico">◎</span>Av. de las Cortes Valencianas 50, 46015 Valencia</div>
+            <div class="dealer-row"><span class="dealer-ico">☎</span><a href="tel:+34963600100" class="dealer-tel">+34 96 360 01 00</a></div>
+            <div class="dealer-row"><span class="dealer-ico">◷</span>Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00</div>
+          </div>
+          <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" class="btn btn-o btn-sm">VER EN FERRARI.COM ↗</a>
+        </div>
+      </div>
+
+      <!-- Marbella -->
+      <div class="dealer-card" data-r="scale" data-region="andalucia">
+        <div class="dealer-map">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" aria-hidden="true"><rect width="100%" height="100%" fill="#050000"/><circle cx="160" cy="80" r="35" fill="rgba(204,0,0,.06)" stroke="rgba(204,0,0,.1)" stroke-width="1"/><circle cx="160" cy="80" r="5" fill="rgba(204,0,0,.4)"/><text x="160" y="135" font-family="Orbitron" font-size="8" fill="rgba(204,0,0,.25)" text-anchor="middle" letter-spacing="2">36.5101°N · 4.8824°O</text></svg>
+        </div>
+        <div class="dealer-body">
+          <div class="dealer-city">MARBELLA</div>
+          <div class="dealer-name">Auto Premium — Ferrari Marbella</div>
+          <div class="dealer-info">
+            <div class="dealer-row"><span class="dealer-ico">◎</span>Ctra. Nacional 340, km 176, 29660 Marbella</div>
+            <div class="dealer-row"><span class="dealer-ico">☎</span><a href="tel:+34952815100" class="dealer-tel">+34 95 281 51 00</a></div>
+            <div class="dealer-row"><span class="dealer-ico">◷</span>Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00</div>
+          </div>
+          <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" class="btn btn-o btn-sm">VER EN FERRARI.COM ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;padding:2rem;border:1px solid var(--w08)" data-r="up">
+      <div class="sec-eye" style="margin-bottom:1rem">TODOS LOS DISTRIBUIDORES</div>
+      <p style="font-family:var(--fb);font-size:.9rem;color:var(--w70);line-height:1.75;margin-bottom:1.5rem">Para consultar el listado completo y actualizado de concesionarios oficiales Ferrari en España, visita la web oficial de Ferrari.</p>
+      <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" class="btn btn-p" data-mag>BUSCAR EN FERRARI.COM ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="cnt">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2.5rem;margin-bottom:3rem">
+      <div><span class="footer-col-title">NAVEGACIÓN</span><a href="/" class="footer-link">Inicio</a><a href="/noticias/" class="footer-link">Noticias</a><a href="/club/" class="footer-link">Nuestro Club</a><a href="/concesionarios/" class="footer-link">Concesionarios</a></div>
+      <div><span class="footer-col-title">CONTACTO</span><p style="font-family:var(--fm);font-size:.78rem;color:var(--w60);line-height:2.2">C/ Constancia 41 · 28002 Madrid<br>+34 91 575 41 60<br>ferrari@ferrariclubespana.com</p></div>
+      <div><span class="footer-col-title">LEGAL</span><a href="/privacidad/" class="footer-link">Política de Privacidad</a></div>
+    </div>
+    <div class="rl" style="margin-bottom:1.5rem"></div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <span style="font-family:var(--fm);font-size:.7rem;color:var(--w40)">&copy; 2026 FERRARI CLUB ESPAÑA · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
+    </div>
+    <div class="footer-brand" aria-hidden="true">FERRARI</div>
+  </div>
+</footer>
+<script src="/shared.js" defer></script>
+<script>
+document.querySelectorAll('.region-filter .filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.region-filter .filter-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const region = btn.dataset.region;
+    document.querySelectorAll('.dealer-card').forEach(card => {
+      if(region === 'all' || card.dataset.region === region){
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
