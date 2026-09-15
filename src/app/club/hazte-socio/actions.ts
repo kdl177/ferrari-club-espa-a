@@ -1,6 +1,7 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
+import { POLITICA_VERSION } from '@/lib/rgpd';
 
 export type SolicitudSocioState = {
   ok: boolean;
@@ -26,6 +27,9 @@ export async function crearSolicitudSocio(
   if (!apellidos) return { ok: false, error: 'Introduce tus apellidos.' };
   if (!email || !isValidEmail(email)) return { ok: false, error: 'Introduce un email válido.' };
   if (!ferrariModelo) return { ok: false, error: 'Indica el modelo de Ferrari del que eres propietario.' };
+  if (formData.get('privacidad') !== 'on') {
+    return { ok: false, error: 'Debes aceptar la política de privacidad para continuar.' };
+  }
 
   const existente = await prisma.user.findUnique({ where: { email } });
 
@@ -42,6 +46,8 @@ export async function crearSolicitudSocio(
       telefono: telefono || null,
       ferrariModelo,
       estadoCuota: 'pendiente',
+      consentimientoEn: new Date(),
+      consentimientoVersion: POLITICA_VERSION,
     },
     update: {
       nombre,
@@ -49,6 +55,8 @@ export async function crearSolicitudSocio(
       telefono: telefono || null,
       ferrariModelo,
       estadoCuota: 'pendiente',
+      consentimientoEn: new Date(),
+      consentimientoVersion: POLITICA_VERSION,
     },
   });
 

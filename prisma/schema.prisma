@@ -42,6 +42,11 @@ model User {
   estadoCuota   EstadoCuota  @default(pendiente)
   esAdmin       Boolean      @default(false) @map("es_admin")
 
+  // RGPD: hay que poder DEMOSTRAR el consentimiento, no solo pedirlo.
+  // Se guarda cuando se acepto y que version del texto legal se acepto.
+  consentimientoEn      DateTime? @map("consentimiento_en")
+  consentimientoVersion String?   @map("consentimiento_version")
+
   stripeCustomerId String? @unique
 
   suscripcion   Suscripcion?
@@ -171,6 +176,9 @@ model ContactoRecibido {
   ferrariModelo String?
   mensaje   String   @db.Text
   atendido  Boolean  @default(false)
+
+  consentimientoEn      DateTime? @map("consentimiento_en")
+  consentimientoVersion String?   @map("consentimiento_version")
 
   creadoEn DateTime @default(now())
 

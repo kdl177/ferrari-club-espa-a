@@ -2,6 +2,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { enviarEmailContactoAlClub } from '@/lib/email';
+import { POLITICA_VERSION } from '@/lib/rgpd';
 
 export type ContactoState = {
   ok: boolean;
@@ -50,6 +51,10 @@ export async function enviarContacto(
       asunto,
       ferrariModelo: ferrariModelo || null,
       mensaje,
+      // RGPD: se exige el consentimiento arriba, asi que hay que poder
+      // demostrarlo despues. Guardar cuando y que version se acepto.
+      consentimientoEn: new Date(),
+      consentimientoVersion: POLITICA_VERSION,
     },
   });
 

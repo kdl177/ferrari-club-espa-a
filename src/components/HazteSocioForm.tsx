@@ -94,6 +94,12 @@ export default function HazteSocioForm() {
           ))}
         </select>
       </div>
+      <div style={{ display: 'flex', gap: '.9rem', alignItems: 'flex-start', marginBottom: '1.5rem', padding: '1rem', border: '1px solid var(--w08)', background: 'var(--w03)' }}>
+        <input type="checkbox" id="privacidad-socio" name="privacidad" style={{ accentColor: 'var(--red)', flexShrink: 0, width: 22, height: 22, marginTop: '.2rem', cursor: 'pointer' }} />
+        <label htmlFor="privacidad-socio" style={{ fontFamily: 'var(--fm)', fontSize: '.88rem', color: 'var(--w70)', lineHeight: 1.8, cursor: 'pointer' }}>
+          Acepto la <a href="/privacidad/" style={{ color: 'var(--red)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Política de Privacidad</a> y el tratamiento de mis datos para gestionar mi alta como socio.
+        </label>
+      </div>
       {state.error && <div className="alert alert-err" style={{ marginBottom: '1rem' }}>{state.error}</div>}
       <button type="submit" className="btn btn-p" style={{ width: '100%', justifyContent: 'center' }} disabled={pending} data-mag>
         {pending ? 'ENVIANDO SOLICITUD...' : 'CONTINUAR AL PAGO'} {!pending && <span className="btn-ico">→</span>}

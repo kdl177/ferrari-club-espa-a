@@ -34,15 +34,17 @@ export default async function PanelSociosPage() {
           ))}
         </div>
 
-        <form
-          action={async () => {
-            'use server';
-            await signOut({ redirectTo: '/' });
-          }}
-          style={{ marginTop: '3rem' }}
-        >
-          <button type="submit" className="btn btn-o">CERRAR SESIÓN</button>
-        </form>
+        <div style={{ marginTop: '3rem', display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <a href="/socios/panel/privacidad/" className="btn btn-o">MIS DATOS Y PRIVACIDAD</a>
+          <form
+            action={async () => {
+              'use server';
+              await signOut({ redirectTo: '/' });
+            }}
+          >
+            <button type="submit" className="btn btn-o">CERRAR SESIÓN</button>
+          </form>
+        </div>
       </div>
     </div>
   );

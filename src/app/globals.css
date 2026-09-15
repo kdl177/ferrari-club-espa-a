@@ -1215,6 +1215,11 @@ a.dealer-tel{color:var(--white);font-size:.9rem;font-weight:600;transition:color
 .admin-error-mini{font-family:var(--fm);font-size:.68rem;color:var(--red-g);margin-left:.6rem}
 .admin-ok{font-family:var(--fm);font-size:.78rem;color:#4ade80;padding:.6rem 0}
 
+/* Baja de socio: accion irreversible, el control debe leerse sin esfuerzo
+   sobre el fondo negro del area de socios (no sobre --b90 del panel). */
+.btn-baja{font-family:var(--fm);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:transparent;border:1px solid var(--red);padding:.9rem 1.6rem;cursor:pointer;transition:background .2s,box-shadow .2s;min-height:48px}
+.btn-baja:hover{background:var(--red-10);box-shadow:0 0 20px var(--red-20)}
+
 .admin-form{display:flex;flex-direction:column;gap:1.25rem;max-width:820px}
 .admin-form-row{display:grid;grid-template-columns:1fr 220px;gap:1.25rem}
 .admin-campo{display:flex;flex-direction:column;gap:.5rem}
