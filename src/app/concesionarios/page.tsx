@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 };
 
 const DEALERS = [
-  { region: 'madrid', city: 'MADRID', name: 'Motor Deluxe — Ferrari Madrid', addr: 'Paseo de la Castellana 180, 28046 Madrid', tel: '+34917004200', telFmt: '+34 91 700 42 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '40.4168°N · 3.7038°O', bg: '#0a0000' },
-  { region: 'cataluna', city: 'BARCELONA', name: 'Nani Móvil — Ferrari Barcelona', addr: 'Av. Diagonal 520, 08006 Barcelona', tel: '+34932720040', telFmt: '+34 93 272 00 40', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '41.3851°N · 2.1734°E', bg: '#050500' },
-  { region: 'andalucia', city: 'SEVILLA', name: 'Auto Sánchez — Ferrari Sevilla', addr: 'Calle Resolana 17, 41009 Sevilla', tel: '+34954541000', telFmt: '+34 95 454 10 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '37.3891°N · 5.9845°O', bg: '#050000' },
-  { region: 'pais-vasco', city: 'BILBAO', name: 'Inchcape — Ferrari Bilbao', addr: 'Gran Vía Diego López de Haro 80, 48011 Bilbao', tel: '+34944200100', telFmt: '+34 94 420 01 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '43.2630°N · 2.9350°O', bg: '#040404' },
-  { region: 'levante', city: 'VALENCIA', name: 'Motor Rabasa — Ferrari Valencia', addr: 'Av. de las Cortes Valencianas 50, 46015 Valencia', tel: '+34963600100', telFmt: '+34 96 360 01 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '39.4699°N · 0.3763°O', bg: '#050500' },
-  { region: 'andalucia', city: 'MARBELLA', name: 'Auto Premium — Ferrari Marbella', addr: 'Ctra. Nacional 340, km 176, 29660 Marbella', tel: '+34952815100', telFmt: '+34 95 281 51 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '36.5101°N · 4.8824°O', bg: '#050000' },
+  { region: 'madrid', city: 'MADRID', name: 'Motor Deluxe — Ferrari Madrid', addr: 'Paseo de la Castellana 180, 28046 Madrid', tel: '+34917004200', telFmt: '+34 91 700 42 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '40.4168°N · 3.7038°O', lat: 40.4168, lng: -3.7038, bg: '#0a0000' },
+  { region: 'cataluna', city: 'BARCELONA', name: 'Nani Móvil — Ferrari Barcelona', addr: 'Av. Diagonal 520, 08006 Barcelona', tel: '+34932720040', telFmt: '+34 93 272 00 40', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '41.3851°N · 2.1734°E', lat: 41.3851, lng: 2.1734, bg: '#050500' },
+  { region: 'andalucia', city: 'SEVILLA', name: 'Auto Sánchez — Ferrari Sevilla', addr: 'Calle Resolana 17, 41009 Sevilla', tel: '+34954541000', telFmt: '+34 95 454 10 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '37.3891°N · 5.9845°O', lat: 37.3891, lng: -5.9845, bg: '#050000' },
+  { region: 'pais-vasco', city: 'BILBAO', name: 'Inchcape — Ferrari Bilbao', addr: 'Gran Vía Diego López de Haro 80, 48011 Bilbao', tel: '+34944200100', telFmt: '+34 94 420 01 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '43.2630°N · 2.9350°O', lat: 43.263, lng: -2.935, bg: '#040404' },
+  { region: 'levante', city: 'VALENCIA', name: 'Motor Rabasa — Ferrari Valencia', addr: 'Av. de las Cortes Valencianas 50, 46015 Valencia', tel: '+34963600100', telFmt: '+34 96 360 01 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '39.4699°N · 0.3763°O', lat: 39.4699, lng: -0.3763, bg: '#050500' },
+  { region: 'andalucia', city: 'MARBELLA', name: 'Auto Premium — Ferrari Marbella', addr: 'Ctra. Nacional 340, km 176, 29660 Marbella', tel: '+34952815100', telFmt: '+34 95 281 51 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '36.5101°N · 4.8824°O', lat: 36.5101, lng: -4.8824, bg: '#050000' },
 ];
 
 export default function ConcesionariosPage() {

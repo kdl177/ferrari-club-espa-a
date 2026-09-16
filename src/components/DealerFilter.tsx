@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { distanciaKm } from '@/lib/geo';
 
 const REGIONS = [
   { key: 'all', label: 'TODOS' },
@@ -20,27 +21,83 @@ export type Dealer = {
   telFmt: string;
   hours: string;
   coord: string;
+  lat: number;
+  lng: number;
   bg: string;
 };
 
+type EstadoGeo = 'inactivo' | 'buscando' | 'concedido' | 'denegado';
+
 export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
   const [active, setActive] = useState('all');
-  const visible = dealers.filter((d) => active === 'all' || d.region === active);
+  const [estadoGeo, setEstadoGeo] = useState<EstadoGeo>('inactivo');
+  const [posicion, setPosicion] = useState<{ lat: number; lng: number } | null>(null);
+
+  function pedirUbicacion() {
+    if (!('geolocation' in navigator)) {
+      setEstadoGeo('denegado');
+      return;
+    }
+    setEstadoGeo('buscando');
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setPosicion({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setEstadoGeo('concedido');
+      },
+      () => setEstadoGeo('denegado'),
+      { timeout: 8000, maximumAge: 300000 }
+    );
+  }
+
+  // Con la ubicacion concedida, la distancia importa mas que el filtro
+  // manual de region: mostramos todo, ordenado por cercania real.
+  useEffect(() => {
+    if (estadoGeo === 'concedido') setActive('all');
+  }, [estadoGeo]);
+
+  const conDistancia = useMemo(() => {
+    if (!posicion) return dealers.map((d) => ({ ...d, distanciaKm: null as number | null }));
+    return dealers
+      .map((d) => ({ ...d, distanciaKm: distanciaKm(posicion.lat, posicion.lng, d.lat, d.lng) }))
+      .sort((a, b) => a.distanciaKm - b.distanciaKm);
+  }, [dealers, posicion]);
+
+  const visible = estadoGeo === 'concedido'
+    ? conDistancia
+    : conDistancia.filter((d) => active === 'all' || d.region === active);
 
   return (
     <>
-      <div className="region-filter" data-r="up">
-        {REGIONS.map((r) => (
-          <button
-            key={r.key}
-            type="button"
-            className={`filter-btn${active === r.key ? ' on' : ''}`}
-            onClick={() => setActive(r.key)}
-          >
-            {r.label}
+      <div className="geo-bar" data-r="up">
+        {estadoGeo === 'concedido' ? (
+          <span className="geo-activo">
+            📍 Ordenado por cercanía a tu ubicación
+          </span>
+        ) : (
+          <button type="button" className="geo-btn" onClick={pedirUbicacion} disabled={estadoGeo === 'buscando'}>
+            {estadoGeo === 'buscando' ? 'Localizando…' : '📍 Ver el más cercano a mí'}
           </button>
-        ))}
+        )}
+        {estadoGeo === 'denegado' && (
+          <span className="geo-nota">No se pudo acceder a tu ubicación. Filtra por región abajo.</span>
+        )}
       </div>
+
+      {estadoGeo !== 'concedido' && (
+        <div className="region-filter" data-r="up">
+          {REGIONS.map((r) => (
+            <button
+              key={r.key}
+              type="button"
+              className={`filter-btn${active === r.key ? ' on' : ''}`}
+              onClick={() => setActive(r.key)}
+            >
+              {r.label}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="dealer-grid">
         {visible.map((d) => (
           <div className="dealer-card" data-r="up" key={d.name}>
@@ -53,6 +110,9 @@ export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
                 <line x1="0" y1="80" x2="320" y2="80" stroke="rgba(204,0,0,.05)" />
                 <text x="160" y="135" fontFamily="Orbitron" fontSize="8" fill="rgba(204,0,0,.25)" textAnchor="middle" letterSpacing="2">{d.coord}</text>
               </svg>
+              {d.distanciaKm !== null && (
+                <span className="dealer-distancia">{formatDistancia(d.distanciaKm)}</span>
+              )}
             </div>
             <div className="dealer-body">
               <div className="dealer-city">{d.city}</div>
@@ -69,4 +129,10 @@ export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
       </div>
     </>
   );
+}
+
+function formatDistancia(km: number): string {
+  if (km < 1) return `${Math.round(km * 1000)} m`;
+  if (km < 10) return `${km.toFixed(1)} km`;
+  return `${Math.round(km)} km`;
 }

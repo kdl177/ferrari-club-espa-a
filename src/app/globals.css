@@ -975,6 +975,14 @@ a.dealer-tel{color:var(--white);font-size:.9rem;font-weight:600;transition:color
 .filter-btn{font-family:var(--fm);font-size:.78rem;letter-spacing:.1em;padding:.7rem 1.35rem;min-height:44px;border:1px solid var(--w20);color:var(--w60);background:transparent;cursor:pointer;text-transform:uppercase;transition:all .2s}
 .filter-btn:hover,.filter-btn.on{border-color:var(--red);color:var(--white);background:rgba(204,0,0,.08)}
 
+.geo-bar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.geo-btn{font-family:var(--fm);font-size:.78rem;letter-spacing:.1em;padding:.7rem 1.35rem;min-height:44px;border:1px solid var(--red-30);color:var(--red-g);background:var(--red-05);cursor:pointer;text-transform:uppercase;transition:all .2s}
+.geo-btn:hover:not(:disabled){border-color:var(--red);background:var(--red-10);color:var(--white)}
+.geo-btn:disabled{opacity:.6;cursor:default}
+.geo-activo{font-family:var(--fm);font-size:.78rem;letter-spacing:.08em;color:var(--red-g);display:inline-flex;align-items:center;gap:.5rem}
+.geo-nota{font-family:var(--fm);font-size:.72rem;color:var(--w50)}
+.dealer-distancia{position:absolute;top:.85rem;right:.85rem;font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;color:var(--white);background:rgba(204,0,0,.85);padding:.35rem .75rem;border:1px solid var(--red-30)}
+
 /* Socios (login) */
 .login-wrap{min-height:100svh;display:grid;grid-template-columns:1fr 1fr}
 @media(max-width:768px){.login-wrap{grid-template-columns:1fr}}
