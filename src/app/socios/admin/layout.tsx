@@ -15,6 +15,7 @@ const SECCIONES = [
   { href: '/socios/admin/eventos/', label: 'Eventos' },
   { href: '/socios/admin/noticias/', label: 'Noticias' },
   { href: '/socios/admin/contactos/', label: 'Contactos' },
+  { href: '/socios/admin/pagos/', label: 'Pagos' },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

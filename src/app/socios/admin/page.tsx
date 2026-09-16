@@ -15,6 +15,7 @@ export default async function AdminResumenPage() {
     contactosSinAtender,
     eventosProximos,
     noticiasBorrador,
+    pagosConError,
     ultimosContactos,
   ] = await Promise.all([
     prisma.user.count({ where: { estadoCuota: 'activo' } }),
@@ -23,6 +24,7 @@ export default async function AdminResumenPage() {
     prisma.contactoRecibido.count({ where: { atendido: false } }),
     prisma.evento.count({ where: { fecha: { gte: ahora } } }),
     prisma.noticia.count({ where: { publicadoEn: null } }),
+    prisma.eventoStripe.count({ where: { resultado: 'error' } }),
     prisma.contactoRecibido.findMany({
       where: { atendido: false },
       orderBy: { creadoEn: 'desc' },
@@ -35,6 +37,7 @@ export default async function AdminResumenPage() {
     { label: 'Altas pendientes', valor: sociosPendientes, href: '/socios/admin/socios/', alerta: sociosPendientes > 0 },
     { label: 'Cuotas impagadas', valor: sociosMorosos, href: '/socios/admin/socios/', alerta: sociosMorosos > 0 },
     { label: 'Contactos sin leer', valor: contactosSinAtender, href: '/socios/admin/contactos/', alerta: contactosSinAtender > 0 },
+    { label: 'Pagos con error', valor: pagosConError, href: '/socios/admin/pagos/', alerta: pagosConError > 0 },
     { label: 'Eventos próximos', valor: eventosProximos, href: '/socios/admin/eventos/' },
     { label: 'Noticias en borrador', valor: noticiasBorrador, href: '/socios/admin/noticias/' },
   ];
