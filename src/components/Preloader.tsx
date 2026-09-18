@@ -2,6 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+// Mosaico fijo al borde derecho, como en el hero: [x%, y%, tamaño px, retardo ms]
+const BLOCKS: Array<[number, number, number, number, boolean?]> = [
+  [93, 4, 52, 0], [96.5, 4, 52, 60], [90, 12, 52, 120], [96.5, 18, 52, 40],
+  [93, 26, 52, 200], [96.5, 30, 52, 90], [88, 38, 52, 260], [96.5, 42, 52, 150],
+  [93, 50, 52, 320], [96.5, 56, 52, 30], [91, 64, 52, 380], [96.5, 70, 52, 210],
+  [94, 78, 52, 440], [96.5, 86, 52, 110], [90, 90, 52, 500],
+  [81, 18, 52, 360, true], [79, 66, 52, 480, true],
+];
+
 const STAGES = [
   { id: 't0', label: 'MOTOR', dots: '···········' },
   { id: 't1', label: 'PISTA', dots: '············' },
@@ -77,6 +86,16 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
         <source src="/ferrari-intro.mp4" type="video/mp4" />
       </video>
       <div id="pre-ov" aria-hidden="true" />
+      <div className="pre-blocks" aria-hidden="true">
+        {BLOCKS.map(([x, y, s, d, wide], i) => (
+          <span
+            key={i}
+            className="pre-blk"
+            data-wide={wide || undefined}
+            style={{ left: `${x}%`, top: `${y}%`, width: s, height: s, animationDelay: `${d + 500}ms` }}
+          />
+        ))}
+      </div>
       <div className="pre-brand">FERRARI CLUB ESPAÑA</div>
       <div className="pre-sub">CLUB OFICIAL — DESDE 1988</div>
       <div className="pre-term" aria-hidden="true">

@@ -104,11 +104,11 @@ export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
             <div className="dealer-map">
               <svg width="100%" height="100%" viewBox="0 0 320 160" aria-hidden="true">
                 <rect width="100%" height="100%" fill={d.bg} />
-                <circle cx="160" cy="80" r="35" fill="rgba(204,0,0,.06)" stroke="rgba(204,0,0,.1)" strokeWidth="1" />
-                <circle cx="160" cy="80" r="5" fill="rgba(204,0,0,.4)" />
-                <line x1="160" y1="0" x2="160" y2="160" stroke="rgba(204,0,0,.05)" />
-                <line x1="0" y1="80" x2="320" y2="80" stroke="rgba(204,0,0,.05)" />
-                <text x="160" y="135" fontFamily="Orbitron" fontSize="8" fill="rgba(204,0,0,.25)" textAnchor="middle" letterSpacing="2">{d.coord}</text>
+                <circle cx="160" cy="80" r="35" fill="rgba(218,41,28,.06)" stroke="rgba(218,41,28,.1)" strokeWidth="1" />
+                <circle cx="160" cy="80" r="5" fill="rgba(218,41,28,.4)" />
+                <line x1="160" y1="0" x2="160" y2="160" stroke="rgba(218,41,28,.05)" />
+                <line x1="0" y1="80" x2="320" y2="80" stroke="rgba(218,41,28,.05)" />
+                <text x="160" y="135" fontFamily="Archivo" fontSize="8" fill="rgba(218,41,28,.25)" textAnchor="middle" letterSpacing="2">{d.coord}</text>
               </svg>
               {d.distanciaKm !== null && (
                 <span className="dealer-distancia">{formatDistancia(d.distanciaKm)}</span>

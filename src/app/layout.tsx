@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import SiteChrome from "@/components/SiteChrome";
 import "./globals.css";
+import "./editorial.css";
 
 export const metadata: Metadata = {
   title: "Ferrari Club España — Club Oficial desde 1988",
@@ -27,12 +28,12 @@ export const metadata: Metadata = {
   },
   icons: {
     icon:
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23cc0000'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='20' fill='white' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E",
+      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23DA291C'/%3E%3Ctext x='16' y='24' font-family='sans-serif' font-weight='700' font-size='20' fill='%23F2F0EB' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#cc0000",
+  themeColor: "#DA291C",
 };
 
 const orgJsonLd = {
@@ -66,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
         <script

@@ -30,10 +30,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     <>
       <div className="art-hero">
         <svg width="100%" height="100%" viewBox="0 0 1920 600" preserveAspectRatio="xMidYMid slice" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} aria-hidden="true">
-          <defs><radialGradient id="ah" cx="50%" cy="40%" r="70%"><stop offset="0%" stopColor={article.heroBg} /><stop offset="100%" stopColor="#040404" /></radialGradient></defs>
+          <defs><radialGradient id="ah" cx="50%" cy="40%" r="70%"><stop offset="0%" stopColor={article.heroBg} /><stop offset="100%" stopColor="#0A0A0A" /></radialGradient></defs>
           <rect width="100%" height="100%" fill="url(#ah)" />
-          <text x="960" y="330" fontFamily="Orbitron,sans-serif" fontSize={article.heroFontSize} fill="rgba(204,0,0,.05)" textAnchor="middle" letterSpacing="10">{article.heroLabel}</text>
-          <g stroke="rgba(204,0,0,.03)" strokeWidth="1" fill="none">
+          <text x="960" y="330" fontFamily="Archivo,sans-serif" fontSize={article.heroFontSize} fill="rgba(218,41,28,.05)" textAnchor="middle" letterSpacing="10">{article.heroLabel}</text>
+          <g stroke="rgba(218,41,28,.03)" strokeWidth="1" fill="none">
             <line x1="0" y1="200" x2="1920" y2="200" /><line x1="0" y1="400" x2="1920" y2="400" />
           </g>
         </svg>
@@ -72,10 +72,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           ) : (
             <div className="art-img-block" data-r="up">
               <svg width="100%" viewBox="0 0 780 380" style={{ display: 'block', width: '100%' }} aria-label={article.imageCaption} role="img">
-                <rect width="100%" height="100%" fill="#0a0000" />
-                <defs><radialGradient id="aig" cx="50%" cy="50%" r="60%"><stop offset="0%" stopColor={article.heroBg} /><stop offset="100%" stopColor="#050000" /></radialGradient></defs>
+                <rect width="100%" height="100%" fill="#0A0A0A" />
+                <defs><radialGradient id="aig" cx="50%" cy="50%" r="60%"><stop offset="0%" stopColor={article.heroBg} /><stop offset="100%" stopColor="#0A0A0A" /></radialGradient></defs>
                 <rect width="100%" height="100%" fill="url(#aig)" />
-                <text x="390" y="205" fontFamily="Orbitron" fontSize="45" fill="rgba(204,0,0,.06)" textAnchor="middle" letterSpacing="3">{article.imageLabel}</text>
+                <text x="390" y="205" fontFamily="Archivo" fontSize="45" fill="rgba(218,41,28,.06)" textAnchor="middle" letterSpacing="3">{article.imageLabel}</text>
               </svg>
               {article.imageCaption && <p className="art-caption">{article.imageCaption}</p>}
             </div>
@@ -114,12 +114,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <div className="related-grid">
             {related.map((r) => (
               <a className="news-card" href={`/noticias/${r.slug}/`} data-r="up" key={r.slug}>
-                <div className="news-card-img"><svg width="100%" height="100%" viewBox="0 0 400 200"><rect width="100%" height="100%" fill={r.heroBg} /><text x="200" y="110" fontFamily="Orbitron" fontSize="34" fill="rgba(204,0,0,.07)" textAnchor="middle">{r.heroLabel}</text></svg></div>
+                <div className="news-card-img"><svg width="100%" height="100%" viewBox="0 0 400 200"><rect width="100%" height="100%" fill={r.heroBg} /><text x="200" y="110" fontFamily="Archivo" fontSize="34" fill="rgba(218,41,28,.07)" textAnchor="middle">{r.heroLabel}</text></svg></div>
                 <div><span className="news-card-cat">{r.cat}</span><h3 className="news-card-title">{r.title}</h3><div className="news-card-date">{r.date}</div></div>
               </a>
             ))}
             <a className="news-card" href="/noticias/" data-r="scale">
-              <div className="news-card-img"><svg width="100%" height="100%" viewBox="0 0 400 200"><rect width="100%" height="100%" fill="#0d0d0d" /><text x="200" y="110" fontFamily="Orbitron" fontSize="28" fill="rgba(255,255,255,.04)" textAnchor="middle">NOTICIAS</text></svg></div>
+              <div className="news-card-img"><svg width="100%" height="100%" viewBox="0 0 400 200"><rect width="100%" height="100%" fill="#0d0d0d" /><text x="200" y="110" fontFamily="Archivo" fontSize="28" fill="rgba(255,255,255,.04)" textAnchor="middle">NOTICIAS</text></svg></div>
               <div><span className="news-card-cat">TODAS LAS NOTICIAS</span><h3 className="news-card-title">Ver todas las noticias de Ferrari Club España</h3><div className="news-card-date">ACTUALIZADO DIARIAMENTE</div></div>
             </a>
           </div>

@@ -22,12 +22,12 @@ const MENU_ITEMS = [
 ];
 
 const MENU_PREVIEWS = [
-  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'INICIO', size: '7vw', color: 'rgba(204,0,0,.1)' },
+  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'INICIO', size: '7vw', color: 'rgba(218,41,28,.1)' },
   { bg: 'radial-gradient(ellipse at 55% 50%,#0c0c0c,#000)', label: 'NOTICIAS', size: '6vw', color: 'rgba(255,255,255,.04)' },
-  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'CLUB', size: '7vw', color: 'rgba(204,0,0,.1)' },
-  { bg: 'radial-gradient(ellipse at 50% 60%,#1a0505,#0d0907)', label: 'EVENTOS', size: '6vw', color: 'rgba(204,0,0,.1)' },
+  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'CLUB', size: '7vw', color: 'rgba(218,41,28,.1)' },
+  { bg: 'radial-gradient(ellipse at 50% 60%,#1a0505,#0d0907)', label: 'EVENTOS', size: '6vw', color: 'rgba(218,41,28,.1)' },
   { bg: 'radial-gradient(ellipse at 50% 50%,#0c0c0c,#000)', label: 'CONC.', size: '4vw', color: 'rgba(255,255,255,.04)' },
-  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'SOCIOS', size: '7vw', color: 'rgba(204,0,0,.1)' },
+  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'SOCIOS', size: '7vw', color: 'rgba(218,41,28,.1)' },
   { bg: 'radial-gradient(ellipse at 60% 50%,#111,#000)', label: 'CONTACTA', size: '5vw', color: 'rgba(255,255,255,.04)' },
 ];
 
@@ -38,7 +38,7 @@ function NavLogo() {
         <svg width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M16 1 L31 7 L31 22 Q31 32 16 37 Q1 32 1 22 L1 7 Z" fill="#CC0000" stroke="#990000" strokeWidth=".8" />
           <path d="M16 3.5 L29 8.8 L29 22 Q29 30.5 16 34.8 Q3 30.5 3 22 L3 8.8 Z" fill="#AA0000" />
-          <text x="16" y="24" fontFamily="Italiana,serif" fontSize="13" fill="#F5EDE0" textAnchor="middle" fontWeight="400">F</text>
+          <text x="16" y="24" fontFamily="Archivo,sans-serif" fontSize="13" fill="#F5EDE0" textAnchor="middle" fontWeight="400">F</text>
           <path d="M8 14 L24 14" stroke="rgba(245,237,224,.25)" strokeWidth=".8" />
         </svg>
       </span>
@@ -167,7 +167,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
         const y = (e.clientY - r.top) / r.height - 0.5;
         const sx = x * 28, sy = y * 20;
         card.style.transform = `perspective(900px) rotateY(${x * 14}deg) rotateX(${-y * 10}deg) scale3d(1.025,1.025,1.025)`;
-        card.style.boxShadow = `${-sx}px ${-sy}px 40px rgba(204,0,0,.12),0 20px 60px rgba(0,0,0,.6)`;
+        card.style.boxShadow = `${-sx}px ${-sy}px 40px rgba(218,41,28,.12),0 20px 60px rgba(0,0,0,.6)`;
         card.style.transition = 'transform .08s ease-out';
       };
       const onLeave = () => {
@@ -255,7 +255,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(c.x, c.y);
-        ctx.strokeStyle = `rgba(204,0,0,${alpha})`;
+        ctx.strokeStyle = `rgba(218,41,28,${alpha})`;
         ctx.lineWidth = w;
         ctx.lineCap = 'round';
         ctx.stroke();

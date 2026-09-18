@@ -15,15 +15,15 @@ const CATS = [
 
 const ESTILO_CAT: Record<string, { tag: string; tagClass: string; label: string; bg0: string; bg1: string }> = {
   track: { tag: 'TRACK DAYS', tagClass: '', label: 'TRACK', bg0: '#2a0000', bg1: '#080000' },
-  f1: { tag: 'FÓRMULA 1', tagClass: '', label: 'F1', bg0: '#1a0000', bg1: '#050505' },
-  rutas: { tag: 'RUTAS', tagClass: 'neutral', label: 'RUTA', bg0: '#141414', bg1: '#060606' },
-  maranello: { tag: 'MARANELLO', tagClass: '', label: 'MARANELLO', bg0: '#1a0000', bg1: '#080000' },
+  f1: { tag: 'FÓRMULA 1', tagClass: '', label: 'F1', bg0: '#0A0A0A', bg1: '#050505' },
+  rutas: { tag: 'RUTAS', tagClass: 'neutral', label: 'RUTA', bg0: '#141414', bg1: '#0A0A0A' },
+  maranello: { tag: 'MARANELLO', tagClass: '', label: 'MARANELLO', bg0: '#0A0A0A', bg1: '#080000' },
   elegancia: { tag: 'ELEGANCIA', tagClass: 'neutral', label: 'Elegancia', bg0: '#0f0f0f', bg1: '#050505' },
-  club: { tag: 'CLUB', tagClass: '', label: 'GALA 2026', bg0: '#1a0000', bg1: '#060606' },
+  club: { tag: 'CLUB', tagClass: '', label: 'GALA 2026', bg0: '#0A0A0A', bg1: '#0A0A0A' },
   cavalcade: { tag: 'CAVALCADE', tagClass: 'premium', label: 'CAVALCADE', bg0: '#120000', bg1: '#050505' },
 };
 
-const ESTILO_FALLBACK = { tag: 'EVENTO', tagClass: 'neutral', label: 'FERRARI', bg0: '#141414', bg1: '#060606' };
+const ESTILO_FALLBACK = { tag: 'EVENTO', tagClass: 'neutral', label: 'FERRARI', bg0: '#141414', bg1: '#0A0A0A' };
 
 export type EventItem = {
   id: string;
@@ -71,7 +71,7 @@ export default function EventsFilter({ events, haySesion }: { events: EventItem[
                 <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                   <defs><radialGradient id={`eg${i}`} cx="50%" cy="50%" r="68%"><stop offset="0%" stopColor={estilo.bg0} /><stop offset="100%" stopColor={estilo.bg1} /></radialGradient></defs>
                   <rect width="100%" height="100%" fill={`url(#eg${i})`} />
-                  <text x="50%" y="55%" fontFamily={e.categoria === 'elegancia' ? 'Italiana' : 'Orbitron'} fontSize={estilo.label.length > 6 ? 34 : 60} fill="rgba(204,0,0,.07)" textAnchor="middle" letterSpacing="3" dominantBaseline="middle">{estilo.label}</text>
+                  <text x="50%" y="55%" fontFamily="Archivo" fontSize={estilo.label.length > 6 ? 34 : 60} fill="rgba(218,41,28,.07)" textAnchor="middle" letterSpacing="3" dominantBaseline="middle">{estilo.label}</text>
                 </svg>
                 <div className="evp-cat-row">
                   <span className={`evp-cat-tag${estilo.tagClass ? ' ' + estilo.tagClass : ''}`}>{estilo.tag}</span>

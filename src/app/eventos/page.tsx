@@ -80,7 +80,7 @@ export default async function EventosPage() {
       </section>
 
       <section className="ev-join">
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 70% at 80% 50%,rgba(204,0,0,.12),transparent)', pointerEvents: 'none' }} aria-hidden="true" />
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 70% at 80% 50%,rgba(218,41,28,.12),transparent)', pointerEvents: 'none' }} aria-hidden="true" />
         <div className="cnt" style={{ position: 'relative', textAlign: 'center' }}>
           <div className="rl-g" style={{ width: '60px', margin: '0 auto 2.5rem' }} aria-hidden="true" />
           <p className="sec-eye" data-r="up">ACCESO A EVENTOS</p>

@@ -130,9 +130,9 @@ export default function ClubPage() {
         </div>
       </section>
 
-      <section style={{ background: 'linear-gradient(160deg,#1a0000,var(--black))', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 55% 80% at 20% 60%,rgba(204,0,0,.13),transparent)', pointerEvents: 'none' }} aria-hidden="true" />
-        <div style={{ position: 'absolute', bottom: '-1rem', right: '-2rem', fontFamily: 'var(--fd)', fontSize: '22vw', color: 'rgba(204,0,0,.04)', pointerEvents: 'none', userSelect: 'none', lineHeight: 1, letterSpacing: '-.05em' }} aria-hidden="true">F</div>
+      <section style={{ background: 'linear-gradient(160deg,#0A0A0A,var(--black))', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 55% 80% at 20% 60%,rgba(218,41,28,.13),transparent)', pointerEvents: 'none' }} aria-hidden="true" />
+        <div style={{ position: 'absolute', bottom: '-1rem', right: '-2rem', fontFamily: 'var(--fd)', fontSize: '22vw', color: 'rgba(218,41,28,.04)', pointerEvents: 'none', userSelect: 'none', lineHeight: 1, letterSpacing: '-.05em' }} aria-hidden="true">F</div>
         <div className="cnt" style={{ position: 'relative' }}>
           <p className="sec-eye" data-r="up">NUESTRA ESENCIA</p>
           <div style={{ maxWidth: '860px', marginTop: '2rem' }} data-r="up">

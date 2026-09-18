@@ -1,28 +1,29 @@
 import HomeInteractions from '@/components/HomeInteractions';
+import HalftoneImage from '@/components/HalftoneImage';
 
 const MACHINES = [
   {
-    tag: 'SF-90', color: 'rgba(204,0,0,.08)', bg: '#0a0000', ringColor: 'rgba(204,0,0,.15)',
+    tag: 'SF-90', color: 'rgba(218,41,28,.08)', bg: '#0A0A0A', ringColor: 'rgba(218,41,28,.15)',
     model: 'IBRIDO · 2024', name: <>SF-90 XX<br />Stradale</>,
     specs: [['POTENCIA', '1030 CV'], ['0–100 km/h', '2.3 s'], ['V. MÁX', '320 km/h'], ['MOTOR', 'V8 + 3 eléctricos']],
   },
   {
-    tag: 'ROMA', color: 'rgba(204,0,0,.07)', bg: '#0d0000', ringColor: 'rgba(204,0,0,.12)',
+    tag: 'ROMA', color: 'rgba(218,41,28,.07)', bg: '#0A0A0A', ringColor: 'rgba(218,41,28,.12)',
     model: 'GT SPIDER · 2023', name: <>Roma<br />Spider</>,
     specs: [['POTENCIA', '620 CV'], ['0–100 km/h', '3.4 s'], ['V. MÁX', '320 km/h'], ['MOTOR', 'V8 biturbo 3.9 L']],
   },
   {
-    tag: '296', color: 'rgba(204,0,0,.07)', bg: '#080808', ringColor: 'rgba(255,255,255,.06)',
+    tag: '296', color: 'rgba(218,41,28,.07)', bg: '#0A0A0A', ringColor: 'rgba(255,255,255,.06)',
     model: 'IBRIDO · 2022', name: <>296<br />GTB</>,
     specs: [['POTENCIA', '830 CV'], ['0–100 km/h', '2.9 s'], ['V. MÁX', '330 km/h'], ['MOTOR', 'V6 + eléctrico']],
   },
   {
-    tag: '812', color: 'rgba(204,0,0,.07)', bg: '#0a0000', ringColor: 'rgba(204,0,0,.1)',
+    tag: '812', color: 'rgba(218,41,28,.07)', bg: '#0A0A0A', ringColor: 'rgba(218,41,28,.1)',
     model: 'GT · 2021', name: <>812<br />Competizione</>,
     specs: [['POTENCIA', '830 CV'], ['0–100 km/h', '2.85 s'], ['V. MÁX', '340 km/h'], ['MOTOR', 'V12 N/A 6.5 L']],
   },
   {
-    tag: 'PUROSANGUE', color: 'rgba(204,0,0,.07)', bg: '#0d0000', ringColor: 'rgba(204,0,0,.09)',
+    tag: 'PUROSANGUE', color: 'rgba(218,41,28,.07)', bg: '#0A0A0A', ringColor: 'rgba(218,41,28,.09)',
     model: 'SUV · 2023', name: 'Purosangue',
     specs: [['POTENCIA', '725 CV'], ['0–100 km/h', '3.3 s'], ['V. MÁX', '310 km/h'], ['MOTOR', 'V12 N/A 6.5 L']],
   },
@@ -42,39 +43,20 @@ export default function Home() {
     <>
       <section className="hero" id="hero">
         <HomeInteractions />
-        <div className="hero-bg" id="hbg" aria-hidden="true">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img id="hero-photo" src="/ferrari-hero.jpg" alt="" fetchPriority="high" />
-          <svg width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <radialGradient id="hrg" cx="58%" cy="50%" r="70%">
-                <stop offset="0%" stopColor="#1A0A07" /><stop offset="60%" stopColor="#0D0907" /><stop offset="100%" stopColor="#0A0704" />
-              </radialGradient>
-              <radialGradient id="hrg2" cx="55%" cy="52%" r="28%">
-                <stop offset="0%" stopColor="#3A1510" stopOpacity=".5" /><stop offset="100%" stopColor="transparent" stopOpacity="0" />
-              </radialGradient>
-              <radialGradient id="hrg3" cx="78%" cy="38%" r="32%">
-                <stop offset="0%" stopColor="#2A1500" stopOpacity=".4" /><stop offset="100%" stopColor="transparent" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#hrg)" />
-            <rect width="100%" height="100%" fill="url(#hrg2)" />
-            <rect width="100%" height="100%" fill="url(#hrg3)" />
-            <g stroke="rgba(204,0,0,.015)" strokeWidth=".6" fill="none">
-              <line x1="0" y1="270" x2="1920" y2="270" /><line x1="0" y1="540" x2="1920" y2="540" /><line x1="0" y1="810" x2="1920" y2="810" />
-              <line x1="480" y1="0" x2="480" y2="1080" /><line x1="960" y1="0" x2="960" y2="1080" /><line x1="1440" y1="0" x2="1440" y2="1080" />
-            </g>
-            <g fill="none" stroke="rgba(204,0,0,.04)" strokeWidth="1.2" transform="translate(960,590)">
-              <path d="M-520 48 L-480 48 Q-380 88 -200 108 Q0 122 200 108 Q380 88 480 48 L520 48" />
-              <path d="M-360 48 Q-310 -32 -140 -58 Q0 -75 140 -58 Q310 -32 360 48" />
-              <circle cx="-290" cy="66" r="68" /><circle cx="290" cy="66" r="68" />
-              <circle cx="-290" cy="66" r="46" /><circle cx="290" cy="66" r="46" />
-            </g>
-          </svg>
+        <div className="hero-bg" id="hbg">
+          <HalftoneImage
+            className="hero-ht"
+            src="/ferrari-hero.jpg"
+            alt="Ferrari Testarossa roja fotografiada de perfil sobre pista"
+            cell={6}
+            intensity={0.6}
+            side="right"
+            position="45% 52%"
+            focus={[0.66, 0.45]}
+            dim={0.38}
+            priority
+          />
         </div>
-        <div className="hero-ov" />
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-rl" id="hero-rl" aria-hidden="true" />
 
         <div className="hero-content">
           <p className="h-eye" id="h-eye">CLUB OFICIAL · DESDE 1988 · MÁS DE 200 SOCIOS</p>
@@ -101,22 +83,24 @@ export default function Home() {
         </div>
       </section>
 
-      <div aria-hidden="true" style={{ background: 'var(--red)', lineHeight: 0, overflow: 'hidden' }}>
-        <svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width: '100%', height: '64px', display: 'block' }}>
-          <path fill="#0D0907">
-            <animate
-              attributeName="d"
-              dur="6s"
-              repeatCount="indefinite"
-              values="
-                M0,32 C240,60 480,4 720,32 C960,60 1200,4 1440,32 L1440,64 L0,64 Z;
-                M0,32 C240,4 480,60 720,32 C960,4 1200,60 1440,32 L1440,64 L0,64 Z;
-                M0,32 C240,60 480,4 720,32 C960,60 1200,4 1440,32 L1440,64 L0,64 Z
-              "
-            />
-          </path>
-        </svg>
-      </div>
+      <section className="band" aria-label="Il Cavallino">
+        <HalftoneImage
+          className="band-ht"
+          src="/ferrari-hero.jpg"
+          alt="Detalle del escudo Cavallino Rampante sobre la carrocería de un Ferrari"
+          cell={7}
+          intensity={0.7}
+          side="left"
+          position="52% 42%"
+          focus={[0.34, 0.5]}
+          dim={0.34}
+        />
+        <div className="band-meta" aria-hidden="true">
+          <span>MARANELLO</span>
+          <span>—</span>
+          <span>IL CAVALLINO RAMPANTE</span>
+        </div>
+      </section>
 
       <section className="machine-wrap" aria-label="Modelos Ferrari">
         <div className="cnt" style={{ paddingBottom: '2.5rem' }}>
@@ -132,7 +116,7 @@ export default function Home() {
                 <div className="mcard-img">
                   <svg width="100%" height="100%" viewBox="0 0 400 200" aria-hidden="true">
                     <rect width="100%" height="100%" fill={m.bg} />
-                    <text x="200" y="115" fontFamily="Orbitron" fontSize="40" fill={m.color} textAnchor="middle" letterSpacing="3">{m.tag}</text>
+                    <text x="200" y="115" fontFamily="Archivo" fontSize="40" fill={m.color} textAnchor="middle" letterSpacing="3">{m.tag}</text>
                     <g fill="none" stroke={m.ringColor} strokeWidth="1.2" transform="translate(200,125)">
                       <path d="M-155 13 Q-110 25 -55 31 Q0 36 55 31 Q110 25 155 13" />
                       <path d="M-105 13 Q-85 -14 -38 -24 Q0 -30 38 -24 Q85 -14 105 13" />
@@ -182,10 +166,10 @@ export default function Home() {
             <a className="news-card" href="/noticias/gp-paises-bajos/" data-r="right">
               <div className="news-card-img" style={{ aspectRatio: '16/8' }}>
                 <svg width="100%" height="100%" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
-                  <defs><radialGradient id="ng0" cx="50%" cy="50%" r="65%"><stop offset="0%" stopColor="#1a0000" /><stop offset="100%" stopColor="#040000" /></radialGradient></defs>
+                  <defs><radialGradient id="ng0" cx="50%" cy="50%" r="65%"><stop offset="0%" stopColor="#0A0A0A" /><stop offset="100%" stopColor="#0A0A0A" /></radialGradient></defs>
                   <rect width="100%" height="100%" fill="url(#ng0)" />
-                  <text x="400" y="225" fontFamily="Orbitron" fontSize="80" fill="rgba(204,0,0,.08)" textAnchor="middle" letterSpacing="5">F1</text>
-                  <g stroke="rgba(204,0,0,.03)" fill="none"><line x1="0" y1="133" x2="800" y2="133" /><line x1="0" y1="267" x2="800" y2="267" /></g>
+                  <text x="400" y="225" fontFamily="Archivo" fontSize="80" fill="rgba(218,41,28,.08)" textAnchor="middle" letterSpacing="5">F1</text>
+                  <g stroke="rgba(218,41,28,.03)" fill="none"><line x1="0" y1="133" x2="800" y2="133" /><line x1="0" y1="267" x2="800" y2="267" /></g>
                 </svg>
               </div>
               <div>
@@ -205,8 +189,8 @@ export default function Home() {
                 <a className="news-card" href={n.href} data-r="left" style={{ display: 'flex', gap: '1rem', transitionDelay: `${n.delay}s` }} key={n.title}>
                   <div className="news-card-img" style={{ width: '110px', flexShrink: 0, height: '75px', aspectRatio: 'unset' }}>
                     <svg width="100%" height="100%" viewBox="0 0 110 75" aria-hidden="true">
-                      <rect width="100%" height="100%" fill="#060606" />
-                      <text x="55" y="42" fontFamily="Orbitron" fontSize="10" fill="rgba(204,0,0,.14)" textAnchor="middle">{n.tag}</text>
+                      <rect width="100%" height="100%" fill="#0A0A0A" />
+                      <text x="55" y="42" fontFamily="Archivo" fontSize="10" fill="rgba(218,41,28,.14)" textAnchor="middle">{n.tag}</text>
                     </svg>
                   </div>
                   <div><span className="news-card-cat">{n.cat}</span><h3 className="news-card-title" style={{ fontSize: '.88rem' }}>{n.title}</h3><div className="news-card-date">{n.date}</div></div>
@@ -217,17 +201,29 @@ export default function Home() {
         </div>
       </section>
 
-      <section aria-label="Galería">
-        <div className="gal-strip">
-          {GALLERY_LABELS.map((label, i) => (
-            <div className={`gallery-item${i === 0 ? ' g0' : ''}`} data-r={i === 0 ? 'fade' : 'scale'} style={{ transitionDelay: i === 0 ? undefined : `${(i * 6) % 22}00ms` }} key={i}>
-              <svg width="100%" height="100%" viewBox={i === 0 ? '0 0 600 480' : '0 0 300 240'} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <rect width="100%" height="100%" fill={i % 2 === 0 ? '#0a0000' : '#060606'} />
-                {label && <text x={i === 0 ? 300 : 150} y={i === 0 ? 270 : 130} fontFamily="Orbitron" fontSize={i === 0 ? 60 : 24} fill={i % 3 === 0 ? 'rgba(204,0,0,.07)' : 'rgba(255,255,255,.04)'} textAnchor="middle">{label}</text>}
-                {i === 5 && <circle cx="150" cy="120" r="55" stroke="rgba(204,0,0,.07)" fill="none" strokeWidth="1.5" />}
-              </svg>
+      <section className="feature" aria-label="El club en imágenes">
+        <div className="cnt feature-grid">
+          <div className="feature-txt" data-r="right">
+            <div className="sec-eye">ARCHIVO</div>
+            <h2 className="sec-title feature-title">LA <span>PISTA</span><br />Y LA RUTA</h2>
+            <div className="feature-specs">
+              {GALLERY_LABELS.filter(Boolean).map((label) => (
+                <span className="feature-tag" key={label}>{label}</span>
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="feature-img" data-r="left">
+            <HalftoneImage
+              src="/ferrari-hero.jpg"
+              alt="Llanta y paso de rueda de un Ferrari Testarossa"
+              cell={5}
+              intensity={0.55}
+              side="right"
+              position="72% 70%"
+              focus={[0.55, 0.5]}
+              dim={0.12}
+            />
+          </div>
         </div>
       </section>
 

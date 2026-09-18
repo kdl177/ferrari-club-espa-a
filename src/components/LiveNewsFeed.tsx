@@ -46,9 +46,9 @@ function Placeholder({ cat }: { cat: string }) {
   const sz = label.length > 8 ? 20 : 28;
   return (
     <svg width="100%" height="100%" viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <rect width="300" height="180" fill="#1a0a07" />
-      <rect width="300" height="2" y="179" fill="rgba(204,0,0,.4)" />
-      <text x="150" y="96" fontFamily="Italiana,serif" fontSize={sz} fill="rgba(204,0,0,.12)" textAnchor="middle" letterSpacing="4">{label}</text>
+      <rect width="300" height="180" fill="#0A0A0A" />
+      <rect width="300" height="2" y="179" fill="rgba(218,41,28,.4)" />
+      <text x="150" y="96" fontFamily="Archivo,sans-serif" fontSize={sz} fill="rgba(218,41,28,.12)" textAnchor="middle" letterSpacing="4">{label}</text>
       <circle cx="150" cy="90" r="42" stroke="rgba(196,154,60,.07)" fill="none" strokeWidth="1" />
     </svg>
   );

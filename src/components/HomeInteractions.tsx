@@ -18,45 +18,13 @@ export default function HomeInteractions() {
   function playHero() {
     const gsap = (window as unknown as { gsap?: GsapLike }).gsap;
     if (!gsap) return;
-    gsap.set(['#h-eye', '#h-t', '#h-s', '#h-cta'], { y: 30 });
+    gsap.set(['#h-eye', '#h-t', '#h-s', '#h-cta'], { y: 24 });
     gsap
       .timeline()
-      .to('#hero-rl', { width: '100%', duration: 1.15, ease: 'power4.inOut' })
-      .to('#h-eye', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=.3')
+      .to('#h-eye', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
       .to('#h-t', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=.45')
       .to('#h-s', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=.4')
-      .to('#h-cta', { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=.35')
-      .to('#hero-rl', { opacity: 0, duration: 0.4 }, '<');
-
-    const bg = document.getElementById('hbg');
-    const photo = document.getElementById('hero-photo');
-    let mx = 0, my = 0, cx = 0, cy = 0;
-    if (bg && !window.matchMedia('(pointer:coarse)').matches) {
-      document.addEventListener(
-        'mousemove',
-        (e) => {
-          mx = (e.clientX / innerWidth - 0.5) * 2;
-          my = (e.clientY / innerHeight - 0.5) * 2;
-        },
-        { passive: true }
-      );
-      (function pl() {
-        cx += (mx - cx) * 0.045;
-        cy += (my - cy) * 0.045;
-        bg.style.transform = `translate3d(${cx * 22}px,${cy * 14}px,0)`;
-        requestAnimationFrame(pl);
-      })();
-    }
-    if (photo) {
-      window.addEventListener(
-        'scroll',
-        () => {
-          const y = window.scrollY * 0.35;
-          (photo as HTMLElement).style.transform = `translateY(${y}px)`;
-        },
-        { passive: true }
-      );
-    }
+      .to('#h-cta', { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=.35');
   }
 
   function initThree() {
