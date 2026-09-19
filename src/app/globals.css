@@ -53,7 +53,7 @@
   --eb:cubic-bezier(.34,1.56,.64,1);
 
   /* Z-index */
-  --z-nav:200; --z-menu:800; --z-pre:1000; --z-race:900;
+  --z-nav:200; --z-menu:800; --z-pre:1000;
 }
 
 /* ── 2. SKIP LINK ──────────────────────────────────────── */
@@ -578,32 +578,6 @@ select.form-input option{background:var(--b80);color:var(--white)}
   pointer-events:none;
 }
 
-/* ── 22. RACE MODE BUTTON ──────────────────────────────── */
-#race-btn{
-  position:fixed;bottom:2rem;right:2rem;z-index:var(--z-race);
-  font-family:var(--fm);font-size:.55rem;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--w30);
-  padding:.55rem 1rem;border:1px solid var(--w08);
-  background:rgba(13,9,7,.7);backdrop-filter:blur(8px);
-  transition:all .3s;cursor:pointer;
-}
-#race-btn:hover,#race-btn.on{color:var(--red);border-color:var(--red);box-shadow:0 0 20px var(--red-30)}
-#race-btn.on{background:rgba(204,0,0,.08)}
-#race-canvas{position:fixed;inset:0;z-index:var(--z-race);pointer-events:none;opacity:0;transition:opacity .5s}
-#race-canvas.on{opacity:1}
-
-/* ── 23. SOUND BUTTON ───────────────────────────────────── */
-#sound-btn{
-  position:fixed;bottom:2rem;right:9.5rem;z-index:var(--z-race);
-  font-family:var(--fm);font-size:.55rem;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--w30);
-  padding:.55rem 1rem;border:1px solid var(--w08);
-  background:rgba(13,9,7,.7);backdrop-filter:blur(8px);
-  transition:all .3s;cursor:pointer;
-  display:flex;align-items:center;gap:.5rem;
-}
-#sound-btn:hover{color:var(--white);border-color:var(--w30)}
-
 /* ── 24. SECTION PATTERNS ──────────────────────────────── */
 .label-rule{
   display:flex;align-items:center;gap:1.5rem;
@@ -793,7 +767,6 @@ a.dealer-tel{color:var(--white);font-size:.9rem;font-weight:600;transition:color
   .mi-sub a{min-height:44px;display:flex;align-items:center;padding:.5rem 0}
   .menu-footer{left:2rem;right:2rem;flex-direction:column;align-items:flex-start;gap:.75rem}
   .ev-cta{display:none}
-  #race-btn,#sound-btn{display:none}
   .cnt{padding-inline:1.25rem}
   .footer-finale{font-size:clamp(1.2rem,8vw,2.5rem)}
   .footer-link{min-height:48px}
@@ -819,7 +792,7 @@ a.dealer-tel{color:var(--white);font-size:.9rem;font-weight:600;transition:color
 #stt:focus-visible{outline:3px solid var(--red);outline-offset:4px;box-shadow:0 0 0 6px var(--red-10)}
 @media(max-width:640px){#stt{bottom:1.25rem;right:1rem;width:44px;height:44px}}
 @media print{
-  #pre,#menu,#nav,#race-btn,#race-canvas,#sound-btn,#sp,#pt,#stt{display:none!important}
+  #pre,#menu,#nav,#sp,#pt,#stt{display:none!important}
   body{background:white;color:black}
 }
 

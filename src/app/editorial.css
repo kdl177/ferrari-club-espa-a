@@ -268,9 +268,6 @@ body::after{display:none}
 .rl{background:var(--rosso)}
 
 /* ── Botones flotantes / preloader ───────────────────────── */
-#race-btn,#sound-btn{background:var(--ink);border:1px solid var(--p10);color:var(--p45);backdrop-filter:none}
-#race-btn:hover,#race-btn.on{color:var(--rosso);border-color:var(--rosso);box-shadow:none;background:var(--ink)}
-#sound-btn:hover{color:var(--paper);border-color:var(--p18)}
 #stt{background:var(--rosso)}
 #stt:hover{background:var(--rosso);transform:translateY(-2px)}
 #pre{background:var(--ink)}

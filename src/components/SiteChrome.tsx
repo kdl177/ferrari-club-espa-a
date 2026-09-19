@@ -55,9 +55,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   const [activePreview, setActivePreview] = useState(0);
   const [transitioning, setTransitioning] = useState<'in' | 'out' | 'idle'>('in');
   const [sttVisible, setSttVisible] = useState(false);
-  const [raceOn, setRaceOn] = useState(false);
-  const [soundOn, setSoundOn] = useState(false);
-  const raceCanvasRef = useRef<HTMLCanvasElement>(null);
   const pendingHrefRef = useRef<string | null>(null);
 
   const normPath = (pathname || '/').replace(/\/$/, '') || '/';
@@ -211,73 +208,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
     return () => cleanups.forEach((c) => c());
   }, [pathname]);
 
-  useEffect(() => {
-    const canvas = raceCanvasRef.current;
-    if (!canvas || !raceOn) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    let raf = 0;
-    const trail: Array<{ x: number; y: number; t: number; vx: number; vy: number }> = [];
-    function resize() {
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-    const onMove = (e: MouseEvent) => {
-      trail.push({ x: e.clientX, y: e.clientY, t: Date.now(), vx: 0, vy: 0 });
-      if (trail.length > 2) {
-        const p = trail[trail.length - 2];
-        trail[trail.length - 1].vx = e.clientX - p.x;
-        trail[trail.length - 1].vy = e.clientY - p.y;
-      }
-      if (trail.length > 80) trail.shift();
-    };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    function draw() {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const now = Date.now();
-      const alive = trail.filter((p) => now - p.t < 400);
-      trail.length = 0;
-      alive.forEach((p) => trail.push(p));
-      if (alive.length < 2) {
-        raf = requestAnimationFrame(draw);
-        return;
-      }
-      for (let i = 1; i < alive.length; i++) {
-        const p = alive[i - 1], c = alive[i];
-        const age = (now - c.t) / 400;
-        const alpha = (1 - age) * 0.9;
-        const w = Math.max(0.5, (1 - age) * 4);
-        const speed = Math.hypot(c.vx, c.vy);
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(c.x, c.y);
-        ctx.strokeStyle = `rgba(218,41,28,${alpha})`;
-        ctx.lineWidth = w;
-        ctx.lineCap = 'round';
-        ctx.stroke();
-        if (speed > 18) {
-          ctx.beginPath();
-          ctx.moveTo(c.x, c.y);
-          ctx.lineTo(c.x - c.vx * 2.5, c.y - c.vy * 2.5);
-          ctx.strokeStyle = `rgba(255,80,80,${alpha * 0.35})`;
-          ctx.lineWidth = w * 0.4;
-          ctx.stroke();
-        }
-      }
-      raf = requestAnimationFrame(draw);
-    }
-    raf = requestAnimationFrame(draw);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', onMove);
-    };
-  }, [raceOn]);
-
   return (
     <>
       <a className="skip-link" href="#main-content">Saltar al contenido principal</a>
@@ -293,7 +223,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           pointerEvents: transitioning === 'out' ? 'all' : 'none',
         }}
       />
-      <canvas id="race-canvas" ref={raceCanvasRef} className={raceOn ? 'on' : ''} aria-hidden="true" />
 
       {!esAdminPanel && (
       <header>
@@ -433,27 +362,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           <div className="footer-brand" aria-hidden="true">FERRARI</div>
         </div>
       </footer>
-      )}
-
-      {!esAdminPanel && (
-        <>
-          <button
-            id="race-btn"
-            aria-label="Race mode"
-            className={raceOn ? 'on' : ''}
-            onClick={() => setRaceOn((v) => !v)}
-          >
-            {raceOn ? '■ RACE ON' : '▶ RACE'}
-          </button>
-          <button
-            id="sound-btn"
-            aria-label="Sonido"
-            style={soundOn ? { color: 'var(--white)', borderColor: 'var(--w30)' } : undefined}
-            onClick={() => setSoundOn((v) => !v)}
-          >
-            {soundOn ? '♪ SOUND ON' : '♪ SOUND'}
-          </button>
-        </>
       )}
 
       <button
