@@ -38,6 +38,38 @@ const EVENTS = [
 
 const GALLERY_LABELS = ['TRACK', 'RUTA', 'F1', 'ELEGANCIA', 'CLUB', '', 'MARANELLO'];
 
+function ParrillaArte() {
+  return (
+    <svg className="parrilla-arte" viewBox="0 0 420 520">
+      <defs>
+        <pattern id="p-parrilla" width="84" height="104" patternUnits="userSpaceOnUse">
+          <path d="M12 50V14H40V50M54 102V66H82V102" fill="none" stroke="currentColor" strokeWidth="3" />
+        </pattern>
+        <linearGradient id="g-parrilla" x1="0" y1="0" x2="0" y2="1">
+          <stop offset=".35" stopColor="#fff" /><stop offset="1" stopColor="#fff" stopOpacity=".12" />
+        </linearGradient>
+        <mask id="m-parrilla"><rect width="420" height="520" fill="url(#g-parrilla)" /></mask>
+      </defs>
+      <g mask="url(#m-parrilla)"><rect width="420" height="520" fill="url(#p-parrilla)" opacity=".34" /></g>
+      <g fill="#D5261B">
+        <rect className="blq" style={{ animationDelay: '0.05s' }} x="19.5" y="24" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.12s' }} x="61.5" y="76" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.19s' }} x="103.5" y="24" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.26s' }} x="229.5" y="76" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.33s' }} x="355.5" y="24" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.40s' }} x="187.5" y="128" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.47s' }} x="145.5" y="180" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.54s' }} x="313.5" y="180" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.61s' }} x="271.5" y="232" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.68s' }} x="61.5" y="284" width="13" height="24" />
+        <rect className="blq" style={{ animationDelay: '0.75s' }} x="103.5" y="336" width="13" height="24" />
+      </g>
+      <path d="M222 414V378H250V414" fill="none" stroke="#F0B323" strokeWidth="3" />
+      <text x="262" y="400" fill="#F0B323" fontFamily="Archivo,Arial,sans-serif" fontWeight="700" fontSize="12" letterSpacing="2.4" style={{ fontStretch: '75%' }}>TU CAJÓN</text>
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -60,11 +92,11 @@ export default function Home() {
 
         <div className="hero-content">
           <p className="h-eye" id="h-eye">CLUB OFICIAL · DESDE 1988 · MÁS DE 200 SOCIOS</p>
-          <h1 className="h-t" id="h-t">FERRARI<em>CLUB</em><small>ESPAÑA</small></h1>
-          <p className="h-s" id="h-s"><em>Club de Propietarios y Apasionados de Ferrari</em></p>
+          <h1 className="h-t" id="h-t"><span className="sr">Ferrari Club España. </span>Tu sitio en<br />la <em>parrilla.</em></h1>
+          <p className="h-s" id="h-s">Club de Propietarios y Apasionados de Ferrari. Track days, rutas, Fórmula 1, Maranello y una cena de gala al año. Siempre hay un cajón para el próximo socio.</p>
           <div className="h-cta" id="h-cta">
             <a href="/club/hazte-socio/" className="btn btn-p btn-lg" data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
-            <a href="/noticias/" className="btn btn-o btn-lg">ÚLTIMAS NOTICIAS</a>
+            <a href="/eventos/" className="btn btn-o btn-lg">VER CALENDARIO</a>
           </div>
         </div>
         <div className="hero-num" aria-hidden="true">CFE · 1988</div>
@@ -77,9 +109,9 @@ export default function Home() {
             <div className="sec-eye" style={{ marginBottom: 0, color: 'rgba(0,0,0,.55)' }}>ESPÍRITU FERRARI</div>
             <div style={{ flex: 1, height: '1px', background: 'rgba(0,0,0,.2)' }} />
           </div>
-          <span className="ew" data-r="up" style={{ transitionDelay: '.05s' }}>PASSIONE.</span>
-          <span className="ew" data-r="up" style={{ transitionDelay: '.15s' }}>VELOCITÀ.</span>
-          <span className="ew accent" data-r="up" style={{ transitionDelay: '.25s' }}>EMOZIONE.</span>
+          <span className="ew" data-r="up" style={{ transitionDelay: '.05s' }}>Passione.</span>
+          <span className="ew" data-r="up" style={{ transitionDelay: '.15s' }}>Velocità.</span>
+          <span className="ew accent" data-r="up" style={{ transitionDelay: '.25s' }}>Emozione.</span>
         </div>
       </section>
 
@@ -106,7 +138,7 @@ export default function Home() {
         <div className="cnt" style={{ paddingBottom: '2.5rem' }}>
           <div data-r="up">
             <div className="sec-eye">LOS COCHES</div>
-            <h2 className="sec-title" style={{ marginTop: '.6rem' }}>THE <span style={{ color: 'var(--red)' }}>MACHINE</span></h2>
+            <h2 className="sec-title" style={{ marginTop: '.6rem' }}>The <span style={{ color: 'var(--red)' }}>machine</span></h2>
           </div>
         </div>
         <div className="machine-scroll" id="machine-scroll">
@@ -141,7 +173,7 @@ export default function Home() {
       <section className="events-sec" aria-label="Próximos eventos">
         <div className="cnt">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem' }} data-r="up">
-            <div><div className="sec-eye">CALENDARIO 2026</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>PRÓXIMOS<br /><span style={{ color: 'var(--red)' }}>EVENTOS</span></h2></div>
+            <div><div className="sec-eye">CALENDARIO 2026</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>Próximos<br /><span style={{ color: 'var(--red)' }}>eventos</span></h2></div>
             <a href="/contacta/" className="btn btn-o btn-sm">VER TODOS →</a>
           </div>
           <div className="events-list">
@@ -159,7 +191,7 @@ export default function Home() {
       <section className="news-sec" aria-label="Últimas noticias">
         <div className="cnt">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem' }} data-r="up">
-            <div><div className="sec-eye">ACTUALIDAD</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>FERRARI<br /><span style={{ color: 'var(--red)' }}>MAGAZINE</span></h2></div>
+            <div><div className="sec-eye">ACTUALIDAD</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>Ferrari<br /><span style={{ color: 'var(--red)' }}>magazine</span></h2></div>
             <a href="/noticias/" className="btn btn-o btn-sm">VER TODAS →</a>
           </div>
           <div className="news-layout">
@@ -205,7 +237,7 @@ export default function Home() {
         <div className="cnt feature-grid">
           <div className="feature-txt" data-r="right">
             <div className="sec-eye">ARCHIVO</div>
-            <h2 className="sec-title feature-title">LA <span>PISTA</span><br />Y LA RUTA</h2>
+            <h2 className="sec-title feature-title">La <span>pista</span><br />y la ruta</h2>
             <div className="feature-specs">
               {GALLERY_LABELS.filter(Boolean).map((label) => (
                 <span className="feature-tag" key={label}>{label}</span>
@@ -232,7 +264,7 @@ export default function Home() {
           <div className="split">
             <div data-r="right">
               <div className="sec-eye">NUESTRO CLUB</div>
-              <h2 className="sec-title" style={{ marginTop: '1.25rem' }}>CLUB OFICIAL<br /><span style={{ color: 'var(--red)' }}>DESDE 1988</span></h2>
+              <h2 className="sec-title" style={{ marginTop: '1.25rem' }}>Club oficial<br /><span style={{ color: 'var(--red)' }}>desde 1988</span></h2>
               <p className="sec-sub" style={{ marginTop: '1.5rem' }}>El único club oficial de <em>Il Cavallino Rampante</em> en España con respaldo directo de Ferrari S.p.A. desde 2006. Propietarios de Ferrari unidos por la misma pasión.</p>
               <div className="stats4">
                 <div className="stat"><span className="stat-n" data-count="200" data-suffix="+">200+</span><span className="stat-l">SOCIOS</span></div>
@@ -284,7 +316,7 @@ export default function Home() {
         <div className="cnt">
           <div style={{ textAlign: 'center', marginBottom: '1rem' }} data-r="up">
             <div className="sec-eye" style={{ justifyContent: 'center', marginBottom: '1rem' }}>ÚNETE AL CLUB</div>
-            <h2 className="sec-title">HAZTE<br /><span style={{ color: 'var(--red)' }}>SOCIO</span></h2>
+            <h2 className="sec-title">Hazte<br /><span style={{ color: 'var(--red)' }}>socio</span></h2>
             <p className="sec-sub" style={{ maxWidth: '500px', margin: '1rem auto 0', textAlign: 'center' }}>Elige tu nivel de membresía y únete a la comunidad Ferrari más exclusiva de España.</p>
           </div>
           <div className="mem-grid">
@@ -298,7 +330,7 @@ export default function Home() {
             </div>
             <div className="mem-card featured" data-r="up" style={{ transitionDelay: '.1s' }}>
               <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '1.25rem' }}>SOCIO ACTIVO</div>
-              <div className="mem-price">PLENA<span> participación</span></div>
+              <div className="mem-price">Plena<span> participación</span></div>
               <ul className="mem-features">
                 <li>Todo lo del socio base</li><li>Track days y rutas</li><li>Visitas a Maranello</li><li>GP Fórmula 1 (descuento)</li><li>Cavalcade Classiche</li><li>Concursos de elegancia</li><li>Voto en asamblea</li>
               </ul>
@@ -306,7 +338,7 @@ export default function Home() {
             </div>
             <div className="mem-card" data-r="up" style={{ transitionDelay: '.2s' }}>
               <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '1.25rem' }}>SOCIO FAMILIAR</div>
-              <div className="mem-price">CUOTA<span> familiar</span></div>
+              <div className="mem-price">Cuota<span> familiar</span></div>
               <ul className="mem-features">
                 <li>2 miembros por cuota</li><li>Todos los beneficios activos</li><li>Invitaciones dobles</li><li>Área socios compartida</li><li>Prioridad en eventos</li>
               </ul>
@@ -320,22 +352,23 @@ export default function Home() {
       </section>
 
       <section className="finale" aria-label="Llamada a la acción">
-        <div className="cnt" style={{ position: 'relative', zIndex: 1 }}>
-          <div data-r="up">
-            <div className="sec-eye" style={{ justifyContent: 'center', marginBottom: '2rem', color: 'rgba(240,228,210,.5)' }}>PASSIONE PER SEMPRE</div>
-            <h2 className="finale-title">PASSION<br /><span>IN MOTION</span></h2>
+        <div className="cnt finale-grid">
+          <div className="finale-txt" data-r="up">
+            <div className="sec-eye" style={{ marginBottom: '1.5rem' }}>PASSIONE PER SEMPRE</div>
+            <h2 className="finale-title">Tu cajón<br /><span>te espera.</span></h2>
+            <p className="sec-sub" style={{ maxWidth: '44ch' }}>Únete a la comunidad oficial de propietarios y apasionados de Ferrari en España</p>
+            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', marginTop: '2.5rem' }}>
+              <a href="/club/hazte-socio/" className="btn btn-p btn-lg">HAZTE SOCIO <span className="btn-ico">→</span></a>
+              <a href="/contacta/" className="btn btn-o btn-lg">CONTACTAR</a>
+            </div>
+            <div className="finale-stats">
+              <div><span className="fin-stat-n" data-count="200" data-suffix="+">200+</span><span className="fin-stat-l">SOCIOS</span></div>
+              <div><span className="fin-stat-n" data-count="38">38</span><span className="fin-stat-l">AÑOS</span></div>
+              <div><span className="fin-stat-n" data-count="1">1</span><span className="fin-stat-l">CLUB OFICIAL</span></div>
+            </div>
           </div>
-          <p style={{ fontFamily: 'var(--fe)', fontStyle: 'italic', fontSize: 'clamp(1rem,2vw,1.2rem)', color: 'rgba(240,228,210,.7)', maxWidth: '460px', margin: '1.5rem auto 3rem', textAlign: 'center', lineHeight: 1.75 }} data-r="up">
-            <em>Únete a la comunidad oficial de propietarios y apasionados de Ferrari en España</em>
-          </p>
-          <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }} data-r="up">
-            <a href="/club/hazte-socio/" className="btn btn-w btn-lg">HAZTE SOCIO <span className="btn-ico">→</span></a>
-            <a href="/contacta/" className="btn btn-wo btn-lg">CONTACTAR</a>
-          </div>
-          <div style={{ display: 'flex', gap: '5rem', justifyContent: 'center', marginTop: '5rem', flexWrap: 'wrap' }} data-r="up">
-            <div style={{ textAlign: 'center' }}><span className="fin-stat-n" data-count="200" data-suffix="+">200+</span><span className="fin-stat-l">SOCIOS</span></div>
-            <div style={{ textAlign: 'center' }}><span className="fin-stat-n" data-count="38">38</span><span className="fin-stat-l">AÑOS</span></div>
-            <div style={{ textAlign: 'center' }}><span className="fin-stat-n" data-count="1">1</span><span className="fin-stat-l">CLUB OFICIAL</span></div>
+          <div className="finale-arte" data-r="left" aria-hidden="true">
+            <ParrillaArte />
           </div>
         </div>
       </section>

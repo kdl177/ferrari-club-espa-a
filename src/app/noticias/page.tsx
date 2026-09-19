@@ -21,7 +21,7 @@ export default function NoticiasPage() {
         <div className="cnt">
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Noticias' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">TABLÓN DE NOTICIAS</p>
-          <h1 className="sec-title" style={{ marginTop: '.75rem' }} data-r="up">MUNDO<br /><span style={{ color: 'var(--red)' }}>FERRARI</span></h1>
+          <h1 className="sec-title" style={{ marginTop: '.75rem' }} data-r="up">Mundo<br /><span style={{ color: 'var(--red)' }}>Ferrari</span></h1>
           <p className="sec-sub" style={{ marginTop: '1rem', maxWidth: '420px' }} data-r="up"><em>Las últimas noticias de Ferrari, Fórmula 1 y motorsport. Actualización automática.</em></p>
         </div>
       </section>

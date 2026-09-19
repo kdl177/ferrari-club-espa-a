@@ -96,7 +96,10 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
           />
         ))}
       </div>
-      <div className="pre-brand">FERRARI CLUB ESPAÑA</div>
+      <div className="pre-brand">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/brand/logo-principal.svg" alt="Ferrari Club España" width={232} height={64} />
+      </div>
       <div className="pre-sub">CLUB OFICIAL — DESDE 1988</div>
       <div className="pre-term" aria-hidden="true">
         {STAGES.map((s) => (

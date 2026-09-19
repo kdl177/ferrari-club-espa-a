@@ -20,9 +20,9 @@ type Props = {
 
 type Block = { x: number; y: number; s: number; d: number; jx: number; jy: number };
 
-const BLACK = '#0A0A0A';
-const WHITE = '#F2F0EB';
-const RED = '#DA291C';
+const BLACK = '#0B0B0C';
+const WHITE = '#F3EEE4';
+const RED = '#D5261B';
 
 function mulberry32(seed: number) {
   let a = seed >>> 0;

@@ -52,7 +52,7 @@ export default function ClubPage() {
         <div className="cnt">
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Nuestro Club' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">CLUB OFICIAL FERRARI</p>
-          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">NUESTRO<br /><span style={{ color: 'var(--red)' }}>CLUB</span></h1>
+          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">Nuestro<br /><span style={{ color: 'var(--red)' }}>club</span></h1>
           <p className="sec-sub" style={{ maxWidth: '600px', marginTop: '1.5rem' }} data-r="up">Club de Propietarios y Apasionados de Ferrari desde 1988. El único club oficial de <em>Il Cavallino Rampante</em> en España.</p>
           <div style={{ display: 'flex', gap: '4rem', marginTop: '3.5rem', flexWrap: 'wrap' }} data-r="up">
             <div className="stat"><span className="stat-n" data-count="200" data-suffix="+">200+</span><span className="stat-l">SOCIOS</span></div>
@@ -69,7 +69,7 @@ export default function ClubPage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
             <div data-r="right">
               <div className="sec-eye">PRESENTACIÓN</div>
-              <h2 className="sec-title" style={{ marginTop: '1rem', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>PASSIONE<br /><span style={{ color: 'var(--red)' }}>ITALIANA</span></h2>
+              <h2 className="sec-title" style={{ marginTop: '1rem', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>Passione<br /><span style={{ color: 'var(--red)' }}>italiana</span></h2>
               <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginTop: '1.5rem' }}>El Ferrari Club España es el Club Oficial de Propietarios y Apasionados de Ferrari en España. Fundado en 1988, nació de la pasión compartida por <em>Il Cavallino Rampante</em> entre propietarios de vehículos de la marca.</p>
               <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginTop: '1rem' }}>En 2006 recibimos el respaldo directo y oficial de Ferrari S.p.A., lo que nos convirtió en el representante oficial de los Owners Clubs de Ferrari en territorio español.</p>
               <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginTop: '1rem' }}>Nuestra misión es reunir a los propietarios y amantes de Ferrari, organizar eventos exclusivos, fomentar el automovilismo deportivo y mantener viva la llama de la más apasionante marca de automóviles del mundo.</p>
@@ -92,7 +92,7 @@ export default function ClubPage() {
 
       <section style={{ background: 'var(--black)', padding: '6rem 0' }}>
         <div className="cnt">
-          <div data-r="up"><div className="sec-eye">NUESTRA HISTORIA</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '3.5rem' }}>LÍNEA DEL<br /><span style={{ color: 'var(--red)' }}>TIEMPO</span></h2></div>
+          <div data-r="up"><div className="sec-eye">NUESTRA HISTORIA</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '3.5rem' }}>Línea del<br /><span style={{ color: 'var(--red)' }}>tiempo</span></h2></div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem' }}>
             <div className="timeline" data-r="right">
               {TIMELINE_LEFT.map((t) => (
@@ -110,7 +110,7 @@ export default function ClubPage() {
 
       <section style={{ background: 'var(--b90)', padding: '6rem 0' }}>
         <div className="cnt">
-          <div data-r="up"><div className="sec-eye">ACTIVIDADES</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>QUÉ<br /><span style={{ color: 'var(--red)' }}>HACEMOS</span></h2></div>
+          <div data-r="up"><div className="sec-eye">ACTIVIDADES</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>Qué<br /><span style={{ color: 'var(--red)' }}>hacemos</span></h2></div>
           <div className="activity-grid">
             {ACTIVITIES.map((a, i) => (
               <div className="act-card" data-r={i < 3 || i >= 6 ? 'up' : 'scale'} key={a.title + i}><div className="act-ico">{a.ico}</div><div className="act-title">{a.title}</div><div className="act-desc">{a.desc}</div></div>
@@ -121,7 +121,7 @@ export default function ClubPage() {
 
       <section style={{ background: 'var(--black)', padding: '6rem 0' }}>
         <div className="cnt">
-          <div data-r="up"><div className="sec-eye">EQUIPO</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>JUNTA<br /><span style={{ color: 'var(--red)' }}>DIRECTIVA</span></h2></div>
+          <div data-r="up"><div className="sec-eye">EQUIPO</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>Junta<br /><span style={{ color: 'var(--red)' }}>directiva</span></h2></div>
           <div className="board-grid">
             {BOARD.map((b, i) => (
               <div className="board-card" data-r={i < 3 || i >= 6 ? 'up' : 'scale'} key={b.name + i}><div className="board-avatar">{b.av}</div><div className="board-name">{b.name}</div><div className="board-role">JUNTA DIRECTIVA</div></div>

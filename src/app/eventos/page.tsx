@@ -62,7 +62,7 @@ export default async function EventosPage() {
         <div className="cnt">
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Eventos' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">CALENDARIO 2026</p>
-          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5.5rem)', marginTop: '.75rem' }} data-r="up">PRÓXIMOS<br /><span style={{ color: 'var(--red)' }}>EVENTOS</span></h1>
+          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5.5rem)', marginTop: '.75rem' }} data-r="up">Próximos<br /><span style={{ color: 'var(--red)' }}>eventos</span></h1>
           <p className="sec-sub" style={{ maxWidth: '600px', marginTop: '1.5rem' }} data-r="up">Más de 35 actividades por año para socios del Ferrari Club España. Track days en circuito, rutas exclusivas, Grands Prix, visitas a Maranello y veladas de elegancia.</p>
           <div style={{ display: 'flex', gap: '3.5rem', marginTop: '3rem', flexWrap: 'wrap' }} data-r="up">
             <div className="stat"><span className="stat-n">{proximos}</span><span className="stat-l">EVENTOS ABIERTOS</span></div>
@@ -84,7 +84,7 @@ export default async function EventosPage() {
         <div className="cnt" style={{ position: 'relative', textAlign: 'center' }}>
           <div className="rl-g" style={{ width: '60px', margin: '0 auto 2.5rem' }} aria-hidden="true" />
           <p className="sec-eye" data-r="up">ACCESO A EVENTOS</p>
-          <h2 className="sec-title" style={{ marginTop: '1rem' }} data-r="up">PARA INSCRIBIRTE,<br /><span style={{ color: 'var(--red)' }}>HAZTE SOCIO</span></h2>
+          <h2 className="sec-title" style={{ marginTop: '1rem' }} data-r="up">Para inscribirte,<br /><span style={{ color: 'var(--red)' }}>hazte socio</span></h2>
           <p className="sec-sub" style={{ maxWidth: '540px', margin: '1.5rem auto 0' }} data-r="up">La inscripción a todos nuestros eventos está reservada para socios del Ferrari Club España. Únete y accede al calendario completo de actividades.</p>
           <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '3rem' }} data-r="up">
             <a href="/club/hazte-socio/" className="btn btn-p btn-lg" data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>

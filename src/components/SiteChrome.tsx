@@ -22,27 +22,20 @@ const MENU_ITEMS = [
 ];
 
 const MENU_PREVIEWS = [
-  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'INICIO', size: '7vw', color: 'rgba(218,41,28,.1)' },
-  { bg: 'radial-gradient(ellipse at 55% 50%,#0c0c0c,#000)', label: 'NOTICIAS', size: '6vw', color: 'rgba(255,255,255,.04)' },
-  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'CLUB', size: '7vw', color: 'rgba(218,41,28,.1)' },
-  { bg: 'radial-gradient(ellipse at 50% 60%,#1a0505,#0d0907)', label: 'EVENTOS', size: '6vw', color: 'rgba(218,41,28,.1)' },
-  { bg: 'radial-gradient(ellipse at 50% 50%,#0c0c0c,#000)', label: 'CONC.', size: '4vw', color: 'rgba(255,255,255,.04)' },
-  { bg: 'radial-gradient(ellipse at 40% 50%,#1c0000,#000)', label: 'SOCIOS', size: '7vw', color: 'rgba(218,41,28,.1)' },
-  { bg: 'radial-gradient(ellipse at 60% 50%,#111,#000)', label: 'CONTACTA', size: '5vw', color: 'rgba(255,255,255,.04)' },
+  { bg: '#0B0B0C', label: 'INICIO', size: '7vw', color: 'rgba(243,238,228,.06)' },
+  { bg: '#0B0B0C', label: 'NOTICIAS', size: '6vw', color: 'rgba(243,238,228,.06)' },
+  { bg: '#0B0B0C', label: 'CLUB', size: '7vw', color: 'rgba(243,238,228,.06)' },
+  { bg: '#0B0B0C', label: 'EVENTOS', size: '6vw', color: 'rgba(243,238,228,.06)' },
+  { bg: '#0B0B0C', label: 'CONC.', size: '4vw', color: 'rgba(243,238,228,.06)' },
+  { bg: '#0B0B0C', label: 'SOCIOS', size: '7vw', color: 'rgba(243,238,228,.06)' },
+  { bg: '#0B0B0C', label: 'CONTACTA', size: '5vw', color: 'rgba(243,238,228,.06)' },
 ];
 
 function NavLogo() {
   return (
     <Link href="/" className="nav-logo" aria-label="Ferrari Club España — Inicio">
-      <span className="nav-logo-badge" aria-hidden="true">
-        <svg width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 1 L31 7 L31 22 Q31 32 16 37 Q1 32 1 22 L1 7 Z" fill="#CC0000" stroke="#990000" strokeWidth=".8" />
-          <path d="M16 3.5 L29 8.8 L29 22 Q29 30.5 16 34.8 Q3 30.5 3 22 L3 8.8 Z" fill="#AA0000" />
-          <text x="16" y="24" fontFamily="Archivo,sans-serif" fontSize="13" fill="#F5EDE0" textAnchor="middle" fontWeight="400">F</text>
-          <path d="M8 14 L24 14" stroke="rgba(245,237,224,.25)" strokeWidth=".8" />
-        </svg>
-      </span>
-      <span className="nav-logo-text">FERRARI<em>·</em>CLUB<small>ESPAÑA — OFICIAL DESDE 1988</small></span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/brand/logo-principal.svg" alt="" width={145} height={40} />
     </Link>
   );
 }
@@ -150,36 +143,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       );
       io.observe(el);
     });
-  }, [pathname]);
-
-  useEffect(() => {
-    if (window.matchMedia('(pointer:coarse)').matches) return;
-    const cards = document.querySelectorAll<HTMLElement>('.mcard,.news-card,.mem-card,.evp-card');
-    const handlers: Array<() => void> = [];
-    cards.forEach((card) => {
-      card.style.willChange = 'transform';
-      const onMove = (e: MouseEvent) => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        const sx = x * 28, sy = y * 20;
-        card.style.transform = `perspective(900px) rotateY(${x * 14}deg) rotateX(${-y * 10}deg) scale3d(1.025,1.025,1.025)`;
-        card.style.boxShadow = `${-sx}px ${-sy}px 40px rgba(218,41,28,.12),0 20px 60px rgba(0,0,0,.6)`;
-        card.style.transition = 'transform .08s ease-out';
-      };
-      const onLeave = () => {
-        card.style.transform = '';
-        card.style.boxShadow = '';
-        card.style.transition = 'transform .5s ease-out,box-shadow .5s ease-out';
-      };
-      card.addEventListener('mousemove', onMove);
-      card.addEventListener('mouseleave', onLeave);
-      handlers.push(() => {
-        card.removeEventListener('mousemove', onMove);
-        card.removeEventListener('mouseleave', onLeave);
-      });
-    });
-    return () => handlers.forEach((h) => h());
   }, [pathname]);
 
   useEffect(() => {
@@ -307,7 +270,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
             <a href="https://www.facebook.com/ferrariclubespana" target="_blank" rel="noopener">FACEBOOK</a>
             <a href="https://www.instagram.com/ferrariclubespana" target="_blank" rel="noopener">INSTAGRAM</a>
           </div>
-          <span style={{ fontFamily: 'var(--fm)', fontSize: '.55rem', color: 'rgba(255,255,255,.08)' }}>MADRID · EST. 1988</span>
+          <span style={{ fontFamily: 'var(--fm)', fontSize: '.55rem', color: 'rgba(243,238,228,.06)' }}>MADRID · EST. 1988</span>
         </div>
       </div>
       )}
@@ -317,7 +280,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       {!esAdminPanel && (
       <footer className="footer">
         <div className="cnt">
-          <p className="footer-finale" data-r="up">PASSIONE.<br /><em>SEMPRE.</em></p>
+          <p className="footer-finale" data-r="up">Passione.<br /><em>Sempre.</em></p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(155px,1fr))', gap: '3rem', marginBottom: '4rem' }}>
             <div>
               <span className="footer-col-title">NAVEGACIÓN</span>

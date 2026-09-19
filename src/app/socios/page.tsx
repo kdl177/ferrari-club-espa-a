@@ -24,7 +24,7 @@ export default function SociosPage() {
             <em>ÁREA PRIVADA DE SOCIOS</em>
           </a>
           <div className="login-card">
-            <h1 className="login-title">Acceso<br /><span style={{ color: 'var(--red)' }}>Socios</span></h1>
+            <h1 className="login-title">Acceso<br /><span style={{ color: 'var(--red)' }}>socios</span></h1>
             <p className="login-sub">INTRODUCE TUS CREDENCIALES DE SOCIO</p>
             <LoginForm />
             <div className="login-divider" style={{ margin: '2rem 0' }}><span>¿AÚN NO ERES SOCIO?</span></div>

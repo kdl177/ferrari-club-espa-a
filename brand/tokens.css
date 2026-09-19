@@ -1,0 +1,81 @@
+/* ════════════════════════════════════════════════════════════
+   FERRARI CLUB ESPAÑA — TOKENS DE MARCA · "La Parrilla" · v1.0
+   Fuentes (Google Fonts):
+   https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wdth,wght@62..125,400..800&display=swap
+════════════════════════════════════════════════════════════ */
+:root{
+  /* ── Color · primario ─────────────────────────────────── */
+  --fce-rosso:#D5261B;          /* Rosso Corsa: bloques, gráfica, titulares ≥24px. No usar en texto pequeño */
+  --fce-rosso-profundo:#B81D13; /* superficies con texto marfil encima (botón primario) · 5,63:1 */
+  --fce-rosso-claro:#FF5A47;    /* texto rojo pequeño sobre asfalto/grafito · 6,38:1 */
+
+  /* ── Color · secundario ───────────────────────────────── */
+  --fce-asfalto:#0B0B0C;        /* fondo principal */
+  --fce-grafito:#17171A;        /* superficies elevadas: tarjetas, cabecera fija */
+  --fce-linea:#2B2B2F;          /* bordes y separadores de 1px sobre oscuro */
+
+  /* ── Color · acento ───────────────────────────────────── */
+  --fce-ambar:#F0B323;          /* Ámbar Capó: foco, avisos, "tu cajón". Máx. 5% de la superficie · 10,47:1 */
+
+  /* ── Color · neutros ──────────────────────────────────── */
+  --fce-marfil:#F3EEE4;         /* texto sobre oscuro y fondo de secciones claras · 17,01:1 */
+  --fce-pit:#9A968E;            /* texto secundario sobre oscuro · 6,68:1 */
+  --fce-pit-oscuro:#5E5A53;     /* texto secundario sobre marfil · 5,93:1 */
+  --fce-linea-clara:#D9D2C3;    /* bordes sobre marfil */
+
+  /* ── Roles semánticos (tema oscuro, por defecto) ──────── */
+  --fce-fondo:var(--fce-asfalto);
+  --fce-superficie:var(--fce-grafito);
+  --fce-borde:var(--fce-linea);
+  --fce-texto:var(--fce-marfil);
+  --fce-texto-2:var(--fce-pit);
+  --fce-marca:var(--fce-rosso);
+  --fce-marca-texto:var(--fce-rosso-claro);
+  --fce-accion:var(--fce-rosso-profundo);
+  --fce-accion-texto:var(--fce-marfil);
+  --fce-foco:var(--fce-ambar);
+
+  /* ── Tipografía ───────────────────────────────────────── */
+  --fce-f-gala:'Bodoni Moda','Bodoni 72','Didot',Georgia,serif;
+  --fce-f-circuito:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --fce-ancho-condensado:75%;   /* font-stretch para rótulos y H3–H4 */
+  --fce-ancho-normal:100%;
+
+  --fce-h1:500 clamp(2.75rem,6vw,5rem)/1 var(--fce-f-gala);
+  --fce-h2:500 clamp(2rem,4vw,3.25rem)/1.06 var(--fce-f-gala);
+  --fce-h3:700 1.5rem/1.15 var(--fce-f-circuito);      /* + condensado, mayúsculas, tracking .06em */
+  --fce-h4:700 .9375rem/1.3 var(--fce-f-circuito);     /* + condensado, mayúsculas, tracking .16em */
+  --fce-cuerpo:400 1.0625rem/1.65 var(--fce-f-circuito);
+  --fce-pequeno:500 .8125rem/1.5 var(--fce-f-circuito);
+  --fce-rotulo:700 .75rem/1.2 var(--fce-f-circuito);   /* + condensado, mayúsculas, tracking .2em */
+
+  --fce-tracking-h3:.06em;
+  --fce-tracking-h4:.16em;
+  --fce-tracking-rotulo:.2em;
+
+  /* ── Espaciado (base 4px) ─────────────────────────────── */
+  --fce-e1:.25rem; --fce-e2:.5rem; --fce-e3:.75rem; --fce-e4:1rem;
+  --fce-e6:1.5rem; --fce-e8:2rem; --fce-e12:3rem; --fce-e16:4rem; --fce-e24:6rem;
+  --fce-margen:clamp(1.25rem,5vw,4.5rem);
+  --fce-ancho-max:1320px;
+
+  /* ── Forma ────────────────────────────────────────────── */
+  --fce-radio:0;                /* la marca es de ángulo recto: cajones, bloques, líneas */
+  --fce-trazo:1px;
+  --fce-trazo-cajon:2px;        /* grosor del cajón en interfaz */
+
+  /* ── Movimiento ───────────────────────────────────────── */
+  --fce-salida:cubic-bezier(.16,1,.3,1);
+  --fce-t-rapido:.16s;
+  --fce-t-medio:.34s;
+}
+
+/* Secciones claras: redefine solo los roles, no los colores base */
+[data-tema="claro"]{
+  --fce-fondo:var(--fce-marfil);
+  --fce-superficie:#FBF8F2;
+  --fce-borde:var(--fce-linea-clara);
+  --fce-texto:var(--fce-asfalto);
+  --fce-texto-2:var(--fce-pit-oscuro);
+  --fce-marca-texto:var(--fce-rosso-profundo);
+}

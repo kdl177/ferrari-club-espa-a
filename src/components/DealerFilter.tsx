@@ -71,11 +71,11 @@ export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
       <div className="geo-bar" data-r="up">
         {estadoGeo === 'concedido' ? (
           <span className="geo-activo">
-            📍 Ordenado por cercanía a tu ubicación
+            Ordenado por cercanía a tu ubicación
           </span>
         ) : (
           <button type="button" className="geo-btn" onClick={pedirUbicacion} disabled={estadoGeo === 'buscando'}>
-            {estadoGeo === 'buscando' ? 'Localizando…' : '📍 Ver el más cercano a mí'}
+            {estadoGeo === 'buscando' ? 'Localizando…' : 'Ver el más cercano a mí'}
           </button>
         )}
         {estadoGeo === 'denegado' && (

@@ -13,17 +13,15 @@ const CATS = [
   { key: 'elegancia', label: 'ELEGANCIA' },
 ];
 
-const ESTILO_CAT: Record<string, { tag: string; tagClass: string; label: string; bg0: string; bg1: string }> = {
-  track: { tag: 'TRACK DAYS', tagClass: '', label: 'TRACK', bg0: '#2a0000', bg1: '#080000' },
-  f1: { tag: 'FÓRMULA 1', tagClass: '', label: 'F1', bg0: '#0A0A0A', bg1: '#050505' },
-  rutas: { tag: 'RUTAS', tagClass: 'neutral', label: 'RUTA', bg0: '#141414', bg1: '#0A0A0A' },
-  maranello: { tag: 'MARANELLO', tagClass: '', label: 'MARANELLO', bg0: '#0A0A0A', bg1: '#080000' },
-  elegancia: { tag: 'ELEGANCIA', tagClass: 'neutral', label: 'Elegancia', bg0: '#0f0f0f', bg1: '#050505' },
-  club: { tag: 'CLUB', tagClass: '', label: 'GALA 2026', bg0: '#0A0A0A', bg1: '#0A0A0A' },
-  cavalcade: { tag: 'CAVALCADE', tagClass: 'premium', label: 'CAVALCADE', bg0: '#120000', bg1: '#050505' },
+const ETIQUETA_CAT: Record<string, string> = {
+  track: 'TRACK DAYS',
+  f1: 'FÓRMULA 1',
+  rutas: 'RUTAS',
+  maranello: 'MARANELLO',
+  elegancia: 'ELEGANCIA',
+  club: 'CLUB',
+  cavalcade: 'CAVALCADE',
 };
-
-const ESTILO_FALLBACK = { tag: 'EVENTO', tagClass: 'neutral', label: 'FERRARI', bg0: '#141414', bg1: '#0A0A0A' };
 
 export type EventItem = {
   id: string;
@@ -39,13 +37,13 @@ export type EventItem = {
 };
 
 function estadoDe(e: EventItem) {
-  if (e.pasado) return { clase: '', texto: '— Completado', dot: '' };
+  if (e.pasado) return { clase: '', texto: 'Completado' };
   const libres = e.aforo - e.plazasOcupadas;
-  if (libres <= 0) return { clase: ' limited', texto: '● Completo — lista de espera', dot: ' limited' };
+  if (libres <= 0) return { clase: ' limited', texto: 'Parrilla completa · lista de espera' };
   if (libres <= Math.max(3, Math.ceil(e.aforo * 0.2))) {
-    return { clase: ' limited', texto: `● Últimas ${libres} plazas`, dot: ' limited' };
+    return { clase: ' limited', texto: libres === 1 ? 'Queda 1 cajón' : `Quedan ${libres} cajones` };
   }
-  return { clase: ' open', texto: `● ${libres} plazas disponibles`, dot: ' open' };
+  return { clase: ' open', texto: `${libres} cajones libres` };
 }
 
 export default function EventsFilter({ events, haySesion }: { events: EventItem[]; haySesion: boolean }) {
@@ -63,26 +61,28 @@ export default function EventsFilter({ events, haySesion }: { events: EventItem[
       </div>
       <div className="evp-grid">
         {visible.map((e, i) => {
-          const estilo = ESTILO_CAT[e.categoria] ?? ESTILO_FALLBACK;
+          const etiqueta = ETIQUETA_CAT[e.categoria] ?? 'EVENTO';
+          const [dia, mes = '', anio = ''] = e.fechaLabel.replace(/\./g, '').split(' ').filter((t) => t !== '·');
           const st = estadoDe(e);
           return (
             <article className={`evp-card${e.pasado ? ' past' : ''}`} data-r="up" style={{ transitionDelay: `${(i % 3) * 0.07}s` }} key={e.id}>
-              <div className="evp-thumb">
-                <svg width="100%" height="100%" viewBox="0 0 620 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                  <defs><radialGradient id={`eg${i}`} cx="50%" cy="50%" r="68%"><stop offset="0%" stopColor={estilo.bg0} /><stop offset="100%" stopColor={estilo.bg1} /></radialGradient></defs>
-                  <rect width="100%" height="100%" fill={`url(#eg${i})`} />
-                  <text x="50%" y="55%" fontFamily="Archivo" fontSize={estilo.label.length > 6 ? 34 : 60} fill="rgba(218,41,28,.07)" textAnchor="middle" letterSpacing="3" dominantBaseline="middle">{estilo.label}</text>
-                </svg>
-                <div className="evp-cat-row">
-                  <span className={`evp-cat-tag${estilo.tagClass ? ' ' + estilo.tagClass : ''}`}>{estilo.tag}</span>
-                  <span className={`evp-status-dot${st.dot}`} aria-hidden="true" />
-                </div>
-              </div>
               <div className="evp-body">
-                <div className="evp-date">{e.fechaLabel}</div>
-                <h2 className="evp-title">{e.titulo}</h2>
-                <p className="evp-loc">📍 {e.ubicacion}</p>
+                <div className="evp-cab">
+                  <div className="cajon-f"><b>{dia}</b><small>{mes}</small></div>
+                  <div>
+                    <span className="evp-date">{etiqueta} · {anio}</span>
+                    <h2 className="evp-title">{e.titulo}</h2>
+                    <p className="evp-loc">{e.ubicacion}</p>
+                  </div>
+                </div>
                 <p className="evp-desc">{e.descripcion}</p>
+                {!e.pasado && e.aforo <= 40 && (
+                  <div className="plazas" role="img" aria-label={`${e.plazasOcupadas} de ${e.aforo} plazas ocupadas`}>
+                    {Array.from({ length: e.aforo }, (_, n) => (
+                      <i key={n} className={n < e.plazasOcupadas ? 'on' : st.clase === ' limited' ? 'libre' : undefined} />
+                    ))}
+                  </div>
+                )}
                 <div className="evp-foot">
                   {e.pasado ? (
                     <>

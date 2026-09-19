@@ -23,7 +23,7 @@ export default function ContactaPage() {
         <div className="cnt">
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Contacta' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">FERRARI CLUB ESPAÑA</p>
-          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">CONTACTA<br /><span style={{ color: 'var(--red)' }}>CON NOSOTROS</span></h1>
+          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">Contacta<br /><span style={{ color: 'var(--red)' }}>con nosotros</span></h1>
           <p className="sec-sub" style={{ maxWidth: '560px', marginTop: '1.5rem' }} data-r="up">Estamos en Madrid para atenderte. No dudes en escribirnos o llamarnos para cualquier consulta sobre el club, eventos o membresía.</p>
         </div>
       </section>

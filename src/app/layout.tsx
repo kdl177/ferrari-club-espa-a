@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import SiteChrome from "@/components/SiteChrome";
 import "./globals.css";
+import "../../brand/tokens.css";
 import "./editorial.css";
 
 export const metadata: Metadata = {
@@ -27,8 +28,7 @@ export const metadata: Metadata = {
     images: ["/og.svg"],
   },
   icons: {
-    icon:
-      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23DA291C'/%3E%3Ctext x='16' y='24' font-family='sans-serif' font-weight='700' font-size='20' fill='%23F2F0EB' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E",
+    icon: "/brand/logo-icono-app.svg",
   },
 };
 
@@ -67,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=JetBrains+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wdth,wght@62..125,400..800&display=swap"
           rel="stylesheet"
         />
         <script

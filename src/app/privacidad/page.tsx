@@ -14,7 +14,7 @@ export default function PrivacidadPage() {
         <div className="cnt">
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Política de Privacidad' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">INFORMACIÓN LEGAL</p>
-          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">POLÍTICA DE<br /><span style={{ color: 'var(--red)' }}>PRIVACIDAD</span></h1>
+          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">Política de<br /><span style={{ color: 'var(--red)' }}>privacidad</span></h1>
           <div style={{ width: '60px', height: '2px', background: 'var(--red)', marginTop: '2rem', boxShadow: '0 0 8px var(--red)' }} data-r="up" />
         </div>
       </section>
