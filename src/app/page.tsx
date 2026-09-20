@@ -3,29 +3,34 @@ import HalftoneImage from '@/components/HalftoneImage';
 
 const MACHINES = [
   {
-    tag: 'SF-90', color: 'rgba(218,41,28,.08)', bg: '#0A0A0A', ringColor: 'rgba(218,41,28,.15)',
-    model: 'IBRIDO · 2024', name: <>SF-90 XX<br />Stradale</>,
-    specs: [['POTENCIA', '1030 CV'], ['0–100 km/h', '2.3 s'], ['V. MÁX', '320 km/h'], ['MOTOR', 'V8 + 3 eléctricos']],
+    slug: 'sf90-xx-stradale', model: 'HÍBRIDO ENCHUFABLE · 2023', name: <>SF90 XX<br />Stradale</>, dato: '799 unidades',
+    texto: 'La versión más extrema del SF90 y el primer modelo XX homologado para circular por carretera. Su aerodinámica genera 530 kg de carga a 250 km/h.',
+    specs: [['POTENCIA', '1030 CV'], ['PAR MÁXIMO', '804 Nm'], ['0–100 km/h', '2,3 s'], ['V. MÁX', '320 km/h'], ['MOTOR', 'V8 biturbo 3.990 cc + 3 eléctricos'], ['PESO EN SECO', '1.560 kg']],
+    foto: { autor: 'Calreyn88', licencia: 'CC BY 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_SF90_XX_Stradale_1.jpg', alt: 'Ferrari SF90 XX Stradale rojo con alerón trasero fijo, vista frontal tres cuartos' },
   },
   {
-    tag: 'ROMA', color: 'rgba(218,41,28,.07)', bg: '#0A0A0A', ringColor: 'rgba(218,41,28,.12)',
-    model: 'GT SPIDER · 2023', name: <>Roma<br />Spider</>,
-    specs: [['POTENCIA', '620 CV'], ['0–100 km/h', '3.4 s'], ['V. MÁX', '320 km/h'], ['MOTOR', 'V8 biturbo 3.9 L']],
+    slug: 'roma-spider', model: 'GT DESCAPOTABLE · 2023', name: <>Roma<br />Spider</>, dato: 'Capota en 13,5 s',
+    texto: 'El Roma a cielo abierto, presentado en marzo de 2023. Su capota de lona se pliega en 13,5 segundos y mantiene las proporciones del coupé.',
+    specs: [['POTENCIA', '620 CV'], ['PAR MÁXIMO', '760 Nm'], ['0–100 km/h', '3,4 s'], ['V. MÁX', '> 320 km/h'], ['MOTOR', 'V8 biturbo 3.855 cc'], ['PESO EN SECO', '1.556 kg']],
+    foto: { autor: 'Pangalau', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:2024_Ferrari_Roma_Spider_in_Adelaide,_Australia.jpg', alt: 'Ferrari Roma Spider gris azulado con la capota abierta en un concesionario' },
   },
   {
-    tag: '296', color: 'rgba(218,41,28,.07)', bg: '#0A0A0A', ringColor: 'rgba(255,255,255,.06)',
-    model: 'IBRIDO · 2022', name: <>296<br />GTB</>,
-    specs: [['POTENCIA', '830 CV'], ['0–100 km/h', '2.9 s'], ['V. MÁX', '330 km/h'], ['MOTOR', 'V6 + eléctrico']],
+    slug: '296-gtb', model: 'HÍBRIDO ENCHUFABLE · 2021', name: <>296<br />GTB</>, dato: '25 km en eléctrico',
+    texto: 'El primer V6 de calle con el emblema del Cavallino: un tres litros biturbo con los cilindros a 120° y apoyo eléctrico enchufable, en posición central trasera.',
+    specs: [['POTENCIA', '830 CV'], ['PAR MÁXIMO', '740 Nm'], ['0–100 km/h', '2,9 s'], ['V. MÁX', '> 330 km/h'], ['MOTOR', 'V6 biturbo 2.992 cc + eléctrico'], ['PESO EN SECO', '1.470 kg']],
+    foto: { autor: 'Alexander Migl', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_296_GTB_1X7A6377.jpg', alt: 'Ferrari 296 GTB amarillo aparcado, vista frontal tres cuartos' },
   },
   {
-    tag: '812', color: 'rgba(218,41,28,.07)', bg: '#0A0A0A', ringColor: 'rgba(218,41,28,.1)',
-    model: 'GT · 2021', name: <>812<br />Competizione</>,
-    specs: [['POTENCIA', '830 CV'], ['0–100 km/h', '2.85 s'], ['V. MÁX', '340 km/h'], ['MOTOR', 'V12 N/A 6.5 L']],
+    slug: '812-competizione', model: 'SERIE LIMITADA · 2021', name: <>812<br />Competizione</>, dato: '999 unidades',
+    texto: 'La serie limitada del 812 Superfast, pensada para circuito. Su V12 atmosférico gira hasta 9.500 rpm, en su lanzamiento el régimen más alto de un Ferrari de calle.',
+    specs: [['POTENCIA', '830 CV'], ['PAR MÁXIMO', '692 Nm'], ['0–100 km/h', '2,85 s'], ['V. MÁX', '> 340 km/h'], ['MOTOR', 'V12 atmosférico 6.496 cc'], ['PESO EN SECO', '1.487 kg']],
+    foto: { autor: 'Calreyn88', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_812_Competizione_2.jpg', alt: 'Ferrari 812 Competizione gris sobre césped en una concentración' },
   },
   {
-    tag: 'PUROSANGUE', color: 'rgba(218,41,28,.07)', bg: '#0A0A0A', ringColor: 'rgba(218,41,28,.09)',
-    model: 'SUV · 2023', name: 'Purosangue',
-    specs: [['POTENCIA', '725 CV'], ['0–100 km/h', '3.3 s'], ['V. MÁX', '310 km/h'], ['MOTOR', 'V12 N/A 6.5 L']],
+    slug: 'purosangue', model: 'CUATRO PUERTAS · 2022', name: 'Purosangue', dato: '4 puertas · 4 plazas',
+    texto: 'El primer Ferrari de producción con cuatro puertas y cuatro plazas. Conserva un V12 atmosférico de 6,5 litros, con el par máximo de 716 Nm a 6.250 rpm.',
+    specs: [['POTENCIA', '725 CV'], ['PAR MÁXIMO', '716 Nm'], ['0–100 km/h', '3,3 s'], ['V. MÁX', '> 310 km/h'], ['MOTOR', 'V12 atmosférico 6.496 cc'], ['PESO EN SECO', '2.033 kg']],
+    foto: { autor: 'Alexander Migl', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_Purosangue_DSC_7008.jpg', alt: 'Ferrari Purosangue gris mate frente a un concesionario, vista frontal tres cuartos' },
   },
 ];
 
@@ -144,30 +149,29 @@ export default function Home() {
         <div className="machine-scroll" id="machine-scroll">
           <div className="machine-track" id="mtrack">
             {MACHINES.map((m) => (
-              <div className="mcard" key={m.tag}>
-                <div className="mcard-img">
-                  <svg width="100%" height="100%" viewBox="0 0 400 200" aria-hidden="true">
-                    <rect width="100%" height="100%" fill={m.bg} />
-                    <text x="200" y="115" fontFamily="Archivo" fontSize="40" fill={m.color} textAnchor="middle" letterSpacing="3">{m.tag}</text>
-                    <g fill="none" stroke={m.ringColor} strokeWidth="1.2" transform="translate(200,125)">
-                      <path d="M-155 13 Q-110 25 -55 31 Q0 36 55 31 Q110 25 155 13" />
-                      <path d="M-105 13 Q-85 -14 -38 -24 Q0 -30 38 -24 Q85 -14 105 13" />
-                      <circle cx="-83" cy="20" r="24" /><circle cx="83" cy="20" r="24" />
-                    </g>
-                  </svg>
-                </div>
+              <article className="mcard" key={m.slug}>
+                <figure className="mcard-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/coches/${m.slug}.webp`} alt={m.foto.alt} width={1040} height={650} loading="lazy" decoding="async" />
+                  <span className="mcard-dato">{m.dato}</span>
+                  <figcaption>
+                    Foto: <a href={m.foto.url} target="_blank" rel="noopener">{m.foto.autor}</a> · {m.foto.licencia} · recortada
+                  </figcaption>
+                </figure>
                 <div className="mcard-model">{m.model}</div>
-                <div className="mcard-name">{m.name}</div>
+                <h3 className="mcard-name">{m.name}</h3>
+                <p className="mcard-texto">{m.texto}</p>
                 <div className="mcard-specs">
                   {m.specs.map(([l, v]) => (
                     <div className="mspec" key={l}><span className="mspec-l">{l}</span><span className="mspec-v">{v}</span></div>
                   ))}
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
         <div className="mtrack-dots" id="mtrack-dots" aria-hidden="true" />
+        <p className="cnt machine-fuente">Cifras oficiales de Ferrari S.p.A. (ferrari.com); peso en seco con equipamiento opcional. Fotografías de Wikimedia Commons bajo licencia Creative Commons.</p>
       </section>
 
       <section className="events-sec" aria-label="Próximos eventos">
