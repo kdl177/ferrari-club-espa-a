@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   alternates: { canonical: '/concesionarios/' },
 };
 
+// Red oficial segun ferrari.com/es-ES/auto/concesionarios. Direccion, telefono,
+// horario y coordenadas proceden del micrositio oficial de cada concesionario.
 const DEALERS = [
-  { region: 'madrid', city: 'MADRID', name: 'Motor Deluxe — Ferrari Madrid', addr: 'Paseo de la Castellana 180, 28046 Madrid', tel: '+34917004200', telFmt: '+34 91 700 42 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '40.4168°N · 3.7038°O', lat: 40.4168, lng: -3.7038, bg: '#0A0A0A' },
-  { region: 'cataluna', city: 'BARCELONA', name: 'Nani Móvil — Ferrari Barcelona', addr: 'Av. Diagonal 520, 08006 Barcelona', tel: '+34932720040', telFmt: '+34 93 272 00 40', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '41.3851°N · 2.1734°E', lat: 41.3851, lng: 2.1734, bg: '#0A0A0A' },
-  { region: 'andalucia', city: 'SEVILLA', name: 'Auto Sánchez — Ferrari Sevilla', addr: 'Calle Resolana 17, 41009 Sevilla', tel: '+34954541000', telFmt: '+34 95 454 10 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '37.3891°N · 5.9845°O', lat: 37.3891, lng: -5.9845, bg: '#0A0A0A' },
-  { region: 'pais-vasco', city: 'BILBAO', name: 'Inchcape — Ferrari Bilbao', addr: 'Gran Vía Diego López de Haro 80, 48011 Bilbao', tel: '+34944200100', telFmt: '+34 94 420 01 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '43.2630°N · 2.9350°O', lat: 43.263, lng: -2.935, bg: '#0A0A0A' },
-  { region: 'levante', city: 'VALENCIA', name: 'Motor Rabasa — Ferrari Valencia', addr: 'Av. de las Cortes Valencianas 50, 46015 Valencia', tel: '+34963600100', telFmt: '+34 96 360 01 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '39.4699°N · 0.3763°O', lat: 39.4699, lng: -0.3763, bg: '#0A0A0A' },
-  { region: 'andalucia', city: 'MARBELLA', name: 'Auto Premium — Ferrari Marbella', addr: 'Ctra. Nacional 340, km 176, 29660 Marbella', tel: '+34952815100', telFmt: '+34 95 281 51 00', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00', coord: '36.5101°N · 4.8824°O', lat: 36.5101, lng: -4.8824, bg: '#0A0A0A' },
+  { region: 'madrid', city: 'MADRID', name: 'Santogal Automóviles', addr: 'Puerto de Somport 8, 28050 Madrid', tel: '+34910488170', telFmt: '+34 910 48 81 70', hours: 'Lun–Vie: 9:00–14:00 / 15:30–18:30 · Sáb–Dom: cerrado', lat: 40.49527, lng: -3.67282, web: 'https://madrid.ferraridealers.com/es-ES/' },
+  { region: 'cataluna', city: 'BARCELONA', name: 'Quadis Gallery Barcelona', addr: 'Pso. de la Zona Franca 10-12, 08038 Barcelona', tel: '+34932896363', telFmt: '+34 93 289 63 63', hours: 'Lun–Vie: 9:00–13:00 / 15:00–19:00 · Sáb–Dom: cerrado', lat: 41.35201, lng: 2.14547, web: 'https://barcelona.ferraridealers.com/es-ES/' },
+  { region: 'levante', city: 'VALENCIA', name: 'Quadis Gallery Valencia', addr: 'Avenida del Maestro Rodrigo 50, 46015 Valencia', tel: '+34963479199', telFmt: '+34 963 47 91 99', hours: 'Lun–Vie: 8:30–14:00 / 16:00–18:30 · Sáb–Dom: cerrado', lat: 39.48569, lng: -0.40313, web: 'https://valencia.ferraridealers.com/es-ES/' },
+  { region: 'andalucia', city: 'MARBELLA', name: 'C. de Salamanca', addr: 'Avenida Norberto Goizueta s/n, 29670 San Pedro Alcántara, Marbella', tel: '+34952782211', telFmt: '+34 952 78 22 11', hours: 'Lun–Vie: 9:00–19:00 · Sáb: 10:30–13:30 · Dom: cerrado', lat: 36.47971, lng: -4.99385, web: 'https://marbella.ferraridealers.com/es-ES/' },
 ];
 
 export default function ConcesionariosPage() {
@@ -36,8 +36,8 @@ export default function ConcesionariosPage() {
 
           <div style={{ textAlign: 'center', marginTop: '3rem', padding: '2rem', border: '1px solid var(--w08)' }} data-r="up">
             <div className="sec-eye" style={{ marginBottom: '1rem' }}>TODOS LOS DISTRIBUIDORES</div>
-            <p style={{ fontFamily: 'var(--fb)', fontSize: '.9rem', color: 'var(--w70)', lineHeight: 1.75, marginBottom: '1.5rem' }}>Para consultar el listado completo y actualizado de concesionarios oficiales Ferrari en España, visita la web oficial de Ferrari.</p>
-            <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" className="btn btn-p" data-mag>BUSCAR EN FERRARI.COM ↗</a>
+            <p style={{ fontFamily: 'var(--fb)', fontSize: '.9rem', color: 'var(--w70)', lineHeight: 1.75, marginBottom: '1.5rem' }}>Estos son los cuatro concesionarios oficiales de Ferrari en España. Dirección, teléfono y horario proceden de la web oficial de cada uno; confírmalos antes de desplazarte.</p>
+            <a href="https://www.ferrari.com/es-ES/auto/concesionarios" target="_blank" rel="noopener" className="btn btn-p" data-mag>BUSCAR EN FERRARI.COM ↗</a>
           </div>
         </div>
       </section>

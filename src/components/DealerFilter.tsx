@@ -7,9 +7,8 @@ const REGIONS = [
   { key: 'all', label: 'TODOS' },
   { key: 'madrid', label: 'MADRID' },
   { key: 'cataluna', label: 'CATALUÑA' },
-  { key: 'andalucia', label: 'ANDALUCÍA' },
-  { key: 'pais-vasco', label: 'PAÍS VASCO' },
   { key: 'levante', label: 'LEVANTE' },
+  { key: 'andalucia', label: 'ANDALUCÍA' },
 ];
 
 export type Dealer = {
@@ -20,13 +19,19 @@ export type Dealer = {
   tel: string;
   telFmt: string;
   hours: string;
-  coord: string;
   lat: number;
   lng: number;
-  bg: string;
+  web: string;
 };
 
 type EstadoGeo = 'inactivo' | 'buscando' | 'concedido' | 'denegado';
+
+function mapaEmbebido(lat: number, lng: number) {
+  const dx = 0.012;
+  const dy = 0.0065;
+  const bbox = [lng - dx, lat - dy, lng + dx, lat + dy].map((n) => n.toFixed(5)).join('%2C');
+  return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lng}`;
+}
 
 export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
   const [active, setActive] = useState('all');
@@ -102,14 +107,19 @@ export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
         {visible.map((d) => (
           <div className="dealer-card" data-r="up" key={d.name}>
             <div className="dealer-map">
-              <svg width="100%" height="100%" viewBox="0 0 320 160" aria-hidden="true">
-                <rect width="100%" height="100%" fill={d.bg} />
-                <circle cx="160" cy="80" r="35" fill="rgba(218,41,28,.06)" stroke="rgba(218,41,28,.1)" strokeWidth="1" />
-                <circle cx="160" cy="80" r="5" fill="rgba(218,41,28,.4)" />
-                <line x1="160" y1="0" x2="160" y2="160" stroke="rgba(218,41,28,.05)" />
-                <line x1="0" y1="80" x2="320" y2="80" stroke="rgba(218,41,28,.05)" />
-                <text x="160" y="135" fontFamily="Archivo" fontSize="8" fill="rgba(218,41,28,.25)" textAnchor="middle" letterSpacing="2">{d.coord}</text>
-              </svg>
+              {/* El iframe va inerte: un mapa embebido secuestra la rueda del raton
+                  al pasar por encima. Toda la superficie abre el mapa grande. */}
+              <iframe src={mapaEmbebido(d.lat, d.lng)} title={`Mapa de ${d.name}, ${d.city}`} loading="lazy" tabIndex={-1} />
+              <a
+                className="dealer-map-link"
+                href={`https://www.openstreetmap.org/?mlat=${d.lat}&mlon=${d.lng}#map=17/${d.lat}/${d.lng}`}
+                target="_blank"
+                rel="noopener"
+                aria-label={`Abrir el mapa de ${d.name} en OpenStreetMap`}
+              />
+              <span className="foto-credito dealer-map-credito">
+                © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>
+              </span>
               {d.distanciaKm !== null && (
                 <span className="dealer-distancia">{formatDistancia(d.distanciaKm)}</span>
               )}
@@ -122,7 +132,10 @@ export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
                 <div className="dealer-row"><span className="dealer-ico">☎</span><a href={`tel:${d.tel}`} className="dealer-tel">{d.telFmt}</a></div>
                 <div className="dealer-row"><span className="dealer-ico">◷</span>{d.hours}</div>
               </div>
-              <a href="https://www.ferrari.com/es-ES/dealers" target="_blank" rel="noopener" className="btn btn-o btn-sm">VER EN FERRARI.COM ↗</a>
+              <div className="dealer-acciones">
+                <a href={d.web} target="_blank" rel="noopener" className="btn btn-o btn-sm">WEB OFICIAL ↗</a>
+                <a href={`https://www.google.com/maps/dir/?api=1&destination=${d.lat},${d.lng}`} target="_blank" rel="noopener" className="dealer-como">CÓMO LLEGAR ↗</a>
+              </div>
             </div>
           </div>
         ))}
