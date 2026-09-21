@@ -640,19 +640,22 @@ a:hover .foto img,.foto:hover img{filter:none;transform:scale(1.03)}
 .dealer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
 .dealer-card{background:var(--fce-grafito)}
 .dealer-card:hover{border-color:var(--paper)}
-.dealer-map{position:relative;height:300px;overflow:hidden;background:var(--fce-grafito);display:block}
+.mapa{position:relative;overflow:hidden;background:var(--fce-grafito);display:block}
+.dealer-map{height:300px}
+.contacto-mapa{height:320px;border:1px solid var(--p10);margin-top:1px}
 /* El iframe sobresale 56px por cada lado: asi los controles de zoom, que van
    inertes, quedan fuera de la vista y el marcador sigue centrado. */
-.dealer-map iframe{position:absolute;top:-56px;left:-56px;width:calc(100% + 112px);height:calc(100% + 112px);border:0;pointer-events:none}
-.dealer-map-link{position:absolute;inset:0;z-index:1}
-.dealer-map-link:focus-visible{outline-offset:-4px}
-.dealer-map-credito{z-index:2}
+.mapa iframe{position:absolute;top:-56px;left:-56px;width:calc(100% + 112px);height:calc(100% + 112px);border:0;pointer-events:none}
+.mapa-link{position:absolute;inset:0;z-index:1}
+.mapa-link:focus-visible{outline-offset:-4px}
+.mapa-credito{z-index:2}
 .dealer-distancia{z-index:2}
 .dealer-body{padding:clamp(1.5rem,3vw,2rem)}
 .dealer-name{font-size:1.5rem;line-height:1.1;color:var(--paper)}
 .dealer-row{font-family:var(--fg);font-size:.9375rem;color:var(--p70);letter-spacing:0;text-transform:none}
 .dealer-ico{color:var(--rosso-t)}
 .dealer-acciones{display:flex;flex-wrap:wrap;gap:1rem 1.75rem;align-items:center}
-.dealer-como{font:700 .75rem/1 var(--fg);font-stretch:75%;letter-spacing:.18em;text-transform:uppercase;color:var(--paper);padding:.5rem 0;border-bottom:1px solid var(--rosso-t);transition:color var(--fce-t-rapido)}
-.dealer-como:hover{color:var(--rosso-t)}
-@media(max-width:900px){.dealer-grid{grid-template-columns:minmax(0,1fr)}.dealer-map{height:240px}}
+.como-llegar{font:700 .75rem/1 var(--fg);font-stretch:75%;letter-spacing:.18em;text-transform:uppercase;color:var(--paper);padding:.5rem 0;border-bottom:1px solid var(--rosso-t);transition:color var(--fce-t-rapido)}
+.como-llegar:hover{color:var(--rosso-t)}
+.contacto-como{display:inline-block;margin-top:1.25rem}
+@media(max-width:900px){.dealer-grid{grid-template-columns:minmax(0,1fr)}.dealer-map{height:240px}.contacto-mapa{height:260px}}

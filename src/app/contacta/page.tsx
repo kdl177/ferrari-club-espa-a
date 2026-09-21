@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import Breadcrumb from '@/components/Breadcrumb';
 import ContactForm from '@/components/ContactForm';
+import MapaOSM from '@/components/MapaOSM';
 
 export const metadata: Metadata = {
   title: 'Contacta — Ferrari Club España',
@@ -67,29 +68,9 @@ export default function ContactaPage() {
                 </div>
               </div>
 
-              <div className="map-placeholder" data-r="right">
-                <svg width="100%" height="100%" viewBox="0 0 600 260" preserveAspectRatio="xMidYMid slice" aria-label="Mapa de ubicación — Calle Constancia 41, Madrid">
-                  <rect width="100%" height="100%" fill="#0A0A0A" />
-                  <g stroke="rgba(218,41,28,.06)" fill="none" strokeWidth="1.5">
-                    <line x1="0" y1="65" x2="600" y2="65" /><line x1="0" y1="130" x2="600" y2="130" />
-                    <line x1="0" y1="195" x2="600" y2="195" />
-                    <line x1="150" y1="0" x2="150" y2="260" /><line x1="300" y1="0" x2="300" y2="260" /><line x1="450" y1="0" x2="450" y2="260" />
-                  </g>
-                  <g fill="rgba(218,41,28,.06)" stroke="rgba(218,41,28,.1)" strokeWidth="1">
-                    <rect x="80" y="90" width="60" height="40" rx="2" /><rect x="155" y="100" width="80" height="55" rx="2" />
-                    <rect x="250" y="85" width="55" height="45" rx="2" /><rect x="320" y="95" width="90" height="40" rx="2" />
-                    <rect x="420" y="90" width="70" height="50" rx="2" /><rect x="80" y="145" width="120" height="35" rx="2" />
-                    <rect x="220" y="140" width="65" height="40" rx="2" /><rect x="300" y="145" width="100" height="35" rx="2" />
-                    <rect x="420" y="148" width="75" height="32" rx="2" />
-                  </g>
-                  <rect x="0" y="130" width="600" height="20" fill="rgba(0,0,0,.5)" stroke="none" />
-                  <line x1="0" y1="140" x2="600" y2="140" stroke="rgba(255,255,255,.05)" strokeWidth="1" strokeDasharray="20 10" />
-                  <circle cx="300" cy="130" r="10" fill="rgba(218,41,28,.8)" stroke="none" />
-                  <circle cx="300" cy="130" r="4" fill="white" opacity=".9" />
-                  <circle cx="300" cy="130" r="18" fill="rgba(218,41,28,.2)" stroke="rgba(218,41,28,.5)" strokeWidth="1" />
-                </svg>
-                <div style={{ position: 'absolute', bottom: '1rem', right: '1rem', fontFamily: 'var(--fm)', fontSize: '.58rem', color: 'rgba(218,41,28,.5)', letterSpacing: '.1em' }}>40.4290°N · 3.6844°O · BARRIO SALAMANCA</div>
-                <a href="https://maps.google.com/?q=Calle+Constancia+41,+28002+Madrid" target="_blank" rel="noopener" style={{ position: 'absolute', bottom: '1rem', left: '1rem', fontFamily: 'var(--fm)', fontSize: '.72rem', letterSpacing: '.1em', color: 'var(--red)', textDecoration: 'none', background: 'rgba(0,0,0,.85)', padding: '.55rem 1rem', border: '1px solid rgba(218,41,28,.3)', minHeight: '44px', display: 'flex', alignItems: 'center' }}>ABRIR EN MAPS ↗</a>
+              <div data-r="right">
+                <MapaOSM className="contacto-mapa" lat={40.44295} lng={-3.67197} titulo="Mapa de la sede del Ferrari Club España, Calle Constancia 41, Madrid" />
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Calle+Constancia+41,+28002+Madrid" target="_blank" rel="noopener" className="como-llegar contacto-como">CÓMO LLEGAR ↗</a>
               </div>
 
               <div className="social-row" data-r="right">
