@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 const MENU_ITEMS = [
@@ -31,6 +31,9 @@ const MENU_PREVIEWS = [
   { bg: '#0B0B0C', label: 'CONTACTA', size: '5vw', color: 'rgba(243,238,228,.06)' },
 ];
 
+const COLUMNAS = 5;
+const CUBRIR_MS = 380 + (COLUMNAS - 1) * 45;
+
 function NavLogo() {
   return (
     <Link href="/" className="nav-logo" aria-label="Ferrari Club España — Inicio">
@@ -46,21 +49,16 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activePreview, setActivePreview] = useState(0);
-  const [transitioning, setTransitioning] = useState<'in' | 'out' | 'idle'>('in');
+  const [cubierto, setCubierto] = useState(false);
+  const [navegando, startNav] = useTransition();
+  const [navegandoPrevio, setNavegandoPrevio] = useState(false);
   const [sttVisible, setSttVisible] = useState(false);
-  const pendingHrefRef = useRef<string | null>(null);
 
   const normPath = (pathname || '/').replace(/\/$/, '') || '/';
 
   // El panel de gestion tiene su propia cabecera y navegacion: no debe
   // arrastrar el cromo de la web publica (nav fija, footer, botones deco).
   const esAdminPanel = normPath.startsWith('/socios/admin');
-
-  useEffect(() => {
-    setTransitioning('in');
-    const t = setTimeout(() => setTransitioning('idle'), 700);
-    return () => clearTimeout(t);
-  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -71,19 +69,47 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    if (!pendingHrefRef.current) return;
-    if (transitioning !== 'idle') return;
-  }, [transitioning]);
-
-  function navigate(href: string) {
-    if (href === pathname) return;
-    setTransitioning('out');
-    pendingHrefRef.current = href;
-    setTimeout(() => {
-      router.push(href);
-    }, 480);
+  // El telon se levanta cuando la ruta nueva ya esta pintada, no cuando cambia
+  // el pathname: una redireccion a la misma pagina lo dejaria echado.
+  if (navegandoPrevio !== navegando) {
+    setNavegandoPrevio(navegando);
+    if (!navegando) setCubierto(false);
   }
+
+  // Un solo punto de entrada para todos los enlaces internos, esten en el
+  // menu o dentro de una pagina. En captura, para adelantarse a next/link.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element).closest('a');
+      if (!a || !a.href || a.target || a.hasAttribute('download')) return;
+      const url = new URL(a.href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (url.pathname.startsWith('/api/') || /\.[a-z0-9]+$/i.test(url.pathname)) return;
+      const limpio = (r: string) => r.replace(/\/$/, '') || '/';
+      const aqui = limpio(window.location.pathname);
+      if (aqui.startsWith('/socios/admin')) return;
+      if (limpio(url.pathname) === aqui) {
+        if (url.hash || url.search !== window.location.search) return;
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      e.preventDefault();
+      if (cubierto) return;
+      const href = url.pathname + url.search + url.hash;
+      setMenuOpen(false);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        router.push(href);
+        return;
+      }
+      setCubierto(true);
+      router.prefetch(href);
+      setTimeout(() => startNav(() => router.push(href)), CUBRIR_MS);
+    };
+    document.addEventListener('click', onClick, true);
+    return () => document.removeEventListener('click', onClick, true);
+  }, [cubierto, router]);
 
   function isActive(href?: string) {
     if (!href) return false;
@@ -176,35 +202,30 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       <a className="skip-link" href="#main-content">Saltar al contenido principal</a>
 
       <div id="sp" aria-hidden="true" />
-      <div
-        id="pt"
-        aria-hidden="true"
-        style={{
-          transform: transitioning === 'out' ? 'scaleY(1)' : 'scaleY(0)',
-          transformOrigin: transitioning === 'out' ? 'bottom' : 'top',
-          transition: 'transform .6s',
-          pointerEvents: transitioning === 'out' ? 'all' : 'none',
-        }}
-      />
+      <div id="pt" className={cubierto ? 'on' : ''} aria-hidden="true">
+        {Array.from({ length: COLUMNAS }, (_, i) => (
+          <span key={i} style={{ ['--i' as string]: i }} />
+        ))}
+      </div>
 
       {!esAdminPanel && (
       <header>
         <nav id="nav" className={scrolled ? 'sc' : ''} role="navigation">
           <NavLogo />
           <div className="nav-links">
-            <a href="/" className={`nav-link${normPath === '/' ? ' active' : ''}`} onClick={(e) => { e.preventDefault(); navigate('/'); }}>Inicio</a>
-            <a href="/noticias/" className={`nav-link${isActive('/noticias/') ? ' active' : ''}`} onClick={(e) => { e.preventDefault(); navigate('/noticias/'); }}>Noticias</a>
+            <a href="/" className={`nav-link${normPath === '/' ? ' active' : ''}`}>Inicio</a>
+            <a href="/noticias/" className={`nav-link${isActive('/noticias/') ? ' active' : ''}`}>Noticias</a>
             <div className="nav-drop nav-link" tabIndex={0}>
               Club
               <div className="nav-drop-menu">
-                <a href="/club/" className="nav-drop-item" onClick={(e) => { e.preventDefault(); navigate('/club/'); }}>Nuestro Club</a>
-                <a href="/club/hazte-socio/" className="nav-drop-item" onClick={(e) => { e.preventDefault(); navigate('/club/hazte-socio/'); }}>Hazte Socio</a>
+                <a href="/club/" className="nav-drop-item">Nuestro Club</a>
+                <a href="/club/hazte-socio/" className="nav-drop-item">Hazte Socio</a>
               </div>
             </div>
-            <a href="/eventos/" className={`nav-link${isActive('/eventos/') ? ' active' : ''}`} onClick={(e) => { e.preventDefault(); navigate('/eventos/'); }}>Eventos</a>
-            <a href="/concesionarios/" className={`nav-link${isActive('/concesionarios/') ? ' active' : ''}`} onClick={(e) => { e.preventDefault(); navigate('/concesionarios/'); }}>Concesionarios</a>
-            <a href="/contacta/" className={`nav-link${isActive('/contacta/') ? ' active' : ''}`} onClick={(e) => { e.preventDefault(); navigate('/contacta/'); }}>Contacta</a>
-            <a href="/socios/" className="nav-link-cta" onClick={(e) => { e.preventDefault(); navigate('/socios/'); }}>Área Socios</a>
+            <a href="/eventos/" className={`nav-link${isActive('/eventos/') ? ' active' : ''}`}>Eventos</a>
+            <a href="/concesionarios/" className={`nav-link${isActive('/concesionarios/') ? ' active' : ''}`}>Concesionarios</a>
+            <a href="/contacta/" className={`nav-link${isActive('/contacta/') ? ' active' : ''}`}>Contacta</a>
+            <a href="/socios/" className="nav-link-cta">Área Socios</a>
           </div>
           <button
             className={`nav-mbtn${menuOpen ? ' open' : ''}`}
@@ -238,7 +259,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
                     <a
                       key={s.href}
                       href={s.href}
-                      onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigate(s.href); }}
                     >
                       {s.label}
                     </a>
@@ -251,7 +271,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
                 className={`mi${isActive(item.href) ? ' active' : ''}`}
                 href={item.href}
                 onMouseEnter={() => setActivePreview(i)}
-                onClick={(e) => { e.preventDefault(); setMenuOpen(false); navigate(item.href!); }}
               >
                 <span className="mi-n">{item.n}</span>{item.label}
               </a>
@@ -284,13 +303,13 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(155px,1fr))', gap: '3rem', marginBottom: '4rem' }}>
             <div>
               <span className="footer-col-title">NAVEGACIÓN</span>
-              <a href="/" className="footer-link" onClick={(e) => { e.preventDefault(); navigate('/'); }}>Inicio</a>
-              <a href="/noticias/" className="footer-link" onClick={(e) => { e.preventDefault(); navigate('/noticias/'); }}>Noticias</a>
-              <a href="/club/" className="footer-link" onClick={(e) => { e.preventDefault(); navigate('/club/'); }}>Nuestro Club</a>
-              <a href="/club/hazte-socio/" className="footer-link" onClick={(e) => { e.preventDefault(); navigate('/club/hazte-socio/'); }}>Hazte Socio</a>
-              <a href="/concesionarios/" className="footer-link" onClick={(e) => { e.preventDefault(); navigate('/concesionarios/'); }}>Concesionarios</a>
-              <a href="/socios/" className="footer-link" onClick={(e) => { e.preventDefault(); navigate('/socios/'); }}>Área Socios</a>
-              <a href="/contacta/" className="footer-link" onClick={(e) => { e.preventDefault(); navigate('/contacta/'); }}>Contacta</a>
+              <a href="/" className="footer-link">Inicio</a>
+              <a href="/noticias/" className="footer-link">Noticias</a>
+              <a href="/club/" className="footer-link">Nuestro Club</a>
+              <a href="/club/hazte-socio/" className="footer-link">Hazte Socio</a>
+              <a href="/concesionarios/" className="footer-link">Concesionarios</a>
+              <a href="/socios/" className="footer-link">Área Socios</a>
+              <a href="/contacta/" className="footer-link">Contacta</a>
             </div>
             <div>
               <span className="footer-col-title">FERRARI OFICIAL</span>
@@ -320,7 +339,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           <div className="rl-g" style={{ marginBottom: '2rem' }} />
           <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
             <span style={{ fontFamily: 'var(--fm)', fontSize: '.7rem', color: 'var(--w40)' }}>&copy; 2026 FERRARI CLUB ESPAÑA · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
-            <a href="/privacidad/" className="footer-priv" onClick={(e) => { e.preventDefault(); navigate('/privacidad/'); }}>Política de Privacidad</a>
+            <a href="/privacidad/" className="footer-priv">Política de Privacidad</a>
           </div>
           <div className="footer-brand" aria-hidden="true">FERRARI</div>
         </div>
