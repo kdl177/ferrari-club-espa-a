@@ -98,8 +98,8 @@ export default function Home() {
 
         <div className="hero-content">
           <p className="h-eye" id="h-eye">CLUB OFICIAL · DESDE 1988 · MÁS DE 200 SOCIOS</p>
-          <h1 className="h-t" id="h-t"><span className="sr">Ferrari Club España. </span>Tu sitio en<br />la <em>parrilla.</em></h1>
-          <p className="h-s" id="h-s">Club de Propietarios y Apasionados de Ferrari. Track days, rutas, Fórmula 1, Maranello y una cena de gala al año. Siempre hay un cajón para el próximo socio.</p>
+          <h1 className="h-t" id="h-t"><span className="sr">Ferrari Club España. </span>Pasión por<br /><em>Il Cavallino.</em></h1>
+          <p className="h-s" id="h-s">Club de Propietarios y Apasionados de Ferrari. Track days, rutas, Fórmula 1, visitas a Maranello y una cena de gala al año.</p>
           <div className="h-cta" id="h-cta">
             <a href="/club/hazte-socio/" className="btn btn-p btn-lg" data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
             <a href="/eventos/" className="btn btn-o btn-lg">VER CALENDARIO</a>
