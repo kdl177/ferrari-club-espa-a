@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
+import Foto from '@/components/Foto';
 
 export const metadata: Metadata = {
   title: 'Nuestro Club — Ferrari Club España',
@@ -75,6 +76,7 @@ export default function ClubPage() {
               <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginTop: '1rem' }}>Nuestra misión es reunir a los propietarios y amantes de Ferrari, organizar eventos exclusivos, fomentar el automovilismo deportivo y mantener viva la llama de la más apasionante marca de automóviles del mundo.</p>
             </div>
             <div data-r="left">
+              <Foto id="museo-maranello" className="club-foto" enlace />
               <div style={{ position: 'relative', padding: '3rem', border: '1px solid var(--w08)', background: 'var(--black)' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'var(--red)', boxShadow: '0 0 12px var(--red)' }} />
                 <p style={{ fontFamily: 'var(--fe)', fontStyle: 'italic', fontSize: '1.1rem', color: 'var(--w90)', lineHeight: 1.85, marginBottom: '2rem' }}>&ldquo;Si eres propietario de un Ferrari y deseas compartir con nosotros tu pasión por <em>Il Cavallino</em>, hazte Socio del Ferrari Club España.&rdquo;</p>

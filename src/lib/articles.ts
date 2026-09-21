@@ -1,5 +1,8 @@
+import type { FotoId } from './fotos';
+
 export type Article = {
   slug: string;
+  foto: FotoId;
   title: string;
   metaTitle: string;
   metaDesc: string;
@@ -24,6 +27,7 @@ export type Article = {
 export const ARTICLES: Article[] = [
   {
     slug: 'gp-paises-bajos',
+    foto: 'f1-zandvoort-2024',
     title: 'GP de Países Bajos de F1 — Previo: Ferrari saldrá a Zandvoort con la intención de seguir mejorando',
     metaTitle: 'GP Países Bajos — Ferrari Club España',
     metaDesc: 'GP de Países Bajos de F1 — Ferrari saldrá a Zandvoort con la intención de seguir mejorando. Ferrari Club España.',
@@ -53,6 +57,7 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: '499p-monza',
+    foto: '499p-spa-2023',
     title: 'Ferrari 499P domina en Monza y lidera el Campeonato Mundial de Resistencia',
     metaTitle: '499P Monza — Ferrari Club España',
     metaDesc: 'Ferrari 499P domina en Monza y lidera el Campeonato Mundial de Resistencia. Ferrari Club España.',
@@ -90,6 +95,7 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: 'sf90-xx-stradale',
+    foto: 'sf90-xx-stradale',
     title: 'Ferrari SF90 XX Stradale: el Ferrari de calle más potente de toda la historia de la marca',
     metaTitle: 'SF90 XX Stradale — Ferrari Club España',
     metaDesc: 'Ferrari SF90 XX Stradale: 1.030 CV, el Ferrari de calle más potente de la historia. Ferrari Club España.',

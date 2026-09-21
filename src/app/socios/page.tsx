@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import HalftoneImage from '@/components/HalftoneImage';
 import LoginForm from '@/components/LoginForm';
 
 export const metadata: Metadata = {
@@ -36,30 +37,8 @@ export default function SociosPage() {
         </div>
 
         <div className="login-visual" aria-hidden="true">
-          <svg width="100%" height="100%" viewBox="0 0 760 900" preserveAspectRatio="xMidYMid slice" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}>
-            <defs>
-              <radialGradient id="lg" cx="50%" cy="45%" r="65%"><stop offset="0%" stopColor="#0A0A0A" /><stop offset="100%" stopColor="#0A0A0A" /></radialGradient>
-              <radialGradient id="lg2" cx="50%" cy="50%" r="35%"><stop offset="0%" stopColor="#330000" stopOpacity=".4" /><stop offset="100%" stopColor="transparent" stopOpacity="0" /></radialGradient>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#lg)" />
-            <rect width="100%" height="100%" fill="url(#lg2)" />
-            <g stroke="rgba(218,41,28,.04)" fill="none" strokeWidth=".8">
-              <line x1="0" y1="150" x2="760" y2="150" /><line x1="0" y1="300" x2="760" y2="300" />
-              <line x1="0" y1="450" x2="760" y2="450" /><line x1="0" y1="600" x2="760" y2="600" />
-              <line x1="0" y1="750" x2="760" y2="750" />
-              <line x1="190" y1="0" x2="190" y2="900" /><line x1="380" y1="0" x2="380" y2="900" /><line x1="570" y1="0" x2="570" y2="900" />
-            </g>
-            <text x="380" y="480" fontFamily="Archivo,sans-serif" fontSize="160" fill="rgba(218,41,28,.06)" textAnchor="middle" letterSpacing="5" transform="rotate(-15 380 450)">F</text>
-            <text x="380" y="380" fontFamily="Archivo,sans-serif" fontSize="18" fill="rgba(255,255,255,.08)" textAnchor="middle" letterSpacing="8">ÁREA PRIVADA DE SOCIOS</text>
-            <g opacity=".25" fill="none">
-              <rect x="60" y="580" width="180" height="100" stroke="rgba(218,41,28,.3)" rx="2" />
-              <rect x="260" y="580" width="180" height="100" stroke="rgba(255,255,255,.1)" rx="2" />
-              <rect x="460" y="580" width="220" height="100" stroke="rgba(218,41,28,.15)" rx="2" />
-              <rect x="60" y="700" width="180" height="100" stroke="rgba(255,255,255,.08)" rx="2" />
-              <rect x="260" y="700" width="180" height="100" stroke="rgba(218,41,28,.2)" rx="2" />
-            </g>
-            <text x="380" y="850" fontFamily="Archivo,sans-serif" fontSize="10" fill="rgba(255,255,255,.08)" textAnchor="middle" letterSpacing="4">FERRARI CLUB ESPAÑA · EST. 1988</text>
-          </svg>
+          <HalftoneImage className="login-ht" src="/fotos/interior-california.webp" alt="" cell={6} intensity={0.55} side="right" position="50% 50%" dim={0.3} />
+          <p className="foto-credito login-credito">Foto: andy_carter · CC BY 2.0 · adaptada</p>
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2rem', pointerEvents: 'none' }}>
             <div style={{ fontFamily: 'var(--fd)', fontSize: '.65rem', letterSpacing: '.3em', color: 'rgba(218,41,28,.5)', textAlign: 'center' }}>ÁREA EXCLUSIVA</div>
             <div style={{ fontFamily: 'var(--fd)', fontSize: 'clamp(2rem,5vw,3.5rem)', letterSpacing: '.15em', color: 'rgba(255,255,255,.08)', textAlign: 'center', textTransform: 'uppercase' }}>SÓLO SOCIOS</div>

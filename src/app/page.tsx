@@ -1,5 +1,6 @@
 import HomeInteractions from '@/components/HomeInteractions';
 import HalftoneImage from '@/components/HalftoneImage';
+import Foto from '@/components/Foto';
 
 const MACHINES = [
   {
@@ -123,20 +124,21 @@ export default function Home() {
       <section className="band" aria-label="Il Cavallino">
         <HalftoneImage
           className="band-ht"
-          src="/ferrari-hero.jpg"
-          alt="Detalle del escudo Cavallino Rampante sobre la carrocería de un Ferrari"
-          cell={7}
-          intensity={0.7}
+          src="/fotos/cavalcade-dinos.webp"
+          alt="Fila de Ferrari Dino rojos aparcados en una concentración de Ferrari"
+          cell={5}
+          intensity={0.45}
           side="left"
-          position="52% 42%"
+          position="50% 55%"
           focus={[0.34, 0.5]}
-          dim={0.34}
+          dim={0.18}
         />
         <div className="band-meta" aria-hidden="true">
-          <span>MARANELLO</span>
+          <span>CAVALCADE</span>
           <span>—</span>
-          <span>IL CAVALLINO RAMPANTE</span>
+          <span>50 AÑOS DE FERRARI · REINO UNIDO</span>
         </div>
+        <p className="foto-credito band-credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Cavalcade_of_Ferraris_at_the_Liner_Terminal_celebrating_50_years_of_Ferrari_in_the_UK.jpg" target="_blank" rel="noopener">Peter Gill</a> · CC BY 3.0 · adaptada</p>
       </section>
 
       <section className="machine-wrap" aria-label="Modelos Ferrari">
@@ -200,14 +202,7 @@ export default function Home() {
           </div>
           <div className="news-layout">
             <a className="news-card" href="/noticias/gp-paises-bajos/" data-r="right">
-              <div className="news-card-img" style={{ aspectRatio: '16/8' }}>
-                <svg width="100%" height="100%" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
-                  <defs><radialGradient id="ng0" cx="50%" cy="50%" r="65%"><stop offset="0%" stopColor="#0A0A0A" /><stop offset="100%" stopColor="#0A0A0A" /></radialGradient></defs>
-                  <rect width="100%" height="100%" fill="url(#ng0)" />
-                  <text x="400" y="225" fontFamily="Archivo" fontSize="80" fill="rgba(218,41,28,.08)" textAnchor="middle" letterSpacing="5">F1</text>
-                  <g stroke="rgba(218,41,28,.03)" fill="none"><line x1="0" y1="133" x2="800" y2="133" /><line x1="0" y1="267" x2="800" y2="267" /></g>
-                </svg>
-              </div>
+              <div className="news-card-img" style={{ aspectRatio: '16/8' }}><Foto id="f1-zandvoort-2024" /></div>
               <div>
                 <span className="news-card-cat">FÓRMULA 1</span>
                 <h2 className="news-card-title" style={{ fontSize: '1.45rem' }}>GP Países Bajos — Ferrari saldrá a Zandvoort a seguir mejorando</h2>
@@ -217,18 +212,13 @@ export default function Home() {
             </a>
             <div className="news-side">
               {[
-                { href: '/noticias/499p-monza/', tag: 'WEC', cat: 'ENDURANCE', title: 'Ferrari 499P domina en Monza', date: '12 AGO 2026', delay: 0 },
-                { href: '/noticias/sf90-xx-stradale/', tag: 'SF90 XX', cat: 'MODELOS', title: 'SF90 XX Stradale: el más potente', date: '08 AGO 2026', delay: 0.08 },
-                { href: '/noticias/', tag: 'CAVALCADE', cat: 'CLUB', title: 'Cavalcade Classiche 2026 — Italia', date: '05 AGO 2026', delay: 0.16 },
-                { href: '/noticias/', tag: 'F1', cat: 'FÓRMULA 1', title: 'Sainz remonta en Hungría', date: '28 JUL 2026', delay: 0.24 },
+                { href: '/noticias/499p-monza/', foto: '499p-spa-2023' as const, tag: 'WEC', cat: 'ENDURANCE', title: 'Ferrari 499P domina en Monza', date: '12 AGO 2026', delay: 0 },
+                { href: '/noticias/sf90-xx-stradale/', foto: 'sf90-xx-stradale' as const, tag: 'SF90 XX', cat: 'MODELOS', title: 'SF90 XX Stradale: el más potente', date: '08 AGO 2026', delay: 0.08 },
+                { href: '/noticias/', foto: 'cavalcade-pista' as const, tag: 'CAVALCADE', cat: 'CLUB', title: 'Cavalcade Classiche 2026 — Italia', date: '05 AGO 2026', delay: 0.16 },
+                { href: '/noticias/', foto: 'sainz-china-2024' as const, tag: 'F1', cat: 'FÓRMULA 1', title: 'Sainz remonta en Hungría', date: '28 JUL 2026', delay: 0.24 },
               ].map((n) => (
                 <a className="news-card" href={n.href} data-r="left" style={{ display: 'flex', gap: '1rem', transitionDelay: `${n.delay}s` }} key={n.title}>
-                  <div className="news-card-img" style={{ width: '110px', flexShrink: 0, height: '75px', aspectRatio: 'unset' }}>
-                    <svg width="100%" height="100%" viewBox="0 0 110 75" aria-hidden="true">
-                      <rect width="100%" height="100%" fill="#0A0A0A" />
-                      <text x="55" y="42" fontFamily="Archivo" fontSize="10" fill="rgba(218,41,28,.14)" textAnchor="middle">{n.tag}</text>
-                    </svg>
-                  </div>
+                  <div className="news-card-img" style={{ width: '110px', flexShrink: 0, height: '75px', aspectRatio: 'unset' }}><Foto id={n.foto} mini /></div>
                   <div><span className="news-card-cat">{n.cat}</span><h3 className="news-card-title" style={{ fontSize: '.88rem' }}>{n.title}</h3><div className="news-card-date">{n.date}</div></div>
                 </a>
               ))}
@@ -250,15 +240,16 @@ export default function Home() {
           </div>
           <div className="feature-img" data-r="left">
             <HalftoneImage
-              src="/ferrari-hero.jpg"
-              alt="Llanta y paso de rueda de un Ferrari Testarossa"
+              src="/fotos/488-challenge-amarillo.webp"
+              alt="Ferrari 488 Challenge amarillo con el dorsal 80 en un tramo de circuito"
               cell={5}
-              intensity={0.55}
+              intensity={0.5}
               side="right"
-              position="72% 70%"
+              position="45% 50%"
               focus={[0.55, 0.5]}
-              dim={0.12}
+              dim={0}
             />
+            <p className="foto-credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Ferrari_488_Challenge_(35590398851).jpg" target="_blank" rel="noopener">Neil</a> · CC BY 2.0 · adaptada</p>
           </div>
         </div>
       </section>

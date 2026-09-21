@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 import { ARTICLES, getArticle } from '@/lib/articles';
+import Foto from '@/components/Foto';
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -29,14 +30,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <div className="art-hero">
-        <svg width="100%" height="100%" viewBox="0 0 1920 600" preserveAspectRatio="xMidYMid slice" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} aria-hidden="true">
-          <defs><radialGradient id="ah" cx="50%" cy="40%" r="70%"><stop offset="0%" stopColor={article.heroBg} /><stop offset="100%" stopColor="#0A0A0A" /></radialGradient></defs>
-          <rect width="100%" height="100%" fill="url(#ah)" />
-          <text x="960" y="330" fontFamily="Archivo,sans-serif" fontSize={article.heroFontSize} fill="rgba(218,41,28,.05)" textAnchor="middle" letterSpacing="10">{article.heroLabel}</text>
-          <g stroke="rgba(218,41,28,.03)" strokeWidth="1" fill="none">
-            <line x1="0" y1="200" x2="1920" y2="200" /><line x1="0" y1="400" x2="1920" y2="400" />
-          </g>
-        </svg>
+        <Foto id={article.foto} className="art-hero-foto" eager enlace />
         <div className="art-hero-ov" />
         <div className="cnt" style={{ position: 'relative', zIndex: 2, paddingBottom: '3rem', width: '100%' }}>
           <div style={{ marginBottom: '1.25rem' }}>
@@ -71,12 +65,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </div>
           ) : (
             <div className="art-img-block" data-r="up">
-              <svg width="100%" viewBox="0 0 780 380" style={{ display: 'block', width: '100%' }} aria-label={article.imageCaption} role="img">
-                <rect width="100%" height="100%" fill="#0A0A0A" />
-                <defs><radialGradient id="aig" cx="50%" cy="50%" r="60%"><stop offset="0%" stopColor={article.heroBg} /><stop offset="100%" stopColor="#0A0A0A" /></radialGradient></defs>
-                <rect width="100%" height="100%" fill="url(#aig)" />
-                <text x="390" y="205" fontFamily="Archivo" fontSize="45" fill="rgba(218,41,28,.06)" textAnchor="middle" letterSpacing="3">{article.imageLabel}</text>
-              </svg>
+              <Foto id={article.foto} className="art-foto" enlace />
               {article.imageCaption && <p className="art-caption">{article.imageCaption}</p>}
             </div>
           )}
@@ -114,12 +103,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <div className="related-grid">
             {related.map((r) => (
               <a className="news-card" href={`/noticias/${r.slug}/`} data-r="up" key={r.slug}>
-                <div className="news-card-img"><svg width="100%" height="100%" viewBox="0 0 400 200"><rect width="100%" height="100%" fill={r.heroBg} /><text x="200" y="110" fontFamily="Archivo" fontSize="34" fill="rgba(218,41,28,.07)" textAnchor="middle">{r.heroLabel}</text></svg></div>
+                <div className="news-card-img"><Foto id={r.foto} /></div>
                 <div><span className="news-card-cat">{r.cat}</span><h3 className="news-card-title">{r.title}</h3><div className="news-card-date">{r.date}</div></div>
               </a>
             ))}
             <a className="news-card" href="/noticias/" data-r="scale">
-              <div className="news-card-img"><svg width="100%" height="100%" viewBox="0 0 400 200"><rect width="100%" height="100%" fill="#0d0d0d" /><text x="200" y="110" fontFamily="Archivo" fontSize="28" fill="rgba(255,255,255,.04)" textAnchor="middle">NOTICIAS</text></svg></div>
+              <div className="news-card-img"><Foto id="cavalcade-pista" /></div>
               <div><span className="news-card-cat">TODAS LAS NOTICIAS</span><h3 className="news-card-title">Ver todas las noticias de Ferrari Club España</h3><div className="news-card-date">ACTUALIZADO DIARIAMENTE</div></div>
             </a>
           </div>
