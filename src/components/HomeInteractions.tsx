@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import Preloader from './Preloader';
 
 type GsapLike = typeof import('gsap').gsap;
-type STLike = typeof import('gsap/ScrollTrigger').ScrollTrigger;
 
 export default function HomeInteractions() {
   const [preDone, setPreDone] = useState(false);
@@ -25,29 +24,9 @@ export default function HomeInteractions() {
       .to('#h-cta', { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=.35');
   }
 
-  function initScrollScenes() {
-    const gsap = (window as unknown as { gsap?: GsapLike }).gsap;
-    const ST = (window as unknown as { ScrollTrigger?: STLike }).ScrollTrigger;
-    if (!gsap || !ST) return;
-    gsap.registerPlugin(ST);
-    document.querySelectorAll('.ew').forEach((w, i) => {
-      ST.create({
-        trigger: w,
-        start: 'top 88%',
-        once: true,
-        onEnter: () => {
-          if (i === 2) gsap.to(w, { opacity: 0.6, duration: 0.8 });
-        },
-      });
-    });
-  }
-
   useEffect(() => {
     if (!preDone) return;
     playHero();
-    initScrollScenes();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preDone]);
 
   useEffect(() => {

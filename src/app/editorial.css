@@ -9,7 +9,7 @@
   --rosso-t:var(--fce-rosso-claro);
   --p70:#CFCAC0;
   --p45:var(--fce-pit);
-  --p18:#3D3D42;
+  --p18:#544B4F;
   --p10:var(--fce-linea);
   --fg:var(--fce-f-circuito);
   --gala:var(--fce-f-gala);
@@ -23,7 +23,7 @@
   --red-05:rgba(213,38,27,.05);
 
   --black:var(--fce-asfalto); --b95:var(--fce-asfalto); --b90:var(--fce-asfalto); --b85:var(--fce-grafito);
-  --b80:var(--fce-grafito); --b70:#1D1D21; --b60:#242428; --graph:var(--fce-linea);
+  --b80:var(--fce-grafito); --b70:#2C2629; --b60:#332C2F; --graph:var(--fce-linea);
 
   --gold:var(--fce-ambar); --gold-l:var(--fce-ambar); --gold-d:#B98A14;
   --gold-30:rgba(240,179,35,.3); --gold-10:rgba(240,179,35,.1);
@@ -31,8 +31,8 @@
 
   --white:var(--fce-marfil);
   --w90:#E9E4DA; --w70:#CFCAC0; --w60:#B9B4AA; --w40:var(--fce-pit);
-  --w30:var(--fce-pit); --w20:#77736B; --w10:#3D3D42; --w08:var(--fce-linea);
-  --w05:#202023; --w03:#151517;
+  --w30:var(--fce-pit); --w20:#77736B; --w10:#544B4F; --w08:var(--fce-linea);
+  --w05:#2A2427; --w03:#211C1E;
   --grey:var(--fce-pit); --grey-d:#77736B; --grey-l:#B9B4AA;
 
   --fd:var(--fce-f-gala);
@@ -140,7 +140,7 @@ body::after{display:none}
 #nav{padding:1.5rem 3rem;border-bottom:1px solid transparent}
 #nav::before{
   content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(11,11,12,.92),rgba(11,11,12,0));
+  background:linear-gradient(to bottom,rgba(26,22,24,.92),rgba(26,22,24,0));
   transition:opacity .4s;
 }
 #nav.sc::before{opacity:0}
@@ -164,8 +164,8 @@ body::after{display:none}
 .hero-ht::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
   background:
-    linear-gradient(to bottom,var(--ink) 0%,rgba(11,11,12,.55) 9%,rgba(11,11,12,0) 20%),
-    linear-gradient(90deg,var(--ink) 0%,var(--ink) 30%,rgba(11,11,12,0) 58%);
+    linear-gradient(to bottom,var(--ink) 0%,rgba(26,22,24,.55) 9%,rgba(26,22,24,0) 20%),
+    linear-gradient(90deg,var(--ink) 0%,var(--ink) 30%,rgba(26,22,24,0) 58%);
 }
 .hero-ht .ht-blocks{z-index:2}
 .hero-content{
@@ -346,7 +346,7 @@ body::after{display:none}
 #pre-ov{
   background:
     radial-gradient(circle at center,transparent 0 1px,var(--ink) 1.35px) 0 0/5px 5px,
-    linear-gradient(180deg,var(--ink) 0%,rgba(11,11,12,.55) 45%,var(--ink) 100%);
+    linear-gradient(180deg,var(--ink) 0%,rgba(26,22,24,.55) 45%,var(--ink) 100%);
   opacity:.94;
 }
 .pre-blocks{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -539,7 +539,7 @@ section[style*="var(--red)"] .btn[style*="var(--white)"]{
   /* Sin columna lateral que proteger, la foto pasa a fondo atenuado. */
   .hero-ht::after{
     background:
-      linear-gradient(to bottom,var(--ink) 0%,rgba(11,11,12,.82) 14%,rgba(11,11,12,.86) 60%,var(--ink) 100%);
+      linear-gradient(to bottom,var(--ink) 0%,rgba(26,22,24,.82) 14%,rgba(26,22,24,.86) 60%,var(--ink) 100%);
   }
   .hero-ht.on .ht-b{opacity:.8}
   .h-eye{color:var(--paper);border-bottom-color:var(--p10)}
@@ -584,7 +584,7 @@ section[style*="var(--red)"] .btn[style*="var(--white)"]{
 /* La foto vive en blanco y negro; el color se gana al acercarse. */
 .mcard:hover .mcard-img img,.mcard:focus-within .mcard-img img{filter:none;transform:scale(1.03)}
 .mcard-dato{position:absolute;left:0;top:0;background:var(--fce-rosso-profundo);color:var(--paper);padding:.5rem .85rem;font:700 .7rem/1 var(--fg);font-stretch:75%;letter-spacing:.18em;text-transform:uppercase}
-.mcard-img figcaption{position:absolute;right:0;bottom:0;background:rgba(11,11,12,.82);color:var(--p70);padding:.3rem .6rem;font:400 .625rem/1.3 var(--fg);letter-spacing:.02em}
+.mcard-img figcaption{position:absolute;right:0;bottom:0;background:rgba(26,22,24,.82);color:var(--p70);padding:.3rem .6rem;font:400 .625rem/1.3 var(--fg);letter-spacing:.02em}
 .mcard-img figcaption a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .mcard-img figcaption a:hover{color:var(--paper)}
 .mcard-model{color:var(--rosso-t);font-size:.75rem}
@@ -613,7 +613,7 @@ section[style*="var(--red)"] .btn[style*="var(--white)"]{
 .foto{position:relative;margin:0;overflow:hidden;background:var(--ink);height:100%;display:block}
 .foto img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.1);transition:filter var(--fce-t-medio) var(--fce-salida),transform .9s var(--fce-salida)}
 a:hover .foto img,.foto:hover img{filter:none;transform:scale(1.03)}
-.foto-credito{position:absolute;right:0;bottom:0;z-index:2;margin:0;background:rgba(11,11,12,.82);color:var(--p70);padding:.3rem .6rem;font:400 .625rem/1.3 var(--fg);letter-spacing:.02em;max-width:100%;text-transform:none}
+.foto-credito{position:absolute;right:0;bottom:0;z-index:2;margin:0;background:rgba(26,22,24,.82);color:var(--p70);padding:.3rem .6rem;font:400 .625rem/1.3 var(--fg);letter-spacing:.02em;max-width:100%;text-transform:none}
 .foto-credito a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .foto-credito a:hover{color:var(--paper)}
 .news-card-img{position:relative}
@@ -625,7 +625,7 @@ a:hover .foto img,.foto:hover img{filter:none;transform:scale(1.03)}
 .art-foto{aspect-ratio:16/9}
 .club-foto{aspect-ratio:16/10;margin-bottom:1.5rem}
 .band-credito{left:0;right:auto;bottom:1.5rem;z-index:3;margin-left:clamp(1.25rem,5vw,4.5rem)}
-.band-meta{background:rgba(11,11,12,.82);padding:.35rem .75rem;right:clamp(1.25rem,5vw,4.5rem)}
+.band-meta{background:rgba(26,22,24,.82);padding:.35rem .75rem;right:clamp(1.25rem,5vw,4.5rem)}
 .feature-img .foto-credito{z-index:3}
 .login-ht{position:absolute;inset:0}
 .login-credito{background:transparent;left:1.5rem;right:auto;bottom:1.25rem}
@@ -659,3 +659,74 @@ a:hover .foto img,.foto:hover img{filter:none;transform:scale(1.03)}
 .como-llegar:hover{color:var(--rosso-t)}
 .contacto-como{display:inline-block;margin-top:1.25rem}
 @media(max-width:900px){.dealer-grid{grid-template-columns:minmax(0,1fr)}.dealer-map{height:240px}.contacto-mapa{height:260px}}
+
+/* ════════════════════════════════════════════════════════════
+   SUPERFICIES DE COLOR — mas rojo, menos negro
+   Tres alturas: carbon calido para leer, vino para alternar y rojo
+   para los momentos clave. Cada superficie redefine las variables de
+   texto y borde, de modo que lo que vive dentro se adapta solo.
+════════════════════════════════════════════════════════════ */
+
+/* ── Vino ────────────────────────────────────────────────── */
+.machine-wrap,.feature,.footer,#menu,
+.page-hero,.club-hero,.socio-hero,.dealer-hero,.contact-hero,.ev-hero,.priv-hero,
+/* La seccion que sigue a una cabecera vino se queda en carbon: si no, paginas
+   cortas como Eventos o Contacta quedarian enteras en vino. */
+section[style*="var(--b90)"]:not(:is(.page-hero,.club-hero,.socio-hero,.dealer-hero,.contact-hero,.ev-hero,.priv-hero) + section),
+section[style*="linear-gradient(160deg"]{
+  background:var(--fce-vino)!important;
+  --fce-grafito:var(--fce-vino-sup);
+  --p10:var(--fce-vino-linea);--p18:#7A3530;--p45:#B5B0A7;
+  --w60:#C9C3BA;--w40:#B5B0A7;--w30:#B5B0A7;--w10:#7A3530;--w08:var(--fce-vino-linea);--w05:var(--fce-vino-sup);--w03:#431310;
+  --rosso-t:var(--fce-rosso-claro-2);--red:var(--fce-rosso-claro-2);--red-g:var(--fce-rosso-claro-2);
+}
+.machine-wrap,.feature,.footer{border-top:0}
+
+/* ── Grafito: secciones alternas de lectura ──────────────── */
+.news-sec,.mem-sec{background:var(--fce-grafito);border-top:0}
+.mem-card{background:var(--ink)}
+
+/* ── Rojo ────────────────────────────────────────────────── */
+.finale,.ev-join,.editorial,.mem-card.featured,section[style*="var(--red)"]{
+  background:var(--fce-rosso-profundo)!important;color:var(--fce-marfil);border-top:0;
+  --p70:var(--fce-marfil);--p45:var(--fce-rosado);--p18:rgba(243,238,228,.55);--p10:rgba(243,238,228,.3);
+  --w90:var(--fce-marfil);--w70:var(--fce-marfil);--w60:var(--fce-rosado);--w40:var(--fce-rosado);--w30:var(--fce-rosado);
+  --w10:rgba(243,238,228,.45);--w08:rgba(243,238,228,.3);
+  --rosso:var(--fce-negro);--rosso-t:#fff;--red:#fff;--red-g:#fff;
+}
+/* La seccion de palabras gigantes solo lleva letra grande: admite el rojo vivo. */
+.editorial{background:var(--fce-rosso)!important;padding:8rem 0 7rem}
+.ew{color:var(--fce-marfil)}
+.ew.accent{color:var(--fce-negro)}
+.editorial-linea{flex:1;height:1px;background:rgba(255,255,255,.45)}
+
+/* Sobre rojo el boton primario no puede ser rojo: pasa a marfil con tinta negra. */
+.finale .btn-p,.ev-join .btn-p,.mem-card.featured .btn-p,section[style*="var(--red)"] .btn-p,
+section[style*="var(--red)"] .btn[style*="var(--white)"]{
+  background:var(--fce-marfil)!important;border-color:var(--fce-marfil)!important;color:var(--fce-negro)!important;
+}
+.finale .btn-p:hover,.ev-join .btn-p:hover,.mem-card.featured .btn-p:hover,section[style*="var(--red)"] .btn-p:hover,
+section[style*="var(--red)"] .btn[style*="var(--white)"]:hover{
+  background:var(--fce-negro)!important;border-color:var(--fce-negro)!important;color:var(--fce-marfil)!important;
+}
+.finale .btn-o:hover,.ev-join .btn-o:hover,section[style*="var(--red)"] .btn-o:hover{color:var(--fce-rosso-profundo)!important}
+section[style*="var(--red)"] h2{color:var(--fce-marfil)!important}
+section[style*="var(--red)"] p{color:var(--fce-rosado)!important}
+section[style*="var(--red)"] .btn-o{border-color:var(--fce-marfil)!important;border-bottom-color:transparent!important;color:var(--fce-marfil)!important}
+section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:none}
+.mem-card.featured{border-color:var(--fce-rosso-profundo)}
+.mem-card.featured:hover{border-color:var(--fce-marfil)}
+.mem-card.featured::before{background:var(--fce-negro);color:var(--fce-marfil)}
+
+/* La parrilla del cierre: sobre rojo, los coches pasan a negro. */
+.parrilla-arte .blqs{fill:var(--blq,#D5261B)}
+.finale{--blq:var(--fce-negro)}
+.finale .parrilla-arte{color:var(--fce-marfil)}
+
+/* ── La fecha vive en un cajon rojo ──────────────────────── */
+.ev-date,.cajon-f{background:var(--fce-rosso-profundo);border-color:var(--fce-rosso-profundo);color:var(--fce-marfil)}
+.ev-month{color:var(--fce-marfil)}
+
+/* ── Fotografia a color ──────────────────────────────────── */
+.foto img,.mcard-img img,.art-hero-foto img{filter:none}
+@media(hover:none){.foto img,.mcard-img img{filter:none}}

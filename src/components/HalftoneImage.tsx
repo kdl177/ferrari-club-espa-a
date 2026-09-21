@@ -14,13 +14,14 @@ type Props = {
   position?: string;
   focus?: [number, number];
   dim?: number;
+  fondo?: string;
   priority?: boolean;
   className?: string;
 };
 
 type Block = { x: number; y: number; s: number; d: number; jx: number; jy: number };
 
-const BLACK = '#0B0B0C';
+const BLACK = '#1A1618';
 const WHITE = '#F3EEE4';
 const RED = '#D5261B';
 
@@ -50,9 +51,9 @@ function parsePosition(pos: string): [number, number] {
 function paint(
   canvas: HTMLCanvasElement,
   img: HTMLImageElement,
-  o: { w: number; h: number; cell: number; intensity: number; dim: number; side: Side; edge: boolean; pos: [number, number]; mobile: boolean; seed: number }
+  o: { w: number; h: number; cell: number; intensity: number; dim: number; side: Side; edge: boolean; pos: [number, number]; mobile: boolean; seed: number; fondo: string }
 ) {
-  const { w, h, cell, intensity, dim, side, edge, pos, mobile, seed } = o;
+  const { w, h, cell, intensity, dim, side, edge, pos, mobile, seed, fondo } = o;
   let dpr = Math.min(window.devicePixelRatio || 1, 2);
   if (w * h * dpr * dpr > 9e6) dpr = Math.max(1, Math.sqrt(9e6 / (w * h)));
   canvas.width = Math.round(w * dpr);
@@ -76,7 +77,7 @@ function paint(
   octx.drawImage(img, (img.naturalWidth - sw) * pos[0], (img.naturalHeight - sh) * pos[1], sw, sh, 0, 0, cols, rows);
   const data = octx.getImageData(0, 0, cols, rows).data;
 
-  ctx.fillStyle = BLACK;
+  ctx.fillStyle = fondo;
   ctx.fillRect(0, 0, w, h);
 
   const k = 1 + intensity * 3;
@@ -179,6 +180,7 @@ export default function HalftoneImage({
   position = '50% 50%',
   focus = [0.5, 0.5],
   dim = 0,
+  fondo = BLACK,
   priority = false,
   className,
 }: Props) {
@@ -254,6 +256,7 @@ export default function HalftoneImage({
         pos: parsePosition(position),
         mobile,
         seed,
+        fondo,
       });
       if (!ok) {
         setFallback(true);
@@ -275,7 +278,7 @@ export default function HalftoneImage({
       ro.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [armed, src, intensity, cell, redBlocks, side, position, dim]);
+  }, [armed, src, intensity, cell, redBlocks, side, position, dim, fondo]);
 
   return (
     <div ref={wrapRef} className={`ht${visible ? ' on' : ''}${className ? ` ${className}` : ''}`} data-fallback={fallback || undefined}>

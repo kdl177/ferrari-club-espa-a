@@ -10,9 +10,17 @@
   --fce-rosso-claro:#FF5A47;    /* texto rojo pequeño sobre asfalto/grafito · 6,38:1 */
 
   /* ── Color · secundario ───────────────────────────────── */
-  --fce-asfalto:#0B0B0C;        /* fondo principal */
-  --fce-grafito:#17171A;        /* superficies elevadas: tarjetas, cabecera fija */
-  --fce-linea:#2B2B2F;          /* bordes y separadores de 1px sobre oscuro */
+  --fce-asfalto:#1A1618;        /* carbon calido: fondo de lectura. Ya no es negro puro */
+  --fce-grafito:#262123;        /* superficies elevadas: tarjetas, secciones alternas */
+  --fce-linea:#40393C;          /* bordes y separadores de 1px sobre oscuro */
+  --fce-negro:#0B0B0C;          /* solo para tinta sobre rojo y bloques sobre rojo */
+
+  /* ── Color · superficies rojas ────────────────────────── */
+  --fce-vino:#3A0F0D;           /* rojo oscuro para alternar secciones · marfil 14,48:1 */
+  --fce-vino-sup:#4B1613;       /* tarjetas sobre vino */
+  --fce-vino-linea:#5E2521;     /* bordes sobre vino */
+  --fce-rosso-claro-2:#FF7A69;  /* texto rojo pequeno sobre vino · 6,57:1 */
+  --fce-rosado:#F3D7D3;         /* texto secundario sobre Rosso Profundo · 4,80:1 */
 
   /* ── Color · acento ───────────────────────────────────── */
   --fce-ambar:#F0B323;          /* Ámbar Capó: foco, avisos, "tu cajón". Máx. 5% de la superficie · 10,47:1 */

@@ -57,7 +57,7 @@ function ParrillaArte() {
         <mask id="m-parrilla"><rect width="420" height="520" fill="url(#g-parrilla)" /></mask>
       </defs>
       <g mask="url(#m-parrilla)"><rect width="420" height="520" fill="url(#p-parrilla)" opacity=".34" /></g>
-      <g fill="#D5261B">
+      <g className="blqs">
         <rect className="blq" style={{ animationDelay: '0.05s' }} x="19.5" y="24" width="13" height="24" />
         <rect className="blq" style={{ animationDelay: '0.12s' }} x="61.5" y="76" width="13" height="24" />
         <rect className="blq" style={{ animationDelay: '0.19s' }} x="103.5" y="24" width="13" height="24" />
@@ -112,8 +112,8 @@ export default function Home() {
       <section className="editorial" aria-label="Espíritu Ferrari">
         <div className="cnt">
           <div style={{ display: 'flex', alignItems: 'center', gap: '3rem', marginBottom: '2rem' }} data-r="right">
-            <div className="sec-eye" style={{ marginBottom: 0, color: 'rgba(0,0,0,.55)' }}>ESPÍRITU FERRARI</div>
-            <div style={{ flex: 1, height: '1px', background: 'rgba(0,0,0,.2)' }} />
+            <div className="sec-eye" style={{ marginBottom: 0 }}>ESPÍRITU FERRARI</div>
+            <div className="editorial-linea" />
           </div>
           <span className="ew" data-r="up" style={{ transitionDelay: '.05s' }}>Passione.</span>
           <span className="ew" data-r="up" style={{ transitionDelay: '.15s' }}>Velocità.</span>
@@ -248,6 +248,7 @@ export default function Home() {
               position="45% 50%"
               focus={[0.55, 0.5]}
               dim={0}
+              fondo="#3A0F0D"
             />
             <p className="foto-credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Ferrari_488_Challenge_(35590398851).jpg" target="_blank" rel="noopener">Neil</a> · CC BY 2.0 · adaptada</p>
           </div>
