@@ -552,19 +552,19 @@ select.form-input option{background:var(--b80);color:var(--white)}
    lea de arriba abajo en vez de aparecer entera a la vez. */
 [data-r]{
   opacity:0;
-  transition:opacity .5s var(--eo) var(--rd,0ms),transform .5s var(--eo) var(--rd,0ms);
+  transition:opacity .62s var(--eo) var(--rd,0ms),transform .72s var(--eo) var(--rd,0ms);
 }
-[data-r="up"]{transform:translateY(24px)}
-[data-r="down"]{transform:translateY(-18px)}
-[data-r="left"]{transform:translateX(32px)}
-[data-r="right"]{transform:translateX(-32px)}
-[data-r="scale"]{transform:scale(.96)}
+[data-r="up"]{transform:translateY(52px) scale(.985)}
+[data-r="down"]{transform:translateY(-36px)}
+[data-r="left"]{transform:translateX(64px)}
+[data-r="right"]{transform:translateX(-64px)}
+[data-r="scale"]{transform:scale(.93)}
 [data-r="fade"]{transform:none}
 [data-r].in{opacity:1;transform:none}
 
 /* Los titulares entran un poco mas despacio: son el ancla de la seccion. */
 .sec-title[data-r],.finale-title[data-r],.h-t[data-r],.footer-finale[data-r]{
-  transition-duration:.62s;
+  transition-duration:.9s;
 }
 
 /* Una linea roja barre bajo el rotulo de seccion al aparecer. */
@@ -576,16 +576,16 @@ select.form-input option{background:var(--b80);color:var(--white)}
 
 /* Stagger children */
 [data-stagger] > *{
-  opacity:0;transform:translateY(20px);
-  transition:opacity .48s var(--eo),transform .48s var(--eo);
+  opacity:0;transform:translateY(44px) scale(.985);
+  transition:opacity .58s var(--eo),transform .66s var(--eo);
 }
 [data-stagger].in > *{opacity:1;transform:none}
 [data-stagger].in > *:nth-child(1){transition-delay:0ms}
-[data-stagger].in > *:nth-child(2){transition-delay:60ms}
-[data-stagger].in > *:nth-child(3){transition-delay:120ms}
-[data-stagger].in > *:nth-child(4){transition-delay:180ms}
-[data-stagger].in > *:nth-child(5){transition-delay:240ms}
-[data-stagger].in > *:nth-child(n+6){transition-delay:300ms}
+[data-stagger].in > *:nth-child(2){transition-delay:110ms}
+[data-stagger].in > *:nth-child(3){transition-delay:220ms}
+[data-stagger].in > *:nth-child(4){transition-delay:330ms}
+[data-stagger].in > *:nth-child(5){transition-delay:440ms}
+[data-stagger].in > *:nth-child(n+6){transition-delay:550ms}
 
 /* ── 21. HERO (shared structure) ───────────────────────── */
 .hero-page{

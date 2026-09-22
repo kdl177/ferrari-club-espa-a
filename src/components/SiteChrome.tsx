@@ -135,7 +135,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         nuevos.forEach((e, i) => {
           const el = e.target as HTMLElement;
-          el.style.setProperty('--rd', `${Math.min(i, 4) * 70}ms`);
+          el.style.setProperty('--rd', `${Math.min(i, 4) * 130}ms`);
           el.classList.add('in');
           obs.unobserve(el);
         });
