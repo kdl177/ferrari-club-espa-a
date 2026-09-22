@@ -148,6 +148,7 @@ export default function Home() {
             <h2 className="sec-title" style={{ marginTop: '.6rem' }}>The <span style={{ color: 'var(--red)' }}>machine</span></h2>
           </div>
         </div>
+        <div className="machine-fila">
         <div className="machine-scroll" id="machine-scroll">
           <div className="machine-track" id="mtrack">
             {MACHINES.map((m) => (
@@ -173,6 +174,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mtrack-nav" id="mtrack-dots" />
+        </div>
         <p className="cnt machine-fuente">Cifras oficiales de Ferrari S.p.A. (ferrari.com); peso en seco con equipamiento opcional. Fotografías de Wikimedia Commons bajo licencia Creative Commons.</p>
       </section>
 

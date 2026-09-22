@@ -602,6 +602,7 @@ section[style*="var(--red)"] .btn[style*="var(--white)"]{
 /* La pista alinea la primera tarjeta con el titulo y fija el ancho de tarjeta
    para que en movil no crezca hasta salirse del viewport. */
 .machine-track{padding:0 max(1.25rem,calc((100% - min(1440px,92vw)) / 2 + clamp(1rem,4vw,2.5rem)))}
+@media(min-width:901px){.machine-track{padding-right:clamp(1rem,4vw,2.5rem)}}
 .mcard{width:min(440px,84vw);min-width:0;flex:none}
 
 /* El carro se arrastra a mano: sin iman que reencuadre solo al soltar. */
@@ -747,9 +748,17 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
    Rueda al costado: cada pulsacion la gira un puesto y trae el modelo
    siguiente. Las marcas del aro son los cinco coches.
 ════════════════════════════════════════════════════════════ */
+/* La rueda va al costado derecho, en su propia columna: el carro y el dial
+   comparten una fila y las tarjetas terminan antes de llegar a el, para que
+   no se solapen. En el marcado la rueda sigue despues del carro, que es el
+   orden correcto para leer y tabular. */
+.machine-fila{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;gap:clamp(1rem,2.5vw,2rem);
+  padding-right:max(1.25rem,calc((100% - min(1440px,92vw)) / 2 + clamp(1rem,4vw,2.5rem)));
+}
 .mtrack-nav{
-  display:flex;align-items:center;gap:1.5rem;
-  padding:2rem max(1.25rem,calc((100% - min(1440px,92vw)) / 2 + clamp(1rem,4vw,2.5rem))) 5rem;
+  display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;
 }
 .mdial{
   flex:none;position:relative;width:86px;height:86px;padding:0;
@@ -778,10 +787,10 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 .mdial-flecha{display:grid;place-items:center;width:34px;height:34px}
 .mdial-flecha svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6}
 .mdial-info{
-  margin:0;display:flex;flex-direction:column;gap:.35rem;
+  margin:0;display:flex;flex-direction:column;gap:.35rem;max-width:7.5rem;
   font-family:var(--fg);font-stretch:75%;text-transform:uppercase;
 }
-.mdial-info b{font-weight:700;font-size:.9375rem;letter-spacing:.14em;color:var(--paper)}
+.mdial-info b{font-weight:700;font-size:.8125rem;letter-spacing:.12em;color:var(--paper);line-height:1.25}
 .mdial-info span{font-weight:700;font-size:.72rem;letter-spacing:.2em;color:var(--rosso-t)}
 
 @media(hover:hover) and (pointer:fine){
@@ -790,9 +799,16 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 }
 .mdial:active .mdial-aro{border-color:var(--rosso)}
 .mdial:focus-visible{outline:2px solid var(--fce-ambar);outline-offset:4px}
-@media(max-width:768px){
-  .mtrack-nav{gap:1.125rem;padding-bottom:3.5rem}
+/* En pantallas estrechas no sobra ancho para una columna: la rueda vuelve
+   debajo del carro, en fila. */
+@media(max-width:900px){
+  .machine-fila{display:block;padding-right:0}
+  .mtrack-nav{
+    flex-direction:row;gap:1.125rem;justify-content:flex-start;text-align:left;
+    padding:1.75rem max(1.25rem,calc((100% - min(1440px,92vw)) / 2 + clamp(1rem,4vw,2.5rem))) 3.5rem;
+  }
   .mdial{width:74px;height:74px}
+  .mdial-info{max-width:none}
 }
 @media(prefers-reduced-motion:reduce){
   .mdial-giro{transition:none}
