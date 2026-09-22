@@ -35,23 +35,55 @@ export default function HomeInteractions() {
     if (!sc || !container) return;
     const cards = Array.from(sc.querySelectorAll<HTMLElement>('.mcard'));
     if (!cards.length) return;
-    container.innerHTML = '';
-    cards.forEach((_, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'mtd' + (i === 0 ? ' on' : '');
-      btn.setAttribute('aria-label', 'Modelo ' + (i + 1));
-      btn.addEventListener('click', () =>
-        sc.scrollTo({ left: i * (cards[0].offsetWidth + 32), behavior: 'smooth' })
-      );
-      container.appendChild(btn);
-    });
-    const dots = container.querySelectorAll('.mtd');
-    const onScroll = () => {
-      const idx = Math.round(sc.scrollLeft / (cards[0].offsetWidth + 32));
+
+    // Los puntos son paradas reales, no tarjetas: en pantallas anchas caben
+    // varias tarjetas a la vez y sobraban puntos que chocaban contra el tope
+    // y llevaban todos al mismo sitio.
+    let paradas: number[] = [];
+    let dots: HTMLButtonElement[] = [];
+
+    function medir() {
+      const max = sc!.scrollWidth - sc!.clientWidth;
+      const base = cards[0].offsetLeft;
+      paradas = [];
+      for (const card of cards) {
+        const x = Math.min(card.offsetLeft - base, max);
+        if (!paradas.length || x - paradas[paradas.length - 1] > 8) paradas.push(x);
+        if (x >= max) break;
+      }
+    }
+
+    function pintar() {
+      medir();
+      container!.innerHTML = '';
+      dots = paradas.map((_, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'mtd';
+        btn.setAttribute('aria-label', `Ir al grupo ${i + 1} de ${paradas.length}`);
+        btn.addEventListener('click', () => sc!.scrollTo({ left: paradas[i], behavior: 'smooth' }));
+        container!.appendChild(btn);
+        return btn;
+      });
+      container!.hidden = paradas.length < 2;
+      marcar();
+    }
+
+    function marcar() {
+      let idx = 0;
+      paradas.forEach((x, i) => {
+        if (sc!.scrollLeft >= x - 24) idx = i;
+      });
       dots.forEach((d, j) => d.classList.toggle('on', j === idx));
+    }
+
+    pintar();
+    sc.addEventListener('scroll', marcar, { passive: true });
+    const ro = new ResizeObserver(pintar);
+    ro.observe(sc);
+    return () => {
+      sc.removeEventListener('scroll', marcar);
+      ro.disconnect();
     };
-    sc.addEventListener('scroll', onScroll, { passive: true });
-    return () => sc.removeEventListener('scroll', onScroll);
   }, [preDone]);
 
   return (
