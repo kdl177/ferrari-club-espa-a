@@ -119,17 +119,28 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     if (!('IntersectionObserver' in window)) return;
-    const els = document.querySelectorAll('[data-r],[data-stagger]');
+    const els = document.querySelectorAll<HTMLElement>('[data-r],[data-stagger]');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach((el) => el.classList.add('in'));
+      return;
+    }
+
+    // Lo que asoma en la misma tanda se escalona por orden de aparicion en
+    // pantalla, para que una seccion se lea de arriba abajo. Lo que ya esta
+    // a la vista al cargar entra sin retardo.
     const obs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in');
-            obs.unobserve(e.target);
-          }
+        const nuevos = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        nuevos.forEach((e, i) => {
+          const el = e.target as HTMLElement;
+          el.style.setProperty('--rd', `${Math.min(i, 4) * 70}ms`);
+          el.classList.add('in');
+          obs.unobserve(el);
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0, rootMargin: '0px 0px -12% 0px' }
     );
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();

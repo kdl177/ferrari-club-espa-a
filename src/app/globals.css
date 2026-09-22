@@ -547,22 +547,45 @@ select.form-input option{background:var(--b80);color:var(--white)}
 .bc-s{color:var(--w10)}
 
 /* ── 20. REVEAL ANIMATIONS ─────────────────────────────── */
-[data-r]{opacity:0;transition:opacity .75s var(--eo),transform .75s var(--eo)}
-[data-r="up"]{transform:translateY(55px)}
-[data-r="down"]{transform:translateY(-30px)}
-[data-r="left"]{transform:translateX(70px)}
-[data-r="right"]{transform:translateX(-70px)}
-[data-r="scale"]{transform:scale(.9)}
+/* Entradas por scroll. Recorridos cortos (no 55-70px: el bloque llegaba
+   tarde y de golpe) y escalonado por profundidad, para que cada seccion se
+   lea de arriba abajo en vez de aparecer entera a la vez. */
+[data-r]{
+  opacity:0;
+  transition:opacity .5s var(--eo) var(--rd,0ms),transform .5s var(--eo) var(--rd,0ms);
+}
+[data-r="up"]{transform:translateY(24px)}
+[data-r="down"]{transform:translateY(-18px)}
+[data-r="left"]{transform:translateX(32px)}
+[data-r="right"]{transform:translateX(-32px)}
+[data-r="scale"]{transform:scale(.96)}
 [data-r="fade"]{transform:none}
 [data-r].in{opacity:1;transform:none}
 
+/* Los titulares entran un poco mas despacio: son el ancla de la seccion. */
+.sec-title[data-r],.finale-title[data-r],.h-t[data-r],.footer-finale[data-r]{
+  transition-duration:.62s;
+}
+
+/* Una linea roja barre bajo el rotulo de seccion al aparecer. */
+.sec-eye[data-r]::before,[data-r] > .sec-eye::before{
+  transform-origin:left;transform:scaleX(0);
+  transition:transform .45s var(--eo) calc(var(--rd,0ms) + 120ms);
+}
+[data-r].in.sec-eye::before,[data-r].in > .sec-eye::before{transform:scaleX(1)}
+
 /* Stagger children */
-[data-stagger] > * {opacity:0;transform:translateY(40px);transition:opacity .6s var(--eo),transform .6s var(--eo)}
-[data-stagger].in > *:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
-[data-stagger].in > *:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
-[data-stagger].in > *:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
-[data-stagger].in > *:nth-child(4){opacity:1;transform:none;transition-delay:.35s}
-[data-stagger].in > *:nth-child(n+5){opacity:1;transform:none;transition-delay:.45s}
+[data-stagger] > *{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .48s var(--eo),transform .48s var(--eo);
+}
+[data-stagger].in > *{opacity:1;transform:none}
+[data-stagger].in > *:nth-child(1){transition-delay:0ms}
+[data-stagger].in > *:nth-child(2){transition-delay:60ms}
+[data-stagger].in > *:nth-child(3){transition-delay:120ms}
+[data-stagger].in > *:nth-child(4){transition-delay:180ms}
+[data-stagger].in > *:nth-child(5){transition-delay:240ms}
+[data-stagger].in > *:nth-child(n+6){transition-delay:300ms}
 
 /* ── 21. HERO (shared structure) ───────────────────────── */
 .hero-page{
