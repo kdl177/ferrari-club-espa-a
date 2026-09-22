@@ -254,7 +254,6 @@ body::after{display:none}
 .mspec{border-bottom:1px solid var(--p10)}
 .mspec-l{color:var(--p45)}
 .mspec-v{font-family:var(--fm);font-size:.78rem;color:var(--paper)}
-.mtd.on::after{background:var(--rosso)}
 
 /* ── Eventos ─────────────────────────────────────────────── */
 .events-sec{background:var(--ink);border-top:1px solid var(--p10);padding:8rem 0}
@@ -742,3 +741,50 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 #pt span:last-child{margin-right:0}
 #pt.on{pointer-events:all}
 #pt.on span{transform:scaleY(1);transform-origin:bottom;transition-duration:.38s}
+
+/* ════════════════════════════════════════════════════════════
+   NAVEGACIÓN DE "THE MACHINE"
+   Sustituye a los cuatro guiones grises: barra de recorrido que se
+   arrastra, flechas y el nombre del modelo a la vista.
+════════════════════════════════════════════════════════════ */
+.mtrack-nav{
+  display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
+  padding:2rem max(1.25rem,calc((100% - min(1440px,92vw)) / 2 + clamp(1rem,4vw,2.5rem))) 5rem;
+}
+.mtrack-flecha{
+  flex:none;width:46px;height:46px;display:grid;place-items:center;
+  background:transparent;border:1px solid var(--p18);color:var(--paper);cursor:pointer;
+  transition:background .2s var(--eo),border-color .2s var(--eo),color .2s var(--eo);
+}
+.mtrack-flecha svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6}
+.mtrack-flecha:disabled{opacity:.28;cursor:default}
+.mtrack-riel{
+  flex:1 1 180px;min-width:120px;height:26px;position:relative;cursor:grab;
+  touch-action:none;display:flex;align-items:center;
+}
+.mtrack-riel::before{content:'';position:absolute;left:0;right:0;height:2px;background:var(--p10)}
+.mtrack-riel.agarrado{cursor:grabbing}
+.mtrack-pulgar{
+  position:absolute;height:2px;background:var(--rosso);
+  transition:left .18s linear,background .2s;pointer-events:none;
+}
+.mtrack-riel.agarrado .mtrack-pulgar{transition:none;height:4px}
+.mtrack-etiqueta{
+  flex:none;display:flex;align-items:baseline;gap:.75rem;margin:0;
+  font-family:var(--fg);font-stretch:75%;text-transform:uppercase;
+}
+.mtrack-etiqueta b{font-weight:700;font-size:.8125rem;letter-spacing:.14em;color:var(--paper)}
+.mtrack-etiqueta span{font-weight:700;font-size:.7rem;letter-spacing:.18em;color:var(--rosso-t)}
+
+@media(hover:hover) and (pointer:fine){
+  .mtrack-flecha:not(:disabled):hover{background:var(--rosso);border-color:var(--rosso);color:var(--fce-marfil)}
+  .mtrack-riel:hover .mtrack-pulgar{height:4px}
+}
+@media(max-width:768px){
+  .mtrack-nav{gap:.875rem;padding-bottom:3.5rem}
+  .mtrack-etiqueta{order:-1;flex-basis:100%}
+  .mtrack-flecha{width:42px;height:42px}
+}
+@media(prefers-reduced-motion:reduce){
+  .mtrack-pulgar,.mtrack-flecha{transition:none}
+}

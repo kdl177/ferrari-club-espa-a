@@ -172,7 +172,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="mtrack-dots" id="mtrack-dots" aria-hidden="true" />
+        <div className="mtrack-nav" id="mtrack-dots" />
         <p className="cnt machine-fuente">Cifras oficiales de Ferrari S.p.A. (ferrari.com); peso en seco con equipamiento opcional. Fotografías de Wikimedia Commons bajo licencia Creative Commons.</p>
       </section>
 
