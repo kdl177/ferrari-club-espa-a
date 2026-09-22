@@ -82,12 +82,24 @@ export default function HomeInteractions() {
     // ultimo modelo al primero, en vez de desandar cuatro puestos.
     let vueltas = 0;
 
+    // Cada modelo tiene su propia posicion aunque varios quepan a la vez: las
+    // ultimas se encuadran contra el borde derecho en vez de amontonarse en
+    // el tope, para que ninguna pulsacion deje el carro parado.
     function destinoDe(n: number) {
-      const izq = cards[n].offsetLeft - cards[0].offsetLeft;
-      // La ultima tarjeta va siempre al tope: si no, el carro se quedaba a
-      // medio camino y su ficha aparecia cortada contra el borde.
-      if (n === N - 1) return max();
-      return Math.max(0, Math.min(izq, max()));
+      const base = cards[0].offsetLeft;
+      const izq = cards[n].offsetLeft - base;
+      const tope = max();
+      if (izq <= tope) return Math.max(0, izq);
+      // Ya no cabe alineada a la izquierda: se reparte lo que queda de
+      // recorrido entre las tarjetas que comparten el tramo final.
+      const restantes = cards.filter((c) => c.offsetLeft - base > tope).length;
+      const puesto = cards
+        .slice(0, n + 1)
+        .filter((c) => c.offsetLeft - base > tope).length;
+      const previo = cards
+        .filter((c) => c.offsetLeft - base <= tope)
+        .reduce((mx, c) => Math.max(mx, c.offsetLeft - base), 0);
+      return previo + ((tope - previo) * puesto) / restantes;
     }
 
     function pintar() {
