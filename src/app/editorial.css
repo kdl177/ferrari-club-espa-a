@@ -337,12 +337,8 @@ body::after{display:none}
 .pre-tl{border-bottom-color:var(--p10)}
 .pre-bw{background:var(--p10)}
 
-/* El video de entrada comparte el lenguaje del hero: alto contraste en
-   blanco y negro, trama de puntos encima y bloques rojos al borde. */
-#pre-video{
-  filter:grayscale(1) contrast(1.9) brightness(.82);
-  opacity:.5;
-}
+/* La entrada comparte el lenguaje del hero: trama de puntos sobre el
+   carbon y bloques rojos al borde. */
 #pre-ov{
   background:
     radial-gradient(circle at center,transparent 0 1px,var(--ink) 1.35px) 0 0/5px 5px,

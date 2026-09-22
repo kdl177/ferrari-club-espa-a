@@ -82,9 +82,6 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
 
   return (
     <div id="pre" role="status" aria-live="polite">
-      <video id="pre-video" autoPlay muted loop playsInline aria-hidden="true">
-        <source src="/ferrari-intro.mp4" type="video/mp4" />
-      </video>
       <div id="pre-ov" aria-hidden="true" />
       <div className="pre-blocks" aria-hidden="true">
         {BLOCKS.map(([x, y, s, d, wide], i) => (
