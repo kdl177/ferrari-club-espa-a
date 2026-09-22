@@ -198,33 +198,18 @@ export default function Home() {
 
       <section className="news-sec" aria-label="Últimas noticias">
         <div className="cnt">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem' }} data-r="up">
-            <div><div className="sec-eye">ACTUALIDAD</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>Ferrari<br /><span style={{ color: 'var(--red)' }}>magazine</span></h2></div>
-            <a href="/noticias/" className="btn btn-o btn-sm">VER TODAS →</a>
-          </div>
-          <div className="news-layout">
-            <a className="news-card" href="/noticias/gp-paises-bajos/" data-r="right">
-              <div className="news-card-img" style={{ aspectRatio: '16/8' }}><Foto id="f1-zandvoort-2024" /></div>
-              <div>
-                <span className="news-card-cat">FÓRMULA 1</span>
-                <h2 className="news-card-title" style={{ fontSize: '1.45rem' }}>GP Países Bajos — Ferrari saldrá a Zandvoort a seguir mejorando</h2>
-                <p className="news-card-desc">Ferrari afronta el Gran Premio de Países Bajos con renovadas esperanzas. El equipo lleva importantes mejoras aerodinámicas para el trazado costero.</p>
-                <div className="news-card-date">18 AGO 2026 · 4 MIN LECTURA</div>
-              </div>
-            </a>
-            <div className="news-side">
-              {[
-                { href: '/noticias/499p-monza/', foto: '499p-spa-2023' as const, tag: 'WEC', cat: 'ENDURANCE', title: 'Ferrari 499P domina en Monza', date: '12 AGO 2026', delay: 0 },
-                { href: '/noticias/sf90-xx-stradale/', foto: 'sf90-xx-stradale' as const, tag: 'SF90 XX', cat: 'MODELOS', title: 'SF90 XX Stradale: el más potente', date: '08 AGO 2026', delay: 0.08 },
-                { href: '/noticias/', foto: 'cavalcade-pista' as const, tag: 'CAVALCADE', cat: 'CLUB', title: 'Cavalcade Classiche 2026 — Italia', date: '05 AGO 2026', delay: 0.16 },
-                { href: '/noticias/', foto: 'sainz-china-2024' as const, tag: 'F1', cat: 'FÓRMULA 1', title: 'Sainz remonta en Hungría', date: '28 JUL 2026', delay: 0.24 },
-              ].map((n) => (
-                <a className="news-card" href={n.href} data-r="left" style={{ display: 'flex', gap: '1rem', transitionDelay: `${n.delay}s` }} key={n.title}>
-                  <div className="news-card-img" style={{ width: '110px', flexShrink: 0, height: '75px', aspectRatio: 'unset' }}><Foto id={n.foto} mini /></div>
-                  <div><span className="news-card-cat">{n.cat}</span><h3 className="news-card-title" style={{ fontSize: '.88rem' }}>{n.title}</h3><div className="news-card-date">{n.date}</div></div>
-                </a>
-              ))}
+          <div className="news-cabecera">
+            <div>
+              <div className="sec-eye">ACTUALIDAD</div>
+              <h2 className="sec-title" style={{ marginTop: '.75rem' }}>Ferrari<br /><span style={{ color: 'var(--red)' }}>al día</span></h2>
+              <p className="sec-sub" style={{ marginTop: '1.25rem', maxWidth: '30rem' }}>
+                Fórmula 1, resistencia y novedades de Maranello, según las publican Autosport, The Race y Racer.
+              </p>
             </div>
+            <a href="/noticias/" className="btn btn-o btn-sm">VER EL TABLÓN →</a>
+          </div>
+          <div className="news-portada" data-r="up">
+            <Foto id="f1-zandvoort-2024" />
           </div>
         </div>
       </section>

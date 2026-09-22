@@ -816,3 +816,11 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 @media(prefers-reduced-motion:reduce){
   .mdial-giro{transition:none}
 }
+
+/* ── Actualidad en la home ───────────────────────────────── */
+.news-cabecera{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:2rem;flex-wrap:wrap;margin-bottom:3rem;
+}
+.news-portada{aspect-ratio:21/9;overflow:hidden}
+@media(max-width:768px){.news-portada{aspect-ratio:16/10}}
