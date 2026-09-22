@@ -27,12 +27,6 @@ const MACHINES = [
     specs: [['POTENCIA', '830 CV'], ['PAR MÁXIMO', '692 Nm'], ['0–100 km/h', '2,85 s'], ['V. MÁX', '> 340 km/h'], ['MOTOR', 'V12 atmosférico 6.496 cc'], ['PESO EN SECO', '1.487 kg']],
     foto: { autor: 'Calreyn88', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_812_Competizione_2.jpg', alt: 'Ferrari 812 Competizione gris sobre césped en una concentración' },
   },
-  {
-    slug: 'purosangue', model: 'CUATRO PUERTAS · 2022', name: 'Purosangue', dato: '4 puertas · 4 plazas',
-    texto: 'El primer Ferrari de producción con cuatro puertas y cuatro plazas. Conserva un V12 atmosférico de 6,5 litros, con el par máximo de 716 Nm a 6.250 rpm.',
-    specs: [['POTENCIA', '725 CV'], ['PAR MÁXIMO', '716 Nm'], ['0–100 km/h', '3,3 s'], ['V. MÁX', '> 310 km/h'], ['MOTOR', 'V12 atmosférico 6.496 cc'], ['PESO EN SECO', '2.033 kg']],
-    foto: { autor: 'Alexander Migl', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_Purosangue_DSC_7008.jpg', alt: 'Ferrari Purosangue gris mate frente a un concesionario, vista frontal tres cuartos' },
-  },
 ];
 
 const EVENTS = [

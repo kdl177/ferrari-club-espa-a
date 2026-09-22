@@ -84,6 +84,9 @@ export default function HomeInteractions() {
 
     function destinoDe(n: number) {
       const izq = cards[n].offsetLeft - cards[0].offsetLeft;
+      // La ultima tarjeta va siempre al tope: si no, el carro se quedaba a
+      // medio camino y su ficha aparecia cortada contra el borde.
+      if (n === N - 1) return max();
       return Math.max(0, Math.min(izq, max()));
     }
 

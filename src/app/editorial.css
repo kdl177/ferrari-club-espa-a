@@ -753,7 +753,7 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
    no se solapen. En el marcado la rueda sigue despues del carro, que es el
    orden correcto para leer y tabular. */
 .machine-fila{
-  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  display:grid;grid-template-columns:minmax(0,1fr) 9rem;
   align-items:center;gap:clamp(1rem,2.5vw,2rem);
   padding-right:max(1.25rem,calc((100% - min(1440px,92vw)) / 2 + clamp(1rem,4vw,2.5rem)));
 }
@@ -786,8 +786,10 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 .mdial-marca.on i{background:var(--rosso);height:15px}
 .mdial-flecha{display:grid;place-items:center;width:34px;height:34px}
 .mdial-flecha svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6}
+/* Ancho fijo: el nombre del modelo cambia de largo al girar la rueda y, con
+   la columna elastica, encogia y estiraba el carro en cada cambio. */
 .mdial-info{
-  margin:0;display:flex;flex-direction:column;gap:.35rem;max-width:7.5rem;
+  margin:0;display:flex;flex-direction:column;gap:.35rem;width:100%;
   font-family:var(--fg);font-stretch:75%;text-transform:uppercase;
 }
 .mdial-info b{font-weight:700;font-size:.8125rem;letter-spacing:.12em;color:var(--paper);line-height:1.25}
@@ -803,6 +805,7 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
    debajo del carro, en fila. */
 @media(max-width:900px){
   .machine-fila{display:block;padding-right:0}
+  .mdial-info{width:auto}
   .mtrack-nav{
     flex-direction:row;gap:1.125rem;justify-content:flex-start;text-align:left;
     padding:1.75rem max(1.25rem,calc((100% - min(1440px,92vw)) / 2 + clamp(1rem,4vw,2.5rem))) 3.5rem;
