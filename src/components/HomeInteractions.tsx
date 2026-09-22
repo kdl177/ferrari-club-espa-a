@@ -38,8 +38,6 @@ export default function HomeInteractions() {
     const cards = Array.from(sc.querySelectorAll<HTMLElement>('.mcard'));
     if (!cards.length) return;
 
-    // Las paradas son posiciones reales, no tarjetas: en pantallas anchas
-    // caben varias a la vez y sobrarian paradas que chocan contra el tope.
     const nombres = cards.map((c) => {
       const h = c.querySelector('.mcard-name');
       // textContent pega las dos lineas del titulo ("SF90 XX" + "Stradale"),
@@ -47,117 +45,103 @@ export default function HomeInteractions() {
       return (h?.innerHTML ?? '').replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '')
         .replace(/\s+/g, ' ').trim();
     });
-    let paradas: number[] = [];
+
+    const N = cards.length;
+    const paso = 360 / N;
+    const marcas = nombres
+      .map(
+        (_, i) =>
+          `<span class="mdial-marca" style="--a:${i * paso}deg"><i></i></span>`
+      )
+      .join('');
 
     container.innerHTML = `
-      <button class="mtrack-flecha" data-dir="-1" aria-label="Ver el modelo anterior">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+      <button class="mdial" aria-label="Ver el modelo siguiente">
+        <span class="mdial-aro" aria-hidden="true">
+          <span class="mdial-giro">${marcas}</span>
+        </span>
+        <span class="mdial-flecha" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 4l8 8-8 8"/></svg>
+        </span>
       </button>
-      <div class="mtrack-riel"><span class="mtrack-pulgar"></span></div>
-      <button class="mtrack-flecha" data-dir="1" aria-label="Ver el modelo siguiente">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>
-      </button>
-      <p class="mtrack-etiqueta"><b></b><span></span></p>`;
+      <p class="mdial-info" aria-live="polite"><b></b><span></span></p>`;
 
-    const riel = container.querySelector<HTMLElement>('.mtrack-riel')!;
-    const pulgar = container.querySelector<HTMLElement>('.mtrack-pulgar')!;
-    const flechas = Array.from(container.querySelectorAll<HTMLButtonElement>('.mtrack-flecha'));
-    const nombre = container.querySelector<HTMLElement>('.mtrack-etiqueta b')!;
-    const cuenta = container.querySelector<HTMLElement>('.mtrack-etiqueta span')!;
+    const dial = container.querySelector<HTMLButtonElement>('.mdial')!;
+    const giro = container.querySelector<HTMLElement>('.mdial-giro')!;
+    const marcasEl = Array.from(container.querySelectorAll<HTMLElement>('.mdial-marca'));
+    const nombre = container.querySelector<HTMLElement>('.mdial-info b')!;
+    const cuenta = container.querySelector<HTMLElement>('.mdial-info span')!;
 
     const max = () => sc.scrollWidth - sc.clientWidth;
 
-    function medir() {
-      const tope = max();
-      const base = cards[0].offsetLeft;
-      paradas = [];
-      for (const card of cards) {
-        const x = Math.min(card.offsetLeft - base, tope);
-        if (!paradas.length || x - paradas[paradas.length - 1] > 8) paradas.push(x);
-        if (x >= tope) break;
-      }
-      // El pulgar ocupa la fraccion visible del carro, como una barra normal.
-      pulgar.style.width = `${Math.max(12, (sc.clientWidth / sc.scrollWidth) * 100)}%`;
-      container.hidden = max() < 8;
-      pintar();
-    }
+    // El dial lleva su propio indice. Deducirlo del scroll no vale: las
+    // ultimas tarjetas comparten el tope del carro, asi que dos modelos caen
+    // en la misma posicion y el contador se quedaba clavado en uno de ellos.
+    let i = 0;
+    // El giro es acumulado para que la rueda siga hacia delante al volver del
+    // ultimo modelo al primero, en vez de desandar cuatro puestos.
+    let vueltas = 0;
 
-    function actual() {
-      // En el tope siempre gana la ultima: si caben varias tarjetas a la vez,
-      // el contador se quedaba en la antepenultima al llegar al final.
-      if (sc.scrollLeft >= max() - 8) return cards.length - 1;
-      let idx = 0;
-      cards.forEach((c, i) => {
-        if (sc.scrollLeft >= c.offsetLeft - cards[0].offsetLeft - 24) idx = i;
-      });
-      return idx;
+    function destinoDe(n: number) {
+      const izq = cards[n].offsetLeft - cards[0].offsetLeft;
+      return Math.max(0, Math.min(izq, max()));
     }
 
     function pintar() {
-      const tope = max();
-      const t = tope > 0 ? sc.scrollLeft / tope : 0;
-      pulgar.style.left = `${t * (100 - parseFloat(pulgar.style.width))}%`;
-      const i = actual();
+      giro.style.transform = `rotate(${-(vueltas * 360 + i * paso)}deg)`;
+      marcasEl.forEach((m, j) => m.classList.toggle('on', j === i));
       nombre.textContent = nombres[i];
-      cuenta.textContent = `${String(i + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
-      flechas[0].disabled = sc.scrollLeft < 8;
-      flechas[1].disabled = sc.scrollLeft >= tope - 8;
+      cuenta.textContent = `${String(i + 1).padStart(2, '0')} / ${String(N).padStart(2, '0')}`;
+      container.hidden = max() < 8;
     }
 
-    // El rotulo cuenta tarjetas y las flechas cuentan paradas: en escritorio
-    // hay 5 tarjetas y 4 paradas, y mezclarlas dejaba la flecha izquierda
-    // pidiendo el mismo tope en el que ya estaba.
-    function paradaActual() {
-      let idx = 0;
-      paradas.forEach((x, i) => {
-        if (sc.scrollLeft >= x - 24) idx = i;
+    function siguiente() {
+      if (i >= N - 1) {
+        i = 0;
+        vueltas += 1;
+      } else {
+        i += 1;
+      }
+      sc.scrollTo({ left: destinoDe(i), behavior: 'smooth' });
+      pintar();
+    }
+
+    // Si el carro se mueve a mano, el dial se pone al dia con la tarjeta que
+    // tenga mas cerca, sin girar de mas.
+    function sincronizar() {
+      let cerca = 0;
+      let mejor = Infinity;
+      cards.forEach((_, n) => {
+        const d = Math.abs(sc.scrollLeft - destinoDe(n));
+        if (d < mejor - 1) {
+          mejor = d;
+          cerca = n;
+        }
       });
-      return idx;
+      if (cerca === i) return;
+      // Camino corto: al mover el carro a mano la rueda no da la vuelta
+      // larga, solo la da el boton al saltar del ultimo modelo al primero.
+      const avance = (cerca - i + N) % N;
+      if (avance > N - avance) vueltas += 1;
+      i = cerca;
+      pintar();
     }
 
-    function irA(dir: number) {
-      const i = Math.max(0, Math.min(paradas.length - 1, paradaActual() + dir));
-      sc.scrollTo({ left: paradas[i] ?? 0, behavior: 'smooth' });
-    }
+    let quieto = 0;
+    const alDesplazar = () => {
+      window.clearTimeout(quieto);
+      quieto = window.setTimeout(sincronizar, 140);
+    };
 
-    const onFlecha = (e: Event) => {
-      const b = (e.currentTarget as HTMLElement).dataset.dir;
-      irA(Number(b));
-    };
-    flechas.forEach((f) => f.addEventListener('click', onFlecha));
-
-    // Arrastrar el pulgar mueve el carro, como una barra de desplazamiento.
-    const onPointer = (e: PointerEvent) => {
-      const r = riel.getBoundingClientRect();
-      const t = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
-      sc.scrollLeft = t * max();
-    };
-    const onDown = (e: PointerEvent) => {
-      riel.setPointerCapture(e.pointerId);
-      riel.classList.add('agarrado');
-      onPointer(e);
-    };
-    const onMove = (e: PointerEvent) => {
-      if (riel.hasPointerCapture(e.pointerId)) onPointer(e);
-    };
-    const onUp = (e: PointerEvent) => {
-      riel.releasePointerCapture(e.pointerId);
-      riel.classList.remove('agarrado');
-    };
-    riel.addEventListener('pointerdown', onDown);
-    riel.addEventListener('pointermove', onMove);
-    riel.addEventListener('pointerup', onUp);
-
-    medir();
-    sc.addEventListener('scroll', pintar, { passive: true });
-    const ro = new ResizeObserver(medir);
+    dial.addEventListener('click', siguiente);
+    sc.addEventListener('scroll', alDesplazar, { passive: true });
+    const ro = new ResizeObserver(pintar);
     ro.observe(sc);
+    pintar();
     return () => {
-      sc.removeEventListener('scroll', pintar);
-      flechas.forEach((f) => f.removeEventListener('click', onFlecha));
-      riel.removeEventListener('pointerdown', onDown);
-      riel.removeEventListener('pointermove', onMove);
-      riel.removeEventListener('pointerup', onUp);
+      window.clearTimeout(quieto);
+      dial.removeEventListener('click', siguiente);
+      sc.removeEventListener('scroll', alDesplazar);
       ro.disconnect();
     };
   }, [preDone]);
