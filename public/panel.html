@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0B">
+<meta name="robots" content="noindex, nofollow">
+<title>Área privada — Club Cavallino Ibérico</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 40'%3E%3Cpath d='M1 1h32v27.5L17 39 1 28.5z' fill='%230A0A0B' stroke='%233A3A42' stroke-width='1.4'/%3E%3Cpath d='M17 6.5l-1.6 3.4-2.7-1.1 1.1 3.2-3.4 1.5 2.9 1.6-3.3 5.4 3.6-1.4-.6 5.9 3-4.6 1.3 6 1.6-6.4 3.4 4.2-.9-6 3.6.9-3-4.6 2.6-1.6-3.2-1.4 1-3.1-2.7 1z' fill='%23DC0000'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0B; --bg2:#131316; --surface:#1A1A1E;
+  --text-1:#F5F5F7; --text-2:#B4B4BC; --text-3:#90909A;
+  --accent:#DC0000; --accent-2:#FF2800; --accent-lt:#2A1214;
+  --gold:#FFD200; --border:#2A2A30; --border-lt:#3A3A42;
+  --success:#2FBF71; --error:#FF4D4D;
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-serif:'Fraunces',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --max-w:1180px;
+}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h2 em{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--accent-2)}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+.saltar{position:absolute;left:1rem;top:-100px;z-index:1500;
+  font-family:var(--font-mono);font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;
+  background:var(--accent);color:#fff;padding:.9rem 1.5rem;text-decoration:none;transition:top .2s ease}
+.saltar:focus{top:1rem}
+
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1rem 2rem;background:rgba(10,10,11,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.brand svg{width:30px;height:35px;flex-shrink:0}
+.brand-txt{font-family:var(--font-display);font-weight:600;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;line-height:1.15}
+.brand-txt span{display:block;font-family:var(--font-mono);font-weight:400;font-size:.54rem;letter-spacing:.3em;color:var(--text-3)}
+.topbar-right{display:flex;align-items:center;gap:1.1rem}
+.quien{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;color:var(--text-2);text-align:right;line-height:1.4}
+.quien b{display:block;color:var(--text-1);font-family:var(--font-display);font-size:.86rem;letter-spacing:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  padding:.8rem 1.5rem;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .25s,border-color .25s,color .25s;background:none}
+.btn--primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn--primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.btn--ghost{color:var(--text-1);border-color:var(--border-lt)}
+.btn--ghost:hover{border-color:var(--accent-2);color:var(--accent-2)}
+.btn--sm{padding:.55rem 1.05rem;font-size:.66rem}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+.hero-p{padding:3.5rem 0 2rem;border-bottom:1px solid var(--border)}
+.hero-p .tag{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-2);display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.hero-p .tag::before{content:"";width:26px;height:1px;background:var(--accent)}
+.hero-p h2{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.9rem);font-weight:500;letter-spacing:-.025em;line-height:1.08}
+
+.ficha{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);margin:2.5rem 0 0}
+.ficha div{padding:1.6rem 1.4rem;border-right:1px solid var(--border)}
+.ficha div:last-child{border-right:0}
+.ficha dt{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);margin-bottom:.5rem}
+.ficha dd{font-family:var(--font-display);font-size:1.15rem;font-weight:500;letter-spacing:-.01em}
+
+.sec{padding:3.5rem 0}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.sec-h h3{font-family:var(--font-display);font-size:1.4rem;font-weight:500;letter-spacing:-.015em}
+.sec-h span{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+
+.lista{display:flex;flex-direction:column;border-top:1px solid var(--border)}
+.fila{display:grid;grid-template-columns:96px 1fr auto;gap:1.6rem;align-items:center;padding:1.5rem .3rem;border-bottom:1px solid var(--border);transition:background .25s}
+.fila:hover{background:var(--accent-lt)}
+.fecha{font-family:var(--font-mono);font-size:.7rem;color:var(--accent-2);letter-spacing:.08em;text-transform:uppercase;line-height:1.5}
+.fecha b{display:block;font-family:var(--font-display);font-size:1.5rem;color:var(--text-1);font-weight:500;letter-spacing:-.02em}
+.cuerpo h4{font-family:var(--font-display);font-size:1.1rem;font-weight:500;margin-bottom:.25rem}
+.cuerpo p{color:var(--text-2);font-size:.9rem;max-width:64ch}
+.cuerpo .sitio{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;color:var(--text-3);margin-top:.35rem;display:block}
+.acciones{display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.plazas{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);white-space:nowrap}
+.plazas.pocas{color:var(--gold)}
+.plazas.llenas{color:var(--text-3)}
+.chip{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;padding:.35rem .75rem;border:1px solid rgba(47,191,113,.45);color:var(--success);white-space:nowrap}
+
+.tabla{width:100%;border-collapse:collapse;border:1px solid var(--border)}
+.tabla th{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-3);text-align:left;padding:1rem 1.2rem;border-bottom:1px solid var(--border);font-weight:400;background:var(--bg2)}
+.tabla td{padding:1rem 1.2rem;border-bottom:1px solid var(--border);font-size:.93rem;color:var(--text-2)}
+.tabla tr:last-child td{border-bottom:0}
+.tabla td:first-child{font-family:var(--font-mono);font-size:.8rem;color:var(--accent-2)}
+.tabla td.nom{color:var(--text-1);font-family:var(--font-display);font-weight:500}
+.tabla tr:hover td{background:var(--accent-lt)}
+.yo td{background:rgba(255,210,0,.05)}
+.yo td.nom::after{content:"tú";font-family:var(--font-mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(255,210,0,.4);padding:.12rem .45rem;margin-left:.6rem;vertical-align:middle}
+
+/* Mi cuenta */
+.cuenta{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
+.caja{background:var(--surface);border:1px solid var(--border);padding:2.1rem 1.9rem;display:flex;flex-direction:column;gap:1.1rem}
+.caja h4{font-family:var(--font-display);font-size:1.2rem;font-weight:500;letter-spacing:-.01em}
+.caja-p{color:var(--text-2);font-size:.9rem;margin-top:-.6rem}
+.caja .campo{display:flex;flex-direction:column;gap:.5rem}
+.caja label{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-2)}
+.caja input{background:var(--bg);border:1px solid var(--border);color:var(--text-1);font-family:var(--font-body);font-size:.95rem;padding:.85rem 1rem;width:100%;transition:border-color .25s,background .25s}
+.caja input:focus{outline:none;border-color:var(--accent-2);background:var(--accent-lt)}
+.caja .btn{margin-top:.5rem;justify-content:center}
+
+.vacio{padding:2.5rem 1.2rem;border:1px dashed var(--border-lt);color:var(--text-3);font-size:.92rem;text-align:center}
+.aviso{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.05em;padding:.9rem 1.1rem;border:1px solid var(--border-lt);color:var(--text-2);margin-bottom:1.4rem;display:none}
+.aviso.on{display:block}
+.aviso.err{border-color:rgba(255,77,77,.5);color:var(--error);background:rgba(255,77,77,.07)}
+.aviso.ok{border-color:rgba(47,191,113,.45);color:var(--success);background:rgba(47,191,113,.07)}
+
+.cargando{padding:5rem 2rem;text-align:center;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3)}
+.pie{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;color:var(--text-3);text-align:center}
+
+@media (max-width:860px){
+  .cuenta{grid-template-columns:1fr}
+  .ficha{grid-template-columns:repeat(2,1fr)}
+  .ficha div:nth-child(2){border-right:0}
+  .ficha div:nth-child(-n+2){border-bottom:1px solid var(--border)}
+  .tabla thead{display:none}
+  .tabla,.tabla tbody,.tabla tr,.tabla td{display:block;width:100%}
+  .tabla tr{border-bottom:1px solid var(--border);padding:.6rem 0}
+  .tabla td{border:0;padding:.3rem 1.1rem}
+  .tabla td::before{content:attr(data-l);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);display:block;margin-bottom:.15rem}
+}
+@media (max-width:680px){
+  .wrap{padding:0 1.25rem}
+  .topbar{padding:.85rem 1.25rem;flex-wrap:wrap}
+  .quien{text-align:left}
+  .fila{grid-template-columns:1fr;gap:.8rem}
+  .acciones{flex-direction:row;align-items:center;justify-content:flex-start;flex-wrap:wrap}
+  .fecha b{display:inline;margin-right:.45rem}
+  .ficha{grid-template-columns:1fr}
+  .ficha div{border-right:0;border-bottom:1px solid var(--border)}
+  .ficha div:last-child{border-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<a href="#panel" class="saltar">Saltar al contenido</a>
+
+<header class="topbar">
+  <a href="/" class="brand" title="Volver al inicio">
+    <svg viewBox="0 0 34 40" aria-hidden="true" focusable="false">
+      <path d="M1 1h32v27.5L17 39 1 28.5z" fill="#131316" stroke="#3A3A42" stroke-width="1.4"></path>
+      <path d="M17 6.5l-1.6 3.4-2.7-1.1 1.1 3.2-3.4 1.5 2.9 1.6-3.3 5.4 3.6-1.4-.6 5.9 3-4.6 1.3 6 1.6-6.4 3.4 4.2-.9-6 3.6.9-3-4.6 2.6-1.6-3.2-1.4 1-3.1-2.7 1z" fill="#DC0000"></path>
+      <path d="M13.5 30.5h7" stroke="#FFD200" stroke-width="1.5"></path>
+    </svg>
+    <span class="brand-txt">Cavallino<span>Ibérico</span></span>
+  </a>
+  <div class="topbar-right">
+    <p class="quien" id="quien"></p>
+    <a href="/junta.html" class="btn btn--ghost btn--sm" id="ir-junta" hidden>Junta</a>
+    <button class="btn btn--ghost btn--sm" type="button" id="salir">Salir</button>
+  </div>
+</header>
+
+<div id="cargando" class="cargando">Cargando área privada…</div>
+
+<main id="panel" hidden>
+  <section class="hero-p">
+    <div class="wrap">
+      <p class="tag">Área privada</p>
+      <h2>Tu ficha de <em>socio</em></h2>
+      <dl class="ficha">
+        <div><dt>Número</dt><dd id="f-num">—</dd></div>
+        <div><dt>Modalidad</dt><dd id="f-mod">—</dd></div>
+        <div><dt>Vehículo</dt><dd id="f-veh">—</dd></div>
+        <div><dt>Socio desde</dt><dd id="f-alta">—</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+      <div class="sec-h">
+        <h3>Mis inscripciones</h3>
+        <span id="c-insc"></span>
+      </div>
+      <div id="misinsc"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-h">
+        <h3>Próximas convocatorias</h3>
+        <span>Reserva anticipada de socios</span>
+      </div>
+      <div class="lista" id="convocatorias"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-h">
+        <h3>Directorio de socios</h3>
+        <span id="c-dir"></span>
+      </div>
+      <table class="tabla">
+        <thead><tr><th>Nº</th><th>Nombre</th><th>Zona</th><th>Modalidad</th><th>Vehículo</th></tr></thead>
+        <tbody id="directorio"></tbody>
+      </table>
+      <p class="pie">Uso interno del club. No compartas este listado fuera de la asociación.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="cuenta">
+    <div class="wrap">
+      <div class="sec-h">
+        <h3>Mi cuenta</h3>
+        <span>Datos de contacto y acceso</span>
+      </div>
+      <p class="aviso" id="aviso-cuenta" role="status" aria-live="polite"></p>
+
+      <div class="cuenta">
+        <form class="caja" id="form-perfil" novalidate>
+          <h4>Mis datos</h4>
+          <p class="caja-p">El número de socio y la modalidad los gestiona la junta.</p>
+          <div class="campo">
+            <label for="c-email">Correo electrónico</label>
+            <input id="c-email" type="email" required autocomplete="email">
+          </div>
+          <div class="campo">
+            <label for="c-zona">Zona</label>
+            <input id="c-zona" type="text" placeholder="Madrid, Levante…">
+          </div>
+          <div class="campo">
+            <label for="c-veh">Vehículo</label>
+            <input id="c-veh" type="text" placeholder="Marca y modelo">
+          </div>
+          <div class="campo">
+            <label for="c-anio">Año del vehículo</label>
+            <input id="c-anio" type="number" min="1947" max="2030">
+          </div>
+          <button class="btn btn--primary" type="submit">Guardar cambios</button>
+        </form>
+
+        <form class="caja" id="form-pass" novalidate>
+          <h4>Cambiar contraseña</h4>
+          <p class="caja-p">Al cambiarla se cerrarán las demás sesiones abiertas con tu cuenta.</p>
+          <div class="campo">
+            <label for="p-act">Contraseña actual</label>
+            <input id="p-act" type="password" required autocomplete="current-password">
+          </div>
+          <div class="campo">
+            <label for="p-new">Nueva contraseña</label>
+            <input id="p-new" type="password" required autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+          </div>
+          <div class="campo">
+            <label for="p-rep">Repite la nueva</label>
+            <input id="p-rep" type="password" required autocomplete="new-password">
+          </div>
+          <button class="btn btn--primary" type="submit">Cambiar contraseña</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  var $ = function (id) { return document.getElementById(id); };
+
+  function txt(s) { return String(s == null ? '' : s); }
+
+  // La base guarda 'Clasicos' sin tilde por la restricción CHECK
+  function modalidad(m) { return txt(m) === 'Clasicos' ? 'Clásicos' : txt(m); }
+
+  function fecha(iso) {
+    var p = txt(iso).split('-');
+    if (p.length !== 3) return { d: '—', m: '' };
+    return { d: p[2], m: MESES[Number(p[1]) - 1] + ' ' + p[0] };
+  }
+
+  function aviso(msg, tipo) {
+    var el = $('aviso');
+    el.textContent = msg;
+    el.className = 'aviso on ' + (tipo || '');
+    if (tipo === 'ok') setTimeout(function () { el.className = 'aviso'; }, 4000);
+  }
+
+  function pedir(url, opciones) {
+    return fetch(url, Object.assign({ credentials: 'same-origin' }, opciones || {}))
+      .then(function (r) {
+        if (r.status === 401) { location.href = '/#socios'; throw new Error('sin sesion'); }
+        return r.json().then(function (d) { return { ok: r.ok, datos: d }; });
+      });
+  }
+
+  function pinta(d) {
+    $('quien').innerHTML = '<b></b>Socio nº ';
+    $('quien').querySelector('b').textContent = d.socio.nombre;
+    $('quien').appendChild(document.createTextNode(d.socio.numero));
+
+    // El acceso a junta solo se muestra a quien tiene el rol
+    if (d.socio.junta) $('ir-junta').hidden = false;
+
+    $('f-num').textContent = d.socio.numero;
+    $('f-mod').textContent = modalidad(d.socio.modalidad);
+    $('f-veh').textContent = txt(d.socio.vehiculo) + (d.socio.anio_vehiculo ? ' · ' + d.socio.anio_vehiculo : '');
+    var a = fecha(d.socio.alta);
+    $('f-alta').textContent = a.m || '—';
+
+    // Precargar el formulario de "Mi cuenta" con lo que hay ahora
+    $('c-email').value = txt(d.socio.email);
+    $('c-zona').value = txt(d.socio.zona);
+    $('c-veh').value = txt(d.socio.vehiculo);
+    $('c-anio').value = d.socio.anio_vehiculo || '';
+
+    // Mis inscripciones
+    var cont = $('misinsc');
+    cont.innerHTML = '';
+    $('c-insc').textContent = d.inscripciones.length + ' activa' + (d.inscripciones.length === 1 ? '' : 's');
+    if (!d.inscripciones.length) {
+      var v = document.createElement('p');
+      v.className = 'vacio';
+      v.textContent = 'Todavía no estás inscrito en ninguna convocatoria.';
+      cont.appendChild(v);
+    } else {
+      var lista = document.createElement('div');
+      lista.className = 'lista';
+      d.inscripciones.forEach(function (e) {
+        lista.appendChild(filaEvento(e, null));
+      });
+      cont.appendChild(lista);
+    }
+
+    // Próximas convocatorias
+    var conv = $('convocatorias');
+    conv.innerHTML = '';
+    d.proximos.forEach(function (e) { conv.appendChild(filaEvento(e, true)); });
+
+    // Directorio
+    var tb = $('directorio');
+    tb.innerHTML = '';
+    $('c-dir').textContent = d.totalSocios + ' socios activos';
+    d.directorio.forEach(function (s) {
+      var tr = document.createElement('tr');
+      if (s.numero === d.socio.numero) tr.className = 'yo';
+      tr.appendChild(celda(s.numero, 'Nº'));
+      tr.appendChild(celda(s.nombre, 'Nombre', 'nom'));
+      tr.appendChild(celda(s.zona || '—', 'Zona'));
+      tr.appendChild(celda(modalidad(s.modalidad), 'Modalidad'));
+      tr.appendChild(celda(s.vehiculo || '—', 'Vehículo'));
+      tb.appendChild(tr);
+    });
+  }
+
+  function celda(valor, etiqueta, clase) {
+    var td = document.createElement('td');
+    td.textContent = txt(valor);
+    td.setAttribute('data-l', etiqueta);
+    if (clase) td.className = clase;
+    return td;
+  }
+
+  function filaEvento(e, conAccion) {
+    var f = fecha(e.fecha);
+    var fila = document.createElement('article');
+    fila.className = 'fila';
+
+    var dv = document.createElement('div');
+    dv.className = 'fecha';
+    var b = document.createElement('b');
+    b.textContent = f.d;
+    dv.appendChild(b);
+    dv.appendChild(document.createTextNode(f.m));
+    fila.appendChild(dv);
+
+    var cu = document.createElement('div');
+    cu.className = 'cuerpo';
+    var h4 = document.createElement('h4');
+    h4.textContent = e.titulo;
+    cu.appendChild(h4);
+    if (e.descripcion) {
+      var p = document.createElement('p');
+      p.textContent = e.descripcion;
+      cu.appendChild(p);
+    }
+    if (e.lugar) {
+      var sp = document.createElement('span');
+      sp.className = 'sitio';
+      sp.textContent = e.lugar;
+      cu.appendChild(sp);
+    }
+    fila.appendChild(cu);
+
+    var ac = document.createElement('div');
+    ac.className = 'acciones';
+
+    if (conAccion) {
+      var libres = Number(e.plazas) - Number(e.ocupadas);
+      var pl = document.createElement('span');
+      pl.className = 'plazas' + (libres <= 0 ? ' llenas' : (libres <= 3 ? ' pocas' : ''));
+      pl.textContent = libres <= 0 ? 'Completo' : libres + ' plazas libres';
+      ac.appendChild(pl);
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn--sm ' + (e.inscrito ? 'btn--ghost' : 'btn--primary');
+      btn.textContent = e.inscrito ? 'Anular' : 'Inscribirme';
+      btn.disabled = !e.inscrito && libres <= 0;
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        var destino = e.inscrito ? '/api/anular' : '/api/inscribir';
+        pedir(destino, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ evento: e.id })
+        }).then(function (r) {
+          if (!r.ok) { aviso(r.datos.error || 'No se pudo completar.', 'err'); btn.disabled = false; return; }
+          aviso(e.inscrito ? 'Inscripción anulada.' : 'Inscripción confirmada.', 'ok');
+          cargar();
+        }).catch(function () { btn.disabled = false; });
+      });
+      ac.appendChild(btn);
+    } else {
+      var chip = document.createElement('span');
+      chip.className = 'chip';
+      chip.textContent = 'Inscrito';
+      ac.appendChild(chip);
+    }
+
+    fila.appendChild(ac);
+    return fila;
+  }
+
+  function cargar() {
+    return pedir('/api/panel').then(function (r) {
+      if (!r.ok) return;
+      pinta(r.datos);
+      $('cargando').hidden = true;
+      $('panel').hidden = false;
+    }).catch(function () {});
+  }
+
+  /* ---- Mi cuenta ---- */
+  function avisoCuenta(msg, tipo) {
+    var el = $('aviso-cuenta');
+    el.textContent = msg;
+    el.className = 'aviso on ' + (tipo || '');
+    if (tipo === 'ok') setTimeout(function () { el.className = 'aviso'; }, 5000);
+  }
+
+  $('form-perfil').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('button[type=submit]');
+    btn.disabled = true;
+    pedir('/api/cuenta', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        hacer: 'perfil',
+        email: $('c-email').value.trim(),
+        zona: $('c-zona').value.trim(),
+        vehiculo: $('c-veh').value.trim(),
+        anio: $('c-anio').value
+      })
+    }).then(function (r) {
+      btn.disabled = false;
+      if (!r.ok) { avisoCuenta(r.datos.error || 'No se pudo guardar.', 'err'); return; }
+      avisoCuenta('Datos actualizados.', 'ok');
+      cargar();
+    }).catch(function () { btn.disabled = false; });
+  });
+
+  $('form-pass').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nueva = $('p-new').value;
+    if (nueva !== $('p-rep').value) {
+      avisoCuenta('Las dos contraseñas nuevas no coinciden.', 'err');
+      return;
+    }
+    var btn = e.target.querySelector('button[type=submit]');
+    btn.disabled = true;
+    pedir('/api/cuenta', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hacer: 'password', actual: $('p-act').value, nueva: nueva })
+    }).then(function (r) {
+      btn.disabled = false;
+      if (!r.ok) { avisoCuenta(r.datos.error || 'No se pudo cambiar.', 'err'); return; }
+      e.target.reset();
+      var extra = r.datos.sesionesCerradas
+        ? ' Se cerraron ' + r.datos.sesionesCerradas + ' sesión(es) más.'
+        : '';
+      avisoCuenta('Contraseña cambiada.' + extra, 'ok');
+    }).catch(function () { btn.disabled = false; });
+  });
+
+  $('salir').addEventListener('click', function () {
+    pedir('/api/logout', { method: 'POST' }).then(function () { location.href = '/'; })
+      .catch(function () { location.href = '/'; });
+  });
+
+  cargar();
+})();
+</script>
+
+</body>
+</html>

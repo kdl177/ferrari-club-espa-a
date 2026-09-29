@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /$
+Allow: /index.html
+
+# Zonas privadas: no deben indexarse ni rastrearse
+Disallow: /panel.html
+Disallow: /junta.html
+Disallow: /api/
+
+Sitemap: https://cavallino-iberico.vercel.app/sitemap.xml

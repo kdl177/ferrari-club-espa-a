@@ -1,0 +1,22 @@
+{
+  "name": "cavallino-iberico",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node server.mjs",
+    "seed": "node db/seed.mjs",
+    "test": "node test/regresion.mjs",
+    "test:junta": "node test/junta.mjs",
+    "test:all": "node test/regresion.mjs && node test/junta.mjs && node test/cuenta.mjs",
+    "test:cuenta": "node test/cuenta.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0",
+    "pg": "^8.13.1",
+    "ws": "^8.18.0"
+  }
+}
