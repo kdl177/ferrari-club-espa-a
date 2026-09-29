@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000).
+Abre [https://club-ferrari-espana.vercel.app](https://club-ferrari-espana.vercel.app).
 
 ## Estructura
 
