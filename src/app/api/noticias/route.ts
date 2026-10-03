@@ -12,12 +12,15 @@ type Article = {
   catLabel: string;
   source: string;
   feed: string;
+  lang: 'es' | 'en';
 };
 
 const FEEDS = [
-  { url: 'https://racer.com/feed/', source: 'racer.com', feed: 'Racer', cat: 'motorsport', catLabel: 'MOTORSPORT' },
-  { url: 'https://www.the-race.com/feed/', source: 'the-race.com', feed: 'The Race', cat: 'f1', catLabel: 'FÓRMULA 1' },
-  { url: 'https://www.autosport.com/rss/f1/news/', source: 'autosport.com', feed: 'Autosport', cat: 'f1', catLabel: 'FÓRMULA 1' },
+  { url: 'https://es.motorsport.com/rss/f1/news/', source: 'es.motorsport.com', feed: 'Motorsport', cat: 'f1', catLabel: 'FÓRMULA 1', lang: 'es' },
+  { url: 'https://www.marca.com/rss/motor/formula1.xml', source: 'marca.com', feed: 'Marca Motor', cat: 'f1', catLabel: 'FÓRMULA 1', lang: 'es' },
+  { url: 'https://racer.com/feed/', source: 'racer.com', feed: 'Racer', cat: 'motorsport', catLabel: 'MOTORSPORT', lang: 'en' },
+  { url: 'https://www.the-race.com/feed/', source: 'the-race.com', feed: 'The Race', cat: 'f1', catLabel: 'FÓRMULA 1', lang: 'en' },
+  { url: 'https://www.autosport.com/rss/f1/news/', source: 'autosport.com', feed: 'Autosport', cat: 'f1', catLabel: 'FÓRMULA 1', lang: 'en' },
 ];
 
 function stripCdata(s: string) {
@@ -79,6 +82,7 @@ async function fetchFeed(feed: (typeof FEEDS)[number]): Promise<Article[]> {
       catLabel: feed.catLabel,
       source: feed.source,
       feed: feed.feed,
+      lang: feed.lang as 'es' | 'en',
     };
   });
 }
@@ -92,15 +96,26 @@ export async function GET() {
     }
     articles.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
+    // Los feeds en ingles publican mucho mas volumen: ordenar solo por fecha
+    // dejaria el español fuera de la primera pagina. Se intercalan 1 a 1
+    // manteniendo el orden cronologico dentro de cada idioma.
+    const es = articles.filter((a) => a.lang === 'es');
+    const en = articles.filter((a) => a.lang === 'en');
+    const mezclados: Article[] = [];
+    for (let i = 0; i < Math.max(es.length, en.length); i++) {
+      if (es[i]) mezclados.push(es[i]);
+      if (en[i]) mezclados.push(en[i]);
+    }
+
     if (!articles.length) {
       return NextResponse.json({ ok: false, error: 'No se pudieron cargar los feeds de noticias.' }, { status: 502 });
     }
 
     return NextResponse.json({
       ok: true,
-      count: articles.length,
+      count: mezclados.length,
       updatedAt: new Date().toISOString(),
-      articles,
+      articles: mezclados,
     });
   } catch (e) {
     return NextResponse.json({ ok: false, error: e instanceof Error ? e.message : 'Feed error' }, { status: 502 });
