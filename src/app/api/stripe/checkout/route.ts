@@ -25,6 +25,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Socio no encontrado.' }, { status: 404 });
   }
 
+  // El alta deja la ficha en 'pendiente'. Cualquier otro estado significa que
+  // el id viene de fuera del flujo de alta: no se abre cobro a su nombre.
+  if (socio.estadoCuota !== 'pendiente') {
+    return NextResponse.json({ error: 'Esta ficha no tiene un alta pendiente de pago.' }, { status: 409 });
+  }
+
   const origin = req.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
   const session = await stripe.checkout.sessions.create({
