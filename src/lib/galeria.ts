@@ -28,8 +28,8 @@ export const VIAJES: Pieza[] = [
   { src: '/galeria/g03.webp', alt: 'Ferrari aparcados entre olivos en una finca mediterránea' },
   { src: '/galeria/g10.webp', alt: 'Socios del club a bordo de una embarcación en el lago de Como' },
   { src: '/galeria/g08.webp', alt: 'Socios del club ante el castillo de Olite en otoño' },
-  { src: '/galeria/g14.webp', alt: 'Ferrari ante el castillo de Chambord durante la ruta por el Loira', forma: 'ancha' },
   { src: '/galeria/g25.webp', alt: 'Ferrari alineados ante la Ciudad de las Artes y las Ciencias de Valencia', grande: true, forma: 'ancha' },
+  { src: '/galeria/g14.webp', alt: 'Ferrari ante el castillo de Chambord durante la ruta por el Loira' },
 ];
 
 export const CONCENTRACIONES: Pieza[] = [
@@ -37,7 +37,7 @@ export const CONCENTRACIONES: Pieza[] = [
   { src: '/galeria/g21.webp', alt: 'Hilera de Ferrari ante una iglesia de piedra en un pueblo castellano' },
   { src: '/galeria/g12.webp', alt: 'Ferrari clásicos recorriendo la calle principal de un pueblo italiano', forma: 'ancha' },
   { src: '/galeria/g15.webp', alt: 'Ferrari aparcados en semicírculo durante una concentración del club' },
-  { src: '/galeria/g09.webp', alt: 'Bandera gigante del club desplegada en una plaza durante un encuentro' },
+  { src: '/galeria/g09.webp', alt: 'Bandera gigante del club desplegada en una plaza durante un encuentro', forma: 'ancha' },
   { src: '/galeria/g11.webp', alt: 'Socios del club reunidos en una comida de hermandad' },
   { src: '/galeria/g07.webp', alt: 'Botellas de vino con la etiqueta conmemorativa del encuentro de Rioja Alavesa', forma: 'alta' },
   { src: '/galeria/g16.webp', alt: 'Socios del club en la entrada de Ferrari Land' },
