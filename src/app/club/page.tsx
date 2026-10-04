@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
-import Foto from '@/components/Foto';
+import Mosaico from '@/components/Mosaico';
+import { MOSAICO_HERO, CIRCUITO, VIAJES, CONCENTRACIONES } from '@/lib/galeria';
 
 export const metadata: Metadata = {
   title: 'Nuestro Club — Ferrari Club España',
@@ -61,6 +62,9 @@ export default function ClubPage() {
             <div className="stat"><span className="stat-n" data-count="38">38</span><span className="stat-l">AÑOS</span></div>
             <div className="stat"><span className="stat-n" data-count="2006">2006</span><span className="stat-l">CLUB OFICIAL</span></div>
           </div>
+          <div style={{ marginTop: '4rem' }} data-r="up">
+            <Mosaico piezas={MOSAICO_HERO} hero eager />
+          </div>
         </div>
         <div style={{ position: 'absolute', bottom: '-2rem', right: 0, fontFamily: 'var(--fd)', fontSize: '18vw', color: 'rgba(255,255,255,.015)', pointerEvents: 'none', userSelect: 'none', lineHeight: 1 }} aria-hidden="true">1988</div>
       </section>
@@ -76,7 +80,10 @@ export default function ClubPage() {
               <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginTop: '1rem' }}>Nuestra misión es reunir a los propietarios y amantes de Ferrari, organizar eventos exclusivos, fomentar el automovilismo deportivo y mantener viva la llama de la más apasionante marca de automóviles del mundo.</p>
             </div>
             <div data-r="left">
-              <Foto id="museo-maranello" className="club-foto" enlace />
+              <figure className="club-foto" style={{ margin: 0, overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/galeria/g04.webp" alt="Socios del Ferrari Club España durante la visita oficial al taller Ferrari Classiche de Maranello" loading="lazy" decoding="async" style={{ width: '100%', display: 'block' }} />
+              </figure>
               <div style={{ position: 'relative', padding: '3rem', border: '1px solid var(--w08)', background: 'var(--black)' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'var(--red)', boxShadow: '0 0 12px var(--red)' }} />
                 <p style={{ fontFamily: 'var(--fe)', fontStyle: 'italic', fontSize: '1.1rem', color: 'var(--w90)', lineHeight: 1.85, marginBottom: '2rem' }}>&ldquo;Si eres propietario de un Ferrari y deseas compartir con nosotros tu pasión por <em>Il Cavallino</em>, hazte Socio del Ferrari Club España.&rdquo;</p>
@@ -124,10 +131,46 @@ export default function ClubPage() {
       <section style={{ background: 'var(--black)', padding: '6rem 0' }}>
         <div className="cnt">
           <div data-r="up"><div className="sec-eye">EQUIPO</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>Junta<br /><span style={{ color: 'var(--red)' }}>directiva</span></h2></div>
-          <div className="board-grid">
-            {BOARD.map((b, i) => (
-              <div className="board-card" data-r={i < 3 || i >= 6 ? 'up' : 'scale'} key={b.name + i}><div className="board-avatar">{b.av}</div><div className="board-name">{b.name}</div><div className="board-role">JUNTA DIRECTIVA</div></div>
-            ))}
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.35fr) minmax(0,1fr)', gap: '3rem', alignItems: 'center' }} className="junta-bloque">
+            <figure style={{ margin: 0, overflow: 'hidden', border: '1px solid var(--p10)' }} data-r="right">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/galeria/g08.webp" alt="Socios y junta directiva del Ferrari Club España reunidos ante el castillo de Olite" loading="lazy" decoding="async" style={{ width: '100%', display: 'block' }} />
+            </figure>
+            <div data-r="left">
+              <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginBottom: '2rem' }}>La junta directiva coordina el calendario de eventos, la relación con Ferrari S.p.A. y el día a día del club. Todos sus miembros son socios y propietarios, y el cargo es voluntario.</p>
+              <div className="board-grid" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(130px,1fr))', gap: '1px', background: 'var(--p10)', border: '1px solid var(--p10)' }}>
+                {BOARD.map((b, i) => (
+                  <div key={b.name + i} style={{ padding: '1.1rem .85rem', background: 'var(--ink)', textAlign: 'center' }}>
+                    <div style={{ fontFamily: 'var(--fh)', fontSize: '.84rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--white)' }}>{b.name}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ background: 'var(--b90)', padding: '6rem 0' }}>
+        <div className="cnt">
+          <div data-r="up">
+            <div className="sec-eye">ARCHIVO</div>
+            <h2 className="sec-title" style={{ marginTop: '1rem' }}>Nuestra<br /><span style={{ color: 'var(--red)' }}>memoria</span></h2>
+            <p className="sec-sub" style={{ maxWidth: '620px', marginTop: '1.5rem', marginBottom: '3.5rem' }}>Casi cuatro décadas de circuitos, rutas y encuentros. Estas son algunas de las imágenes del archivo del club.</p>
+          </div>
+
+          <div data-r="up">
+            <p className="tech-l" style={{ marginBottom: '1rem' }}>EN CIRCUITO</p>
+            <Mosaico piezas={CIRCUITO} />
+          </div>
+
+          <div data-r="up" style={{ marginTop: '4rem' }}>
+            <p className="tech-l" style={{ marginBottom: '1rem' }}>VIAJES Y RUTAS</p>
+            <Mosaico piezas={VIAJES} />
+          </div>
+
+          <div data-r="up" style={{ marginTop: '4rem' }}>
+            <p className="tech-l" style={{ marginBottom: '1rem' }}>CONCENTRACIONES Y ENCUENTROS</p>
+            <Mosaico piezas={CONCENTRACIONES} />
           </div>
         </div>
       </section>

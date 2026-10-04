@@ -824,3 +824,52 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 }
 .news-portada{aspect-ratio:21/9;overflow:hidden}
 @media(max-width:768px){.news-portada{aspect-ratio:16/10}}
+
+/* ── Archivo fotografico del club ────────────────────────── */
+/* Casi todas las fotos son miniaturas de 300px: la rejilla se queda en
+   celdas pequeñas (contact sheet) porque ampliarlas se veria borroso. */
+.mosaico{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  grid-auto-rows:1fr;grid-auto-flow:dense;
+  gap:2px;background:var(--p10);border:1px solid var(--p10);
+}
+.mz-pieza{
+  position:relative;overflow:hidden;background:var(--ink);
+  margin:0;min-height:150px;
+}
+.mz-pieza.es-ancha{grid-column:span 2}
+.mz-pieza.es-alta{grid-row:span 2}
+.mz-pieza img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(1) contrast(1.08);
+  transition:filter .5s var(--eo),transform .7s var(--eo);
+}
+.mz-pieza:hover img{filter:grayscale(0) contrast(1);transform:scale(1.04)}
+.mz-pieza::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 55%,rgba(13,9,7,.55));
+  opacity:.9;transition:opacity .5s var(--eo);
+}
+.mz-pieza:hover::after{opacity:.35}
+
+/* Portada del club: una pieza manda y el resto la acompaña. */
+.mosaico-hero{
+  display:grid;gap:2px;background:var(--p10);
+  border:1px solid var(--p10);
+  grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);
+}
+.mosaico-hero .mz-pieza{aspect-ratio:auto;min-height:118px}
+.mosaico-hero .mz-pieza:first-child{grid-column:span 2;grid-row:span 2}
+
+@media(max-width:860px){
+  .mosaico{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .mosaico-hero{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
+  .mosaico-hero .mz-pieza:first-child{grid-column:span 2;grid-row:auto;min-height:200px}
+}
+@media(prefers-reduced-motion:reduce){
+  .mz-pieza img{transition:none}
+  .mz-pieza:hover img{transform:none}
+}
+@media(max-width:860px){
+  .junta-bloque{grid-template-columns:1fr!important;gap:2rem!important}
+}
