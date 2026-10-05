@@ -891,3 +891,91 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 @media(max-width:860px){
   .junta-bloque{grid-template-columns:1fr!important;gap:2rem!important}
 }
+
+/* ── La comunidad: version con video y fotos a color ──────── */
+/* Pagina aparte, no comparte estilos con el resto: aqui las fotos van a
+   color (el blanco y negro es cosa del mosaico de /club). */
+.com-hero{
+  position:relative;min-height:92vh;display:flex;align-items:flex-end;
+  padding:0 0 5rem;overflow:hidden;background:var(--ink);
+}
+.com-hero-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0;
+}
+.com-hero-velo{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(13,9,7,.72) 0%,rgba(13,9,7,.35) 35%,rgba(13,9,7,.92) 100%),
+    linear-gradient(90deg,rgba(13,9,7,.75),transparent 62%);
+}
+.com-hero-cnt{position:relative;z-index:2}
+.com-hero-titulo{
+  font-size:clamp(2.4rem,6.5vw,5.2rem);margin-top:.75rem;line-height:1.04;
+  text-shadow:0 2px 28px rgba(13,9,7,.6);
+}
+.com-hero-sub{max-width:580px;margin-top:1.5rem}
+.com-hero-acc{display:flex;gap:1.25rem;margin-top:2.75rem;flex-wrap:wrap}
+
+/* Lo que hacemos */
+.com-momentos{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--p10);border:1px solid var(--p10);
+}
+.com-momento{padding:2.5rem 1.75rem;background:var(--ink);position:relative}
+.com-momento-n{
+  font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;
+  color:var(--red);display:block;margin-bottom:1.25rem;
+}
+.com-momento-t{
+  font-family:var(--fh);font-size:1.05rem;font-weight:700;
+  text-transform:uppercase;color:var(--white);margin:0 0 .75rem;
+}
+.com-momento-d{font-family:var(--fb);font-size:.85rem;color:var(--w60);line-height:1.85;margin:0}
+
+/* Caras conocidas: fotos a color con su pie */
+.com-gente{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.com-gente-pieza{margin:0;position:relative;overflow:hidden}
+.com-gente-pieza img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  border:1px solid var(--p10);
+  transition:transform .7s var(--eo);
+}
+.com-gente-pieza:hover img{transform:scale(1.03)}
+.com-gente-pieza figcaption{
+  font-family:var(--fm);font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--w60);margin-top:.85rem;
+}
+
+/* Archivo completo, a color */
+.com-archivo{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:2px;
+  background:var(--p10);border:1px solid var(--p10);
+}
+.com-archivo-pieza{margin:0;overflow:hidden;background:var(--ink)}
+.com-archivo-pieza img{
+  width:100%;height:100%;aspect-ratio:1;object-fit:cover;display:block;
+  transition:transform .6s var(--eo);
+}
+.com-archivo-pieza:hover img{transform:scale(1.08)}
+
+@media(max-width:1024px){
+  .com-momentos{grid-template-columns:repeat(2,1fr)}
+  .com-gente{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:720px){
+  .com-hero{min-height:88vh;padding-bottom:3.5rem}
+  .com-gente{grid-template-columns:repeat(2,1fr);gap:1rem}
+  /* 24 piezas: divisible por 6, 4 y 3, asi que las filas cierran igual. */
+  .com-archivo{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:480px){
+  .com-archivo{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:480px){
+  .com-momentos{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .com-gente-pieza img,.com-archivo-pieza img{transition:none}
+  .com-gente-pieza:hover img,.com-archivo-pieza:hover img{transform:none}
+}
