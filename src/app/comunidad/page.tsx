@@ -64,10 +64,16 @@ export default function ComunidadPage() {
             <a href="/club/hazte-socio/" className="btn" data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
             <a href="#archivo" className="btn btn-o">VER EL ARCHIVO</a>
           </div>
+          <nav className="com-nav" aria-label="Secciones de la comunidad">
+            <a href="/comunidad/eventos/">Salidas</a>
+            <a href="/comunidad/noticias/">Noticias</a>
+            <a href="/comunidad/concesionarios/">Concesionarios</a>
+            <a href="/comunidad/contacta/">Hablamos</a>
+          </nav>
         </div>
       </section>
 
-      <section style={{ background: 'var(--b90)', padding: '6rem 0' }}>
+      <section style={{ background: 'var(--fce-grafito)', padding: '6rem 0' }}>
         <div className="cnt">
           <div data-r="up">
             <div className="sec-eye">LO QUE HACEMOS</div>
@@ -85,7 +91,7 @@ export default function ComunidadPage() {
         </div>
       </section>
 
-      <section style={{ background: 'var(--black)', padding: '6rem 0' }}>
+      <section style={{ background: 'var(--ink)', padding: '6rem 0' }}>
         <div className="cnt">
           <div data-r="up">
             <div className="sec-eye">CARAS CONOCIDAS</div>
@@ -106,7 +112,7 @@ export default function ComunidadPage() {
         </div>
       </section>
 
-      <section id="archivo" style={{ background: 'var(--b90)', padding: '6rem 0' }}>
+      <section id="archivo" style={{ background: 'var(--fce-grafito)', padding: '6rem 0' }}>
         <div className="cnt">
           <div data-r="up">
             <div className="sec-eye">ARCHIVO</div>
