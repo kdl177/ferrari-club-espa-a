@@ -1119,6 +1119,11 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 }
 @media(max-width:720px){
   .com-banda{min-height:52vh}
+  /* A lo ancho del movil el coche queda detras del texto: hace falta mas
+     velo o el rojo sobre el capo no se lee. */
+  .com-banda-velo{
+    background:linear-gradient(180deg,rgba(13,9,7,.82),rgba(13,9,7,.6) 55%,rgba(13,9,7,.88));
+  }
 }
 @media(prefers-reduced-motion:reduce){
   /* Sin movimiento, pero con imagen: el poster se queda de fondo fijo. */
