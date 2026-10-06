@@ -1047,3 +1047,54 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
   .com-nav{gap:.4rem;margin-top:1.75rem}
   .com-nav a{padding:.45rem .7rem;font-size:.62rem}
 }
+
+/* ── /comunidad: el club y hazte socio ────────────────────── */
+.com-presenta{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:3.5rem;align-items:start}
+.com-texto{font-family:var(--fb);font-size:.92rem;color:var(--w60);line-height:1.9;margin-top:1.25rem}
+.com-datos{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:2.5rem}
+.com-dato-v{font-family:var(--fh);font-size:.95rem;color:var(--white)}
+.com-presenta-foto{margin:0;overflow:hidden}
+.com-presenta-foto img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--p10)}
+.com-presenta-foto figcaption{
+  font-family:var(--fm);font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--w60);margin-top:.75rem;
+}
+
+/* Hitos: 8 tarjetas, 4 columnas = 2 filas enteras */
+.com-hitos{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--p10);border:1px solid var(--p10)}
+.com-hito{padding:2rem 1.5rem;background:var(--ink)}
+.com-hito-a{font-family:var(--fd);font-size:1.6rem;color:var(--red);display:block;margin-bottom:.85rem;line-height:1}
+.com-hito-t{font-family:var(--fh);font-size:.92rem;font-weight:700;text-transform:uppercase;color:var(--white);margin:0 0 .6rem}
+.com-hito-d{font-family:var(--fb);font-size:.82rem;color:var(--w60);line-height:1.8;margin:0}
+
+/* Ventajas: 9 tarjetas, 3 columnas = 3 filas enteras */
+.com-ventajas{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--p10);border:1px solid var(--p10)}
+.com-ventaja{padding:2rem 1.65rem;background:var(--ink)}
+.com-ventaja-t{font-family:var(--fh);font-size:.95rem;font-weight:700;text-transform:uppercase;color:var(--white);margin:0 0 .65rem}
+.com-ventaja-d{font-family:var(--fb);font-size:.84rem;color:var(--w60);line-height:1.85;margin:0}
+
+/* Alta: pasos a la izquierda, formulario a la derecha */
+.com-alta{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:3.5rem;align-items:start}
+/* El formulario acompaña a los pasos, pero solo si cabe en la ventana:
+   pegado en una pantalla baja no se podria llegar al boton de enviar. */
+@media(min-height:900px) and (min-width:901px){
+  .com-alta .com-form{position:sticky;top:6.5rem}
+}
+.com-pasos{display:flex;flex-direction:column;gap:1px;background:var(--p10);border:1px solid var(--p10)}
+.com-paso{display:flex;gap:1.25rem;padding:1.5rem 1.35rem;background:var(--ink)}
+.com-paso-n{font-family:var(--fm);font-size:.72rem;letter-spacing:.14em;color:var(--red);flex-shrink:0;padding-top:.15rem}
+.com-paso-t{font-family:var(--fh);font-size:.9rem;font-weight:700;text-transform:uppercase;color:var(--white);margin:0 0 .45rem}
+.com-paso-d{font-family:var(--fb);font-size:.82rem;color:var(--w60);line-height:1.8;margin:0}
+
+@media(max-width:1024px){
+  .com-hitos{grid-template-columns:repeat(2,1fr)}
+  .com-ventajas{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  .com-presenta,.com-alta{grid-template-columns:1fr;gap:2.5rem}
+}
+@media(max-width:620px){
+  .com-hitos{grid-template-columns:1fr}
+  .com-ventajas{grid-template-columns:1fr}
+  .com-datos{gap:1.5rem}
+}

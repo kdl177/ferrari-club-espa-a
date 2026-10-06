@@ -2,10 +2,12 @@ import Breadcrumb from '@/components/Breadcrumb';
 
 const SECCIONES = [
   { label: 'La comunidad', href: '/comunidad/' },
+  { label: 'El club', href: '/comunidad/club/' },
   { label: 'Salidas', href: '/comunidad/eventos/' },
   { label: 'Noticias', href: '/comunidad/noticias/' },
   { label: 'Concesionarios', href: '/comunidad/concesionarios/' },
   { label: 'Hablamos', href: '/comunidad/contacta/' },
+  { label: 'Hazte socio', href: '/comunidad/hazte-socio/' },
 ];
 
 type Props = {
