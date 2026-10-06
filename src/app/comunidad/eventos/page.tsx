@@ -80,6 +80,26 @@ export default async function ComunidadEventosPage() {
         </div>
       </section>
 
+      <section className="com-banda">
+        <video
+          className="com-banda-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/video/carretera-poster.webp"
+          aria-label="Un Ferrari rodando por carretera abierta"
+        >
+          <source src="/video/carretera.webm" type="video/webm" />
+          <source src="/video/carretera.mp4" type="video/mp4" />
+        </video>
+        <div className="com-banda-velo" aria-hidden="true" />
+        <div className="cnt com-banda-cnt">
+          <p className="sec-eye">LO QUE VENIMOS A HACER</p>
+          <p className="com-banda-frase">Un Ferrari parado en un garaje<br /><span style={{ color: 'var(--red)' }}>no es un Ferrari.</span></p>
+        </div>
+      </section>
+
       <section style={{ background: 'var(--red)', padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(0,0,0,.25),transparent)' }} aria-hidden="true" />
         <div className="cnt" style={{ position: 'relative', textAlign: 'center' }}>

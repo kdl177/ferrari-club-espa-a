@@ -1098,3 +1098,30 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
   .com-ventajas{grid-template-columns:1fr}
   .com-datos{gap:1.5rem}
 }
+
+/* ── Banda de video a media pagina ────────────────────────── */
+.com-banda{
+  position:relative;min-height:58vh;display:flex;align-items:center;
+  overflow:hidden;background:var(--ink);
+}
+.com-banda-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.com-banda-velo{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(13,9,7,.88),rgba(13,9,7,.35) 55%,rgba(13,9,7,.6)),
+    linear-gradient(180deg,rgba(13,9,7,.5),transparent 30%,rgba(13,9,7,.55));
+}
+.com-banda-cnt{position:relative;z-index:2}
+.com-banda-frase{
+  font-family:var(--fd);font-size:clamp(1.6rem,4vw,3.2rem);
+  line-height:1.15;color:var(--white);margin:1rem 0 0;max-width:16ch;
+  text-shadow:0 2px 24px rgba(13,9,7,.65);
+}
+@media(max-width:720px){
+  .com-banda{min-height:52vh}
+}
+@media(prefers-reduced-motion:reduce){
+  /* Sin movimiento, pero con imagen: el poster se queda de fondo fijo. */
+  .com-banda{background:url('/video/carretera-poster.webp') center/cover no-repeat,var(--ink)}
+  .com-banda-video{display:none}
+}
