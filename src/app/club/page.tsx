@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
 import Mosaico from '@/components/Mosaico';
+import ArchivoComunidad from '@/components/ArchivoComunidad';
 import { MOSAICO_HERO, CIRCUITO, VIAJES, CONCENTRACIONES } from '@/lib/galeria';
 
 export const metadata: Metadata = {
@@ -48,6 +49,11 @@ const BOARD = [
 ];
 
 export default function ClubPage() {
+  // La rejilla del archivo va a 6 columnas: se recorta a multiplo de 6 para
+  // que la ultima fila no quede a medias.
+  const todas = [...CONCENTRACIONES, ...VIAJES, ...CIRCUITO];
+  const archivo = todas.slice(0, Math.floor(todas.length / 6) * 6);
+
   return (
     <>
       <section className="club-hero">
@@ -155,23 +161,10 @@ export default function ClubPage() {
           <div data-r="up">
             <div className="sec-eye">ARCHIVO</div>
             <h2 className="sec-title" style={{ marginTop: '1rem' }}>Nuestra<br /><span style={{ color: 'var(--red)' }}>memoria</span></h2>
-            <p className="sec-sub" style={{ maxWidth: '620px', marginTop: '1.5rem', marginBottom: '3.5rem' }}>Casi cuatro décadas de circuitos, rutas y encuentros. Estas son algunas de las imágenes del archivo del club.</p>
+            <p className="sec-sub" style={{ maxWidth: '620px', marginTop: '1.5rem', marginBottom: '3.5rem' }}>Casi cuatro décadas de circuitos, rutas y encuentros. Pulsa cualquiera para verla más grande.</p>
           </div>
 
-          <div data-r="up">
-            <p className="tech-l" style={{ marginBottom: '1rem' }}>EN CIRCUITO</p>
-            <Mosaico piezas={CIRCUITO} />
-          </div>
-
-          <div data-r="up" style={{ marginTop: '4rem' }}>
-            <p className="tech-l" style={{ marginBottom: '1rem' }}>VIAJES Y RUTAS</p>
-            <Mosaico piezas={VIAJES} />
-          </div>
-
-          <div data-r="up" style={{ marginTop: '4rem' }}>
-            <p className="tech-l" style={{ marginBottom: '1rem' }}>CONCENTRACIONES Y ENCUENTROS</p>
-            <Mosaico piezas={CONCENTRACIONES} />
-          </div>
+          <ArchivoComunidad piezas={archivo} />
         </div>
       </section>
 
