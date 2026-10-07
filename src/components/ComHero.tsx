@@ -18,13 +18,31 @@ type Props = {
   /** Foto del archivo del club que acompaña a la cabecera. */
   foto: string;
   fotoAlt: string;
+  /** Nombre del video en /public/video sin extension. Si viene, manda sobre
+   *  la foto, que se queda de imagen de carga. */
+  video?: string;
 };
 
-export default function ComHero({ seccion, titulo, tituloRojo, entrada, foto, fotoAlt }: Props) {
+export default function ComHero({ seccion, titulo, tituloRojo, entrada, foto, fotoAlt, video }: Props) {
   return (
     <section className="com-ph">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="com-ph-fondo" src={foto} alt={fotoAlt} />
+      {video ? (
+        <video
+          className="com-ph-fondo"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={`/video/${video}-poster.webp`}
+          aria-label={fotoAlt}
+        >
+          <source src={`/video/${video}.webm`} type="video/webm" />
+          <source src={`/video/${video}.mp4`} type="video/mp4" />
+        </video>
+      ) : (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img className="com-ph-fondo" src={foto} alt={fotoAlt} />
+      )}
       <div className="com-ph-velo" aria-hidden="true" />
       <div className="cnt com-ph-cnt">
         <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'La comunidad', href: '/comunidad/' }, { label: seccion }]} />

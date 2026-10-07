@@ -1189,3 +1189,10 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 @media(prefers-reduced-motion:reduce){
   .visor{animation:none}
 }
+/* Cabecera con video: sin movimiento se queda el poster como fondo fijo. */
+@media(prefers-reduced-motion:reduce){
+  video.com-ph-fondo{display:none}
+  .com-ph:has(video.com-ph-fondo){
+    background:url('/video/carretera-poster.webp') center/cover no-repeat,var(--ink);
+  }
+}

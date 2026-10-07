@@ -23,11 +23,12 @@ export default function ComunidadClubPage() {
     <>
       <ComHero
         seccion="El club"
-        titulo="Casi cuarenta años"
-        tituloRojo="quedando"
+        titulo="Treinta y ocho años"
+        tituloRojo="de carretera"
         entrada="Empezó en 1988 con unos cuantos propietarios y la idea de verse los fines de semana. Sigue igual, con más gente."
         foto="/galeria/g24.webp"
-        fotoAlt="Concentración de Ferrari en una plaza de pueblo vista desde lo alto"
+        fotoAlt="Un Ferrari rodando por carretera abierta"
+        video="carretera"
       />
 
       <section style={{ background: 'var(--fce-grafito)', padding: '5rem 0' }}>
