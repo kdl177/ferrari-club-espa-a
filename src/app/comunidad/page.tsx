@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
+import ArchivoComunidad from '@/components/ArchivoComunidad';
 import { CIRCUITO, VIAJES, CONCENTRACIONES } from '@/lib/galeria';
 
 export const metadata: Metadata = {
@@ -123,14 +124,7 @@ export default function ComunidadPage() {
               Veintiséis imágenes del archivo del club, a color y sin ordenar por temas: así es como se recuerda.
             </p>
           </div>
-          <div className="com-archivo">
-            {archivo.map((p) => (
-              <figure className="com-archivo-pieza" key={p.src}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
-              </figure>
-            ))}
-          </div>
+          <ArchivoComunidad piezas={archivo} />
         </div>
       </section>
 

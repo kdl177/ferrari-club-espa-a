@@ -1130,3 +1130,62 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
   .com-banda{background:url('/video/carretera-poster.webp') center/cover no-repeat,var(--ink)}
   .com-banda-video{display:none}
 }
+
+/* ── Visor de fotos del archivo ───────────────────────────── */
+/* El boton envuelve la imagen para que se pueda abrir con teclado; no debe
+   aportar ningun estilo propio. */
+.mz-abrir{
+  display:block;width:100%;height:100%;padding:0;border:0;
+  background:none;cursor:zoom-in;
+}
+.mz-abrir:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+
+.visor{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  padding:clamp(1rem,4vw,3rem);
+  background:rgba(8,6,5,.94);backdrop-filter:blur(6px);
+  animation:visor-entra .22s var(--eo);
+}
+@keyframes visor-entra{from{opacity:0}to{opacity:1}}
+
+.visor-marco{margin:0;max-width:min(92vw,1100px);display:flex;flex-direction:column;gap:.9rem}
+/* Las fotos son de 300px: con 620 de tope crecen 2x, que aguantan, y no mas.
+   El marco evita que floten sueltas sobre el fondo vacio. */
+.visor-marco img{
+  width:min(100%,620px);height:auto;max-height:70vh;object-fit:contain;
+  display:block;margin:0 auto;
+}
+.visor-lienzo{
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(1.25rem,3vw,2.25rem);
+  border:1px solid var(--p18);background:rgba(13,9,7,.55);
+}
+.visor-marco figcaption{
+  display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;
+  font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;color:var(--w60);
+}
+.visor-pie{text-transform:none;letter-spacing:.04em;font-family:var(--fb);font-size:.85rem;line-height:1.6}
+.visor-n{flex-shrink:0;color:var(--red)}
+
+.visor-x,.visor-nav{
+  background:rgba(13,9,7,.6);border:1px solid var(--p18);color:var(--white);
+  cursor:pointer;transition:border-color .25s,background .25s;
+  display:flex;align-items:center;justify-content:center;
+}
+.visor-x:hover,.visor-nav:hover{border-color:var(--red);background:rgba(13,9,7,.9)}
+.visor-x{
+  position:absolute;top:clamp(1rem,3vw,2rem);right:clamp(1rem,3vw,2rem);
+  width:44px;height:44px;font-size:1rem;
+}
+.visor-nav{width:48px;height:72px;font-size:1.8rem;flex-shrink:0;line-height:1}
+
+@media(max-width:720px){
+  .visor{gap:.5rem;padding:1rem}
+  .visor-nav{width:40px;height:56px;font-size:1.4rem}
+  .visor-marco img{max-height:62vh}
+  .visor-marco figcaption{flex-direction:column;gap:.35rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .visor{animation:none}
+}
