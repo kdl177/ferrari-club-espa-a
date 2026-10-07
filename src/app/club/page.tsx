@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
-import Mosaico from '@/components/Mosaico';
 import ArchivoComunidad from '@/components/ArchivoComunidad';
-import { MOSAICO_HERO, CIRCUITO, VIAJES, CONCENTRACIONES } from '@/lib/galeria';
+import { CIRCUITO, VIAJES, CONCENTRACIONES } from '@/lib/galeria';
 
 export const metadata: Metadata = {
   title: 'Nuestro Club — Ferrari Club España',
@@ -11,18 +10,15 @@ export const metadata: Metadata = {
   alternates: { canonical: '/club/' },
 };
 
-const TIMELINE_LEFT = [
-  { year: '1988', title: 'Fundación del Club', desc: 'Un grupo de propietarios de Ferrari en España decide unirse para compartir su pasión. Nace el Ferrari Club España en Madrid.' },
-  { year: '1992', title: 'Primeros Eventos Internacionales', desc: 'El club participa por primera vez en eventos de carácter internacional, estableciendo lazos con otros clubs europeos.' },
-  { year: '1997', title: 'Primer Track Day Oficial', desc: 'Organización del primer track day oficial del club en el Circuito del Jarama, con más de 30 Ferraris en pista.' },
-  { year: '2001', title: 'Primera Visita a Maranello', desc: 'Viaje oficial a la fábrica Ferrari en Maranello, Italia. Los socios visitan las instalaciones, el museo y los talleres.' },
-];
-
-const TIMELINE_RIGHT = [
-  { year: '2006', title: 'Reconocimiento Oficial Ferrari', desc: 'Ferrari S.p.A. otorga al club el estatus de "Ferrari Owners Club Oficial" para España, un reconocimiento que solo ostentan los clubs más destacados del mundo.' },
-  { year: '2010', title: 'Expansión a 200 Socios', desc: 'El club supera los 200 socios activos, consolidándose como el mayor club oficial de Ferrari en España.' },
-  { year: '2018', title: '30 Aniversario', desc: 'Celebración del 30 aniversario con una gran concentración y exposición de Ferraris históricos en el Museo Ferrari de Maranello.' },
-  { year: '2026', title: 'Presente', desc: 'Más de 200 socios, decenas de eventos al año y el reconocimiento de Ferrari S.p.A. como uno de los clubs más activos de Europa.' },
+const HITOS = [
+  { año: '1988', t: 'Empieza todo', d: 'Unos cuantos propietarios de Ferrari se juntan en Madrid. No hay sede ni estatutos: hay ganas de quedar.' },
+  { año: '1992', t: 'Salimos de España', d: 'Primeros encuentros fuera. Se empiezan a conocer los clubs de los países vecinos.' },
+  { año: '1997', t: 'Primer día de circuito', d: 'El Jarama, más de treinta coches en pista. El formato que todavía repetimos cada año.' },
+  { año: '2001', t: 'Maranello', d: 'El primer viaje oficial a la fábrica. Talleres, museo y Fiorano. Hay quien no se lo ha perdido desde entonces.' },
+  { año: '2006', t: 'Ferrari nos reconoce', d: 'Ferrari S.p.A. nombra al club Owners Club oficial de España. Un sello que pocos tienen.' },
+  { año: '2010', t: 'Doscientos', d: 'El club pasa de los doscientos socios y se convierte en el mayor club oficial de Ferrari en España.' },
+  { año: '2018', t: 'Treinta años', d: 'Aniversario con concentración y exposición de clásicos en el museo de Maranello.' },
+  { año: '2026', t: 'Hoy', d: 'Más de doscientos socios, decenas de salidas al año y la misma excusa de siempre para quedar.' },
 ];
 
 const ACTIVITIES = [
@@ -56,34 +52,33 @@ export default function ClubPage() {
 
   return (
     <>
-      <section className="club-hero">
-        <div className="cnt">
+      <section className="com-ph">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="com-ph-fondo" src="/galeria/g24.webp" alt="Concentración de Ferrari en una plaza de pueblo vista desde lo alto" />
+        <div className="com-ph-velo" aria-hidden="true" />
+        <div className="cnt com-ph-cnt">
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Nuestro Club' }]} />
-          <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">CLUB OFICIAL FERRARI</p>
-          <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">Nuestro<br /><span style={{ color: 'var(--red)' }}>club</span></h1>
-          <p className="sec-sub" style={{ maxWidth: '600px', marginTop: '1.5rem' }} data-r="up">Club de Propietarios y Apasionados de Ferrari desde 1988. El único club oficial de <em>Il Cavallino Rampante</em> en España.</p>
-          <div style={{ display: 'flex', gap: '4rem', marginTop: '3.5rem', flexWrap: 'wrap' }} data-r="up">
+          <p className="sec-eye" style={{ marginTop: '1.5rem' }}>CLUB OFICIAL FERRARI</p>
+          <h1 className="sec-title com-ph-titulo">Casi cuarenta años<br /><span style={{ color: 'var(--red)' }}>quedando</span></h1>
+          <p className="sec-sub com-ph-sub">Empezó en 1988 con unos cuantos propietarios y la idea de verse los fines de semana. Sigue igual, con más gente.</p>
+          <div style={{ display: 'flex', gap: '3.5rem', marginTop: '3rem', flexWrap: 'wrap' }}>
             <div className="stat"><span className="stat-n" data-count="200" data-suffix="+">200+</span><span className="stat-l">SOCIOS</span></div>
             <div className="stat"><span className="stat-n" data-count="1988">1988</span><span className="stat-l">FUNDACIÓN</span></div>
             <div className="stat"><span className="stat-n" data-count="38">38</span><span className="stat-l">AÑOS</span></div>
             <div className="stat"><span className="stat-n" data-count="2006">2006</span><span className="stat-l">CLUB OFICIAL</span></div>
           </div>
-          <div style={{ marginTop: '4rem' }} data-r="up">
-            <Mosaico piezas={MOSAICO_HERO} hero eager />
-          </div>
         </div>
-        <div style={{ position: 'absolute', bottom: '-2rem', right: 0, fontFamily: 'var(--fd)', fontSize: '18vw', color: 'rgba(255,255,255,.015)', pointerEvents: 'none', userSelect: 'none', lineHeight: 1 }} aria-hidden="true">1988</div>
       </section>
 
       <section style={{ background: 'var(--b90)', padding: '6rem 0' }}>
         <div className="cnt">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
             <div data-r="right">
-              <div className="sec-eye">PRESENTACIÓN</div>
-              <h2 className="sec-title" style={{ marginTop: '1rem', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>Passione<br /><span style={{ color: 'var(--red)' }}>italiana</span></h2>
-              <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginTop: '1.5rem' }}>El Ferrari Club España es el Club Oficial de Propietarios y Apasionados de Ferrari en España. Fundado en 1988, nació de la pasión compartida por <em>Il Cavallino Rampante</em> entre propietarios de vehículos de la marca.</p>
-              <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginTop: '1rem' }}>En 2006 recibimos el respaldo directo y oficial de Ferrari S.p.A., lo que nos convirtió en el representante oficial de los Owners Clubs de Ferrari en territorio español.</p>
-              <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginTop: '1rem' }}>Nuestra misión es reunir a los propietarios y amantes de Ferrari, organizar eventos exclusivos, fomentar el automovilismo deportivo y mantener viva la llama de la más apasionante marca de automóviles del mundo.</p>
+              <div className="sec-eye">QUIÉNES SOMOS</div>
+              <h2 className="sec-title" style={{ marginTop: '1rem', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>Un club de<br /><span style={{ color: 'var(--red)' }}>propietarios</span></h2>
+              <p className="com-texto">El Ferrari Club España nació en 1988 y en 2006 recibió el reconocimiento oficial de Ferrari S.p.A. como Owners Club para España. Eso quiere decir que el carnet vale en cualquier club Ferrari del mundo.</p>
+              <p className="com-texto">Lo que hacemos es sencillo: organizar salidas para que la gente use sus coches y se conozca entre sí. Circuito, carretera, Maranello y mesa larga.</p>
+              <p className="com-texto">No hay cuota de exclusividad ni lista de espera: hace falta tener un Ferrari y ganas de venir.</p>
             </div>
             <div data-r="left">
               <figure className="club-foto" style={{ margin: 0, overflow: 'hidden' }}>
@@ -107,18 +102,15 @@ export default function ClubPage() {
 
       <section style={{ background: 'var(--black)', padding: '6rem 0' }}>
         <div className="cnt">
-          <div data-r="up"><div className="sec-eye">NUESTRA HISTORIA</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '3.5rem' }}>Línea del<br /><span style={{ color: 'var(--red)' }}>tiempo</span></h2></div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem' }}>
-            <div className="timeline" data-r="right">
-              {TIMELINE_LEFT.map((t) => (
-                <div className="tl-item" key={t.year}><div className="tl-year">{t.year}</div><div className="tl-title">{t.title}</div><div className="tl-desc">{t.desc}</div></div>
-              ))}
-            </div>
-            <div className="timeline" data-r="left">
-              {TIMELINE_RIGHT.map((t) => (
-                <div className="tl-item" key={t.year}><div className="tl-year">{t.year}</div><div className="tl-title">{t.title}</div><div className="tl-desc">{t.desc}</div></div>
-              ))}
-            </div>
+          <div data-r="up"><div className="sec-eye">DE DÓNDE VENIMOS</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '3rem' }}>Ocho momentos<br /><span style={{ color: 'var(--red)' }}>que contar</span></h2></div>
+          <div className="com-hitos">
+            {HITOS.map((h) => (
+              <div className="com-hito" key={h.año}>
+                <span className="com-hito-a">{h.año}</span>
+                <h3 className="com-hito-t">{h.t}</h3>
+                <p className="com-hito-d">{h.d}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
