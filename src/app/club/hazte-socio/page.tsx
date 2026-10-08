@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
 import FaqItem from '@/components/FaqItem';
 import HazteSocioForm from '@/components/HazteSocioForm';
-import { BENEFITS, REQUIREMENTS, FAQS } from '@/lib/socio';
+import { BENEFITS, REQUIREMENTS, FAQS, PDF_INSCRIPCION, PDF_INSCRIPCION_EN } from '@/lib/socio';
+import { deArchivo } from '@/lib/sitio';
 
 export const metadata: Metadata = {
   title: 'Hazte Socio — Ferrari Club España',
-  description: 'Únete al Club Oficial de Ferrari en España. Información sobre cómo hacerse socio del Ferrari Club España.',
+  description: 'Cómo hacerse socio del Ferrari Club España, el único Club Oficial Ferrari en España: requisitos, formulario de inscripción y contacto con secretaría.',
   alternates: { canonical: '/club/hazte-socio/' },
 };
 
@@ -26,7 +27,7 @@ export default function HazteSocioPage() {
 
       <section style={{ background: 'var(--b90)', padding: '6rem 0' }}>
         <div className="cnt">
-          <div data-r="up"><div className="sec-eye">VENTAJAS DE SER SOCIO</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: 0, fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>Beneficios<br /><span style={{ color: 'var(--red)' }}>exclusivos</span></h2></div>
+          <div data-r="up"><div className="sec-eye">VENTAJAS DE SER SOCIO</div><h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: 0, fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>Lo que hace<br /><span style={{ color: 'var(--red)' }}>el club</span></h2></div>
           <div className="benefit-grid">
             {BENEFITS.map((b, i) => (
               <div className="ben-item" data-r={i < 3 || i >= 6 ? 'up' : 'scale'} key={b.title}><div className="ben-title">{b.title}</div><div className="ben-desc">{b.desc}</div></div>
@@ -37,7 +38,7 @@ export default function HazteSocioPage() {
 
       <section style={{ background: 'var(--black)', padding: '6rem 0' }}>
         <div className="cnt">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem' }}>
+          <div className="socio-split">
             <div data-r="right">
               <div className="sec-eye">CÓMO HACERSE SOCIO</div>
               <h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '2.5rem', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>Requisitos<br /><span style={{ color: 'var(--red)' }}>& proceso</span></h2>
@@ -47,12 +48,16 @@ export default function HazteSocioPage() {
                   <div><div className="req-content-title">{r.title}</div><div className="req-content-desc">{r.desc}</div></div>
                 </div>
               ))}
-              <p style={{ fontFamily: 'var(--fm)', fontSize: '.82rem', color: 'var(--w60)', marginTop: '2.5rem', lineHeight: 1.8 }}>
-                ¿Prefieres hablar antes con nosotros? <a href="/contacta/?asunto=hacerse-socio" style={{ color: 'var(--red)' }}>Contacta con secretaría</a>.
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2.5rem' }}>
+                <a href={deArchivo(PDF_INSCRIPCION)} className="btn btn-o" target="_blank" rel="noopener">FORMULARIO EN PDF <span className="btn-ico">↓</span></a>
+                <a href={deArchivo(PDF_INSCRIPCION_EN)} className="btn btn-o" target="_blank" rel="noopener" hrefLang="en">REGISTRATION FORM (EN) <span className="btn-ico">↓</span></a>
+              </div>
+              <p style={{ fontFamily: 'var(--fm)', fontSize: '.82rem', color: 'var(--w60)', marginTop: '2rem', lineHeight: 1.8 }}>
+                ¿Prefieres hablar antes con nosotros? Llama al <a href="tel:+34915754160" style={{ color: 'var(--red)' }}>91 575 41 60</a> o <a href="/contacta/?asunto=hacerse-socio" style={{ color: 'var(--red)' }}>escribe a secretaría</a>.
               </p>
             </div>
             <div data-r="left">
-              <div style={{ position: 'relative', padding: '3rem', border: '1px solid var(--w08)', background: 'var(--b90)', height: '100%' }}>
+              <div className="socio-form-caja">
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'var(--red)', boxShadow: '0 0 12px var(--red)' }} />
                 <div className="sec-eye" style={{ marginBottom: '2rem' }}>SOLICITUD DE INGRESO</div>
                 <HazteSocioForm />

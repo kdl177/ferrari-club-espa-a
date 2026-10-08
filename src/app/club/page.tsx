@@ -72,11 +72,11 @@ export default function ClubPage() {
 
       <section style={{ background: 'var(--b90)', padding: '6rem 0' }}>
         <div className="cnt">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+          <div className="split-2">
             <div data-r="right">
               <div className="sec-eye">QUIÉNES SOMOS</div>
               <h2 className="sec-title" style={{ marginTop: '1rem', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>Un club de<br /><span style={{ color: 'var(--red)' }}>propietarios</span></h2>
-              <p className="com-texto">El Ferrari Club España nació en 1988 y en 2006 recibió el reconocimiento oficial de Ferrari S.p.A. como Owners Club para España. Eso quiere decir que el carnet vale en cualquier club Ferrari del mundo.</p>
+              <p className="com-texto">El Ferrari Club España nació en 1988 y en 2006 recibió el reconocimiento oficial de Ferrari S.p.A. como Owners Club para España.</p>
               <p className="com-texto">Lo que hacemos es sencillo: organizar salidas para que la gente use sus coches y se conozca entre sí. Circuito, carretera, Maranello y mesa larga.</p>
               <p className="com-texto">No hay cuota de exclusividad ni lista de espera: hace falta tener un Ferrari y ganas de venir.</p>
             </div>

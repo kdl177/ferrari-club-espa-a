@@ -28,6 +28,8 @@ export default function PrivacidadPage() {
             <p className="priv-p">En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016 (RGPD), y de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), se informa que el Responsable del Tratamiento de los datos personales recabados a través de este sitio web es:</p>
             <ul className="priv-ul">
               <li><strong style={{ color: 'var(--w90)' }}>Nombre:</strong> Ferrari Club España</li>
+              <li><strong style={{ color: 'var(--w90)' }}>CIF:</strong> G79495107</li>
+              <li><strong style={{ color: 'var(--w90)' }}>Registro:</strong> Registro Nacional de Asociaciones, número 90277</li>
               <li><strong style={{ color: 'var(--w90)' }}>Domicilio:</strong> Calle Constancia 41, Entreplanta, 28002 Madrid</li>
               <li><strong style={{ color: 'var(--w90)' }}>Email de contacto:</strong> <a href="mailto:ferrari@ferrariclubespana.com" className="priv-a">ferrari@ferrariclubespana.com</a></li>
               <li><strong style={{ color: 'var(--w90)' }}>Teléfono:</strong> +34 91 575 41 60</li>

@@ -14,6 +14,7 @@ const MENU_ITEMS = [
     sub: [
       { label: 'Nuestro Club', href: '/club/' },
       { label: 'Hazte Socio', href: '/club/hazte-socio/' },
+      { label: 'Revista', href: '/revista/' },
     ],
   },
   { n: '04', label: 'EVENTOS', href: '/eventos/' },
@@ -227,6 +228,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
               <div className="nav-drop-menu">
                 <a href="/club/" className="nav-drop-item">Nuestro Club</a>
                 <a href="/club/hazte-socio/" className="nav-drop-item">Hazte Socio</a>
+                <a href="/revista/" className="nav-drop-item">Revista</a>
               </div>
             </div>
             <a href="/eventos/" className={`nav-link${isActive('/eventos/') ? ' active' : ''}`}>Eventos</a>
@@ -314,6 +316,8 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
               <a href="/noticias/" className="footer-link">Noticias</a>
               <a href="/club/" className="footer-link">Nuestro Club</a>
               <a href="/club/hazte-socio/" className="footer-link">Hazte Socio</a>
+              <a href="/eventos/" className="footer-link">Eventos</a>
+              <a href="/revista/" className="footer-link">Revista</a>
               <a href="/concesionarios/" className="footer-link">Concesionarios</a>
               <a href="/socios/" className="footer-link">Área Socios</a>
               <a href="/contacta/" className="footer-link">Contacta</a>
@@ -346,8 +350,8 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           </div>
           <div className="rl-g" style={{ marginBottom: '2rem' }} />
           <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-            <span style={{ fontFamily: 'var(--fm)', fontSize: '.7rem', color: 'var(--w40)' }}>&copy; 2026 FERRARI CLUB ESPAÑA · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
-            <a href="/privacidad/" className="footer-priv">Política de Privacidad</a>
+            <span style={{ fontFamily: 'var(--fm)', fontSize: '.7rem', color: 'var(--w40)' }}>&copy; {new Date().getFullYear()} FERRARI CLUB ESPAÑA · CIF G79495107 · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
+            <span className="footer-legal"><a href="/aviso-legal/" className="footer-priv">Aviso legal</a><a href="/privacidad/" className="footer-priv">Privacidad</a><a href="/cookies/" className="footer-priv">Cookies</a><a href="/condiciones-de-venta/" className="footer-priv">Condiciones de venta</a></span>
           </div>
           <div className="footer-brand" aria-hidden="true">FERRARI</div>
         </div>
