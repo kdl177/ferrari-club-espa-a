@@ -1125,11 +1125,6 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
     background:linear-gradient(180deg,rgba(13,9,7,.82),rgba(13,9,7,.6) 55%,rgba(13,9,7,.88));
   }
 }
-@media(prefers-reduced-motion:reduce){
-  /* Sin movimiento, pero con imagen: el poster se queda de fondo fijo. */
-  .com-banda{background:url('/video/carretera-poster.webp') center/cover no-repeat,var(--ink)}
-  .com-banda-video{display:none}
-}
 
 /* ── Visor de fotos del archivo ───────────────────────────── */
 /* El boton envuelve la imagen para que se pueda abrir con teclado; no debe
@@ -1189,13 +1184,7 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 @media(prefers-reduced-motion:reduce){
   .visor{animation:none}
 }
-/* Cabecera con video: sin movimiento se queda el poster como fondo fijo. */
-@media(prefers-reduced-motion:reduce){
-  video.com-ph-fondo{display:none}
-  .com-ph:has(video.com-ph-fondo){
-    background:url('/video/carretera-poster.webp') center/cover no-repeat,var(--ink);
-  }
-}
+
 
 /* ── Noticias del club: articulo y paginacion ────────────── */
 .guion{font-variation-settings:'opsz' 24}
@@ -1298,3 +1287,4 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 .h-cta{animation-delay:.32s}
 @keyframes hero-in{from{opacity:.2;transform:translateY(28px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.h-eye,.h-t,.h-s,.h-cta{animation:none}}
+.dealer-servicio{font-family:var(--fb);font-size:.82rem;line-height:1.6;color:var(--w60);margin:.4rem 0 1rem}

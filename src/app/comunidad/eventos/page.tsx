@@ -61,7 +61,7 @@ export default async function ComunidadEventosPage() {
         seccion="Salidas"
         titulo="Dónde nos"
         tituloRojo="vemos este año"
-        entrada="Circuito, carretera y Maranello. El calendario del club, abierto a socios."
+        entrada="Las próximas fechas del calendario del Ferrari Club España."
         foto="/galeria/g03.webp"
         fotoAlt="Ferrari aparcados entre olivos durante una salida del club"
       />
@@ -83,18 +83,8 @@ export default async function ComunidadEventosPage() {
       </section>
 
       <section className="com-banda">
-        <video
-          className="com-banda-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/video/carretera-poster.webp"
-          aria-label="Un Ferrari rodando por carretera abierta"
-        >
-          <source src="/video/carretera.webm" type="video/webm" />
-          <source src="/video/carretera.mp4" type="video/mp4" />
-        </video>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="com-banda-video" src="/club/ruta-caravana.webp" alt="Caravana de Ferrari del club por una carretera de montaña" loading="lazy" decoding="async" />
         <div className="com-banda-velo" aria-hidden="true" />
         <div className="cnt com-banda-cnt">
           <p className="sec-eye">LO QUE VENIMOS A HACER</p>
@@ -106,7 +96,7 @@ export default async function ComunidadEventosPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(0,0,0,.25),transparent)' }} aria-hidden="true" />
         <div className="cnt" style={{ position: 'relative', textAlign: 'center' }}>
           <h2 style={{ fontFamily: 'var(--fd)', fontSize: 'clamp(1.8rem,4.5vw,3.5rem)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--white)', marginBottom: '1.5rem' }} data-r="up">¿TE VIENES A LA PRÓXIMA?</h2>
-          <p style={{ fontFamily: 'var(--fh)', fontSize: '1.1rem', color: 'rgba(255,255,255,.8)', marginBottom: '2.5rem' }} data-r="up">Las plazas son para socios, y en algunas salidas se acaban</p>
+          <p style={{ fontFamily: 'var(--fh)', fontSize: '1.1rem', color: 'rgba(255,255,255,.8)', marginBottom: '2.5rem' }} data-r="up">Información e inscripciones: 91 575 41 60 · ferrari@ferrariclubespana.com</p>
           <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }} data-r="up">
             <a href="/comunidad/hazte-socio/" className="btn" style={{ background: 'var(--white)', color: 'var(--red)', borderColor: 'var(--white)', fontFamily: 'var(--fd)', fontSize: '.72rem', letterSpacing: '.15em', padding: '.8rem 2.5rem' }} data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
             <a href="/comunidad/contacta/" className="btn btn-o" style={{ borderColor: 'rgba(255,255,255,.5)', color: 'var(--white)' }}>PREGUNTAR</a>

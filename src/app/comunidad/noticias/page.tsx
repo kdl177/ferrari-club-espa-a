@@ -21,7 +21,7 @@ export default async function ComunidadNoticiasPage() {
         tituloRojo="va contando"
         entrada="Cada Gran Premio en tres tiempos, la resistencia y las novedades de Maranello, contados por la redacción del club."
         foto="/galeria/g13.webp"
-        fotoAlt="Socios del club en el paddock de Fórmula 1 con la bandera de España"
+        fotoAlt="Socios del club en un paddock con la bandera de España"
       />
 
       <section style={{ background: 'var(--fce-grafito)', padding: '4rem 0 5rem' }}>

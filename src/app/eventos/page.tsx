@@ -6,7 +6,7 @@ import { prisma } from '@/lib/prisma';
 import { SITE_URL, CLUB } from '@/lib/sitio';
 
 export const metadata: Metadata = {
-  title: 'Eventos 2026 — Ferrari Club España',
+  title: 'Eventos — Ferrari Club España',
   description: 'Calendario de eventos del Ferrari Club España: tandas en circuito, rutas, cena de gala y salidas del club. Fechas tal y como las publica el club.',
   alternates: { canonical: '/eventos/' },
 };
@@ -104,12 +104,12 @@ export default async function EventosPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 60% 70% at 80% 50%,rgba(218,41,28,.12),transparent)', pointerEvents: 'none' }} aria-hidden="true" />
         <div className="cnt" style={{ position: 'relative', textAlign: 'center' }}>
           <div className="rl-g" style={{ width: '60px', margin: '0 auto 2.5rem' }} aria-hidden="true" />
-          <p className="sec-eye" data-r="up">ACCESO A EVENTOS</p>
-          <h2 className="sec-title" style={{ marginTop: '1rem' }} data-r="up">Para inscribirte,<br /><span style={{ color: 'var(--red)' }}>hazte socio</span></h2>
-          <p className="sec-sub" style={{ maxWidth: '540px', margin: '1.5rem auto 0' }} data-r="up">La inscripción a todos nuestros eventos está reservada para socios del Ferrari Club España. Únete y accede al calendario completo de actividades.</p>
+          <p className="sec-eye" data-r="up">INFORMACIÓN E INSCRIPCIONES</p>
+          <h2 className="sec-title" style={{ marginTop: '1rem' }} data-r="up">Secretaría<br /><span style={{ color: 'var(--red)' }}>del club</span></h2>
+          <p className="sec-sub" style={{ maxWidth: '540px', margin: '1.5rem auto 0' }} data-r="up">Teléfono 91 575 41 60 · ferrari@ferrariclubespana.com. De lunes a jueves de 9:00 a 17:30 y viernes de 9:00 a 15:00.</p>
           <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '3rem' }} data-r="up">
             <a href="/club/hazte-socio/" className="btn btn-p btn-lg" data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
-            <a href="/contacta/" className="btn btn-o btn-lg">CONSULTAR DISPONIBILIDAD</a>
+            <a href="/contacta/?asunto=eventos" className="btn btn-o btn-lg">ESCRIBIR A SECRETARÍA</a>
           </div>
         </div>
       </section>

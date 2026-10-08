@@ -16,7 +16,7 @@ export default function ComunidadConcesionariosPage() {
         seccion="Concesionarios"
         titulo="Cuatro casas"
         tituloRojo="en España"
-        entrada="Madrid, Barcelona, Valencia y Marbella. Compra, taller y garantía oficial."
+        entrada="Los concesionarios oficiales Ferrari en Madrid, Barcelona, Valencia y Marbella."
         foto="/galeria/g18.webp"
         fotoAlt="Socios del club junto a un LaFerrari en el pit lane"
       />
@@ -27,7 +27,7 @@ export default function ComunidadConcesionariosPage() {
 
           <div style={{ textAlign: 'center', marginTop: '3rem', padding: '2rem', border: '1px solid var(--p10)' }} data-r="up">
             <div className="sec-eye" style={{ marginBottom: '1rem' }}>ANTES DE IR</div>
-            <p style={{ fontFamily: 'var(--fb)', fontSize: '.9rem', color: 'var(--w70)', lineHeight: 1.75, marginBottom: '1.5rem' }}>Dirección, teléfono y horario salen de la web oficial de cada concesionario. Conviene confirmarlos antes de desplazarte.</p>
+            <p style={{ fontFamily: 'var(--fb)', fontSize: '.9rem', color: 'var(--w70)', lineHeight: 1.75, marginBottom: '1.5rem' }}>Los concesionarios oficiales Ferrari en España, con los datos que publica el Ferrari Club España.</p>
             <a href="https://www.ferrari.com/es-ES/auto/concesionarios" target="_blank" rel="noopener" className="btn btn-p" data-mag>BUSCAR EN FERRARI.COM ↗</a>
           </div>
         </div>

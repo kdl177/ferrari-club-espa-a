@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 };
 
 const AREA_CARDS = [
-  { label: 'EVENTOS', title: 'Inscripción', accent: true },
-  { label: 'REVISTA', title: 'Digital', accent: false },
-  { label: 'DIRECTORIO', title: 'Socios', accent: false },
-  { label: 'PERFIL', title: 'Mi cuenta', accent: true },
+  { label: 'REVISTA', title: 'Del club', accent: true },
+  { label: 'CONCESIONARIOS', title: 'Oferta', accent: false },
+  { label: 'SEGUROS', title: 'Oferta especial', accent: false },
+  { label: 'CURSOS', title: 'Conducción', accent: true },
 ];
 
 export default function SociosPage() {
@@ -37,8 +37,7 @@ export default function SociosPage() {
         </div>
 
         <div className="login-visual" aria-hidden="true">
-          <HalftoneImage className="login-ht" src="/fotos/interior-california.webp" alt="" cell={6} intensity={0.55} side="right" position="50% 50%" dim={0.3} />
-          <p className="foto-credito login-credito">Foto: andy_carter · CC BY 2.0 · adaptada</p>
+          <HalftoneImage className="login-ht" src="/club/socios-fabrica.webp" alt="" cell={6} intensity={0.55} side="right" position="50% 50%" dim={0.3} />
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2rem', pointerEvents: 'none' }}>
             <div style={{ fontFamily: 'var(--fd)', fontSize: '.65rem', letterSpacing: '.3em', color: 'rgba(218,41,28,.5)', textAlign: 'center' }}>ÁREA EXCLUSIVA</div>
             <div style={{ fontFamily: 'var(--fd)', fontSize: 'clamp(2rem,5vw,3.5rem)', letterSpacing: '.15em', color: 'rgba(255,255,255,.08)', textAlign: 'center', textTransform: 'uppercase' }}>SÓLO SOCIOS</div>

@@ -32,7 +32,7 @@ const EVENTOS = [
     categoria: 'elegancia',
     fecha: new Date('2026-10-01T10:00:00Z'),
     ubicacion: 'Marbella, Málaga',
-    descripcion: 'Concurso de elegancia en la Costa del Sol.',
+    descripcion: 'Concurso de Elegancia Costa del Sol, en Marbella.',
   },
   {
     slug: 'tandas-solidarias-calafat-2026',
@@ -40,7 +40,7 @@ const EVENTOS = [
     categoria: 'track',
     fecha: new Date('2026-11-07T09:00:00Z'),
     ubicacion: 'Circuito de Calafat, Tarragona',
-    descripcion: 'Tandas solidarias en el Circuito de Calafat. Organiza el Ferrari Club España.',
+    descripcion: 'Organización: Ferrari Club España.',
   },
   {
     slug: 'road-to-finali-mondiali-2026',
@@ -49,7 +49,7 @@ const EVENTOS = [
     fecha: new Date('2026-11-17T09:00:00Z'),
     ubicacion: 'Circuit de Barcelona-Catalunya, Montmeló',
     descripcion:
-      'El club acompaña las Finali Mondiali Ferrari en el Circuit de Barcelona-Catalunya. Programa del 18 al 21 de noviembre, con cena de gala el día 20. Para no socios de un Ferrari Owners Club, desde 2.550 € IVA incluido (todo el evento, tres noches).',
+      'Organización: Ferrari Club España. Opciones: todo el evento del 18 al 21 de noviembre (3 noches), cena de gala del 20 de noviembre con 1 noche de hotel y parking, o solo la cena de gala. No socios FOC: desde 2.550 € IVA incluido.',
   },
   {
     slug: 'cena-gala-navidad-barcelona-2026',
@@ -57,7 +57,7 @@ const EVENTOS = [
     categoria: 'club',
     fecha: new Date('2026-11-20T20:00:00Z'),
     ubicacion: 'Barcelona',
-    descripcion: 'La cena de gala de Navidad del club. Organiza el Ferrari Club España.',
+    descripcion: 'Organización: Ferrari Club España.',
   },
   {
     slug: 'ucles-segobriga-2027',
@@ -65,7 +65,7 @@ const EVENTOS = [
     categoria: 'rutas',
     fecha: new Date('2027-04-29T09:00:00Z'),
     ubicacion: 'Uclés y Segóbriga, Cuenca',
-    descripcion: 'Salida a Uclés y al parque arqueológico de Segóbriga. Evento aplazado de 2026 a 2027.',
+    descripcion: 'Evento pospuesto de 2026 a 2027.',
   },
 ];
 

@@ -76,7 +76,7 @@ export default function ClubPage() {
             <div data-r="left">
               <figure className="club-foto" style={{ margin: 0, overflow: 'hidden' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/galeria/g04.webp" alt="Socios del Ferrari Club España durante la visita oficial al taller Ferrari Classiche de Maranello" loading="lazy" decoding="async" style={{ width: '100%', display: 'block' }} />
+                <img src="/galeria/g04.webp" alt="Socios del Ferrari Club España en un taller Ferrari" loading="lazy" decoding="async" style={{ width: '100%', display: 'block' }} />
               </figure>
               <div style={{ position: 'relative', padding: '3rem', border: '1px solid var(--w08)', background: 'var(--black)' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'var(--red)', boxShadow: '0 0 12px var(--red)' }} />
@@ -125,7 +125,7 @@ export default function ClubPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.35fr) minmax(0,1fr)', gap: '3rem', alignItems: 'center' }} className="junta-bloque">
             <figure style={{ margin: 0, overflow: 'hidden', border: '1px solid var(--p10)' }} data-r="right">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/galeria/g08.webp" alt="Socios y junta directiva del Ferrari Club España reunidos ante el castillo de Olite" loading="lazy" decoding="async" style={{ width: '100%', display: 'block' }} />
+              <img src="/galeria/g08.webp" alt="Socios del Ferrari Club España reunidos ante un castillo" loading="lazy" decoding="async" style={{ width: '100%', display: 'block' }} />
             </figure>
             <div data-r="left">
               <p style={{ fontFamily: 'var(--fb)', fontSize: '.92rem', color: 'var(--w60)', lineHeight: 1.9, marginBottom: '2rem' }}>Los miembros de la junta directiva y el equipo de la oficina de Madrid.</p>

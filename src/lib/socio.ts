@@ -28,5 +28,5 @@ export const FAQS = [
   { q: '¿Quién puede hacerse socio?', a: 'El Ferrari Club España es un club de propietarios: para ser socio hay que tener un Ferrari.' },
   { q: '¿Es un club oficial?', a: 'Sí. Desde 2006 cuenta con el apoyo directo de Ferrari, que le concedió el estatus de Club Oficial. Es el único Club Oficial del Cavallino en España.' },
   { q: '¿Cuál es la cuota?', a: 'Te la indica la secretaría del club en el 91 575 41 60, de lunes a jueves de 9:00 a 17:30 y los viernes de 9:00 a 15:00.' },
-  { q: '¿Puedo inscribirme sin el formulario web?', a: 'Sí. Puedes descargar el formulario de inscripción en PDF, rellenarlo y enviarlo a ferrari@ferrariclubespana.com, o llamar directamente a la oficina.' },
+  { q: '¿Puedo inscribirme sin el formulario web?', a: 'Sí. Puedes rellenar el formulario de inscripción en PDF, o llamar a la oficina de Madrid al 91 575 41 60, donde te informarán de todo lo necesario.' },
 ];

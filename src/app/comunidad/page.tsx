@@ -13,21 +13,21 @@ export const metadata: Metadata = {
 // Las fotos con gente, que es de lo que va esta pagina. Las de coches sueltos
 // se quedan en /club.
 const GENTE = [
-  { src: '/galeria/g06.webp', alt: 'Socios del club reunidos en la plaza de San Gimignano, en la Toscana', pie: 'San Gimignano · Ruta por la Toscana' },
-  { src: '/galeria/g04.webp', alt: 'Socios del club durante la visita al taller Ferrari Classiche de Maranello', pie: 'Maranello · Visita a Classiche' },
-  { src: '/galeria/g08.webp', alt: 'Socios del club ante el castillo de Olite en otoño', pie: 'Olite · Encuentro de otoño' },
-  { src: '/galeria/g14.webp', alt: 'Socios del club ante el castillo de Chambord durante la ruta por el Loira', pie: 'Chambord · Ruta por el Loira' },
-  { src: '/galeria/g10.webp', alt: 'Socios del club a bordo de una embarcación en el lago de Como', pie: 'Lago de Como · Travesía del club' },
-  { src: '/galeria/g13.webp', alt: 'Socios del club en el paddock de Fórmula 1 con la bandera de España', pie: 'Paddock F1 · Gran Premio' },
-  { src: '/galeria/g11.webp', alt: 'Socios del club reunidos en una comida de hermandad', pie: 'Sobremesa · Comida del club' },
-  { src: '/galeria/g16.webp', alt: 'Socios del club en la entrada de Ferrari Land', pie: 'Ferrari Land · Salida familiar' },
+  { src: '/galeria/g06.webp', alt: 'Socios del club reunidos en una plaza' },
+  { src: '/galeria/g04.webp', alt: 'Socios del club en un taller Ferrari' },
+  { src: '/galeria/g08.webp', alt: 'Socios del club ante un castillo' },
+  { src: '/galeria/g14.webp', alt: 'Socios del club ante un castillo' },
+  { src: '/galeria/g10.webp', alt: 'Socios del club a bordo de una embarcación' },
+  { src: '/galeria/g13.webp', alt: 'Socios del club en un paddock con la bandera de España' },
+  { src: '/galeria/g11.webp', alt: 'Socios del club reunidos en una comida' },
+  { src: '/galeria/g16.webp', alt: 'Socios del club en la entrada de Ferrari Land' },
 ];
 
 const MOMENTOS = [
-  { n: '01', t: 'Nos juntamos', d: 'Una plaza, una mañana y los coches aparcados en fila. Lo demás sale solo: café, conversación y gente mirando.' },
-  { n: '02', t: 'Salimos a rodar', d: 'Rutas por carreteras que merecen la pena. Asturias, los Pirineos, la Toscana, el Loira. El coche es la excusa.' },
-  { n: '03', t: 'Vamos a la fuente', d: 'Maranello, el museo, los talleres de Classiche y Fiorano. Ver de dónde sale todo esto, al menos una vez.' },
-  { n: '04', t: 'Pisamos circuito', d: 'Jarama, Montmeló, Jerez, Calafat. Días en pista con el club, a tu ritmo y sin cronómetro si no quieres.' },
+  { n: '01', t: 'Tandas en circuito', d: 'Jornadas de pilotaje en los circuitos más carismáticos del país.' },
+  { n: '02', t: 'Rutas', d: 'Itinerarios por los paisajes más bonitos de la Península y de las Islas Canarias.' },
+  { n: '03', t: 'Maranello', d: 'Cada año, visita a la fábrica Ferrari de Maranello, exclusiva para socios.' },
+  { n: '04', t: 'Test de Fórmula 1', d: 'Los test de pretemporada en el Circuit de Barcelona-Catalunya, desde el box de Ferrari.' },
 ];
 
 export default function ComunidadPage() {
@@ -39,18 +39,8 @@ export default function ComunidadPage() {
   return (
     <>
       <section className="com-hero">
-        <video
-          className="com-hero-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/video/juntada-poster.webp"
-          aria-label="Vista aérea de una concentración del club: decenas de Ferrari aparcados en una plaza junto al lago"
-        >
-          <source src="/video/juntada.webm" type="video/webm" />
-          <source src="/video/juntada.mp4" type="video/mp4" />
-        </video>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="com-hero-video" src="/club/socios-plaza.webp" alt="Socios del Ferrari Club España reunidos en una plaza" />
         <div className="com-hero-velo" aria-hidden="true" />
         <div className="cnt com-hero-cnt">
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'La comunidad' }]} />
@@ -59,7 +49,7 @@ export default function ComunidadPage() {
             No es el coche.<br /><span style={{ color: 'var(--red)' }}>Es la gente.</span>
           </h1>
           <p className="sec-sub com-hero-sub">
-            Doscientos propietarios que se juntan a rodar, a viajar y a comer. Los Ferrari son lo que tenemos en común, no lo que nos reúne.
+            Más de 200 socios propietarios de Ferrari. Desde 2006, el único Club Oficial del Cavallino en España.
           </p>
           <div className="com-hero-acc">
             <a href="/comunidad/hazte-socio/" className="btn" data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
@@ -80,7 +70,7 @@ export default function ComunidadPage() {
         <div className="cnt">
           <div data-r="up">
             <div className="sec-eye">LO QUE HACEMOS</div>
-            <h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '3.5rem' }}>Cuatro cosas,<br /><span style={{ color: 'var(--red)' }}>todo el año</span></h2>
+            <h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '3.5rem' }}>A lo largo<br /><span style={{ color: 'var(--red)' }}>del año</span></h2>
           </div>
           <div className="com-momentos">
             {MOMENTOS.map((m) => (
@@ -100,7 +90,7 @@ export default function ComunidadPage() {
             <div className="sec-eye">CARAS CONOCIDAS</div>
             <h2 className="sec-title" style={{ marginTop: '1rem' }}>Los sitios<br /><span style={{ color: 'var(--red)' }}>donde hemos estado</span></h2>
             <p className="sec-sub" style={{ maxWidth: '620px', marginTop: '1.5rem', marginBottom: '3.5rem' }}>
-              Cada foto es una salida del club. Algunas tienen quince años y los que salen siguen viniendo.
+              Fotos del archivo del Ferrari Club España.
             </p>
           </div>
           <div className="com-gente">
@@ -108,7 +98,6 @@ export default function ComunidadPage() {
               <figure className="com-gente-pieza" data-r="up" key={g.src}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={g.src} alt={g.alt} loading={i < 2 ? 'eager' : 'lazy'} decoding="async" />
-                <figcaption>{g.pie}</figcaption>
               </figure>
             ))}
           </div>
@@ -121,7 +110,7 @@ export default function ComunidadPage() {
             <div className="sec-eye">ARCHIVO</div>
             <h2 className="sec-title" style={{ marginTop: '1rem' }}>Casi cuarenta<br /><span style={{ color: 'var(--red)' }}>años de esto</span></h2>
             <p className="sec-sub" style={{ maxWidth: '620px', marginTop: '1.5rem', marginBottom: '3.5rem' }}>
-              Veintiséis imágenes del archivo del club, a color y sin ordenar por temas: así es como se recuerda.
+              Imágenes del archivo del club.
             </p>
           </div>
           <ArchivoComunidad piezas={archivo} />
@@ -132,7 +121,7 @@ export default function ComunidadPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(0,0,0,.25),transparent)' }} aria-hidden="true" />
         <div className="cnt" style={{ position: 'relative', textAlign: 'center' }}>
           <h2 style={{ fontFamily: 'var(--fd)', fontSize: 'clamp(1.8rem,4.5vw,3.5rem)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--white)', marginBottom: '1.5rem' }} data-r="up">LA PRÓXIMA SALIDA TE ESPERA</h2>
-          <p style={{ fontFamily: 'var(--fh)', fontSize: '1.1rem', color: 'rgba(255,255,255,.8)', marginBottom: '2.5rem' }} data-r="up">Si tienes un Ferrari, ya tienes lo único que hace falta</p>
+          <p style={{ fontFamily: 'var(--fh)', fontSize: '1.1rem', color: 'rgba(255,255,255,.8)', marginBottom: '2.5rem' }} data-r="up">Si eres propietario de un Ferrari, hazte socio del Ferrari Club España</p>
           <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }} data-r="up">
             <a href="/comunidad/hazte-socio/" className="btn" style={{ background: 'var(--white)', color: 'var(--red)', borderColor: 'var(--white)', fontFamily: 'var(--fd)', fontSize: '.72rem', letterSpacing: '.15em', padding: '.8rem 2.5rem' }} data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
             <a href="/comunidad/eventos/" className="btn btn-o" style={{ borderColor: 'rgba(255,255,255,.5)', color: 'var(--white)' }}>VER EVENTOS</a>

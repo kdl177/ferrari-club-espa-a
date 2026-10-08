@@ -17,7 +17,7 @@ export default function ComunidadHazteSocioPage() {
         seccion="Hazte socio"
         titulo="Te falta"
         tituloRojo="una firma"
-        entrada="Si tienes un Ferrari, ya tienes lo único que de verdad hace falta. Lo demás es papeleo."
+        entrada="Si eres propietario de un Ferrari y deseas compartir con nosotros tu pasión por Il Cavallino, hazte socio del Ferrari Club España."
         foto="/galeria/g22.webp"
         fotoAlt="Ferrari reunidos en la plaza de un pueblo durante una concentración del club"
       />
@@ -58,8 +58,7 @@ export default function ComunidadHazteSocioPage() {
 
               <figure className="com-contacta-foto">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/galeria/g04.webp" alt="Socios del club durante la visita al taller Ferrari Classiche de Maranello" loading="lazy" decoding="async" />
-                <figcaption>Maranello · Visita a Classiche</figcaption>
+                <img src="/galeria/g04.webp" alt="Socios del club en un taller Ferrari" loading="lazy" decoding="async" />
               </figure>
             </div>
 

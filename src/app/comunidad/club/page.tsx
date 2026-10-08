@@ -19,7 +19,6 @@ export default function ComunidadClubPage() {
         entrada="Nació en 1988 como club exclusivo para propietarios de Ferrari. Desde 2006 es el único Club Oficial del Cavallino en España."
         foto="/galeria/g24.webp"
         fotoAlt="Un Ferrari rodando por carretera abierta"
-        video="carretera"
       />
 
       <section style={{ background: 'var(--fce-grafito)', padding: '5rem 0' }}>
@@ -40,8 +39,7 @@ export default function ComunidadClubPage() {
 
             <figure className="com-presenta-foto">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/galeria/g05.webp" alt="Socios del club entre Ferrari históricos en el taller de Maranello" loading="lazy" decoding="async" />
-              <figcaption>Maranello · Entre los clásicos del taller</figcaption>
+              <img src="/galeria/g05.webp" alt="Socios del club entre Ferrari clásicos en un taller" loading="lazy" decoding="async" />
             </figure>
           </div>
         </div>
