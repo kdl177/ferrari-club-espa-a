@@ -29,11 +29,13 @@ export default async function AdminEventosPage() {
           <div className="admin-lista">
             {eventos.map((e) => {
               const pasado = e.fecha < ahora;
-              const libres = e.aforo - e.plazasOcupadas;
+              const libres = e.aforo === null ? Infinity : e.aforo - e.plazasOcupadas;
               // Mismo criterio que la web publica: avisar antes de llenarse,
               // no solo cuando ya no queda sitio.
               const claseAforo =
-                libres <= 0
+                e.aforo === null
+                  ? 'admin-badge-activo'
+                  : libres <= 0
                   ? 'admin-badge-moroso'
                   : libres <= Math.max(3, Math.ceil(e.aforo * 0.2))
                     ? 'admin-badge-pendiente'
@@ -50,7 +52,7 @@ export default async function AdminEventosPage() {
                     </div>
                     <div className="admin-mensaje-acciones">
                       <span className={`admin-badge ${claseAforo}`}>
-                        {e.plazasOcupadas}/{e.aforo}
+                        {e.plazasOcupadas}/{e.aforo ?? 'sin tope'}
                       </span>
                       {pasado && <span className="admin-badge admin-badge-baja">Pasado</span>}
                     </div>

@@ -1,6 +1,13 @@
 import HomeInteractions from '@/components/HomeInteractions';
 import HalftoneImage from '@/components/HalftoneImage';
-import Foto from '@/components/Foto';
+import Link from 'next/link';
+import Image from 'next/image';
+import { prisma } from '@/lib/prisma';
+import { pagina, fechaLarga } from '@/lib/noticias';
+import { BENEFITS, PDF_INSCRIPCION } from '@/lib/socio';
+import { ANIOS, deArchivo } from '@/lib/sitio';
+
+export const revalidate = 3600;
 
 const MACHINES = [
   {
@@ -33,13 +40,6 @@ const MACHINES = [
     specs: [['POTENCIA', '725 CV'], ['PAR MÁXIMO', '716 Nm'], ['0–100 km/h', '3,3 s'], ['V. MÁX', '> 310 km/h'], ['MOTOR', 'V12 atmosférico 6.496 cc'], ['PESO EN SECO', '2.033 kg']],
     foto: { autor: 'Alexander Migl', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_Purosangue_DSC_7008.jpg', alt: 'Ferrari Purosangue gris mate frente a un concesionario, vista frontal tres cuartos' },
   },
-];
-
-const EVENTS = [
-  { day: '11', month: 'SEP', type: 'FÓRMULA 1 · GRAN PREMIO', title: 'GP España F1 — Circuito de Madrid', loc: 'Circuito de Madrid · Madrid, España', q: 'GP+Espa%C3%B1a+F1+%E2%80%94+Circuito+de+Madrid' },
-  { day: '18', month: 'SEP', type: 'TRACK DAY · CIRCUITO', title: 'Uclés — Segóbriga', loc: 'Circuito de Uclés · Cuenca, España', q: 'Track+Day+Ucl%C3%A9s+%E2%80%94+Seg%C3%B3briga' },
-  { day: '01', month: 'OCT', type: 'CONCURSO · ELEGANCIA', title: 'Concurso de Elegancia Costa del Sol', loc: 'Marbella · Málaga, España', q: 'Concurso+de+Elegancia+Costa+del+Sol' },
-  { day: '07', month: 'NOV', type: 'SOLIDARIO · TRACK DAY', title: 'Tandas Solidarias — Circuito Calafat', loc: 'Circuito de Calafat · Tarragona, España', q: 'Tandas+Solidarias+%E2%80%94+Circuito+Calafat' },
 ];
 
 const GALLERY_LABELS = ['TRACK', 'RUTA', 'F1', 'ELEGANCIA', 'CLUB', '', 'MARANELLO'];
@@ -76,7 +76,21 @@ function ParrillaArte() {
   );
 }
 
-export default function Home() {
+async function proximosEventos() {
+  try {
+    return await prisma.evento.findMany({ where: { fecha: { gte: new Date() } }, orderBy: { fecha: 'asc' }, take: 4 });
+  } catch (e) {
+    console.error('No se pudieron leer los eventos:', e);
+    return [];
+  }
+}
+
+const MESES = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+const TIPO: Record<string, string> = { track: 'CIRCUITO', rutas: 'RUTA', club: 'CLUB', elegancia: 'ELEGANCIA', f1: 'FÓRMULA 1', maranello: 'MARANELLO', cavalcade: 'CAVALCADE' };
+
+export default async function Home() {
+  const [eventos, { noticias }] = await Promise.all([proximosEventos(), pagina(1)]);
+  const ultimas = noticias.slice(0, 3);
   return (
     <>
       <section className="hero" id="hero">
@@ -181,17 +195,20 @@ export default function Home() {
       <section className="events-sec" aria-label="Próximos eventos">
         <div className="cnt">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem' }} data-r="up">
-            <div><div className="sec-eye">CALENDARIO 2026</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>Próximos<br /><span style={{ color: 'var(--red)' }}>eventos</span></h2></div>
-            <a href="/contacta/" className="btn btn-o btn-sm">VER TODOS →</a>
+            <div><div className="sec-eye">CALENDARIO</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>Próximos<br /><span style={{ color: 'var(--red)' }}>eventos</span></h2></div>
+            <a href="/eventos/" className="btn btn-o btn-sm">VER TODOS →</a>
           </div>
           <div className="events-list">
-            {EVENTS.map((e, i) => (
-              <a className="ev-card" href={`/contacta/?asunto=eventos&evento=${e.q}`} data-r="up" style={{ transitionDelay: `${i * 0.07}s` }} key={e.title}>
-                <div className="ev-date"><div className="ev-day">{e.day}</div><div className="ev-month">{e.month}</div></div>
-                <div className="ev-body"><div className="ev-type">{e.type}</div><div className="ev-title">{e.title}</div><div className="ev-loc">{e.loc}</div></div>
-                <div className="ev-cta"><span>RESERVAR →</span></div>
+            {eventos.map((e, i) => (
+              <a className="ev-card" href="/eventos/" data-r="up" style={{ transitionDelay: `${i * 0.07}s` }} key={e.id}>
+                <div className="ev-date"><div className="ev-day">{String(e.fecha.getUTCDate()).padStart(2, '0')}</div><div className="ev-month">{MESES[e.fecha.getUTCMonth()]}</div></div>
+                <div className="ev-body"><div className="ev-type">{TIPO[e.categoria] ?? 'EVENTO'} · {e.fecha.getUTCFullYear()}</div><div className="ev-title">{e.titulo}</div><div className="ev-loc">{e.ubicacion}</div></div>
+                <div className="ev-cta"><span>VER →</span></div>
               </a>
             ))}
+            {eventos.length === 0 && (
+              <p className="sec-sub">El calendario de la próxima temporada se publica en breve. Mientras, puedes <a href="/contacta/" style={{ color: 'var(--red)' }}>escribir a secretaría</a>.</p>
+            )}
           </div>
         </div>
       </section>
@@ -203,13 +220,24 @@ export default function Home() {
               <div className="sec-eye">ACTUALIDAD</div>
               <h2 className="sec-title" style={{ marginTop: '.75rem' }}>Ferrari<br /><span style={{ color: 'var(--red)' }}>al día</span></h2>
               <p className="sec-sub" style={{ marginTop: '1.25rem', maxWidth: '30rem' }}>
-                Fórmula 1, resistencia y novedades de Maranello, según las publican Autosport, The Race y Racer.
+                Cada Gran Premio en tres tiempos, la resistencia y las novedades de Maranello, contados por la redacción del club.
               </p>
             </div>
-            <a href="/noticias/" className="btn btn-o btn-sm">VER EL TABLÓN →</a>
+            <a href="/noticias/" className="btn btn-o btn-sm">TODAS LAS NOTICIAS →</a>
           </div>
-          <div className="news-portada" data-r="up">
-            <Foto id="f1-zandvoort-2024" />
+          <div className="live-grid">
+            {ultimas.map((n) => (
+              <Link key={n.ruta} className="live-nc" href={n.ruta}>
+                <div className="live-nc-img">
+                  {n.portada && <Image src={n.portada} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" quality={60} unoptimized={!n.portada.startsWith('/')} />}
+                </div>
+                <div className="live-nc-body">
+                  <div className="live-nc-meta"><span className="news-card-cat">{n.categoria.toUpperCase()}</span></div>
+                  <h3 className="live-nc-title">{n.titulo}</h3>
+                  <div className="live-nc-date"><time dateTime={n.fecha}>{fechaLarga(n.fecha)}</time><span className="live-ext">LEER →</span></div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -252,7 +280,7 @@ export default function Home() {
               <div className="stats4">
                 <div className="stat"><span className="stat-n" data-count="200" data-suffix="+">200+</span><span className="stat-l">SOCIOS</span></div>
                 <div className="stat"><span className="stat-n" data-count="1988">1988</span><span className="stat-l">FUNDACIÓN</span></div>
-                <div className="stat"><span className="stat-n" data-count="38">38</span><span className="stat-l">AÑOS</span></div>
+                <div className="stat"><span className="stat-n" data-count={ANIOS}>{ANIOS}</span><span className="stat-l">AÑOS</span></div>
                 <div className="stat"><span className="stat-n" data-count="2006">2006</span><span className="stat-l">OFICIAL FERRARI</span></div>
               </div>
               <div style={{ display: 'flex', gap: '1.25rem', marginTop: '3rem', flexWrap: 'wrap' }}>
@@ -300,33 +328,16 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginBottom: '1rem' }} data-r="up">
             <div className="sec-eye" style={{ justifyContent: 'center', marginBottom: '1rem' }}>ÚNETE AL CLUB</div>
             <h2 className="sec-title">Hazte<br /><span style={{ color: 'var(--red)' }}>socio</span></h2>
-            <p className="sec-sub" style={{ maxWidth: '500px', margin: '1rem auto 0', textAlign: 'center' }}>Elige tu nivel de membresía y únete a la comunidad Ferrari más exclusiva de España.</p>
+            <p className="sec-sub" style={{ maxWidth: '520px', margin: '1rem auto 0', textAlign: 'center' }}>Si tienes un Ferrari, esto es lo que el club organiza para sus socios a lo largo del año.</p>
           </div>
-          <div className="mem-grid">
-            <div className="mem-card" data-r="up">
-              <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '1.25rem' }}>SOCIO BASE</div>
-              <div className="mem-price">Cuota<span> anual</span></div>
-              <ul className="mem-features">
-                <li>Carnet oficial de socio</li><li>Acceso a eventos del club</li><li>Acceso a publicaciones del club</li><li>Directorio de socios</li><li>Descuentos en concesionarios</li>
-              </ul>
-              <a href="/contacta/" className="btn btn-o" style={{ width: '100%', justifyContent: 'center', marginTop: '2rem' }}>SOLICITAR INFO <span className="btn-ico">→</span></a>
-            </div>
-            <div className="mem-card featured" data-r="up" style={{ transitionDelay: '.1s' }}>
-              <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '1.25rem' }}>SOCIO ACTIVO</div>
-              <div className="mem-price">Plena<span> participación</span></div>
-              <ul className="mem-features">
-                <li>Todo lo del socio base</li><li>Track days y rutas</li><li>Visitas a Maranello</li><li>GP Fórmula 1 (descuento)</li><li>Cavalcade Classiche</li><li>Concursos de elegancia</li><li>Voto en asamblea</li>
-              </ul>
-              <a href="/club/hazte-socio/" className="btn btn-p" style={{ width: '100%', justifyContent: 'center', marginTop: '2rem' }} data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
-            </div>
-            <div className="mem-card" data-r="up" style={{ transitionDelay: '.2s' }}>
-              <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '1.25rem' }}>SOCIO FAMILIAR</div>
-              <div className="mem-price">Cuota<span> familiar</span></div>
-              <ul className="mem-features">
-                <li>2 miembros por cuota</li><li>Todos los beneficios activos</li><li>Invitaciones dobles</li><li>Área socios compartida</li><li>Prioridad en eventos</li>
-              </ul>
-              <a href="/contacta/" className="btn btn-o" style={{ width: '100%', justifyContent: 'center', marginTop: '2rem' }}>CONTACTAR <span className="btn-ico">→</span></a>
-            </div>
+          <div className="benefit-grid">
+            {BENEFITS.slice(0, 6).map((b) => (
+              <div className="ben-item" data-r="up" key={b.title}><div className="ben-title">{b.title}</div><div className="ben-desc">{b.desc}</div></div>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '3rem' }} data-r="up">
+            <a href="/club/hazte-socio/" className="btn btn-p" data-mag>SOLICITAR EL INGRESO <span className="btn-ico">→</span></a>
+            <a href={deArchivo(PDF_INSCRIPCION)} className="btn btn-o" target="_blank" rel="noopener">FORMULARIO EN PDF <span className="btn-ico">↓</span></a>
           </div>
           <p style={{ fontFamily: 'var(--fm)', fontSize: '.82rem', color: 'var(--w60)', textAlign: 'center', marginTop: '2rem' }} data-r="up">
             Secretaría: <a href="tel:+34915754160" style={{ color: 'var(--red)' }}>+34 91 575 41 60</a> · <a href="mailto:ferrari@ferrariclubespana.com" style={{ color: 'var(--red)' }}>ferrari@ferrariclubespana.com</a>
@@ -346,7 +357,7 @@ export default function Home() {
             </div>
             <div className="finale-stats">
               <div><span className="fin-stat-n" data-count="200" data-suffix="+">200+</span><span className="fin-stat-l">SOCIOS</span></div>
-              <div><span className="fin-stat-n" data-count="38">38</span><span className="fin-stat-l">AÑOS</span></div>
+              <div><span className="fin-stat-n" data-count={ANIOS}>{ANIOS}</span><span className="fin-stat-l">AÑOS</span></div>
               <div><span className="fin-stat-n" data-count="1">1</span><span className="fin-stat-l">CLUB OFICIAL</span></div>
             </div>
           </div>

@@ -38,7 +38,9 @@ export default async function ComunidadEventosPage() {
 
   const ahora = new Date();
 
-  const items: EventItem[] = eventos.map((e) => ({
+  const ordenados = [...eventos.filter((e) => e.fecha >= ahora), ...eventos.filter((e) => e.fecha < ahora).reverse()];
+
+  const items: EventItem[] = ordenados.map((e) => ({
     id: e.id,
     categoria: e.categoria,
     titulo: e.titulo,

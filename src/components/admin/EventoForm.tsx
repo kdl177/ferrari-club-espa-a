@@ -14,7 +14,7 @@ type EventoEditable = {
   fecha: string;
   ubicacion: string;
   descripcion: string;
-  aforo: number;
+  aforo: number | null;
 };
 
 export default function EventoForm({ evento }: { evento?: EventoEditable }) {
@@ -44,8 +44,8 @@ export default function EventoForm({ evento }: { evento?: EventoEditable }) {
           <input className="form-input" type="datetime-local" name="fecha" defaultValue={evento?.fecha} />
         </label>
         <label className="admin-campo admin-campo-corto">
-          <span className="form-label">AFORO *</span>
-          <input className="form-input" type="number" name="aforo" min={1} defaultValue={evento?.aforo ?? 20} />
+          <span className="form-label">AFORO (vacío = sin tope)</span>
+          <input className="form-input" type="number" name="aforo" min={1} defaultValue={evento?.aforo ?? undefined} />
         </label>
       </div>
 

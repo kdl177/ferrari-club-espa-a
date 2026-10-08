@@ -153,7 +153,7 @@ model Evento {
   ubicacion String
   descripcion String @db.Text
 
-  aforo           Int
+  aforo           Int?
   plazasOcupadas  Int @default(0)
 
   inscripciones Inscripcion[]
