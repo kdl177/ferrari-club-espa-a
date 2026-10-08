@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
+import FondoHero from '@/components/FondoHero';
 import EventsFilter, { type EventItem } from '@/components/EventsFilter';
 import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
@@ -59,7 +60,8 @@ export default async function EventosPage() {
   return (
     <>
       <section className="ev-hero">
-        <div className="cnt">
+        <FondoHero nombre="aleron-812" alt="Alerón trasero de un Ferrari 812 rojo" />
+        <div className="cnt" style={{ position: 'relative', zIndex: 2 }}>
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Eventos' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">CALENDARIO 2026</p>
           <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5.5rem)', marginTop: '.75rem' }} data-r="up">Próximos<br /><span style={{ color: 'var(--red)' }}>eventos</span></h1>
