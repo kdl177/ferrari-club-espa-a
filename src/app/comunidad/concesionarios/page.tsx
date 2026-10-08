@@ -17,8 +17,8 @@ export default function ComunidadConcesionariosPage() {
         titulo="Cuatro casas"
         tituloRojo="en España"
         entrada="Madrid, Barcelona, Valencia y Marbella. Compra, taller y garantía oficial."
-        foto="/galeria/g18.webp"
-        fotoAlt="Socios del club junto a un LaFerrari en el pit lane"
+        foto="/galeria/g25.webp"
+        fotoAlt="Ferrari del club alineados ante la Ciudad de las Artes y las Ciencias de Valencia"
       />
 
       <section style={{ background: 'var(--fce-grafito)', padding: '4rem 0 5rem' }}>

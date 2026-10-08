@@ -1196,3 +1196,30 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
     background:url('/video/carretera-poster.webp') center/cover no-repeat,var(--ink);
   }
 }
+
+/* En movil la cabecera llegaba a 84vh: el relleno de 9.5rem es para la barra
+   fija de escritorio (106px), pero ahi mide 85 y sobraba casi todo. Las siete
+   pastillas se apilaban en cuatro filas y empujaban el resto fuera de vista. */
+@media(max-width:720px){
+  .com-ph{min-height:0;padding:7rem 0 2.25rem}
+  .com-ph-titulo{font-size:clamp(1.75rem,8vw,2.4rem)}
+  .com-ph-sub{margin-top:1rem}
+  /* Una sola fila que se arrastra en horizontal, en vez de cuatro apiladas. */
+  .com-nav{
+    flex-wrap:nowrap;overflow-x:auto;margin-top:1.5rem;
+    padding-bottom:.4rem;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .com-nav::-webkit-scrollbar{display:none}
+  .com-nav a{flex-shrink:0;white-space:nowrap}
+}
+/* La miga de pan de /comunidad tiene tres niveles y en movil se partia en dos
+   lineas apretadas: menos espaciado y una sola fila que se arrastra. */
+@media(max-width:720px){
+  .com-ph .bc{
+    gap:.45rem;font-size:.66rem;letter-spacing:.06em;
+    flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+  }
+  .com-ph .bc::-webkit-scrollbar{display:none}
+  .com-ph .bc > *{flex-shrink:0;white-space:nowrap}
+}

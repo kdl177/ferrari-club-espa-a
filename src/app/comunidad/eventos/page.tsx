@@ -61,7 +61,8 @@ export default async function ComunidadEventosPage() {
         tituloRojo="vemos este año"
         entrada="Circuito, carretera y Maranello. El calendario del club, abierto a socios."
         foto="/galeria/g03.webp"
-        fotoAlt="Ferrari aparcados entre olivos durante una salida del club"
+        fotoAlt="Vista aérea de una concentración del club: decenas de Ferrari aparcados en una plaza junto al lago"
+        video="juntada"
       />
 
       <section style={{ background: 'var(--ink)', padding: '3rem 0' }}>
