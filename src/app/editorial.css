@@ -1284,3 +1284,7 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
   .revista-ultimo{margin:0 auto}
   .revista-grid{grid-template-columns:repeat(2,1fr)}
 }
+@media(max-width:480px){
+  .contact-info-block{padding:1.25rem 1rem;gap:1rem}
+  .ci-value{font-size:.95rem}
+}

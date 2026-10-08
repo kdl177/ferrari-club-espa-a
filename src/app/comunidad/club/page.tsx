@@ -1,31 +1,22 @@
 import type { Metadata } from 'next';
 import ComHero from '@/components/ComHero';
+import { HITOS } from '@/lib/club';
+import { ANIOS } from '@/lib/sitio';
 
 export const metadata: Metadata = {
   title: 'El club — La comunidad · Ferrari Club España',
-  description: 'De dónde venimos: casi cuarenta años del Ferrari Club España, contados desde 1988 hasta hoy.',
+  description: 'El Ferrari Club España desde 1988: el único Club Oficial del Cavallino en España.',
   alternates: { canonical: '/comunidad/club/' },
 };
-
-const HITOS = [
-  { año: '1988', t: 'Empieza todo', d: 'Unos cuantos propietarios de Ferrari se juntan en Madrid. No hay sede ni estatutos: hay ganas de quedar.' },
-  { año: '1992', t: 'Salimos de España', d: 'Primeros encuentros fuera. Se empiezan a conocer los clubs de los países vecinos.' },
-  { año: '1997', t: 'Primer día de circuito', d: 'El Jarama, más de treinta coches en pista. El formato que todavía repetimos cada año.' },
-  { año: '2001', t: 'Maranello', d: 'El primer viaje oficial a la fábrica. Talleres, museo y Fiorano. Hay quien no se lo ha perdido desde entonces.' },
-  { año: '2006', t: 'Ferrari nos reconoce', d: 'Ferrari S.p.A. nombra al club Owners Club oficial de España. Un sello que pocos tienen.' },
-  { año: '2010', t: 'Doscientos', d: 'El club pasa de los doscientos socios y se convierte en el mayor club oficial de Ferrari en España.' },
-  { año: '2018', t: 'Treinta años', d: 'Aniversario con concentración y exposición de clásicos en el museo de Maranello.' },
-  { año: '2026', t: 'Hoy', d: 'Más de doscientos socios, decenas de salidas al año y la misma excusa de siempre para quedar.' },
-];
 
 export default function ComunidadClubPage() {
   return (
     <>
       <ComHero
         seccion="El club"
-        titulo="Treinta y ocho años"
+        titulo={`${ANIOS} años`}
         tituloRojo="de carretera"
-        entrada="Empezó en 1988 con unos cuantos propietarios y la idea de verse los fines de semana. Sigue igual, con más gente."
+        entrada="Nació en 1988 como club exclusivo para propietarios de Ferrari. Desde 2006 es el único Club Oficial del Cavallino en España."
         foto="/galeria/g24.webp"
         fotoAlt="Un Ferrari rodando por carretera abierta"
         video="carretera"
@@ -37,9 +28,8 @@ export default function ComunidadClubPage() {
             <div>
               <div className="sec-eye">QUIÉNES SOMOS</div>
               <h2 className="sec-title" style={{ marginTop: '1rem', fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>Un club de<br /><span style={{ color: 'var(--red)' }}>propietarios</span></h2>
-              <p className="com-texto">El Ferrari Club España nació en 1988 y en 2006 recibió el reconocimiento oficial de Ferrari S.p.A. como Owners Club para España. Eso quiere decir que el carnet vale en cualquier club Ferrari del mundo.</p>
-              <p className="com-texto">Lo que hacemos es sencillo: organizar salidas para que la gente use sus coches y se conozca entre sí. Circuito, carretera, Maranello y mesa larga.</p>
-              <p className="com-texto">No hay cuota de exclusividad ni lista de espera: hace falta tener un Ferrari y ganas de venir.</p>
+              <p className="com-texto">El Ferrari Club España nació en 1988 y desde 2006 recibe el apoyo directo de Ferrari, que le concedió el estatus de Club Oficial.</p>
+              <p className="com-texto">A lo largo del año organiza eventos para que los socios disfruten de sus coches y del ambiente del club: en circuito, por carretera, en Maranello y en los encuentros de la propia Ferrari.</p>
 
               <div className="com-datos">
                 <div><span className="tech-l">SEDE</span><br /><span className="com-dato-v">Madrid</span></div>
@@ -61,7 +51,7 @@ export default function ComunidadClubPage() {
         <div className="cnt">
           <div data-r="up">
             <div className="sec-eye">DE DÓNDE VENIMOS</div>
-            <h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '3rem' }}>Ocho momentos<br /><span style={{ color: 'var(--red)' }}>que contar</span></h2>
+            <h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '3rem' }}>El club,<br /><span style={{ color: 'var(--red)' }}>en tres fechas</span></h2>
           </div>
           <div className="com-hitos">
             {HITOS.map((h) => (
@@ -79,7 +69,7 @@ export default function ComunidadClubPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(0,0,0,.25),transparent)' }} aria-hidden="true" />
         <div className="cnt" style={{ position: 'relative', textAlign: 'center' }}>
           <h2 style={{ fontFamily: 'var(--fd)', fontSize: 'clamp(1.8rem,4.5vw,3.5rem)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--white)', marginBottom: '1.5rem' }} data-r="up">¿NOS VEMOS EN LA PRÓXIMA?</h2>
-          <p style={{ fontFamily: 'var(--fh)', fontSize: '1.1rem', color: 'rgba(255,255,255,.8)', marginBottom: '2.5rem' }} data-r="up">Treinta y ocho años después, seguimos quedando</p>
+          <p style={{ fontFamily: 'var(--fh)', fontSize: '1.1rem', color: 'rgba(255,255,255,.8)', marginBottom: '2.5rem' }} data-r="up">Desde 1988, el club de los propietarios de Ferrari</p>
           <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }} data-r="up">
             <a href="/comunidad/hazte-socio/" className="btn" style={{ background: 'var(--white)', color: 'var(--red)', borderColor: 'var(--white)', fontFamily: 'var(--fd)', fontSize: '.72rem', letterSpacing: '.15em', padding: '.8rem 2.5rem' }} data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
             <a href="/comunidad/eventos/" className="btn btn-o" style={{ borderColor: 'rgba(255,255,255,.5)', color: 'var(--white)' }}>VER LAS SALIDAS</a>

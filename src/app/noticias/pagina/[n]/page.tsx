@@ -2,9 +2,14 @@ import type { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
 import Breadcrumb from '@/components/Breadcrumb';
 import NoticiasLista from '@/components/NoticiasLista';
-import { pagina } from '@/lib/noticias';
+import { pagina, todasLasNoticias, POR_PAGINA } from '@/lib/noticias';
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const total = Math.ceil((await todasLasNoticias()).length / POR_PAGINA);
+  return Array.from({ length: total - 1 }, (_, i) => ({ n: String(i + 2) }));
+}
 
 export async function generateMetadata({ params }: PageProps<'/noticias/pagina/[n]'>): Promise<Metadata> {
   const { n } = await params;
