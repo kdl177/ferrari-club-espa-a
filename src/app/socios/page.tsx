@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import HalftoneImage from '@/components/HalftoneImage';
 import LoginForm from '@/components/LoginForm';
+import { OFERTA_SOCIOS } from '@/lib/socio';
+import { deArchivo } from '@/lib/sitio';
 
 export const metadata: Metadata = {
   title: 'Acceso Socios — Ferrari Club España',
-  description: 'Área privada de socios del Ferrari Club España. Accede con tu usuario y contraseña.',
+  description: 'Área privada de socios del Ferrari Club España: revista del club, oferta de los concesionarios oficiales, seguros y cursos de conducción.',
   alternates: { canonical: '/socios/' },
 };
 
@@ -55,6 +57,27 @@ export default function SociosPage() {
           </div>
         </div>
       </div>
+
+      <section style={{ background: 'var(--b90)', padding: '5rem 0' }}>
+        <div className="cnt">
+          <div className="sec-eye">PARA NUESTROS SOCIOS</div>
+          <h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>Ventajas<br /><span style={{ color: 'var(--red)' }}>del socio</span></h2>
+          <div className="benefit-grid">
+            {OFERTA_SOCIOS.map((o) => {
+              const fuera = o.enlace.startsWith('http');
+              return (
+                <div className="ben-item" key={o.t}>
+                  <div className="ben-title">{o.t}</div>
+                  <div className="ben-desc">{o.d}</div>
+                  <a href={fuera ? deArchivo(o.enlace) : o.enlace} className="btn btn-o btn-sm" style={{ marginTop: '1.25rem' }} {...(fuera ? { target: '_blank', rel: 'noopener' } : {})}>
+                    {o.accion} <span className="btn-ico">{fuera ? '↗' : '→'}</span>
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

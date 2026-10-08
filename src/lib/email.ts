@@ -14,6 +14,7 @@ const ASUNTO_LABEL: Record<string, string> = {
   'info-general': 'Información general',
   'hacerse-socio': 'Hacerme socio del club',
   eventos: 'Inscripción a eventos',
+  seguros: 'Presupuesto de seguro para mi Ferrari',
   patrocinio: 'Patrocinio y colaboraciones',
   prensa: 'Prensa / Media',
   otro: 'Otro',

@@ -110,6 +110,7 @@ export default async function EventosPage() {
           <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '3rem' }} data-r="up">
             <a href="/club/hazte-socio/" className="btn btn-p btn-lg" data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
             <a href="/contacta/?asunto=eventos" className="btn btn-o btn-lg">ESCRIBIR A SECRETARÍA</a>
+            <a href="/eventos/historial/" className="btn btn-o btn-lg">HISTORIAL DE EVENTOS</a>
           </div>
         </div>
       </section>

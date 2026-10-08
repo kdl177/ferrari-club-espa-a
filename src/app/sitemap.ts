@@ -5,8 +5,8 @@ import { todasLasNoticias, POR_PAGINA } from '@/lib/noticias';
 export const revalidate = 3600;
 
 const FIJAS = [
-  '/', '/noticias/', '/club/', '/club/hazte-socio/', '/eventos/', '/revista/', '/concesionarios/', '/contacta/', '/socios/',
-  '/comunidad/', '/aviso-legal/', '/privacidad/', '/cookies/', '/condiciones-de-venta/',
+  '/', '/noticias/', '/club/', '/club/hazte-socio/', '/eventos/', '/eventos/historial/', '/revista/', '/concesionarios/', '/contacta/', '/socios/',
+  '/aviso-legal/', '/privacidad/', '/cookies/', '/condiciones-de-venta/',
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

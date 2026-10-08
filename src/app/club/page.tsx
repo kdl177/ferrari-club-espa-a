@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
 import ArchivoComunidad from '@/components/ArchivoComunidad';
-import { CIRCUITO, VIAJES, CONCENTRACIONES } from '@/lib/galeria';
+import { CIRCUITO, VIAJES, CONCENTRACIONES, MAS_ARCHIVO } from '@/lib/galeria';
 import { ANIOS } from '@/lib/sitio';
 import { HITOS } from '@/lib/club';
 import revista from '@/content/revista.json';
@@ -39,10 +39,10 @@ const BOARD = [
 ];
 
 export default function ClubPage() {
-  // La rejilla del archivo va a 6 columnas: se recorta a multiplo de 6 para
-  // que la ultima fila no quede a medias.
-  const todas = [...CONCENTRACIONES, ...VIAJES, ...CIRCUITO];
-  const archivo = todas.slice(0, Math.floor(todas.length / 6) * 6);
+  // Sin repetidas, y a multiplo de 12 para que las filas cierren con 6, 4 y
+  // 3 columnas.
+  const todas = [...new Map([...CONCENTRACIONES, ...VIAJES, ...CIRCUITO, ...MAS_ARCHIVO].map((p) => [p.src, p])).values()];
+  const archivo = todas.slice(0, Math.floor(todas.length / 12) * 12);
 
   return (
     <>
@@ -147,7 +147,7 @@ export default function ClubPage() {
           <div data-r="up">
             <div className="sec-eye">ARCHIVO</div>
             <h2 className="sec-title" style={{ marginTop: '1rem' }}>Nuestra<br /><span style={{ color: 'var(--red)' }}>memoria</span></h2>
-            <p className="sec-sub" style={{ maxWidth: '620px', marginTop: '1.5rem', marginBottom: '3.5rem' }}>Casi cuatro décadas de circuitos, rutas y encuentros. Pulsa cualquiera para verla más grande.</p>
+            <p className="sec-sub" style={{ maxWidth: '620px', marginTop: '1.5rem', marginBottom: '3.5rem' }}>La galería fotográfica del club. Pulsa cualquiera para verla más grande.</p>
           </div>
 
           <ArchivoComunidad piezas={archivo} />
@@ -188,7 +188,7 @@ export default function ClubPage() {
           <p style={{ fontFamily: 'var(--fh)', fontSize: '1.1rem', color: 'rgba(255,255,255,.8)', marginBottom: '2.5rem' }} data-r="up">Únete al único club oficial de Ferrari en España</p>
           <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }} data-r="up">
             <a href="/club/hazte-socio/" className="btn" style={{ background: 'var(--white)', color: 'var(--red)', borderColor: 'var(--white)', fontFamily: 'var(--fd)', fontSize: '.72rem', letterSpacing: '.15em', padding: '.8rem 2.5rem' }} data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
-            <a href="/contacta/" className="btn btn-o" style={{ borderColor: 'rgba(255,255,255,.5)', color: 'var(--white)' }}>MÁS INFORMACIÓN</a>
+            <a href="/eventos/historial/" className="btn btn-o" style={{ borderColor: 'rgba(255,255,255,.5)', color: 'var(--white)' }}>HISTORIAL DE EVENTOS</a>
           </div>
         </div>
       </section>

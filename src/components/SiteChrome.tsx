@@ -32,6 +32,26 @@ const MENU_PREVIEWS = [
   { bg: '#0B0B0C', label: 'CONTACTA', size: '5vw', color: 'rgba(243,238,228,.06)' },
 ];
 
+// Los mismos enlaces que el pie de ferrariclubespana.com. El archivo de
+// www2 es la web historica del club.
+const FERRARI_OFICIAL = [
+  ['Ferrari Web Oficial', 'https://www.ferrari.com'],
+  ['Fórmula 1', 'https://www.ferrari.com/en-EN/formula1'],
+  ['Ferrari Corse Clienti', 'https://races.ferrari.com/en/corse-clienti/ferrari-challenge/'],
+  ['Competizioni GT', 'https://races.ferrari.com/en/competizioni-gt/series/'],
+  ['Ferrari Sports Team', 'https://www.ferrari.com/en-ES/esports/home'],
+];
+const MUNDO_FERRARI = [
+  ['Eventos Internacionales', 'https://www2.ferrariclubespana.com/album.html'],
+  ['Maranello y Fábrica Ferrari', 'https://www2.ferrariclubespana.com/maranello.html'],
+  ['Todos los Ferrari', 'https://www2.ferrariclubespana.com/banco.html'],
+  ['Historia Ferrari', 'https://www2.ferrariclubespana.com/historia.html'],
+  ['Galería de Arte Ferrari', 'https://www2.ferrariclubespana.com/arte.html'],
+  ['Modelismo Ferrari', 'https://www2.ferrariclubespana.com/expo.html'],
+  ['Ferrari Land Port Aventura', 'https://www.portaventuraworld.com/ferrari-land'],
+  ['Ferrari World Abu Dhabi', 'https://www.ferrariworldabudhabi.com/'],
+];
+
 const COLUMNAS = 5;
 const CUBRIR_MS = 380 + (COLUMNAS - 1) * 45;
 
@@ -324,10 +344,16 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
             </div>
             <div>
               <span className="footer-col-title">FERRARI OFICIAL</span>
-              <a href="https://www.ferrari.com/es-ES" className="footer-link" target="_blank" rel="noopener">Ferrari.com ↗</a>
-              <a href="https://www.ferrari.com/es-ES/formula1" className="footer-link" target="_blank" rel="noopener">Scuderia Ferrari ↗</a>
-              <a href="https://store.ferrari.com" className="footer-link" target="_blank" rel="noopener">Ferrari Store ↗</a>
-              <a href="https://www.ferrariland.com/es/" className="footer-link" target="_blank" rel="noopener">Ferrari Land ↗</a>
+              {FERRARI_OFICIAL.map(([t, u]) => (
+                <a key={u} href={u} className="footer-link" target="_blank" rel="noopener">{t} ↗</a>
+              ))}
+            </div>
+            <div>
+              <span className="footer-col-title">MUNDO FERRARI</span>
+              <a href="/eventos/historial/" className="footer-link">Histórico de eventos</a>
+              {MUNDO_FERRARI.map(([t, u]) => (
+                <a key={u} href={u} className="footer-link" target="_blank" rel="noopener">{t} ↗</a>
+              ))}
             </div>
             <div>
               <span className="footer-col-title">CONTACTO</span>

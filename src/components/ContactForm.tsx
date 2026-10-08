@@ -58,6 +58,7 @@ export default function ContactForm() {
           <option value="info-general">Información general</option>
           <option value="hacerse-socio">Hacerme socio del club</option>
           <option value="eventos">Inscripción a eventos</option>
+          <option value="seguros">Presupuesto de seguro para mi Ferrari</option>
           <option value="otro">Otro</option>
         </select>
       </div>

@@ -13,8 +13,7 @@ const ASUNTOS_VALIDOS = new Set([
   'info-general',
   'hacerse-socio',
   'eventos',
-  'patrocinio',
-  'prensa',
+  'seguros',
   'otro',
 ]);
 

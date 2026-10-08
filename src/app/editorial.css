@@ -1288,3 +1288,13 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 @keyframes hero-in{from{opacity:.2;transform:translateY(28px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.h-eye,.h-t,.h-s,.h-cta{animation:none}}
 .dealer-servicio{font-family:var(--fb);font-size:.82rem;line-height:1.6;color:var(--w60);margin:.4rem 0 1rem}
+
+/* ── Historial de eventos ────────────────────────────────── */
+.hist-anio+.hist-anio{margin-top:3rem}
+.hist-lista{list-style:none;padding:0;margin:0}
+.hist-ev{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:1.5rem;padding:1rem 0;border-bottom:1px solid var(--w08)}
+.hist-fecha{font-family:var(--fm);font-size:.75rem;letter-spacing:.08em;color:var(--red-g);text-transform:uppercase;padding-top:.15rem}
+.hist-titulo{font-family:var(--fh);font-weight:700;font-size:1rem;color:var(--white);line-height:1.45}
+@media(max-width:640px){
+  .hist-ev{grid-template-columns:1fr;gap:.35rem}
+}
