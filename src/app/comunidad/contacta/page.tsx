@@ -24,8 +24,8 @@ export default function ComunidadContactaPage() {
         titulo="Escríbenos"
         tituloRojo="y te contamos"
         entrada="Dudas sobre hacerse socio, sobre una salida o cualquier otra cosa. Contesta una persona."
-        foto="/galeria/g11.webp"
-        fotoAlt="Socios del club reunidos en una comida de hermandad"
+        foto="/galeria/g06.webp"
+        fotoAlt="Socios del club reunidos en la plaza de San Gimignano, en la Toscana"
       />
 
       <section style={{ background: 'var(--fce-grafito)', padding: '5rem 0' }}>
@@ -44,8 +44,8 @@ export default function ComunidadContactaPage() {
 
               <figure className="com-contacta-foto">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/galeria/g06.webp" alt="Socios del club reunidos en la plaza de San Gimignano, en la Toscana" loading="lazy" decoding="async" />
-                <figcaption>San Gimignano · Ruta por la Toscana</figcaption>
+                <img src="/galeria/g11.webp" alt="Socios del club reunidos en una comida de hermandad" loading="lazy" decoding="async" />
+                <figcaption>Sobremesa · Comida del club</figcaption>
               </figure>
             </div>
 
