@@ -1,31 +1,49 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
+import { Bodoni_Moda, Archivo } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import SiteChrome from "@/components/SiteChrome";
+import { SITE_URL, CLUB } from "@/lib/sitio";
 import "./globals.css";
 import "../../brand/tokens.css";
 import "./editorial.css";
 
+const gala = Bodoni_Moda({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+  variable: "--font-gala",
+});
+
+const circuito = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  display: "swap",
+  variable: "--font-circuito",
+});
+
+const DESCRIPCION =
+  "Club Oficial de Propietarios de Ferrari en España desde 1988, reconocido por Ferrari S.p.A. desde 2006. Más de 200 socios, rutas, tandas en circuito, Fórmula 1 y viajes a Maranello.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Ferrari Club España — Club Oficial desde 1988",
-  description:
-    "Club Oficial de Propietarios y Apasionados de Ferrari en España. Más de 200 socios, track days, rutas, F1 y eventos exclusivos desde 1988.",
-  metadataBase: new URL("https://club-ferrari-espana.vercel.app"),
+  description: DESCRIPCION,
   alternates: { canonical: "/" },
   openGraph: {
     title: "Ferrari Club España — Club Oficial",
-    description:
-      "Club Oficial de Propietarios y Apasionados de Ferrari en España. Más de 200 socios, track days, rutas, F1 y eventos exclusivos desde 1988.",
+    description: DESCRIPCION,
     url: "/",
     siteName: "Ferrari Club España",
-    images: [{ url: "/og.svg", width: 1200, height: 630 }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Socios del Ferrari Club España en una salida del club" }],
     locale: "es_ES",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Ferrari Club España — Club Oficial",
-    description: "Club Oficial de Propietarios y Apasionados de Ferrari en España desde 1988.",
-    images: ["/og.svg"],
+    description: DESCRIPCION,
+    images: ["/og.jpg"],
   },
   icons: {
     icon: "/brand/logo-icono-app.svg",
@@ -38,23 +56,26 @@ export const viewport: Viewport = {
 
 const orgJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Ferrari Club España",
-  url: "https://club-ferrari-espana.vercel.app",
-  logo: "https://club-ferrari-espana.vercel.app/og.svg",
-  description:
-    "Club Oficial de Propietarios y Apasionados de Ferrari en España desde 1988. El único club oficial avalado por Ferrari S.p.A.",
-  foundingDate: "1988",
+  "@type": "SportsOrganization",
+  "@id": `${SITE_URL}/#club`,
+  name: CLUB.nombre,
+  url: SITE_URL,
+  logo: `${SITE_URL}/brand/logo-principal.svg`,
+  image: `${SITE_URL}/og.jpg`,
+  description: DESCRIPCION,
+  foundingDate: String(CLUB.fundacion),
+  taxID: CLUB.cif,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Calle Constancia 41, Entreplanta",
-    addressLocality: "Madrid",
-    postalCode: "28002",
+    streetAddress: CLUB.direccion,
+    addressLocality: CLUB.ciudad,
+    postalCode: CLUB.cp,
     addressCountry: "ES",
   },
-  telephone: "+34915754160",
-  email: "ferrari@ferrariclubespana.com",
+  telephone: CLUB.telefonoE164,
+  email: CLUB.email,
   sameAs: [
+    "https://www.ferrari.com/es-ES/auto/owners-club-espana",
     "https://www.facebook.com/ferrariclubespana",
     "https://www.instagram.com/ferrariclubespana",
   ],
@@ -62,29 +83,16 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${gala.variable} ${circuito.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wdth,wght@62..125,400..800&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
       </head>
       <body>
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-          strategy="beforeInteractive"
-        />
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-          strategy="beforeInteractive"
-        />
         <SiteChrome>{children}</SiteChrome>
+        <Analytics />
       </body>
     </html>
   );

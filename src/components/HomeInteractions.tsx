@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { gsap } from 'gsap';
 import Preloader from './Preloader';
-
-type GsapLike = typeof import('gsap').gsap;
 
 export default function HomeInteractions() {
   const [preDone, setPreDone] = useState(false);
@@ -13,8 +12,6 @@ export default function HomeInteractions() {
   }, []);
 
   function playHero() {
-    const gsap = (window as unknown as { gsap?: GsapLike }).gsap;
-    if (!gsap) return;
     gsap.set(['#h-eye', '#h-t', '#h-s', '#h-cta'], { y: 24 });
     gsap
       .timeline()

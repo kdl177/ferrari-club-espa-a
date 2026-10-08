@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState, useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { gsap } from 'gsap';
 
 const MENU_ITEMS = [
   { n: '01', label: 'INICIO', href: '/' },
@@ -147,9 +148,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   }, [pathname]);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const gsap = (window as unknown as { gsap?: typeof import('gsap').gsap }).gsap;
-    if (!gsap) return;
     document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
       if (el.dataset.counted) return;
       const target = parseInt(el.dataset.count || '0', 10);
@@ -183,8 +181,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   }, [pathname]);
 
   useEffect(() => {
-    const gsap = (window as unknown as { gsap?: typeof import('gsap').gsap }).gsap;
-    if (!gsap) return;
     const els = document.querySelectorAll<HTMLElement>('[data-mag]');
     const cleanups: Array<() => void> = [];
     els.forEach((el) => {
