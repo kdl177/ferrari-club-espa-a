@@ -1223,3 +1223,23 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
   .com-ph .bc::-webkit-scrollbar{display:none}
   .com-ph .bc > *{flex-shrink:0;white-space:nowrap}
 }
+
+/* ── Cabeceras con foto en la web principal ───────────────── */
+/* Las fuentes son de 4K (5482px el F40). Se sirven en tres tamaños por
+   srcset: a 1280 no hace falta bajarse la grande. */
+.hero-foto{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0;
+}
+.hero-foto-velo{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(26,22,24,.78) 0%,rgba(26,22,24,.45) 45%,rgba(26,22,24,.95) 100%),
+    linear-gradient(90deg,rgba(26,22,24,.82),transparent 62%);
+}
+@media(max-width:720px){
+  /* A lo ancho del movil el coche cae detras del texto y hace falta mas velo. */
+  .hero-foto-velo{
+    background:linear-gradient(180deg,rgba(26,22,24,.84),rgba(26,22,24,.62) 50%,rgba(26,22,24,.92));
+  }
+}

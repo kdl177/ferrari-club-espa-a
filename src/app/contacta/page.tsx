@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import Breadcrumb from '@/components/Breadcrumb';
+import FondoHero from '@/components/FondoHero';
 import ContactForm from '@/components/ContactForm';
 import MapaOSM from '@/components/MapaOSM';
 
@@ -21,7 +22,8 @@ export default function ContactaPage() {
   return (
     <>
       <section className="contact-hero">
-        <div className="cnt">
+        <FondoHero nombre="detalle-rojo" alt="Detalle de la carroceria roja de un deportivo con gotas de lluvia" />
+        <div className="cnt" style={{ position: 'relative', zIndex: 2 }}>
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Contacta' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">FERRARI CLUB ESPAÑA</p>
           <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">Contacta<br /><span style={{ color: 'var(--red)' }}>con nosotros</span></h1>
