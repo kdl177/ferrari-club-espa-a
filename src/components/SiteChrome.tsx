@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useEffect, useState, useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { gsap } from 'gsap';
 
 const MENU_ITEMS = [
   { n: '01', label: 'INICIO', href: '/' },
@@ -154,7 +153,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       const target = parseInt(el.dataset.count || '0', 10);
       const suffix = el.dataset.suffix || '';
       const prefix = el.dataset.prefix || '';
-      const obj = { val: 0 };
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -163,14 +161,14 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
             if (target > 1900) {
               el.textContent = prefix + target + suffix;
             } else {
-              gsap.to(obj, {
-                val: target,
-                duration: 2.2,
-                ease: 'power2.out',
-                onUpdate: () => {
-                  el.textContent = prefix + Math.round(obj.val) + suffix;
-                },
-              });
+              // Misma curva que el power2.out de GSAP: 1 - (1 - t)^3.
+              const t0 = performance.now();
+              const paso = (ahora: number) => {
+                const t = Math.min((ahora - t0) / 2200, 1);
+                el.textContent = prefix + Math.round(target * (1 - (1 - t) ** 3)) + suffix;
+                if (t < 1) requestAnimationFrame(paso);
+              };
+              requestAnimationFrame(paso);
             }
             io.unobserve(el);
           });
@@ -182,19 +180,20 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   }, [pathname]);
 
   useEffect(() => {
+    // El iman solo tiene sentido con raton; en tactil no hay mousemove.
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     const els = document.querySelectorAll<HTMLElement>('[data-mag]');
     const cleanups: Array<() => void> = [];
     els.forEach((el) => {
       const onMove = (e: MouseEvent) => {
         const r = el.getBoundingClientRect();
-        gsap.to(el, {
-          x: (e.clientX - (r.left + r.width / 2)) * 0.35,
-          y: (e.clientY - (r.top + r.height / 2)) * 0.35,
-          duration: 0.35,
-          ease: 'power2.out',
-        });
+        el.style.transition = 'transform .35s cubic-bezier(.33,1,.68,1)';
+        el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.35}px,${(e.clientY - (r.top + r.height / 2)) * 0.35}px)`;
       };
-      const onLeave = () => gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,.4)' });
+      const onLeave = () => {
+        el.style.transition = 'transform .5s cubic-bezier(.34,1.56,.64,1)';
+        el.style.transform = '';
+      };
       el.addEventListener('mousemove', onMove);
       el.addEventListener('mouseleave', onLeave);
       cleanups.push(() => {
@@ -250,7 +249,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       )}
 
       {!esAdminPanel && (
-      <div id="menu" className={menuOpen ? 'open' : ''} role="dialog" aria-modal="true">
+      <div id="menu" className={menuOpen ? 'open' : ''} role="dialog" aria-modal="true" aria-label="Menú de navegación" inert={!menuOpen}>
         <nav className="menu-nav">
           {MENU_ITEMS.map((item, i) =>
             item.sub ? (

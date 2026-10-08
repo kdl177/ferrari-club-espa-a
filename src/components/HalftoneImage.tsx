@@ -265,7 +265,11 @@ export default function HalftoneImage({
       setBlocks(redBlocks ? makeBlocks(w, h, side, focus, mobile, seed) : []);
     }
 
-    ready().then(render).catch(() => setFallback(true));
+    // El trazado de miles de puntos es una tarea larga: se espera a que el
+    // navegador quede libre para no bloquear la carga ni el primer toque.
+    const enReposo = (fn: () => void) =>
+      typeof requestIdleCallback === 'function' ? requestIdleCallback(fn, { timeout: 1200 }) : setTimeout(fn, 1);
+    ready().then(() => enReposo(render)).catch(() => setFallback(true));
 
     const ro = new ResizeObserver(() => {
       window.clearTimeout(timer);

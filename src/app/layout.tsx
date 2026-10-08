@@ -20,6 +20,9 @@ const circuito = Archivo({
   axes: ["wdth"],
   display: "swap",
   variable: "--font-circuito",
+  // El titular del hero (el LCP) va en Bodoni: Archivo no debe competir con
+  // ella por la red en la primera carga.
+  preload: false,
 });
 
 const DESCRIPCION =
