@@ -98,7 +98,7 @@ export default async function Home() {
         <div className="hero-bg" id="hbg">
           <HalftoneImage
             className="hero-ht"
-            src="/ferrari-hero.jpg"
+            src="/ferrari-hero.webp"
             alt="Ferrari Testarossa roja fotografiada de perfil sobre pista"
             cell={6}
             intensity={0.6}
@@ -168,8 +168,7 @@ export default async function Home() {
             {MACHINES.map((m) => (
               <article className="mcard" key={m.slug}>
                 <figure className="mcard-img">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/coches/${m.slug}.webp`} alt={m.foto.alt} width={1040} height={650} loading="lazy" decoding="async" />
+                  <Image src={`/coches/${m.slug}.webp`} alt={m.foto.alt} width={1040} height={650} sizes="(max-width: 760px) 82vw, 440px" quality={60} />
                   <span className="mcard-dato">{m.dato}</span>
                   <figcaption>
                     Foto: <a href={m.foto.url} target="_blank" rel="noopener">{m.foto.autor}</a> · {m.foto.licencia} · recortada

@@ -1288,3 +1288,13 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
   .contact-info-block{padding:1.25rem 1rem;gap:1rem}
   .ci-value{font-size:.95rem}
 }
+
+/* ── Entrada del hero ────────────────────────────────────── */
+/* Sin preloader y sin esperar a JavaScript: el texto se pinta en el primer
+   fotograma (cuenta para el LCP) y sube escalonado. */
+.h-eye,.h-t,.h-s,.h-cta{opacity:1;animation:hero-in .9s var(--eo) both}
+.h-t{animation-delay:.08s}
+.h-s{animation-delay:.2s}
+.h-cta{animation-delay:.32s}
+@keyframes hero-in{from{opacity:.2;transform:translateY(28px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.h-eye,.h-t,.h-s,.h-cta{animation:none}}

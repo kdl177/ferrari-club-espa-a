@@ -1,31 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import Preloader from './Preloader';
+import { useEffect } from 'react';
 
 export default function HomeInteractions() {
-  const [preDone, setPreDone] = useState(false);
-
-  useEffect(() => {
-    if (sessionStorage.getItem('pre-done')) setPreDone(true);
-  }, []);
-
-  function playHero() {
-    gsap.set(['#h-eye', '#h-t', '#h-s', '#h-cta'], { y: 24 });
-    gsap
-      .timeline()
-      .to('#h-eye', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
-      .to('#h-t', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=.45')
-      .to('#h-s', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=.4')
-      .to('#h-cta', { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=.35');
-  }
-
-  useEffect(() => {
-    if (!preDone) return;
-    playHero();
-  }, [preDone]);
-
   useEffect(() => {
     const el = document.getElementById('machine-scroll');
     const caja = document.getElementById('mtrack-dots');
@@ -156,11 +133,7 @@ export default function HomeInteractions() {
       sc.removeEventListener('scroll', alDesplazar);
       ro.disconnect();
     };
-  }, [preDone]);
+  }, []);
 
-  return (
-    <>
-      <Preloader onDone={() => setPreDone(true)} />
-    </>
-  );
+  return null;
 }
