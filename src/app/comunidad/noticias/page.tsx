@@ -1,28 +1,32 @@
 import type { Metadata } from 'next';
 import ComHero from '@/components/ComHero';
-import LiveNewsFeed from '@/components/LiveNewsFeed';
+import NoticiasLista from '@/components/NoticiasLista';
+import { pagina } from '@/lib/noticias';
 
 export const metadata: Metadata = {
   title: 'Noticias — La comunidad · Ferrari Club España',
-  description: 'Lo que se cuenta del mundo Ferrari: Fórmula 1, resistencia, modelos y novedades, en español y en inglés.',
+  description: 'Las crónicas de la redacción del club: Fórmula 1, resistencia, modelos y novedades de Maranello.',
   alternates: { canonical: '/comunidad/noticias/' },
 };
 
-export default function ComunidadNoticiasPage() {
+export const revalidate = 3600;
+
+export default async function ComunidadNoticiasPage() {
+  const { noticias, total } = await pagina(1);
   return (
     <>
       <ComHero
         seccion="Noticias"
         titulo="Lo que se"
         tituloRojo="va contando"
-        entrada="Fórmula 1, resistencia y novedades de Maranello. En español y en inglés, actualizado solo."
+        entrada="Cada Gran Premio en tres tiempos, la resistencia y las novedades de Maranello, contados por la redacción del club."
         foto="/galeria/g13.webp"
         fotoAlt="Socios del club en el paddock de Fórmula 1 con la bandera de España"
       />
 
       <section style={{ background: 'var(--fce-grafito)', padding: '4rem 0 5rem' }}>
         <div className="cnt">
-          <LiveNewsFeed />
+          <NoticiasLista noticias={noticias} pagina={1} total={total} />
         </div>
       </section>
     </>
