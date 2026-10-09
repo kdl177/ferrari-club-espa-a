@@ -321,7 +321,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
               <a href="/concesionarios/" className="footer-link">Concesionarios</a>
               <a href="/socios/" className="footer-link">Área Socios</a>
               <a href="/contacta/" className="footer-link">Contacta</a>
-              <a href="https://ferrari-comunidad.vercel.app/" className="footer-link" target="_blank" rel="noopener">La comunidad ↗</a>
             </div>
             <div>
               <span className="footer-col-title">FERRARI OFICIAL</span>
