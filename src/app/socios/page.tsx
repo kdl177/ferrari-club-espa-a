@@ -6,7 +6,7 @@ import LoginForm from '@/components/LoginForm';
 export const metadata: Metadata = {
   title: 'Acceso Socios — Ferrari Club España',
   description: 'Área privada de socios del Ferrari Club España. Accede con tu usuario y contraseña.',
-  alternates: { canonical: '/socios/' },
+  alternates: { canonical: '/socios' },
 };
 
 const AREA_CARDS = [

@@ -8,7 +8,7 @@ import MapaOSM from '@/components/MapaOSM';
 export const metadata: Metadata = {
   title: 'Contacta — Ferrari Club España',
   description: 'Contacta con el Ferrari Club España. Dirección: Calle Constancia 41, 28002 Madrid. Teléfono: +34 91 575 41 60.',
-  alternates: { canonical: '/contacta/' },
+  alternates: { canonical: '/contacta' },
 };
 
 const INFO_CARDS = [

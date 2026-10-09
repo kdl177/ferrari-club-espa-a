@@ -1099,37 +1099,6 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
   .com-datos{gap:1.5rem}
 }
 
-/* ── Banda de video a media pagina ────────────────────────── */
-.com-banda{
-  position:relative;min-height:58vh;display:flex;align-items:center;
-  overflow:hidden;background:var(--ink);
-}
-.com-banda-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.com-banda-velo{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:
-    linear-gradient(90deg,rgba(13,9,7,.88),rgba(13,9,7,.35) 55%,rgba(13,9,7,.6)),
-    linear-gradient(180deg,rgba(13,9,7,.5),transparent 30%,rgba(13,9,7,.55));
-}
-.com-banda-cnt{position:relative;z-index:2}
-.com-banda-frase{
-  font-family:var(--fd);font-size:clamp(1.6rem,4vw,3.2rem);
-  line-height:1.15;color:var(--white);margin:1rem 0 0;max-width:16ch;
-  text-shadow:0 2px 24px rgba(13,9,7,.65);
-}
-@media(max-width:720px){
-  .com-banda{min-height:52vh}
-  /* A lo ancho del movil el coche queda detras del texto: hace falta mas
-     velo o el rojo sobre el capo no se lee. */
-  .com-banda-velo{
-    background:linear-gradient(180deg,rgba(13,9,7,.82),rgba(13,9,7,.6) 55%,rgba(13,9,7,.88));
-  }
-}
-@media(prefers-reduced-motion:reduce){
-  /* Sin movimiento, pero con imagen: el poster se queda de fondo fijo. */
-  .com-banda{background:url('/video/carretera-poster.webp') center/cover no-repeat,var(--ink)}
-  .com-banda-video{display:none}
-}
 
 /* ── Visor de fotos del archivo ───────────────────────────── */
 /* El boton envuelve la imagen para que se pueda abrir con teclado; no debe
@@ -1188,13 +1157,6 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 }
 @media(prefers-reduced-motion:reduce){
   .visor{animation:none}
-}
-/* Cabecera con video: sin movimiento se queda el poster como fondo fijo. */
-@media(prefers-reduced-motion:reduce){
-  video.com-ph-fondo{display:none}
-  .com-ph:has(video.com-ph-fondo){
-    background:url('/video/carretera-poster.webp') center/cover no-repeat,var(--ink);
-  }
 }
 
 /* En movil la cabecera llegaba a 84vh: el relleno de 9.5rem es para la barra

@@ -6,7 +6,7 @@ import LiveNewsFeed from '@/components/LiveNewsFeed';
 export const metadata: Metadata = {
   title: 'Noticias — Ferrari Club España',
   description: 'Últimas noticias de Ferrari en vivo: Fórmula 1, WEC, modelos, eventos. Actualización automática desde las principales fuentes del mundo Ferrari.',
-  alternates: { canonical: '/noticias/' },
+  alternates: { canonical: '/noticias' },
 };
 
 export default function NoticiasPage() {

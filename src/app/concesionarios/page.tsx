@@ -7,7 +7,7 @@ import { DEALERS } from '@/lib/concesionarios';
 export const metadata: Metadata = {
   title: 'Concesionarios Ferrari en España — Ferrari Club España',
   description: 'Concesionarios oficiales Ferrari en España. Encuentra tu distribuidor Ferrari más cercano.',
-  alternates: { canonical: '/concesionarios/' },
+  alternates: { canonical: '/concesionarios' },
 };
 
 

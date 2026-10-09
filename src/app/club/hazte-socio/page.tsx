@@ -8,7 +8,7 @@ import { BENEFITS, REQUIREMENTS, FAQS } from '@/lib/socio';
 export const metadata: Metadata = {
   title: 'Hazte Socio — Ferrari Club España',
   description: 'Únete al Club Oficial de Ferrari en España. Información sobre cómo hacerse socio del Ferrari Club España.',
-  alternates: { canonical: '/club/hazte-socio/' },
+  alternates: { canonical: '/club/hazte-socio' },
 };
 
 

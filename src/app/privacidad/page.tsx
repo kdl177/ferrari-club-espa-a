@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 export const metadata: Metadata = {
   title: 'Política de Privacidad — Ferrari Club España',
   description: 'Política de Privacidad del Ferrari Club España. Información sobre el tratamiento de datos personales.',
-  alternates: { canonical: '/privacidad/' },
+  alternates: { canonical: '/privacidad' },
 };
 
 export default function PrivacidadPage() {

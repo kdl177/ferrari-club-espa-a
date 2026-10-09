@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Nuestro Club — Ferrari Club España',
   description:
     'Conoce la historia, misión y estructura del Club Oficial de Propietarios y Apasionados de Ferrari en España desde 1988.',
-  alternates: { canonical: '/club/' },
+  alternates: { canonical: '/club' },
 };
 
 const HITOS = [

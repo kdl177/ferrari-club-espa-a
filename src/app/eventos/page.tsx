@@ -8,7 +8,7 @@ import { prisma } from '@/lib/prisma';
 export const metadata: Metadata = {
   title: 'Eventos 2026 — Ferrari Club España',
   description: 'Calendario de eventos del Ferrari Club España 2026: track days, rutas exclusivas, Grands Prix de F1, visitas a Maranello, Cavalcade y concursos de elegancia.',
-  alternates: { canonical: '/eventos/' },
+  alternates: { canonical: '/eventos' },
 };
 
 export const dynamic = 'force-dynamic';
