@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
+import FondoHero from '@/components/FondoHero';
 import FaqItem from '@/components/FaqItem';
 import HazteSocioForm from '@/components/HazteSocioForm';
 import { BENEFITS, REQUIREMENTS, FAQS } from '@/lib/socio';
@@ -15,7 +16,8 @@ export default function HazteSocioPage() {
   return (
     <>
       <section className="socio-hero">
-        <div className="cnt">
+        <FondoHero nombre="spider-488" alt="Un Ferrari 488 Spider rojo rodando con el techo abierto por una carretera entre árboles" />
+        <div className="cnt" style={{ position: 'relative', zIndex: 2 }}>
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Club', href: '/club/' }, { label: 'Hazte Socio' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">MEMBRESÍA</p>
           <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">Hazte<br /><span style={{ color: 'var(--red)' }}>socio</span></h1>
