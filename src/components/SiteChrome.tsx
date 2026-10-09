@@ -43,11 +43,6 @@ const FERRARI_OFICIAL = [
 ];
 const MUNDO_FERRARI = [
   ['Eventos Internacionales', 'https://www2.ferrariclubespana.com/album.html'],
-  ['Maranello y Fábrica Ferrari', 'https://www2.ferrariclubespana.com/maranello.html'],
-  ['Todos los Ferrari', 'https://www2.ferrariclubespana.com/banco.html'],
-  ['Historia Ferrari', 'https://www2.ferrariclubespana.com/historia.html'],
-  ['Galería de Arte Ferrari', 'https://www2.ferrariclubespana.com/arte.html'],
-  ['Modelismo Ferrari', 'https://www2.ferrariclubespana.com/expo.html'],
   ['Ferrari Land Port Aventura', 'https://www.portaventuraworld.com/ferrari-land'],
   ['Ferrari World Abu Dhabi', 'https://www.ferrariworldabudhabi.com/'],
 ];
@@ -351,6 +346,11 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
             <div>
               <span className="footer-col-title">MUNDO FERRARI</span>
               <a href="/eventos/historial/" className="footer-link">Histórico de eventos</a>
+              <a href="/mundo-ferrari/historia/" className="footer-link">Historia Ferrari</a>
+              <a href="/mundo-ferrari/maranello/" className="footer-link">Maranello y Fábrica Ferrari</a>
+              <a href="/mundo-ferrari/todos-los-ferrari/" className="footer-link">Todos los Ferrari</a>
+              <a href="/mundo-ferrari/arte/" className="footer-link">Galería de Arte Ferrari</a>
+              <a href="/mundo-ferrari/modelismo/" className="footer-link">Modelismo Ferrari</a>
               {MUNDO_FERRARI.map(([t, u]) => (
                 <a key={u} href={u} className="footer-link" target="_blank" rel="noopener">{t} ↗</a>
               ))}

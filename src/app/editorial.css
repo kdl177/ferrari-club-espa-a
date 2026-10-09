@@ -1298,3 +1298,22 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
 @media(max-width:640px){
   .hist-ev{grid-template-columns:1fr;gap:.35rem}
 }
+
+/* ── Mundo Ferrari (archivo historico del club) ──────────── */
+.mf-secciones{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.mf-cuerpo img{width:auto;max-width:100%;margin:1.5rem auto}
+.mf-cuerpo h3{margin-top:2.25em}
+
+/* ── Presupuesto de seguro ───────────────────────────────── */
+.pres-bloque{border:0;padding:0;margin:0 0 2.5rem}
+.pres-bloque legend{margin-bottom:1.25rem}
+.pres-campos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 1.25rem}
+.pres-largo{grid-column:1/-1}
+.pres-check{display:flex;gap:.9rem;align-items:flex-start;margin-top:1rem;font-family:var(--fb);font-size:.9rem;color:var(--w70);line-height:1.7;cursor:pointer}
+.pres-check input{accent-color:var(--red);width:22px;height:22px;flex-shrink:0;margin-top:.15rem}
+@media(max-width:600px){.pres-campos{grid-template-columns:1fr}}
+/* Las tablas del archivo: cada fila es una rejilla y cada celda una ficha. */
+.mf-cuerpo .mf-fila{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.mf-cuerpo .mf-fila+.mf-fila{margin-top:0;padding-top:1rem;border-top:1px solid var(--w08)}
+.mf-cuerpo .mf-celda{flex:1 1 150px;min-width:0;font-size:.92rem;line-height:1.6}
+.mf-cuerpo .mf-celda img{margin:0 auto}

@@ -10,7 +10,7 @@ export const PDF_INSCRIPCION_EN = 'https://www.ferrariclubespana.com/clubferrari
 export const OFERTA_SOCIOS = [
   { t: 'Revista del Ferrari Club España', d: 'Todos los números disponibles.', enlace: '/revista/', accion: 'VER NÚMEROS' },
   { t: 'Oferta de los Concesionarios Oficiales Ferrari', d: 'Exclusiva para nuestros socios.', enlace: 'https://www.ferrariclubespana.com/clubferrari/resources/source/socios/descuentos-concesionarios.pdf', accion: 'VER OFERTA' },
-  { t: 'Seguros para vehículos Ferrari', d: 'Oferta especial para los socios. El club colabora con las principales compañías aseguradoras del mercado.', enlace: '/contacta/?asunto=seguros', accion: 'SOLICITA PRESUPUESTO' },
+  { t: 'Seguros para vehículos Ferrari', d: 'Oferta especial para los socios. El club colabora con las principales compañías aseguradoras del mercado.', enlace: '/solicita-presupuesto/', accion: 'SOLICITA PRESUPUESTO' },
   { t: 'Cursos de conducción', d: 'Curso de conducción deportiva para clientes Ferrari.', enlace: 'https://www.ferrari.com/en-EN/auto/driving-courses', accion: 'MÁS INFORMACIÓN' },
 ];
 

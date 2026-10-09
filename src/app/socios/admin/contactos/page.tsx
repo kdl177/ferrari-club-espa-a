@@ -8,6 +8,7 @@ const ASUNTO_LABEL: Record<string, string> = {
   'info-general': 'Información general',
   'hacerse-socio': 'Hacerse socio',
   eventos: 'Eventos',
+  seguros: 'Presupuesto de seguro',
   patrocinio: 'Patrocinio',
   prensa: 'Prensa',
   otro: 'Otro',

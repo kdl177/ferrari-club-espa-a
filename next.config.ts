@@ -35,7 +35,6 @@ const antiguas: Array<[string, string]> = [
   ["/aviso-legal-y-proteccion-de-datos/", "/aviso-legal/"],
   ["/politica-de-cookies/", "/cookies/"],
   ["/numeros-atrasados/", "/revista/"],
-  ["/solicita-presupuesto/", "/contacta/"],
   ["/cesta-de-la-compra/", "/eventos/"],
   ["/cesta-compra/", "/eventos/"],
   ["/tienda/:ruta*", "/eventos/"],
