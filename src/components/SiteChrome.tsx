@@ -224,7 +224,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
         <nav id="nav" className={scrolled ? 'sc' : ''} role="navigation">
           <NavLogo />
           <div className="nav-links">
-            <a href="/" className={`nav-link${normPath === '/' ? ' active' : ''}`}>Inicio</a>
+            <Link href="/" className={`nav-link${normPath === '/' ? ' active' : ''}`}>Inicio</Link>
             <a href="/noticias/" className={`nav-link${isActive('/noticias/') ? ' active' : ''}`}>Noticias</a>
             <div className="nav-drop nav-link" tabIndex={0}>
               Club
@@ -314,14 +314,14 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(155px,1fr))', gap: '3rem', marginBottom: '4rem' }}>
             <div>
               <span className="footer-col-title">NAVEGACIÓN</span>
-              <a href="/" className="footer-link">Inicio</a>
+              <Link href="/" className="footer-link">Inicio</Link>
               <a href="/noticias/" className="footer-link">Noticias</a>
               <a href="/club/" className="footer-link">Nuestro Club</a>
               <a href="/club/hazte-socio/" className="footer-link">Hazte Socio</a>
               <a href="/concesionarios/" className="footer-link">Concesionarios</a>
               <a href="/socios/" className="footer-link">Área Socios</a>
               <a href="/contacta/" className="footer-link">Contacta</a>
-              <a href="/comunidad/" className="footer-link">La comunidad</a>
+              <a href="https://ferrari-comunidad.vercel.app/" className="footer-link" target="_blank" rel="noopener">La comunidad ↗</a>
             </div>
             <div>
               <span className="footer-col-title">FERRARI OFICIAL</span>

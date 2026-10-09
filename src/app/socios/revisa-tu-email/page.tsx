@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Revisa tu email — Ferrari Club España',
@@ -10,10 +11,10 @@ export default function RevisaTuEmailPage() {
     <div style={{ paddingTop: '70px' }}>
       <div className="login-wrap" style={{ gridTemplateColumns: '1fr' }}>
         <div className="login-panel">
-          <a href="/" className="login-brand" style={{ textDecoration: 'none' }}>
+          <Link href="/" className="login-brand" style={{ textDecoration: 'none' }}>
             FERRARI CLUB ESPAÑA
             <em>ÁREA PRIVADA DE SOCIOS</em>
-          </a>
+          </Link>
           <div className="login-card" style={{ textAlign: 'center' }}>
             <h1 className="login-title">Revisa tu<br /><span style={{ color: 'var(--red)' }}>email</span></h1>
             <p className="login-sub">TE HEMOS ENVIADO UN ENLACE DE ACCESO</p>
