@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import HalftoneImage from '@/components/HalftoneImage';
 import LoginForm from '@/components/LoginForm';
+import { redirect } from 'next/navigation';
+import { auth } from '@/auth';
 
 export const metadata: Metadata = {
   title: 'Acceso Socios — Ferrari Club España',
@@ -16,7 +18,13 @@ const AREA_CARDS = [
   { label: 'PERFIL', title: 'Mi cuenta', accent: true },
 ];
 
-export default function SociosPage() {
+export default async function SociosPage() {
+  // La sesion dura 30 dias, pero esta es la pagina a la que lleva el boton
+  // "Area Socios" de la cabecera: sin esto, un socio ya dentro veia otra vez
+  // el formulario y parecia que la sesion se habia cerrado.
+  const session = await auth();
+  if (session?.user?.email) redirect('/socios/panel');
+
   return (
     <div style={{ paddingTop: '70px' }}>
       <div className="login-wrap">

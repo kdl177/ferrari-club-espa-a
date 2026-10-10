@@ -1205,3 +1205,9 @@ section[style*="var(--red)"] [aria-hidden="true"][style*="gradient"]{display:non
     background:linear-gradient(180deg,rgba(26,22,24,.84),rgba(26,22,24,.62) 50%,rgba(26,22,24,.92));
   }
 }
+
+/* Tarjetas del panel de socios: ahora son enlaces, y tienen que parecerlo. */
+.panel-card{display:block;text-decoration:none;cursor:pointer;transition:border-color .25s,transform .25s}
+.panel-card:hover{border-color:var(--red);transform:translateY(-2px)}
+.panel-card:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.panel-card:hover{transform:none}}
