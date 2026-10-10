@@ -56,6 +56,25 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
 
   const normPath = (pathname || '/').replace(/\/$/, '') || '/';
 
+  // El desplegable de Club se queda abierto tras pulsarlo y solo se cierra al
+  // hacer scroll. Se guarda la ruta donde se abrio: al cambiar de pagina deja
+  // de coincidir y se cierra solo, sin tener que sincronizarlo en un efecto.
+  const [clubAbiertoEn, setClubAbiertoEn] = useState<string | null>(null);
+  const clubAbierto = clubAbiertoEn === pathname;
+
+  useEffect(() => {
+    if (!clubAbierto) return;
+    const desde = window.scrollY;
+    const alRodar = () => { if (Math.abs(window.scrollY - desde) > 8) setClubAbiertoEn(null); };
+    const alTeclear = (e: KeyboardEvent) => { if (e.key === 'Escape') setClubAbiertoEn(null); };
+    window.addEventListener('scroll', alRodar, { passive: true });
+    window.addEventListener('keydown', alTeclear);
+    return () => {
+      window.removeEventListener('scroll', alRodar);
+      window.removeEventListener('keydown', alTeclear);
+    };
+  }, [clubAbierto]);
+
   // El panel de gestion tiene su propia cabecera y navegacion: no debe
   // arrastrar el cromo de la web publica (nav fija, footer, botones deco).
   const esAdminPanel = normPath.startsWith('/socios/admin');
@@ -226,7 +245,21 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           <div className="nav-links">
             <Link href="/" className={`nav-link${normPath === '/' ? ' active' : ''}`}>Inicio</Link>
             <a href="/noticias/" className={`nav-link${isActive('/noticias/') ? ' active' : ''}`}>Noticias</a>
-            <div className="nav-drop nav-link" tabIndex={0}>
+            <div
+              className={`nav-drop nav-link${clubAbierto ? ' abierto' : ''}${isActive('/club/') ? ' active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-haspopup="true"
+              aria-expanded={clubAbierto}
+              onClick={(e) => {
+                // un clic en una opcion navega; solo el clic en "Club" alterna
+                if ((e.target as HTMLElement).closest('.nav-drop-menu')) return;
+                setClubAbiertoEn(clubAbierto ? null : pathname);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setClubAbiertoEn(clubAbierto ? null : pathname); }
+              }}
+            >
               Club
               <div className="nav-drop-menu">
                 <a href="/club/" className="nav-drop-item">Nuestro Club</a>
