@@ -43,11 +43,12 @@ export async function inscribirseEvento(
   // Aforo y plaza se resuelven en una transacción: dos socios pidiendo la
   // última plaza a la vez no pueden pasar ambos. El updateMany condicional
   // (plazasOcupadas < aforo) solo afecta filas si queda sitio de verdad.
+  // Sin aforo publicado no hay tope.
   const estado = await prisma.$transaction(async (tx) => {
     const plazaTomada = await tx.$executeRaw`
       UPDATE eventos
       SET "plazasOcupadas" = "plazasOcupadas" + 1
-      WHERE id = ${eventoId} AND "plazasOcupadas" < aforo
+      WHERE id = ${eventoId} AND (aforo IS NULL OR "plazasOcupadas" < aforo)
     `;
 
     const nuevoEstado: 'confirmada' | 'lista_espera' =

@@ -8,15 +8,8 @@ import MapaOSM from '@/components/MapaOSM';
 export const metadata: Metadata = {
   title: 'Contacta — Ferrari Club España',
   description: 'Contacta con el Ferrari Club España. Dirección: Calle Constancia 41, 28002 Madrid. Teléfono: +34 91 575 41 60.',
-  alternates: { canonical: '/contacta' },
+  alternates: { canonical: '/contacta/' },
 };
-
-const INFO_CARDS = [
-  { title: 'SOCIOS', desc: 'Para información sobre adhesión al club y cuotas de socio.' },
-  { title: 'EVENTOS', desc: 'Inscripciones a track days, rutas y eventos del calendario.' },
-  { title: 'PRENSA', desc: 'Solicitudes de medios, entrevistas y colaboraciones editoriales.' },
-  { title: 'PATROCINIO', desc: 'Oportunidades de patrocinio y asociación con el club.' },
-];
 
 export default function ContactaPage() {
   return (
@@ -27,7 +20,7 @@ export default function ContactaPage() {
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Contacta' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">FERRARI CLUB ESPAÑA</p>
           <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">Contacta<br /><span style={{ color: 'var(--red)' }}>con nosotros</span></h1>
-          <p className="sec-sub" style={{ maxWidth: '560px', marginTop: '1.5rem' }} data-r="up">Estamos en Madrid para atenderte. No dudes en escribirnos o llamarnos para cualquier consulta sobre el club, eventos o membresía.</p>
+          <p className="sec-sub" style={{ maxWidth: '560px', marginTop: '1.5rem' }} data-r="up">Oficina del club en Madrid: Calle Constancia 41, entreplanta. Teléfono 91 575 41 60.</p>
         </div>
       </section>
 
@@ -42,7 +35,6 @@ export default function ContactaPage() {
                 <div>
                   <div className="ci-label">DIRECCIÓN</div>
                   <div className="ci-value">Calle Constancia 41, Entreplanta<br />28002 Madrid, España</div>
-                  <div className="ci-note">Metro: Lista (L4) · Diego de León (L4, L5, L9)</div>
                 </div>
               </div>
               <div className="contact-info-block" data-r="right">
@@ -50,7 +42,6 @@ export default function ContactaPage() {
                 <div>
                   <div className="ci-label">TELÉFONO</div>
                   <div className="ci-value"><a href="tel:+34915754160">+34 91 575 41 60</a></div>
-                  <div className="ci-note">Llamadas durante el horario de oficina</div>
                 </div>
               </div>
               <div className="contact-info-block" data-r="right">
@@ -58,7 +49,6 @@ export default function ContactaPage() {
                 <div>
                   <div className="ci-label">EMAIL</div>
                   <div className="ci-value"><a href="mailto:ferrari@ferrariclubespana.com">ferrari@ferrariclubespana.com</a></div>
-                  <div className="ci-note">Respondemos en un plazo de 24-48 horas laborables</div>
                 </div>
               </div>
               <div className="contact-info-block" data-r="right">
@@ -66,7 +56,6 @@ export default function ContactaPage() {
                 <div>
                   <div className="ci-label">HORARIO DE ATENCIÓN</div>
                   <div className="ci-value">Lun–Jue: 9:00 – 17:30<br />Vie: 9:00 – 15:00</div>
-                  <div className="ci-note">Sáb, Dom y festivos: cerrado</div>
                 </div>
               </div>
 
@@ -90,14 +79,6 @@ export default function ContactaPage() {
                 </Suspense>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', marginTop: '1px' }}>
-                {INFO_CARDS.map((c) => (
-                  <div style={{ padding: '1.5rem', background: 'var(--b80)', border: '1px solid var(--w05)' }} key={c.title}>
-                    <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '.6rem' }}>{c.title}</div>
-                    <p style={{ fontFamily: 'var(--fb)', fontSize: '.85rem', color: 'var(--w60)', lineHeight: 1.8 }}>{c.desc}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>

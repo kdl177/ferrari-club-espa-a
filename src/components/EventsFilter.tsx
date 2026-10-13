@@ -3,18 +3,8 @@
 import { useState } from 'react';
 import InscripcionBoton from './InscripcionBoton';
 
-const CATS = [
-  { key: 'all', label: 'TODOS' },
-  { key: 'track', label: 'TRACK DAYS' },
-  { key: 'rutas', label: 'RUTAS' },
-  { key: 'f1', label: 'FÓRMULA 1' },
-  { key: 'maranello', label: 'MARANELLO' },
-  { key: 'cavalcade', label: 'CAVALCADE' },
-  { key: 'elegancia', label: 'ELEGANCIA' },
-];
-
 const ETIQUETA_CAT: Record<string, string> = {
-  track: 'TRACK DAYS',
+  track: 'CIRCUITO',
   f1: 'FÓRMULA 1',
   rutas: 'RUTAS',
   maranello: 'MARANELLO',
@@ -30,14 +20,15 @@ export type EventItem = {
   fechaLabel: string;
   ubicacion: string;
   descripcion: string;
-  aforo: number;
+  aforo: number | null;
   plazasOcupadas: number;
   pasado: boolean;
   miInscripcion: 'confirmada' | 'lista_espera' | null;
 };
 
 function estadoDe(e: EventItem) {
-  if (e.pasado) return { clase: '', texto: 'Completado' };
+  if (e.pasado) return { clase: '', texto: 'Celebrado' };
+  if (e.aforo === null) return { clase: ' open', texto: 'Inscripción abierta' };
   const libres = e.aforo - e.plazasOcupadas;
   if (libres <= 0) return { clase: ' limited', texto: 'Parrilla completa · lista de espera' };
   if (libres <= Math.max(3, Math.ceil(e.aforo * 0.2))) {
@@ -49,11 +40,17 @@ function estadoDe(e: EventItem) {
 export default function EventsFilter({ events, haySesion }: { events: EventItem[]; haySesion: boolean }) {
   const [active, setActive] = useState('all');
   const visible = events.filter((e) => active === 'all' || e.categoria === active);
+  // Solo las categorias que tienen algun evento: un filtro que no devuelve
+  // nada es un boton roto.
+  const cats = [
+    { key: 'all', label: 'TODOS' },
+    ...[...new Set(events.map((e) => e.categoria))].map((key) => ({ key, label: ETIQUETA_CAT[key] ?? key.toUpperCase() })),
+  ];
 
   return (
     <>
       <div className="filters" data-r="up">
-        {CATS.map((c) => (
+        {cats.length > 2 && cats.map((c) => (
           <button key={c.key} type="button" className={`filter-btn${active === c.key ? ' on' : ''}`} onClick={() => setActive(c.key)}>
             {c.label}
           </button>
@@ -76,7 +73,7 @@ export default function EventsFilter({ events, haySesion }: { events: EventItem[
                   </div>
                 </div>
                 <p className="evp-desc">{e.descripcion}</p>
-                {!e.pasado && e.aforo <= 40 && (
+                {!e.pasado && e.aforo !== null && e.aforo <= 40 && (
                   <div className="plazas" role="img" aria-label={`${e.plazasOcupadas} de ${e.aforo} plazas ocupadas`}>
                     {Array.from({ length: e.aforo }, (_, n) => (
                       <i key={n} className={n < e.plazasOcupadas ? 'on' : st.clase === ' limited' ? 'libre' : undefined} />
@@ -96,7 +93,7 @@ export default function EventsFilter({ events, haySesion }: { events: EventItem[
                         eventoId={e.id}
                         haySesion={haySesion}
                         yaInscrito={e.miInscripcion}
-                        quedanPlazas={e.aforo - e.plazasOcupadas > 0}
+                        quedanPlazas={e.aforo === null || e.aforo - e.plazasOcupadas > 0}
                       />
                     </>
                   )}

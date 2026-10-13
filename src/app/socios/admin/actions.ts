@@ -63,15 +63,16 @@ export async function guardarEvento(
   const fecha = new Date(fechaRaw);
   if (Number.isNaN(fecha.getTime())) return { ok: false, error: 'Fecha no válida.' };
 
-  const aforo = Number.parseInt(aforoRaw, 10);
-  if (!Number.isFinite(aforo) || aforo < 1) return { ok: false, error: 'El aforo debe ser al menos 1.' };
+  // Vacio = el club no publica aforo y la inscripcion no tiene tope.
+  const aforo = aforoRaw ? Number.parseInt(aforoRaw, 10) : null;
+  if (aforo !== null && (!Number.isFinite(aforo) || aforo < 1)) return { ok: false, error: 'El aforo debe ser al menos 1, o dejarse vacío.' };
 
   if (id) {
     const actual = await prisma.evento.findUnique({ where: { id } });
     if (!actual) return { ok: false, error: 'Evento no encontrado.' };
     // Reducir el aforo por debajo de las plazas ya ocupadas dejaria
     // inscripciones confirmadas sin plaza real.
-    if (aforo < actual.plazasOcupadas) {
+    if (aforo !== null && aforo < actual.plazasOcupadas) {
       return { ok: false, error: `Ya hay ${actual.plazasOcupadas} plazas ocupadas: el aforo no puede ser menor.` };
     }
     await prisma.evento.update({

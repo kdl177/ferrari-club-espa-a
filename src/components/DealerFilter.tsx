@@ -19,7 +19,9 @@ export type Dealer = {
   addr: string;
   tel: string;
   telFmt: string;
-  hours: string;
+  servicio: string;
+  email: string;
+  extra?: { label: string; tel: string; telFmt: string };
   lat: number;
   lng: number;
   web: string;
@@ -108,10 +110,14 @@ export default function DealerFilter({ dealers }: { dealers: Dealer[] }) {
             <div className="dealer-body">
               <div className="dealer-city">{d.city}</div>
               <div className="dealer-name">{d.name}</div>
+              <p className="dealer-servicio">{d.servicio}</p>
               <div className="dealer-info">
                 <div className="dealer-row"><span className="dealer-ico">◎</span>{d.addr}</div>
                 <div className="dealer-row"><span className="dealer-ico">☎</span><a href={`tel:${d.tel}`} className="dealer-tel">{d.telFmt}</a></div>
-                <div className="dealer-row"><span className="dealer-ico">◷</span>{d.hours}</div>
+                <div className="dealer-row"><span className="dealer-ico">✉</span><a href={`mailto:${d.email}`} className="dealer-tel">{d.email}</a></div>
+                {d.extra && (
+                  <div className="dealer-row"><span className="dealer-ico">☎</span>{d.extra.label}: <a href={`tel:${d.extra.tel}`} className="dealer-tel">{d.extra.telFmt}</a></div>
+                )}
               </div>
               <div className="dealer-acciones">
                 <a href={d.web} target="_blank" rel="noopener" className="btn btn-o btn-sm">WEB OFICIAL ↗</a>

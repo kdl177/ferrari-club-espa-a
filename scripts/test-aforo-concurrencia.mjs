@@ -36,7 +36,7 @@ async function inscribir(socio) {
     const tomada = await tx.$executeRaw`
       UPDATE eventos
       SET "plazasOcupadas" = "plazasOcupadas" + 1
-      WHERE id = ${evento.id} AND "plazasOcupadas" < aforo
+      WHERE id = ${evento.id} AND (aforo IS NULL OR "plazasOcupadas" < aforo)
     `;
     const estado = tomada === 1 ? 'confirmada' : 'lista_espera';
     await tx.inscripcion.upsert({

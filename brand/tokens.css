@@ -44,8 +44,8 @@
   --fce-foco:var(--fce-ambar);
 
   /* ── Tipografía ───────────────────────────────────────── */
-  --fce-f-gala:'Bodoni Moda','Bodoni 72','Didot',Georgia,serif;
-  --fce-f-circuito:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --fce-f-gala:var(--font-gala),'Bodoni Moda','Bodoni 72','Didot',Georgia,serif;
+  --fce-f-circuito:var(--font-circuito),'Archivo','Helvetica Neue',Arial,sans-serif;
   --fce-ancho-condensado:75%;   /* font-stretch para rótulos y H3–H4 */
   --fce-ancho-normal:100%;
 

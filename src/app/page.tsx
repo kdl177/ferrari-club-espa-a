@@ -1,46 +1,12 @@
-import HomeInteractions from '@/components/HomeInteractions';
 import HalftoneImage from '@/components/HalftoneImage';
-import Foto from '@/components/Foto';
+import Link from 'next/link';
+import Image from 'next/image';
+import { prisma } from '@/lib/prisma';
+import { pagina, fechaLarga } from '@/lib/noticias';
+import { BENEFITS, PDF_INSCRIPCION } from '@/lib/socio';
+import { ANIOS, deArchivo } from '@/lib/sitio';
 
-const MACHINES = [
-  {
-    slug: 'sf90-xx-stradale', model: 'HÍBRIDO ENCHUFABLE · 2023', name: <>SF90 XX<br />Stradale</>, dato: '799 unidades',
-    texto: 'La versión más extrema del SF90 y el primer modelo XX homologado para circular por carretera. Su aerodinámica genera 530 kg de carga a 250 km/h.',
-    specs: [['POTENCIA', '1030 CV'], ['PAR MÁXIMO', '804 Nm'], ['0–100 km/h', '2,3 s'], ['V. MÁX', '320 km/h'], ['MOTOR', 'V8 biturbo 3.990 cc + 3 eléctricos'], ['PESO EN SECO', '1.560 kg']],
-    foto: { autor: 'Calreyn88', licencia: 'CC BY 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_SF90_XX_Stradale_1.jpg', alt: 'Ferrari SF90 XX Stradale rojo con alerón trasero fijo, vista frontal tres cuartos' },
-  },
-  {
-    slug: 'roma-spider', model: 'GT DESCAPOTABLE · 2023', name: <>Roma<br />Spider</>, dato: 'Capota en 13,5 s',
-    texto: 'El Roma a cielo abierto, presentado en marzo de 2023. Su capota de lona se pliega en 13,5 segundos y mantiene las proporciones del coupé.',
-    specs: [['POTENCIA', '620 CV'], ['PAR MÁXIMO', '760 Nm'], ['0–100 km/h', '3,4 s'], ['V. MÁX', '> 320 km/h'], ['MOTOR', 'V8 biturbo 3.855 cc'], ['PESO EN SECO', '1.556 kg']],
-    foto: { autor: 'Pangalau', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:2024_Ferrari_Roma_Spider_in_Adelaide,_Australia.jpg', alt: 'Ferrari Roma Spider gris azulado con la capota abierta en un concesionario' },
-  },
-  {
-    slug: '296-gtb', model: 'HÍBRIDO ENCHUFABLE · 2021', name: <>296<br />GTB</>, dato: '25 km en eléctrico',
-    texto: 'El primer V6 de calle con el emblema del Cavallino: un tres litros biturbo con los cilindros a 120° y apoyo eléctrico enchufable, en posición central trasera.',
-    specs: [['POTENCIA', '830 CV'], ['PAR MÁXIMO', '740 Nm'], ['0–100 km/h', '2,9 s'], ['V. MÁX', '> 330 km/h'], ['MOTOR', 'V6 biturbo 2.992 cc + eléctrico'], ['PESO EN SECO', '1.470 kg']],
-    foto: { autor: 'Alexander Migl', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_296_GTB_1X7A6377.jpg', alt: 'Ferrari 296 GTB amarillo aparcado, vista frontal tres cuartos' },
-  },
-  {
-    slug: '812-competizione', model: 'SERIE LIMITADA · 2021', name: <>812<br />Competizione</>, dato: '999 unidades',
-    texto: 'La serie limitada del 812 Superfast, pensada para circuito. Su V12 atmosférico gira hasta 9.500 rpm, en su lanzamiento el régimen más alto de un Ferrari de calle.',
-    specs: [['POTENCIA', '830 CV'], ['PAR MÁXIMO', '692 Nm'], ['0–100 km/h', '2,85 s'], ['V. MÁX', '> 340 km/h'], ['MOTOR', 'V12 atmosférico 6.496 cc'], ['PESO EN SECO', '1.487 kg']],
-    foto: { autor: 'Calreyn88', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_812_Competizione_2.jpg', alt: 'Ferrari 812 Competizione gris sobre césped en una concentración' },
-  },
-  {
-    slug: 'purosangue', model: 'CUATRO PUERTAS · 2022', name: 'Purosangue', dato: '4 puertas · 4 plazas',
-    texto: 'El primer Ferrari de producción con cuatro puertas y cuatro plazas. Conserva un V12 atmosférico de 6,5 litros, con el par máximo de 716 Nm a 6.250 rpm.',
-    specs: [['POTENCIA', '725 CV'], ['PAR MÁXIMO', '716 Nm'], ['0–100 km/h', '3,3 s'], ['V. MÁX', '> 310 km/h'], ['MOTOR', 'V12 atmosférico 6.496 cc'], ['PESO EN SECO', '2.033 kg']],
-    foto: { autor: 'Alexander Migl', licencia: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Ferrari_Purosangue_DSC_7008.jpg', alt: 'Ferrari Purosangue gris mate frente a un concesionario, vista frontal tres cuartos' },
-  },
-];
-
-const EVENTS = [
-  { day: '11', month: 'SEP', type: 'FÓRMULA 1 · GRAN PREMIO', title: 'GP España F1 — Circuito de Madrid', loc: 'Circuito de Madrid · Madrid, España', q: 'GP+Espa%C3%B1a+F1+%E2%80%94+Circuito+de+Madrid' },
-  { day: '18', month: 'SEP', type: 'TRACK DAY · CIRCUITO', title: 'Uclés — Segóbriga', loc: 'Circuito de Uclés · Cuenca, España', q: 'Track+Day+Ucl%C3%A9s+%E2%80%94+Seg%C3%B3briga' },
-  { day: '01', month: 'OCT', type: 'CONCURSO · ELEGANCIA', title: 'Concurso de Elegancia Costa del Sol', loc: 'Marbella · Málaga, España', q: 'Concurso+de+Elegancia+Costa+del+Sol' },
-  { day: '07', month: 'NOV', type: 'SOLIDARIO · TRACK DAY', title: 'Tandas Solidarias — Circuito Calafat', loc: 'Circuito de Calafat · Tarragona, España', q: 'Tandas+Solidarias+%E2%80%94+Circuito+Calafat' },
-];
+export const revalidate = 3600;
 
 const GALLERY_LABELS = ['TRACK', 'RUTA', 'F1', 'ELEGANCIA', 'CLUB', '', 'MARANELLO'];
 
@@ -76,16 +42,29 @@ function ParrillaArte() {
   );
 }
 
-export default function Home() {
+async function proximosEventos() {
+  try {
+    return await prisma.evento.findMany({ where: { fecha: { gte: new Date() } }, orderBy: { fecha: 'asc' }, take: 4 });
+  } catch (e) {
+    console.error('No se pudieron leer los eventos:', e);
+    return [];
+  }
+}
+
+const MESES = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+const TIPO: Record<string, string> = { track: 'CIRCUITO', rutas: 'RUTA', club: 'CLUB', elegancia: 'ELEGANCIA', f1: 'FÓRMULA 1', maranello: 'MARANELLO', cavalcade: 'CAVALCADE' };
+
+export default async function Home() {
+  const [eventos, { noticias }] = await Promise.all([proximosEventos(), pagina(1)]);
+  const ultimas = noticias.slice(0, 3);
   return (
     <>
       <section className="hero" id="hero">
-        <HomeInteractions />
         <div className="hero-bg" id="hbg">
           <HalftoneImage
             className="hero-ht"
-            src="/ferrari-hero.jpg"
-            alt="Ferrari Testarossa roja fotografiada de perfil sobre pista"
+            src="/club/circuito-recta.webp"
+            alt="Ferrari de los socios del club en la recta de un circuito"
             cell={6}
             intensity={0.6}
             side="right"
@@ -99,7 +78,7 @@ export default function Home() {
         <div className="hero-content">
           <p className="h-eye" id="h-eye">CLUB OFICIAL · DESDE 1988 · MÁS DE 200 SOCIOS</p>
           <h1 className="h-t" id="h-t"><span className="sr">Ferrari Club España. </span>Pasión por<br /><em>Il Cavallino.</em></h1>
-          <p className="h-s" id="h-s">Club de Propietarios y Apasionados de Ferrari. Track days, rutas, Fórmula 1, visitas a Maranello y una cena de gala al año.</p>
+          <p className="h-s" id="h-s">Club de propietarios Ferrari de España. Tandas en circuito, rutas, test de Fórmula 1 y visitas a la fábrica de Maranello.</p>
           <div className="h-cta" id="h-cta">
             <a href="/club/hazte-socio/" className="btn btn-p btn-lg" data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
             <a href="/eventos/" className="btn btn-o btn-lg">VER CALENDARIO</a>
@@ -124,8 +103,8 @@ export default function Home() {
       <section className="band" aria-label="Il Cavallino">
         <HalftoneImage
           className="band-ht"
-          src="/fotos/cavalcade-dinos.webp"
-          alt="Fila de Ferrari Dino rojos aparcados en una concentración de Ferrari"
+          src="/club/circuito-curva.webp"
+          alt="Ferrari de los socios del club rodando en fila por un circuito"
           cell={5}
           intensity={0.45}
           side="left"
@@ -133,65 +112,25 @@ export default function Home() {
           focus={[0.34, 0.5]}
           dim={0.18}
         />
-        <div className="band-meta" aria-hidden="true">
-          <span>CAVALCADE</span>
-          <span>—</span>
-          <span>50 AÑOS DE FERRARI · REINO UNIDO</span>
-        </div>
-        <p className="foto-credito band-credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Cavalcade_of_Ferraris_at_the_Liner_Terminal_celebrating_50_years_of_Ferrari_in_the_UK.jpg" target="_blank" rel="noopener">Peter Gill</a> · CC BY 3.0 · adaptada</p>
-      </section>
-
-      <section className="machine-wrap" aria-label="Modelos Ferrari">
-        <div className="cnt" style={{ paddingBottom: '2.5rem' }}>
-          <div data-r="up">
-            <div className="sec-eye">LOS COCHES</div>
-            <h2 className="sec-title" style={{ marginTop: '.6rem' }}>The <span style={{ color: 'var(--red)' }}>machine</span></h2>
-          </div>
-        </div>
-        <div className="machine-fila">
-        <div className="machine-scroll" id="machine-scroll">
-          <div className="machine-track" id="mtrack">
-            {MACHINES.map((m) => (
-              <article className="mcard" key={m.slug}>
-                <figure className="mcard-img">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/coches/${m.slug}.webp`} alt={m.foto.alt} width={1040} height={650} loading="lazy" decoding="async" />
-                  <span className="mcard-dato">{m.dato}</span>
-                  <figcaption>
-                    Foto: <a href={m.foto.url} target="_blank" rel="noopener">{m.foto.autor}</a> · {m.foto.licencia} · recortada
-                  </figcaption>
-                </figure>
-                <div className="mcard-model">{m.model}</div>
-                <h3 className="mcard-name">{m.name}</h3>
-                <p className="mcard-texto">{m.texto}</p>
-                <div className="mcard-specs">
-                  {m.specs.map(([l, v]) => (
-                    <div className="mspec" key={l}><span className="mspec-l">{l}</span><span className="mspec-v">{v}</span></div>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-        <div className="mtrack-nav" id="mtrack-dots" />
-        </div>
-        <p className="cnt machine-fuente">Cifras oficiales de Ferrari S.p.A. (ferrari.com); peso en seco con equipamiento opcional. Fotografías de Wikimedia Commons bajo licencia Creative Commons.</p>
       </section>
 
       <section className="events-sec" aria-label="Próximos eventos">
         <div className="cnt">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem' }} data-r="up">
-            <div><div className="sec-eye">CALENDARIO 2026</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>Próximos<br /><span style={{ color: 'var(--red)' }}>eventos</span></h2></div>
-            <a href="/contacta/" className="btn btn-o btn-sm">VER TODOS →</a>
+            <div><div className="sec-eye">CALENDARIO</div><h2 className="sec-title" style={{ marginTop: '.75rem' }}>Próximos<br /><span style={{ color: 'var(--red)' }}>eventos</span></h2></div>
+            <a href="/eventos/" className="btn btn-o btn-sm">VER TODOS →</a>
           </div>
           <div className="events-list">
-            {EVENTS.map((e, i) => (
-              <a className="ev-card" href={`/contacta/?asunto=eventos&evento=${e.q}`} data-r="up" style={{ transitionDelay: `${i * 0.07}s` }} key={e.title}>
-                <div className="ev-date"><div className="ev-day">{e.day}</div><div className="ev-month">{e.month}</div></div>
-                <div className="ev-body"><div className="ev-type">{e.type}</div><div className="ev-title">{e.title}</div><div className="ev-loc">{e.loc}</div></div>
-                <div className="ev-cta"><span>RESERVAR →</span></div>
+            {eventos.map((e, i) => (
+              <a className="ev-card" href="/eventos/" data-r="up" style={{ transitionDelay: `${i * 0.07}s` }} key={e.id}>
+                <div className="ev-date"><div className="ev-day">{String(e.fecha.getUTCDate()).padStart(2, '0')}</div><div className="ev-month">{MESES[e.fecha.getUTCMonth()]}</div></div>
+                <div className="ev-body"><div className="ev-type">{TIPO[e.categoria] ?? 'EVENTO'} · {e.fecha.getUTCFullYear()}</div><div className="ev-title">{e.titulo}</div><div className="ev-loc">{e.ubicacion}</div></div>
+                <div className="ev-cta"><span>VER →</span></div>
               </a>
             ))}
+            {eventos.length === 0 && (
+              <p className="sec-sub">El calendario de la próxima temporada se publica en breve. Mientras, puedes <a href="/contacta/" style={{ color: 'var(--red)' }}>escribir a secretaría</a>.</p>
+            )}
           </div>
         </div>
       </section>
@@ -203,13 +142,24 @@ export default function Home() {
               <div className="sec-eye">ACTUALIDAD</div>
               <h2 className="sec-title" style={{ marginTop: '.75rem' }}>Ferrari<br /><span style={{ color: 'var(--red)' }}>al día</span></h2>
               <p className="sec-sub" style={{ marginTop: '1.25rem', maxWidth: '30rem' }}>
-                Fórmula 1, resistencia y novedades de Maranello, según las publican Autosport, The Race y Racer.
+                Cada Gran Premio en tres tiempos, la resistencia y las novedades de Maranello, contados por la redacción del club.
               </p>
             </div>
-            <a href="/noticias/" className="btn btn-o btn-sm">VER EL TABLÓN →</a>
+            <Link href="/noticias/" className="btn btn-o btn-sm">TODAS LAS NOTICIAS →</Link>
           </div>
-          <div className="news-portada" data-r="up">
-            <Foto id="f1-zandvoort-2024" />
+          <div className="live-grid">
+            {ultimas.map((n) => (
+              <Link key={n.ruta} className="live-nc" href={n.ruta}>
+                <div className="live-nc-img">
+                  {n.portada && <Image src={n.portada} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" quality={60} unoptimized={!n.portada.startsWith('/')} />}
+                </div>
+                <div className="live-nc-body">
+                  <div className="live-nc-meta"><span className="news-card-cat">{n.categoria.toUpperCase()}</span></div>
+                  <h3 className="live-nc-title">{n.titulo}</h3>
+                  <div className="live-nc-date"><time dateTime={n.fecha}>{fechaLarga(n.fecha)}</time><span className="live-ext">LEER →</span></div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -227,8 +177,8 @@ export default function Home() {
           </div>
           <div className="feature-img" data-r="left">
             <HalftoneImage
-              src="/fotos/488-challenge-amarillo.webp"
-              alt="Ferrari 488 Challenge amarillo con el dorsal 80 en un tramo de circuito"
+              src="/club/ruta-caravana.webp"
+              alt="Caravana de Ferrari del club por una carretera de montaña"
               cell={5}
               intensity={0.5}
               side="right"
@@ -237,7 +187,6 @@ export default function Home() {
               dim={0}
               fondo="#3A0F0D"
             />
-            <p className="foto-credito">Foto: <a href="https://commons.wikimedia.org/wiki/File:Ferrari_488_Challenge_(35590398851).jpg" target="_blank" rel="noopener">Neil</a> · CC BY 2.0 · adaptada</p>
           </div>
         </div>
       </section>
@@ -248,11 +197,11 @@ export default function Home() {
             <div data-r="right">
               <div className="sec-eye">NUESTRO CLUB</div>
               <h2 className="sec-title" style={{ marginTop: '1.25rem' }}>Club oficial<br /><span style={{ color: 'var(--red)' }}>desde 1988</span></h2>
-              <p className="sec-sub" style={{ marginTop: '1.5rem' }}>El único club oficial de <em>Il Cavallino Rampante</em> en España con respaldo directo de Ferrari S.p.A. desde 2006. Propietarios de Ferrari unidos por la misma pasión.</p>
+              <p className="sec-sub" style={{ marginTop: '1.5rem' }}>Creado en 1988 como club exclusivo para propietarios de Ferrari. Desde 2006 recibe el apoyo directo de la marca y es el único Club Oficial del Cavallino en España.</p>
               <div className="stats4">
                 <div className="stat"><span className="stat-n" data-count="200" data-suffix="+">200+</span><span className="stat-l">SOCIOS</span></div>
                 <div className="stat"><span className="stat-n" data-count="1988">1988</span><span className="stat-l">FUNDACIÓN</span></div>
-                <div className="stat"><span className="stat-n" data-count="38">38</span><span className="stat-l">AÑOS</span></div>
+                <div className="stat"><span className="stat-n" data-count={ANIOS}>{ANIOS}</span><span className="stat-l">AÑOS</span></div>
                 <div className="stat"><span className="stat-n" data-count="2006">2006</span><span className="stat-l">OFICIAL FERRARI</span></div>
               </div>
               <div style={{ display: 'flex', gap: '1.25rem', marginTop: '3rem', flexWrap: 'wrap' }}>
@@ -300,33 +249,16 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginBottom: '1rem' }} data-r="up">
             <div className="sec-eye" style={{ justifyContent: 'center', marginBottom: '1rem' }}>ÚNETE AL CLUB</div>
             <h2 className="sec-title">Hazte<br /><span style={{ color: 'var(--red)' }}>socio</span></h2>
-            <p className="sec-sub" style={{ maxWidth: '500px', margin: '1rem auto 0', textAlign: 'center' }}>Elige tu nivel de membresía y únete a la comunidad Ferrari más exclusiva de España.</p>
+            <p className="sec-sub" style={{ maxWidth: '520px', margin: '1rem auto 0', textAlign: 'center' }}>Si tienes un Ferrari, esto es lo que el club organiza para sus socios a lo largo del año.</p>
           </div>
-          <div className="mem-grid">
-            <div className="mem-card" data-r="up">
-              <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '1.25rem' }}>SOCIO BASE</div>
-              <div className="mem-price">Cuota<span> anual</span></div>
-              <ul className="mem-features">
-                <li>Carnet oficial de socio</li><li>Acceso a eventos del club</li><li>Acceso a publicaciones del club</li><li>Directorio de socios</li><li>Descuentos en concesionarios</li>
-              </ul>
-              <a href="/contacta/" className="btn btn-o" style={{ width: '100%', justifyContent: 'center', marginTop: '2rem' }}>SOLICITAR INFO <span className="btn-ico">→</span></a>
-            </div>
-            <div className="mem-card featured" data-r="up" style={{ transitionDelay: '.1s' }}>
-              <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '1.25rem' }}>SOCIO ACTIVO</div>
-              <div className="mem-price">Plena<span> participación</span></div>
-              <ul className="mem-features">
-                <li>Todo lo del socio base</li><li>Track days y rutas</li><li>Visitas a Maranello</li><li>GP Fórmula 1 (descuento)</li><li>Cavalcade Classiche</li><li>Concursos de elegancia</li><li>Voto en asamblea</li>
-              </ul>
-              <a href="/club/hazte-socio/" className="btn btn-p" style={{ width: '100%', justifyContent: 'center', marginTop: '2rem' }} data-mag>HAZTE SOCIO <span className="btn-ico">→</span></a>
-            </div>
-            <div className="mem-card" data-r="up" style={{ transitionDelay: '.2s' }}>
-              <div className="sec-eye" style={{ fontSize: '.72rem', marginBottom: '1.25rem' }}>SOCIO FAMILIAR</div>
-              <div className="mem-price">Cuota<span> familiar</span></div>
-              <ul className="mem-features">
-                <li>2 miembros por cuota</li><li>Todos los beneficios activos</li><li>Invitaciones dobles</li><li>Área socios compartida</li><li>Prioridad en eventos</li>
-              </ul>
-              <a href="/contacta/" className="btn btn-o" style={{ width: '100%', justifyContent: 'center', marginTop: '2rem' }}>CONTACTAR <span className="btn-ico">→</span></a>
-            </div>
+          <div className="benefit-grid">
+            {BENEFITS.slice(0, 6).map((b) => (
+              <div className="ben-item" data-r="up" key={b.title}><div className="ben-title">{b.title}</div><div className="ben-desc">{b.desc}</div></div>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap', marginTop: '3rem' }} data-r="up">
+            <a href="/club/hazte-socio/" className="btn btn-p" data-mag>SOLICITAR EL INGRESO <span className="btn-ico">→</span></a>
+            <a href={deArchivo(PDF_INSCRIPCION)} className="btn btn-o" target="_blank" rel="noopener">FORMULARIO EN PDF <span className="btn-ico">↓</span></a>
           </div>
           <p style={{ fontFamily: 'var(--fm)', fontSize: '.82rem', color: 'var(--w60)', textAlign: 'center', marginTop: '2rem' }} data-r="up">
             Secretaría: <a href="tel:+34915754160" style={{ color: 'var(--red)' }}>+34 91 575 41 60</a> · <a href="mailto:ferrari@ferrariclubespana.com" style={{ color: 'var(--red)' }}>ferrari@ferrariclubespana.com</a>
@@ -339,14 +271,14 @@ export default function Home() {
           <div className="finale-txt" data-r="up">
             <div className="sec-eye" style={{ marginBottom: '1.5rem' }}>PASSIONE PER SEMPRE</div>
             <h2 className="finale-title">Tu cajón<br /><span>te espera.</span></h2>
-            <p className="sec-sub" style={{ maxWidth: '44ch' }}>Únete a la comunidad oficial de propietarios y apasionados de Ferrari en España</p>
+            <p className="sec-sub" style={{ maxWidth: '44ch' }}>Si eres propietario de un Ferrari y deseas compartir con nosotros tu pasión por Il Cavallino, hazte socio del Ferrari Club España.</p>
             <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', marginTop: '2.5rem' }}>
               <a href="/club/hazte-socio/" className="btn btn-p btn-lg">HAZTE SOCIO <span className="btn-ico">→</span></a>
               <a href="/contacta/" className="btn btn-o btn-lg">CONTACTAR</a>
             </div>
             <div className="finale-stats">
               <div><span className="fin-stat-n" data-count="200" data-suffix="+">200+</span><span className="fin-stat-l">SOCIOS</span></div>
-              <div><span className="fin-stat-n" data-count="38">38</span><span className="fin-stat-l">AÑOS</span></div>
+              <div><span className="fin-stat-n" data-count={ANIOS}>{ANIOS}</span><span className="fin-stat-l">AÑOS</span></div>
               <div><span className="fin-stat-n" data-count="1">1</span><span className="fin-stat-l">CLUB OFICIAL</span></div>
             </div>
           </div>

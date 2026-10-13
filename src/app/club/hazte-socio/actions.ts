@@ -2,6 +2,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { POLITICA_VERSION } from '@/lib/rgpd';
+import { enviarEmailContactoAlClub } from '@/lib/email';
 
 export type SolicitudSocioState = {
   ok: boolean;
@@ -59,6 +60,23 @@ export async function crearSolicitudSocio(
       consentimientoVersion: POLITICA_VERSION,
     },
   });
+
+  // La solicitud ya esta guardada y la junta la ve en el panel. Un fallo de
+  // email no debe perderla ni mostrar un error al solicitante.
+  try {
+    await enviarEmailContactoAlClub({
+      nombre,
+      apellidos,
+      email,
+      telefono: telefono || null,
+      asunto: 'hacerse-socio',
+      ferrariModelo,
+      mensaje: 'Solicitud de ingreso enviada desde el formulario de la web.',
+      contactoId: socio.id,
+    });
+  } catch (err) {
+    console.error('[hazte-socio] fallo al notificar al club por email:', err);
+  }
 
   return { ok: true, socioId: socio.id };
 }

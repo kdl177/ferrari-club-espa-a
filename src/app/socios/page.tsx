@@ -4,18 +4,20 @@ import HalftoneImage from '@/components/HalftoneImage';
 import LoginForm from '@/components/LoginForm';
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
+import { OFERTA_SOCIOS } from '@/lib/socio';
+import { deArchivo } from '@/lib/sitio';
 
 export const metadata: Metadata = {
   title: 'Acceso Socios — Ferrari Club España',
-  description: 'Área privada de socios del Ferrari Club España. Accede con tu usuario y contraseña.',
-  alternates: { canonical: '/socios' },
+  description: 'Área privada de socios del Ferrari Club España: revista del club, oferta de los concesionarios oficiales, seguros y cursos de conducción.',
+  alternates: { canonical: '/socios/' },
 };
 
 const AREA_CARDS = [
-  { label: 'EVENTOS', title: 'Inscripción', accent: true },
-  { label: 'REVISTA', title: 'Digital', accent: false },
-  { label: 'DIRECTORIO', title: 'Socios', accent: false },
-  { label: 'PERFIL', title: 'Mi cuenta', accent: true },
+  { label: 'REVISTA', title: 'Del club', accent: true },
+  { label: 'CONCESIONARIOS', title: 'Oferta', accent: false },
+  { label: 'SEGUROS', title: 'Oferta especial', accent: false },
+  { label: 'CURSOS', title: 'Conducción', accent: true },
 ];
 
 export default async function SociosPage() {
@@ -46,8 +48,7 @@ export default async function SociosPage() {
         </div>
 
         <div className="login-visual" aria-hidden="true">
-          <HalftoneImage className="login-ht" src="/fotos/interior-california.webp" alt="" cell={6} intensity={0.55} side="right" position="50% 50%" dim={0.3} />
-          <p className="foto-credito login-credito">Foto: andy_carter · CC BY 2.0 · adaptada</p>
+          <HalftoneImage className="login-ht" src="/club/socios-fabrica.webp" alt="" cell={6} intensity={0.55} side="right" position="50% 50%" dim={0.3} />
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2rem', pointerEvents: 'none' }}>
             <div style={{ fontFamily: 'var(--fd)', fontSize: '.65rem', letterSpacing: '.3em', color: 'rgba(218,41,28,.5)', textAlign: 'center' }}>ÁREA EXCLUSIVA</div>
             <div style={{ fontFamily: 'var(--fd)', fontSize: 'clamp(2rem,5vw,3.5rem)', letterSpacing: '.15em', color: 'rgba(255,255,255,.08)', textAlign: 'center', textTransform: 'uppercase' }}>SÓLO SOCIOS</div>
@@ -65,6 +66,27 @@ export default async function SociosPage() {
           </div>
         </div>
       </div>
+
+      <section style={{ background: 'var(--b90)', padding: '5rem 0' }}>
+        <div className="cnt">
+          <div className="sec-eye">PARA NUESTROS SOCIOS</div>
+          <h2 className="sec-title" style={{ marginTop: '1rem', marginBottom: '2.5rem' }}>Ventajas<br /><span style={{ color: 'var(--red)' }}>del socio</span></h2>
+          <div className="benefit-grid">
+            {OFERTA_SOCIOS.map((o) => {
+              const fuera = o.enlace.startsWith('http');
+              return (
+                <div className="ben-item" key={o.t}>
+                  <div className="ben-title">{o.t}</div>
+                  <div className="ben-desc">{o.d}</div>
+                  <a href={fuera ? deArchivo(o.enlace) : o.enlace} className="btn btn-o btn-sm" style={{ marginTop: '1.25rem' }} {...(fuera ? { target: '_blank', rel: 'noopener' } : {})}>
+                    {o.accion} <span className="btn-ico">{fuera ? '↗' : '→'}</span>
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -13,6 +13,7 @@ const MENU_ITEMS = [
     sub: [
       { label: 'Nuestro Club', href: '/club/' },
       { label: 'Hazte Socio', href: '/club/hazte-socio/' },
+      { label: 'Revista', href: '/revista/' },
     ],
   },
   { n: '04', label: 'EVENTOS', href: '/eventos/' },
@@ -29,6 +30,21 @@ const MENU_PREVIEWS = [
   { bg: '#0B0B0C', label: 'CONC.', size: '4vw', color: 'rgba(243,238,228,.06)' },
   { bg: '#0B0B0C', label: 'SOCIOS', size: '7vw', color: 'rgba(243,238,228,.06)' },
   { bg: '#0B0B0C', label: 'CONTACTA', size: '5vw', color: 'rgba(243,238,228,.06)' },
+];
+
+// Los mismos enlaces que el pie de ferrariclubespana.com. El archivo de
+// www2 es la web historica del club.
+const FERRARI_OFICIAL = [
+  ['Ferrari Web Oficial', 'https://www.ferrari.com'],
+  ['Fórmula 1', 'https://www.ferrari.com/en-EN/formula1'],
+  ['Ferrari Corse Clienti', 'https://races.ferrari.com/en/corse-clienti/ferrari-challenge/'],
+  ['Competizioni GT', 'https://races.ferrari.com/en/competizioni-gt/series/'],
+  ['Ferrari Sports Team', 'https://www.ferrari.com/en-ES/esports/home'],
+];
+const MUNDO_FERRARI = [
+  ['Eventos Internacionales', 'https://www2.ferrariclubespana.com/album.html'],
+  ['Ferrari Land Port Aventura', 'https://www.portaventuraworld.com/ferrari-land'],
+  ['Ferrari World Abu Dhabi', 'https://www.ferrariworldabudhabi.com/'],
 ];
 
 const COLUMNAS = 5;
@@ -166,15 +182,11 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   }, [pathname]);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const gsap = (window as unknown as { gsap?: typeof import('gsap').gsap }).gsap;
-    if (!gsap) return;
     document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
       if (el.dataset.counted) return;
       const target = parseInt(el.dataset.count || '0', 10);
       const suffix = el.dataset.suffix || '';
       const prefix = el.dataset.prefix || '';
-      const obj = { val: 0 };
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -183,14 +195,14 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
             if (target > 1900) {
               el.textContent = prefix + target + suffix;
             } else {
-              gsap.to(obj, {
-                val: target,
-                duration: 2.2,
-                ease: 'power2.out',
-                onUpdate: () => {
-                  el.textContent = prefix + Math.round(obj.val) + suffix;
-                },
-              });
+              // Misma curva que el power2.out de GSAP: 1 - (1 - t)^3.
+              const t0 = performance.now();
+              const paso = (ahora: number) => {
+                const t = Math.min((ahora - t0) / 2200, 1);
+                el.textContent = prefix + Math.round(target * (1 - (1 - t) ** 3)) + suffix;
+                if (t < 1) requestAnimationFrame(paso);
+              };
+              requestAnimationFrame(paso);
             }
             io.unobserve(el);
           });
@@ -202,21 +214,20 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   }, [pathname]);
 
   useEffect(() => {
-    const gsap = (window as unknown as { gsap?: typeof import('gsap').gsap }).gsap;
-    if (!gsap) return;
+    // El iman solo tiene sentido con raton; en tactil no hay mousemove.
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     const els = document.querySelectorAll<HTMLElement>('[data-mag]');
     const cleanups: Array<() => void> = [];
     els.forEach((el) => {
       const onMove = (e: MouseEvent) => {
         const r = el.getBoundingClientRect();
-        gsap.to(el, {
-          x: (e.clientX - (r.left + r.width / 2)) * 0.35,
-          y: (e.clientY - (r.top + r.height / 2)) * 0.35,
-          duration: 0.35,
-          ease: 'power2.out',
-        });
+        el.style.transition = 'transform .35s cubic-bezier(.33,1,.68,1)';
+        el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.35}px,${(e.clientY - (r.top + r.height / 2)) * 0.35}px)`;
       };
-      const onLeave = () => gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,.4)' });
+      const onLeave = () => {
+        el.style.transition = 'transform .5s cubic-bezier(.34,1.56,.64,1)';
+        el.style.transform = '';
+      };
       el.addEventListener('mousemove', onMove);
       el.addEventListener('mouseleave', onLeave);
       cleanups.push(() => {
@@ -244,7 +255,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           <NavLogo />
           <div className="nav-links">
             <Link href="/" className={`nav-link${normPath === '/' ? ' active' : ''}`}>Inicio</Link>
-            <a href="/noticias/" className={`nav-link${isActive('/noticias/') ? ' active' : ''}`}>Noticias</a>
+            <Link href="/noticias/" className={`nav-link${isActive('/noticias/') ? ' active' : ''}`}>Noticias</Link>
             <div
               className={`nav-drop nav-link${clubAbierto ? ' abierto' : ''}${isActive('/club/') ? ' active' : ''}`}
               role="button"
@@ -264,6 +275,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
               <div className="nav-drop-menu">
                 <a href="/club/" className="nav-drop-item">Nuestro Club</a>
                 <a href="/club/hazte-socio/" className="nav-drop-item">Hazte Socio</a>
+                <a href="/revista/" className="nav-drop-item">Revista</a>
               </div>
             </div>
             <a href="/eventos/" className={`nav-link${isActive('/eventos/') ? ' active' : ''}`}>Eventos</a>
@@ -285,7 +297,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       )}
 
       {!esAdminPanel && (
-      <div id="menu" className={menuOpen ? 'open' : ''} role="dialog" aria-modal="true">
+      <div id="menu" className={menuOpen ? 'open' : ''} role="dialog" aria-modal="true" aria-label="Menú de navegación" inert={!menuOpen}>
         <nav className="menu-nav">
           {MENU_ITEMS.map((item, i) =>
             item.sub ? (
@@ -348,19 +360,32 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
             <div>
               <span className="footer-col-title">NAVEGACIÓN</span>
               <Link href="/" className="footer-link">Inicio</Link>
-              <a href="/noticias/" className="footer-link">Noticias</a>
+              <Link href="/noticias/" className="footer-link">Noticias</Link>
               <a href="/club/" className="footer-link">Nuestro Club</a>
               <a href="/club/hazte-socio/" className="footer-link">Hazte Socio</a>
+              <a href="/eventos/" className="footer-link">Eventos</a>
+              <a href="/revista/" className="footer-link">Revista</a>
               <a href="/concesionarios/" className="footer-link">Concesionarios</a>
               <a href="/socios/" className="footer-link">Área Socios</a>
               <a href="/contacta/" className="footer-link">Contacta</a>
             </div>
             <div>
               <span className="footer-col-title">FERRARI OFICIAL</span>
-              <a href="https://www.ferrari.com/es-ES" className="footer-link" target="_blank" rel="noopener">Ferrari.com ↗</a>
-              <a href="https://www.ferrari.com/es-ES/formula1" className="footer-link" target="_blank" rel="noopener">Scuderia Ferrari ↗</a>
-              <a href="https://store.ferrari.com" className="footer-link" target="_blank" rel="noopener">Ferrari Store ↗</a>
-              <a href="https://www.ferrariland.com/es/" className="footer-link" target="_blank" rel="noopener">Ferrari Land ↗</a>
+              {FERRARI_OFICIAL.map(([t, u]) => (
+                <a key={u} href={u} className="footer-link" target="_blank" rel="noopener">{t} ↗</a>
+              ))}
+            </div>
+            <div>
+              <span className="footer-col-title">MUNDO FERRARI</span>
+              <a href="/eventos/historial/" className="footer-link">Histórico de eventos</a>
+              <Link href="/mundo-ferrari/historia/" className="footer-link">Historia Ferrari</Link>
+              <Link href="/mundo-ferrari/maranello/" className="footer-link">Maranello y Fábrica Ferrari</Link>
+              <Link href="/mundo-ferrari/todos-los-ferrari/" className="footer-link">Todos los Ferrari</Link>
+              <Link href="/mundo-ferrari/arte/" className="footer-link">Galería de Arte Ferrari</Link>
+              <Link href="/mundo-ferrari/modelismo/" className="footer-link">Modelismo Ferrari</Link>
+              {MUNDO_FERRARI.map(([t, u]) => (
+                <a key={u} href={u} className="footer-link" target="_blank" rel="noopener">{t} ↗</a>
+              ))}
             </div>
             <div>
               <span className="footer-col-title">CONTACTO</span>
@@ -382,8 +407,8 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           </div>
           <div className="rl-g" style={{ marginBottom: '2rem' }} />
           <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-            <span style={{ fontFamily: 'var(--fm)', fontSize: '.7rem', color: 'var(--w40)' }}>&copy; 2026 FERRARI CLUB ESPAÑA · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
-            <a href="/privacidad/" className="footer-priv">Política de Privacidad</a>
+            <span style={{ fontFamily: 'var(--fm)', fontSize: '.7rem', color: 'var(--w40)' }}>&copy; {new Date().getFullYear()} FERRARI CLUB ESPAÑA · CIF G79495107 · C/ Constancia 41 Entreplanta · 28002 Madrid</span>
+            <span className="footer-legal"><a href="/aviso-legal/" className="footer-priv">Aviso legal</a><a href="/privacidad/" className="footer-priv">Privacidad</a><a href="/cookies/" className="footer-priv">Cookies</a><a href="/condiciones-de-venta/" className="footer-priv">Condiciones de venta</a></span>
           </div>
           <div className="footer-brand" aria-hidden="true">FERRARI</div>
         </div>

@@ -1,24 +1,24 @@
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/sitio';
+import { todasLasNoticias, POR_PAGINA } from '@/lib/noticias';
+import { SECCIONES, todasLasRutas } from '@/lib/mundo';
 
-const BASE = 'https://club-ferrari-espana.vercel.app';
+export const revalidate = 3600;
 
-// Sin barra final: con trailingSlash desactivado, /club/ redirige a /club y
-// el sitemap debe dar la URL que responde 200.
-const RUTAS: Array<[string, MetadataRoute.Sitemap[number]['changeFrequency'], number]> = [
-  ['', 'weekly', 1],
-  ['/club', 'monthly', 0.8],
-  ['/club/hazte-socio', 'monthly', 0.9],
-  ['/eventos', 'weekly', 0.9],
-  ['/noticias', 'daily', 0.7],
-  ['/concesionarios', 'yearly', 0.5],
-  ['/contacta', 'yearly', 0.6],
-  ['/privacidad', 'yearly', 0.2],
+const FIJAS = [
+  '/', '/noticias/', '/club/', '/club/hazte-socio/', '/eventos/', '/eventos/historial/', '/revista/', '/solicita-presupuesto/', '/concesionarios/', '/contacta/', '/socios/',
+  '/aviso-legal/', '/privacidad/', '/cookies/', '/condiciones-de-venta/',
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return RUTAS.map(([ruta, changeFrequency, priority]) => ({
-    url: BASE + ruta,
-    changeFrequency,
-    priority,
-  }));
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const noticias = await todasLasNoticias();
+  const paginas = Math.ceil(noticias.length / POR_PAGINA);
+  return [
+    ...FIJAS.map((r) => ({ url: `${SITE_URL}${r}` })),
+    ...Array.from({ length: paginas - 1 }, (_, i) => ({ url: `${SITE_URL}/noticias/pagina/${i + 2}/` })),
+    ...noticias.map((n) => ({ url: `${SITE_URL}${n.ruta}`, lastModified: n.fecha })),
+    { url: `${SITE_URL}/mundo-ferrari/` },
+    ...SECCIONES.map((s) => ({ url: `${SITE_URL}/mundo-ferrari/${s.clave}/` })),
+    ...todasLasRutas().map((r) => ({ url: `${SITE_URL}/mundo-ferrari/${r.seccion}/${r.slug}/` })),
+  ];
 }
