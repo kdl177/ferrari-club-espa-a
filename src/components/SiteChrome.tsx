@@ -72,6 +72,25 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
 
   const normPath = (pathname || '/').replace(/\/$/, '') || '/';
 
+  // El desplegable de Club se queda abierto tras pulsarlo y solo se cierra al
+  // hacer scroll. Se guarda la ruta donde se abrio: al cambiar de pagina deja
+  // de coincidir y se cierra solo, sin tener que sincronizarlo en un efecto.
+  const [clubAbiertoEn, setClubAbiertoEn] = useState<string | null>(null);
+  const clubAbierto = clubAbiertoEn === pathname;
+
+  useEffect(() => {
+    if (!clubAbierto) return;
+    const desde = window.scrollY;
+    const alRodar = () => { if (Math.abs(window.scrollY - desde) > 8) setClubAbiertoEn(null); };
+    const alTeclear = (e: KeyboardEvent) => { if (e.key === 'Escape') setClubAbiertoEn(null); };
+    window.addEventListener('scroll', alRodar, { passive: true });
+    window.addEventListener('keydown', alTeclear);
+    return () => {
+      window.removeEventListener('scroll', alRodar);
+      window.removeEventListener('keydown', alTeclear);
+    };
+  }, [clubAbierto]);
+
   // El panel de gestion tiene su propia cabecera y navegacion: no debe
   // arrastrar el cromo de la web publica (nav fija, footer, botones deco).
   const esAdminPanel = normPath.startsWith('/socios/admin');
@@ -235,9 +254,23 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
         <nav id="nav" className={scrolled ? 'sc' : ''} role="navigation">
           <NavLogo />
           <div className="nav-links">
-            <a href="/" className={`nav-link${normPath === '/' ? ' active' : ''}`}>Inicio</a>
-            <a href="/noticias/" className={`nav-link${isActive('/noticias/') ? ' active' : ''}`}>Noticias</a>
-            <div className="nav-drop nav-link" tabIndex={0}>
+            <Link href="/" className={`nav-link${normPath === '/' ? ' active' : ''}`}>Inicio</Link>
+            <Link href="/noticias/" className={`nav-link${isActive('/noticias/') ? ' active' : ''}`}>Noticias</Link>
+            <div
+              className={`nav-drop nav-link${clubAbierto ? ' abierto' : ''}${isActive('/club/') ? ' active' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-haspopup="true"
+              aria-expanded={clubAbierto}
+              onClick={(e) => {
+                // un clic en una opcion navega; solo el clic en "Club" alterna
+                if ((e.target as HTMLElement).closest('.nav-drop-menu')) return;
+                setClubAbiertoEn(clubAbierto ? null : pathname);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setClubAbiertoEn(clubAbierto ? null : pathname); }
+              }}
+            >
               Club
               <div className="nav-drop-menu">
                 <a href="/club/" className="nav-drop-item">Nuestro Club</a>
@@ -326,8 +359,8 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(155px,1fr))', gap: '3rem', marginBottom: '4rem' }}>
             <div>
               <span className="footer-col-title">NAVEGACIÓN</span>
-              <a href="/" className="footer-link">Inicio</a>
-              <a href="/noticias/" className="footer-link">Noticias</a>
+              <Link href="/" className="footer-link">Inicio</Link>
+              <Link href="/noticias/" className="footer-link">Noticias</Link>
               <a href="/club/" className="footer-link">Nuestro Club</a>
               <a href="/club/hazte-socio/" className="footer-link">Hazte Socio</a>
               <a href="/eventos/" className="footer-link">Eventos</a>
@@ -335,7 +368,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
               <a href="/concesionarios/" className="footer-link">Concesionarios</a>
               <a href="/socios/" className="footer-link">Área Socios</a>
               <a href="/contacta/" className="footer-link">Contacta</a>
-              <a href="/comunidad/" className="footer-link">La comunidad</a>
             </div>
             <div>
               <span className="footer-col-title">FERRARI OFICIAL</span>
@@ -346,11 +378,11 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
             <div>
               <span className="footer-col-title">MUNDO FERRARI</span>
               <a href="/eventos/historial/" className="footer-link">Histórico de eventos</a>
-              <a href="/mundo-ferrari/historia/" className="footer-link">Historia Ferrari</a>
-              <a href="/mundo-ferrari/maranello/" className="footer-link">Maranello y Fábrica Ferrari</a>
-              <a href="/mundo-ferrari/todos-los-ferrari/" className="footer-link">Todos los Ferrari</a>
-              <a href="/mundo-ferrari/arte/" className="footer-link">Galería de Arte Ferrari</a>
-              <a href="/mundo-ferrari/modelismo/" className="footer-link">Modelismo Ferrari</a>
+              <Link href="/mundo-ferrari/historia/" className="footer-link">Historia Ferrari</Link>
+              <Link href="/mundo-ferrari/maranello/" className="footer-link">Maranello y Fábrica Ferrari</Link>
+              <Link href="/mundo-ferrari/todos-los-ferrari/" className="footer-link">Todos los Ferrari</Link>
+              <Link href="/mundo-ferrari/arte/" className="footer-link">Galería de Arte Ferrari</Link>
+              <Link href="/mundo-ferrari/modelismo/" className="footer-link">Modelismo Ferrari</Link>
               {MUNDO_FERRARI.map(([t, u]) => (
                 <a key={u} href={u} className="footer-link" target="_blank" rel="noopener">{t} ↗</a>
               ))}

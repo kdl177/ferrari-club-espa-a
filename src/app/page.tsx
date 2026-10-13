@@ -145,7 +145,7 @@ export default async function Home() {
                 Cada Gran Premio en tres tiempos, la resistencia y las novedades de Maranello, contados por la redacción del club.
               </p>
             </div>
-            <a href="/noticias/" className="btn btn-o btn-sm">TODAS LAS NOTICIAS →</a>
+            <Link href="/noticias/" className="btn btn-o btn-sm">TODAS LAS NOTICIAS →</Link>
           </div>
           <div className="live-grid">
             {ultimas.map((n) => (

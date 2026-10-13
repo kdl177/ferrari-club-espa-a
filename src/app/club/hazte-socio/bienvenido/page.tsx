@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Pago recibido — Ferrari Club España',
@@ -18,7 +19,7 @@ export default function BienvenidoPage() {
         </p>
         <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', marginTop: '2.5rem', flexWrap: 'wrap' }} data-r="up">
           <a href="/socios/" className="btn btn-p" data-mag>ACCEDER AL ÁREA DE SOCIOS <span className="btn-ico">→</span></a>
-          <a href="/" className="btn btn-o">VOLVER AL INICIO</a>
+          <Link href="/" className="btn btn-o">VOLVER AL INICIO</Link>
         </div>
       </div>
     </section>

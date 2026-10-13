@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
+import FondoHero from '@/components/FondoHero';
 import DealerFilter from '@/components/DealerFilter';
 import { DEALERS } from '@/lib/concesionarios';
 
@@ -14,7 +15,8 @@ export default function ConcesionariosPage() {
   return (
     <>
       <section className="dealer-hero">
-        <div className="cnt">
+        <FondoHero nombre="carretera-f40" alt="Un Ferrari F40 rojo rodando por una carretera de montaña" />
+        <div className="cnt" style={{ position: 'relative', zIndex: 2 }}>
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Concesionarios' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }} data-r="up">DISTRIBUIDORES OFICIALES</p>
           <h1 className="sec-title" style={{ fontSize: 'clamp(2.5rem,6vw,5rem)', marginTop: '.75rem' }} data-r="up">Concesionarios<br /><span style={{ color: 'var(--red)' }}>Ferrari España</span></h1>

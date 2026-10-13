@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import HalftoneImage from '@/components/HalftoneImage';
 import LoginForm from '@/components/LoginForm';
+import { redirect } from 'next/navigation';
+import { auth } from '@/auth';
 import { OFERTA_SOCIOS } from '@/lib/socio';
 import { deArchivo } from '@/lib/sitio';
 
@@ -17,15 +20,21 @@ const AREA_CARDS = [
   { label: 'CURSOS', title: 'Conducción', accent: true },
 ];
 
-export default function SociosPage() {
+export default async function SociosPage() {
+  // La sesion dura 30 dias, pero esta es la pagina a la que lleva el boton
+  // "Area Socios" de la cabecera: sin esto, un socio ya dentro veia otra vez
+  // el formulario y parecia que la sesion se habia cerrado.
+  const session = await auth();
+  if (session?.user?.email) redirect('/socios/panel');
+
   return (
     <div style={{ paddingTop: '70px' }}>
       <div className="login-wrap">
         <div className="login-panel">
-          <a href="/" className="login-brand" style={{ textDecoration: 'none' }}>
+          <Link href="/" className="login-brand" style={{ textDecoration: 'none' }}>
             FERRARI CLUB ESPAÑA
             <em>ÁREA PRIVADA DE SOCIOS</em>
-          </a>
+          </Link>
           <div className="login-card">
             <h1 className="login-title">Acceso<br /><span style={{ color: 'var(--red)' }}>socios</span></h1>
             <p className="login-sub">INTRODUCE TUS CREDENCIALES DE SOCIO</p>

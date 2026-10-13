@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
+import FondoHero from '@/components/FondoHero';
 import NoticiasLista from '@/components/NoticiasLista';
 import { pagina } from '@/lib/noticias';
 
@@ -17,7 +18,8 @@ export default async function NoticiasPage() {
   return (
     <>
       <section className="page-hero">
-        <div className="cnt">
+        <FondoHero nombre="portada-laferrari" alt="Frontal de un LaFerrari en blanco y negro" />
+        <div className="cnt" style={{ position: 'relative', zIndex: 2 }}>
           <Breadcrumb items={[{ label: 'Inicio', href: '/' }, { label: 'Noticias' }]} />
           <p className="sec-eye" style={{ marginTop: '1.5rem' }}>MAGAZINE DEL CLUB</p>
           <h1 className="sec-title" style={{ marginTop: '.75rem' }}>Mundo<br /><span style={{ color: 'var(--red)' }}>Ferrari</span></h1>
