@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import FondoSocios from '@/components/FondoSocios';
 import { requireAdmin } from '@/lib/admin';
 import { signOut } from '@/auth';
 
@@ -22,7 +23,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const admin = await requireAdmin();
 
   return (
-    <div className="admin-wrap">
+    <div className="admin-wrap panel-socio">
+      <FondoSocios />
       <header className="admin-head">
         <div className="cnt">
           <div className="admin-head-row">

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import FondoSocios from '@/components/FondoSocios';
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
@@ -26,8 +27,9 @@ export default async function PrivacidadSocioPage() {
   const suscripcionActiva = socio.suscripcion?.estado === 'activa';
 
   return (
-    <div style={{ paddingTop: '13rem', paddingBottom: '6rem', background: 'var(--black)', minHeight: '100vh' }}>
-      <div className="cnt" style={{ maxWidth: '860px' }}>
+    <div className="panel-socio panel-cuenta">
+      <FondoSocios />
+      <div className="cnt" style={{ maxWidth: '860px', position: 'relative', zIndex: 2 }}>
         <p className="sec-eye" data-r="up">ÁREA DE SOCIOS</p>
         <h1 className="sec-title" style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', marginTop: '.75rem', marginBottom: '1rem' }} data-r="up">
           MIS DATOS Y<br /><span style={{ color: 'var(--red)' }}>PRIVACIDAD</span>

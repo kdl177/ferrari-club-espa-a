@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import FondoSocios from '@/components/FondoSocios';
 import Link from 'next/link';
 import { auth, signOut } from '@/auth';
 import { prisma } from '@/lib/prisma';
@@ -29,17 +30,7 @@ export default async function PanelSociosPage() {
 
   return (
     <div className="panel-socio">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="panel-fondo"
-        src="/heroes/panel-f8-1920.webp"
-        srcSet="/heroes/panel-f8-1280.webp 1280w, /heroes/panel-f8-1920.webp 1920w, /heroes/panel-f8-2560.webp 2560w, /heroes/panel-f8-3348.webp 3348w"
-        sizes="100vw"
-        alt=""
-        aria-hidden="true"
-        fetchPriority="high"
-      />
-      <div className="panel-velo" aria-hidden="true" />
+      <FondoSocios />
       <div className="cnt" style={{ position: 'relative', zIndex: 2 }}>
         <p className="sec-eye" data-r="up">ÁREA PRIVADA</p>
         <h1 className="sec-title" style={{ fontSize: 'clamp(2rem,5vw,4rem)', marginTop: '.75rem' }} data-r="up">
