@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
+  const [clave, setClave] = useState('');
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,7 +19,20 @@ export default function LoginForm() {
     }
     setError(null);
     setSending(true);
-    await signIn('resend', { email, redirectTo: '/socios/panel/' });
+
+    if (!clave) {
+      await signIn('resend', { email, redirectTo: '/socios/panel/' });
+      return;
+    }
+
+    const r = await signIn('credentials', { email, password: clave, redirect: false });
+    if (r?.error) {
+      setError('Email o contraseña incorrectos.');
+      setSending(false);
+      return;
+    }
+    router.push('/socios/panel/');
+    router.refresh();
   }
 
   return (
@@ -35,11 +51,24 @@ export default function LoginForm() {
           required
         />
       </div>
+      <div className="form-group">
+        <label className="form-label" htmlFor="password">CONTRASEÑA</label>
+        <input
+          className="form-input"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Opcional"
+          autoComplete="current-password"
+          value={clave}
+          onChange={(e) => setClave(e.target.value)}
+        />
+      </div>
       <p style={{ fontFamily: 'var(--fm)', fontSize: '.78rem', color: 'var(--w60)', lineHeight: 1.7 }}>
-        Te enviaremos un enlace de acceso a tu email. Sin contraseñas.
+        Si no tienes contraseña, déjala en blanco y te enviaremos un enlace de acceso a tu email.
       </p>
       <button type="submit" className="btn btn-p" style={{ width: '100%', justifyContent: 'center' }} disabled={sending} data-mag>
-        {sending ? 'ENVIANDO ENLACE...' : 'RECIBIR ENLACE DE ACCESO'} {!sending && <span className="btn-ico">→</span>}
+        {sending ? 'ENTRANDO...' : clave ? 'ENTRAR' : 'RECIBIR ENLACE DE ACCESO'} {!sending && <span className="btn-ico">→</span>}
       </button>
       {error && (
         <div className="alert alert-err">{error}</div>

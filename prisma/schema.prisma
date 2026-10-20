@@ -69,6 +69,8 @@ model User {
   ferrariModelo String?
   estadoCuota   EstadoCuota  @default(pendiente)
   esAdmin       Boolean      @default(false) @map("es_admin")
+  // scrypt "sal:hash" en hex. Nulo: la cuenta solo entra con enlace al correo.
+  passwordHash  String?      @map("password_hash")
 
   // RGPD: hay que poder DEMOSTRAR el consentimiento, no solo pedirlo.
   // Se guarda cuando se acepto y que version del texto legal se acepto.
