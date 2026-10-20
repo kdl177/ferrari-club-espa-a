@@ -28,8 +28,19 @@ export default async function PanelSociosPage() {
     : AREA_CARDS;
 
   return (
-    <div style={{ paddingTop: '10rem', paddingBottom: '6rem', background: 'var(--black)', minHeight: '100vh' }}>
-      <div className="cnt">
+    <div className="panel-socio">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="panel-fondo"
+        src="/heroes/panel-f8-1920.webp"
+        srcSet="/heroes/panel-f8-1280.webp 1280w, /heroes/panel-f8-1920.webp 1920w, /heroes/panel-f8-2560.webp 2560w, /heroes/panel-f8-3348.webp 3348w"
+        sizes="100vw"
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+      />
+      <div className="panel-velo" aria-hidden="true" />
+      <div className="cnt" style={{ position: 'relative', zIndex: 2 }}>
         <p className="sec-eye" data-r="up">ÁREA PRIVADA</p>
         <h1 className="sec-title" style={{ fontSize: 'clamp(2rem,5vw,4rem)', marginTop: '.75rem' }} data-r="up">
           BIENVENIDO<br /><span style={{ color: 'var(--red)' }}>{email}</span>
@@ -37,7 +48,7 @@ export default async function PanelSociosPage() {
 
         <div className="board-grid" style={{ marginTop: '3.5rem' }}>
           {tarjetas.map((c) => (
-            <Link href={c.href} className="board-card panel-card" key={c.label}>
+            <Link href={c.href} className={`board-card panel-card${c.href === '/socios/admin' ? ' panel-card-admin' : ''}`} key={c.label}>
               <div className="board-name">{c.title}</div>
               <div className="board-role">{c.label}</div>
             </Link>
